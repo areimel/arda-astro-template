@@ -1,0 +1,20 @@
+{
+	"siteName": "Astroship",
+	"defaultTitle": "Astroship - Starter Template for Astro with Tailwind CSS",
+	"defaultDescription": "Astroship is a starter website template for Astro built with TailwindCSS.",
+	"openGraphImage": "/opengraph.jpg",
+	"twitter": {
+		"creator": "@surjithctly",
+		"site": "@web3templates",
+		"card": "summary_large_image"
+	},
+	"openGraph": {
+		"basic": {
+			"type": "website",
+			"title": "Astroship - Starter Template for Astro"
+		},
+		"image": {
+			"alt": "Astroship Homepage Screenshot"
+		}
+	}
+} 

@@ -1,0 +1,20 @@
+{
+	"title": "Contact",
+	"description": "We are a here to help.",
+	"heading": "Contact Astroship",
+	"subheading": "Have something to say? We are here to help. Fill up the form or send email or call phone.",
+	"address": {
+		"text": "1734 Sanfransico, CA 93063",
+		"icon": "uil:map-marker"
+	},
+	"email": {
+		"text": "hello@astroshipstarter.com",
+		"href": "mailto:hello@astroshipstarter.com",
+		"icon": "uil:envelope"
+	},
+	"phone": {
+		"text": "+1 (987) 4587 899",
+		"href": "tel:+1 (987) 4587 899",
+		"icon": "uil:phone"
+	}
+} 

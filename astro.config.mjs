@@ -11,4 +11,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  // Expose environment variables to the client
+  define: {
+    'import.meta.env.GOOGLE_TAG_MANAGER_ID': JSON.stringify(process.env.GOOGLE_TAG_MANAGER_ID),
+  },
 });

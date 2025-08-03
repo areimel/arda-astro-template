@@ -2,9 +2,17 @@
 import { SEO } from "astro-seo";
 import Footer from "@/components/footer.astro";
 import Navbar from "@/components/navbar/navbar.astro";
+import GoogleTagManagerHead from "@/components/HeadComponents/GoogleTagManagerHead.astro";
+import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBody.astro";
+
+// Styles & Fonts
 import "@fontsource-variable/inter/index.css";
 import "@fontsource-variable/bricolage-grotesque";
 import "../styles/global.css";
+
+// Data
+import seoData from "@/data/seo.json";
+
 
 export interface Props {
   title: string;
@@ -13,15 +21,15 @@ export interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
 const resolvedImageWithDomain = new URL(
-  "/opengraph.jpg",
+  seoData.openGraphImage,
   Astro.site
 ).toString();
 
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Astroship"
-  : "Astroship - Starter Template for Astro with Tailwind CSS";
+  ? title + " | " + seoData.siteName
+  : seoData.defaultTitle;
 ---
 
 <!doctype html>
@@ -31,31 +39,26 @@ const makeTitle = title
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-
+    <GoogleTagManagerHead />
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Astroship is a starter website template for Astro built with TailwindCSS."
+      description={seoData.defaultDescription}
       canonical={canonicalURL}
-      twitter={{
-        creator: "@surjithctly",
-        site: "@web3templates",
-        card: "summary_large_image",
-      }}
+      twitter={seoData.twitter}
       openGraph={{
         basic: {
           url: canonicalURL,
-          type: "website",
-          title: `Astroship - Starter Template for Astro`,
+          type: seoData.openGraph.basic.type,
+          title: seoData.openGraph.basic.title,
           image: resolvedImageWithDomain,
         },
-        image: {
-          alt: "Astroship Homepage Screenshot",
-        },
+        image: seoData.openGraph.image,
       }}
     />
   </head>
   <body>
+    <GoogleTagManagerBody />
     <Navbar />
     <slot />
     <Footer />
