@@ -8,7 +8,16 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:screenshots": "playwright test tests/test-runner.spec.ts --grep \"Screenshot Testing\"",
+    "test:screenshots-desktop": "playwright test tests/test-runner.spec.ts --grep \"Screenshot Testing.*Desktop\"",
+    "test:screenshots-laptop": "playwright test tests/test-runner.spec.ts --grep \"Screenshot Testing.*Laptop\"",
+    "test:screenshots-mobile": "playwright test tests/test-runner.spec.ts --grep \"Screenshot Testing.*Mobile\"",
+    "test:accessibility": "playwright test tests/test-runner.spec.ts --grep \"Accessibility Testing\"",
+    "test:seo": "playwright test tests/test-runner.spec.ts --grep \"SEO Testing\"",
+    "test:session": "playwright test tests/test-runner.spec.ts",
+    "test:all": "playwright test tests/test-runner.spec.ts --grep \"Screenshot Testing|Accessibility Testing|SEO Testing\"",
+    "test:clean": "rimraf test-results"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.0",
@@ -26,5 +35,11 @@
     "astro-seo": "^0.8.4",
     "sharp": "^0.33.5",
     "tailwindcss": "^4.0.14"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.54.1",
+    "playwright": "^1.54.1",
+    "rimraf": "^6.0.1"
   }
 }

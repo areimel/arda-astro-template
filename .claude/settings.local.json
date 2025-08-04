@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(mkdir:*)",
+      "Bash(rmdir:*)",
+      "Bash(del \"C:\\Users\\Alec\\Dev\\ARDA-projects\\arda-astro-template\\TESTING.md\")",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}
