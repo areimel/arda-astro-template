@@ -7,13 +7,13 @@ const menuitems = navigationData.header.menuitems;
 <div class="lg:hidden flex w-full items-center justify-between">
   <!-- Logo -->
   <a href="/" class="text-lg">
-    <span class="font-bold text-slate-800">Astro</span><span class="text-slate-500">ship</span>
+    <span class="font-bold theme-headline">Astro</span><span class="theme-paragraph">ship</span>
   </a>
   
   <!-- Hamburger Menu Button -->
   <button
     id="mobile-menu-button"
-    class="mobile-menu-trigger flex items-center justify-center w-8 h-8 text-gray-800 hover:text-gray-900"
+    class="mobile-menu-trigger flex items-center justify-center w-8 h-8 theme-headline hover:opacity-80"
     aria-label="Toggle mobile menu"
     aria-expanded="false">
     <svg
@@ -38,15 +38,15 @@ const menuitems = navigationData.header.menuitems;
 <!-- Mobile Menu Overlay -->
 <div
   id="mobile-menu-overlay"
-  class="mobile-menu-overlay fixed inset-0 z-50 bg-white transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+  class="mobile-menu-overlay fixed inset-0 z-50 theme-bg transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
   
   <!-- Mobile Menu Header -->
   <div class="flex items-center justify-between p-5 border-b">
     <a href="/" class="text-lg">
-      <span class="font-bold text-slate-800">Astro</span><span class="text-slate-500">ship</span>
+      <span class="font-bold theme-headline">Astro</span><span class="theme-paragraph">ship</span>
     </a>
     <button
-      class="mobile-menu-close flex items-center justify-center w-8 h-8 text-gray-800 hover:text-gray-900"
+      class="mobile-menu-close flex items-center justify-center w-8 h-8 theme-headline hover:opacity-80"
       aria-label="Close mobile menu">
       <svg
         class="w-5 h-5"
@@ -68,7 +68,7 @@ const menuitems = navigationData.header.menuitems;
             {item.children && (
               <li class="mobile-dropdown-item">
                 <button
-                  class="mobile-dropdown-trigger w-full flex items-center justify-between py-3 text-left text-gray-600 hover:text-gray-900 border-b border-gray-100"
+                  class="mobile-dropdown-trigger w-full flex items-center justify-between py-3 text-left theme-paragraph hover:theme-headline border-b border-gray-100"
                   aria-expanded="false">
                   <span class="font-medium">{item.title}</span>
                   <svg
@@ -84,7 +84,7 @@ const menuitems = navigationData.header.menuitems;
                     {item.children.map((child) => (
                       <a
                         href={child.path}
-                        class="block py-2 text-gray-500 hover:text-gray-700">
+                        class="block py-2 theme-paragraph hover:theme-headline">
                         {child.title}
                       </a>
                     ))}
@@ -97,10 +97,10 @@ const menuitems = navigationData.header.menuitems;
               <li>
                 <a
                   href={item.path}
-                  class="flex items-center py-3 text-gray-600 hover:text-gray-900 border-b border-gray-100">
+                  class="flex items-center py-3 theme-paragraph hover:theme-headline border-b border-gray-100">
                   <span class="font-medium">{item.title}</span>
                   {item.badge && (
-                    <span class="ml-2 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                    <span class="ml-2 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white rounded-full theme-badge">
                       New
                     </span>
                   )}

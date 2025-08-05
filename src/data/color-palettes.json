@@ -1,0 +1,100 @@
+{
+  "palettes": [
+    {
+      "id": "palette-1",
+      "name": "Default Light",
+      "description": "Clean and bright with teal accents",
+      "colors": {
+        "bg": "#fffffe",
+        "headline": "#181818",
+        "paragraph": "#2e2e2e",
+        "button": "#4fc4cf",
+        "buttonText": "#181818",
+        "stroke": "#181818",
+        "main": "#f2eef5",
+        "secondary": "#994ff3",
+        "tertiary": "#fbdd74"
+      }
+    },
+    {
+      "id": "palette-2",
+      "name": "Deep Ocean",
+      "description": "Professional navy with bright teal",
+      "colors": {
+        "bg": "#fffffe",
+        "headline": "#00214d",
+        "paragraph": "#1b2d45",
+        "button": "#00ebc7",
+        "buttonText": "#00214d",
+        "stroke": "#00214d",
+        "main": "#fffffe",
+        "secondary": "#ff5470",
+        "tertiary": "#fde24f"
+      }
+    },
+    {
+      "id": "palette-3",
+      "name": "Sky Blue",
+      "description": "Calming blues with coral accent",
+      "colors": {
+        "bg": "#fffffe",
+        "headline": "#094067",
+        "paragraph": "#5f6c7b",
+        "button": "#3da9fc",
+        "buttonText": "#fffffe",
+        "stroke": "#094067",
+        "main": "#fffffe",
+        "secondary": "#90b4ce",
+        "tertiary": "#ef4565"
+      }
+    },
+    {
+      "id": "palette-4",
+      "name": "Dark Mode",
+      "description": "Dark theme with purple highlights",
+      "colors": {
+        "bg": "#16161a",
+        "headline": "#fffffe",
+        "paragraph": "#94a1b2",
+        "button": "#7f5af0",
+        "buttonText": "#fffffe",
+        "stroke": "#010101",
+        "main": "#fffffe",
+        "secondary": "#72757e",
+        "tertiary": "#2cb67d"
+      }
+    },
+    {
+      "id": "palette-5",
+      "name": "Nature Green",
+      "description": "Earthy greens with warm accents",
+      "colors": {
+        "bg": "#f2f7f5",
+        "headline": "#00473e",
+        "paragraph": "#475d5b",
+        "button": "#faae2b",
+        "buttonText": "#00473e",
+        "stroke": "#00332c",
+        "main": "#f2f7f5",
+        "secondary": "#ffa8ba",
+        "tertiary": "#fa5246"
+      }
+    },
+    {
+      "id": "palette-6",
+      "name": "Royal Purple",
+      "description": "Clean whites with bold purple",
+      "colors": {
+        "bg": "#fffffe",
+        "headline": "#2b2c34",
+        "paragraph": "#2b2c34",
+        "button": "#6246ea",
+        "buttonText": "#fffffe",
+        "stroke": "#2b2c34",
+        "main": "#fffffe",
+        "secondary": "#d1d1e9",
+        "tertiary": "#e45858"
+      }
+    }
+  ]
+}

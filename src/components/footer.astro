@@ -7,7 +7,7 @@ import navigationData from "@/data/navigation.json";
 const { social, sections, legal } = navigationData.footer;
 ---
 
-<footer class="bg-slate-50 border-t border-slate-200 mt-20">
+<footer class="theme-main-bg border-t border-slate-200 mt-20">
   <Container>
     <div class="py-16">
       <!-- Main Footer Content -->
@@ -15,10 +15,10 @@ const { social, sections, legal } = navigationData.footer;
         <!-- Company Info Section -->
         <div class="space-y-4">
           <div class="flex items-center space-x-2">
-            <span class="text-xl font-bold text-slate-800">Astro</span>
-            <span class="text-xl text-slate-500">ship</span>
+            <span class="text-xl font-bold theme-headline">Astro</span>
+            <span class="text-xl theme-paragraph">ship</span>
           </div>
-          <p class="text-sm text-slate-600 leading-relaxed">
+          <p class="text-sm theme-paragraph leading-relaxed">
             Build faster websites with Astro's next-gen island architecture.
             Ship less JavaScript and deliver blazing-fast performance.
           </p>
@@ -28,7 +28,7 @@ const { social, sections, legal } = navigationData.footer;
               social.map((link) => (
                 <a
                   href={link.url}
-                  class="text-slate-400 hover:text-slate-600 transition-colors"
+                  class="theme-paragraph hover:theme-headline transition-colors"
                   aria-label={link.name}>
                   <Icon name={link.icon} class="w-5 h-5" />
                 </a>
@@ -41,7 +41,7 @@ const { social, sections, legal } = navigationData.footer;
         {
           sections.map((section) => (
             <div class="space-y-4">
-              <h3 class="font-semibold text-slate-800 text-sm uppercase tracking-wider">
+              <h3 class="font-semibold theme-headline text-sm uppercase tracking-wider">
                 {section.title}
               </h3>
               <ul class="space-y-3">
@@ -49,7 +49,7 @@ const { social, sections, legal } = navigationData.footer;
                   <li>
                     <a
                       href={link.path}
-                      class="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                      class="text-sm theme-paragraph hover:theme-headline transition-colors">
                       {link.title}
                     </a>
                   </li>
@@ -62,10 +62,10 @@ const { social, sections, legal } = navigationData.footer;
         <!-- Newsletter Signup -->
         <div class="space-y-4">
           <h3
-            class="font-semibold text-slate-800 text-sm uppercase tracking-wider">
+            class="font-semibold theme-headline text-sm uppercase tracking-wider">
             Stay Updated
           </h3>
-          <p class="text-sm text-slate-600">
+          <p class="text-sm theme-paragraph">
             Get the latest updates and news delivered to your inbox.
           </p>
           <FooterForm />
@@ -78,7 +78,7 @@ const { social, sections, legal } = navigationData.footer;
           class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div
             class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-            <p class="text-sm text-slate-500">
+            <p class="text-sm theme-paragraph">
               © {new Date().getFullYear()} ARDA. All rights reserved.
             </p>
             <div class="flex space-x-6">
@@ -86,7 +86,7 @@ const { social, sections, legal } = navigationData.footer;
                 legal.map((link) => (
                   <a
                     href={link.path}
-                    class="text-sm text-slate-500 hover:text-slate-700 transition-colors">
+                    class="text-sm theme-paragraph hover:theme-headline transition-colors">
                     {link.title}
                   </a>
                 ))

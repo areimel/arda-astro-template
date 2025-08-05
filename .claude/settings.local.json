@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.happyhues.co)",
+      "Bash(pnpm build:*)"
+    ],
+    "deny": []
+  }
+}

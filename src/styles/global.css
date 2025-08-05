@@ -7,6 +7,101 @@
     Bricolage Grotesque Variable, Inter Variable, Inter, ui-sans-serif,
     system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
+  
+  /* Theme Color Variables */
+  --color-theme-bg: #fffffe;
+  --color-theme-headline: #181818;
+  --color-theme-paragraph: #2e2e2e;
+  --color-theme-button: #4fc4cf;
+  --color-theme-button-text: #181818;
+  --color-theme-stroke: #181818;
+  --color-theme-main: #f2eef5;
+  --color-theme-secondary: #994ff3;
+  --color-theme-tertiary: #fbdd74;
+  
+  /* Theme Utility Colors for TailwindCSS v4 */
+  --color-theme-bg: var(--color-theme-bg);
+  --color-theme-headline: var(--color-theme-headline);
+  --color-theme-paragraph: var(--color-theme-paragraph);
+  --color-theme-button: var(--color-theme-button);
+  --color-theme-button-text: var(--color-theme-button-text);
+  --color-theme-stroke: var(--color-theme-stroke);
+  --color-theme-main: var(--color-theme-main);
+  --color-theme-secondary: var(--color-theme-secondary);
+  --color-theme-tertiary: var(--color-theme-tertiary);
+}
+
+/* Color Palette Definitions */
+[data-theme="palette-1"] {
+  --color-theme-bg: #fffffe;
+  --color-theme-headline: #181818;
+  --color-theme-paragraph: #2e2e2e;
+  --color-theme-button: #4fc4cf;
+  --color-theme-button-text: #181818;
+  --color-theme-stroke: #181818;
+  --color-theme-main: #f2eef5;
+  --color-theme-secondary: #994ff3;
+  --color-theme-tertiary: #fbdd74;
+}
+
+[data-theme="palette-2"] {
+  --color-theme-bg: #fffffe;
+  --color-theme-headline: #00214d;
+  --color-theme-paragraph: #1b2d45;
+  --color-theme-button: #00ebc7;
+  --color-theme-button-text: #00214d;
+  --color-theme-stroke: #00214d;
+  --color-theme-main: #fffffe;
+  --color-theme-secondary: #ff5470;
+  --color-theme-tertiary: #fde24f;
+}
+
+[data-theme="palette-3"] {
+  --color-theme-bg: #fffffe;
+  --color-theme-headline: #094067;
+  --color-theme-paragraph: #5f6c7b;
+  --color-theme-button: #3da9fc;
+  --color-theme-button-text: #fffffe;
+  --color-theme-stroke: #094067;
+  --color-theme-main: #fffffe;
+  --color-theme-secondary: #90b4ce;
+  --color-theme-tertiary: #ef4565;
+}
+
+[data-theme="palette-4"] {
+  --color-theme-bg: #16161a;
+  --color-theme-headline: #fffffe;
+  --color-theme-paragraph: #94a1b2;
+  --color-theme-button: #7f5af0;
+  --color-theme-button-text: #fffffe;
+  --color-theme-stroke: #010101;
+  --color-theme-main: #fffffe;
+  --color-theme-secondary: #72757e;
+  --color-theme-tertiary: #2cb67d;
+}
+
+[data-theme="palette-5"] {
+  --color-theme-bg: #f2f7f5;
+  --color-theme-headline: #00473e;
+  --color-theme-paragraph: #475d5b;
+  --color-theme-button: #faae2b;
+  --color-theme-button-text: #00473e;
+  --color-theme-stroke: #00332c;
+  --color-theme-main: #f2f7f5;
+  --color-theme-secondary: #ffa8ba;
+  --color-theme-tertiary: #fa5246;
+}
+
+[data-theme="palette-6"] {
+  --color-theme-bg: #fffffe;
+  --color-theme-headline: #2b2c34;
+  --color-theme-paragraph: #2b2c34;
+  --color-theme-button: #6246ea;
+  --color-theme-button-text: #fffffe;
+  --color-theme-stroke: #2b2c34;
+  --color-theme-main: #fffffe;
+  --color-theme-secondary: #d1d1e9;
+  --color-theme-tertiary: #e45858;
 }
 
 /*
@@ -17,6 +112,114 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
+/* Theme Button Styles */
+.theme-button-primary {
+  background-color: var(--color-theme-button);
+  color: var(--color-theme-button-text);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.theme-button-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.theme-button-outline {
+  background-color: transparent;
+  color: var(--color-theme-stroke);
+  border: 2px solid var(--color-theme-stroke);
+  transition: all 0.2s ease;
+}
+
+.theme-button-outline:hover {
+  background-color: var(--color-theme-stroke);
+  color: var(--color-theme-bg);
+}
+
+/* Theme Link Styles */
+.theme-link-primary {
+  background-color: var(--color-theme-button);
+  color: var(--color-theme-button-text);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.theme-link-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.theme-link-outline {
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-stroke);
+  border: 2px solid var(--color-theme-stroke);
+  transition: all 0.2s ease;
+}
+
+.theme-link-outline:hover {
+  background-color: var(--color-theme-stroke);
+  color: var(--color-theme-bg);
+}
+
+.theme-link-inverted {
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-headline);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.theme-link-inverted:hover {
+  opacity: 0.8;
+}
+
+.theme-link-muted {
+  background-color: var(--color-theme-main);
+  color: var(--color-theme-paragraph);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.theme-link-muted:hover {
+  opacity: 0.8;
+}
+
+/* Theme Text Styles */
+.theme-headline {
+  color: var(--color-theme-headline);
+}
+
+.theme-paragraph {
+  color: var(--color-theme-paragraph);
+}
+
+.theme-bg {
+  background-color: var(--color-theme-bg);
+}
+
+.theme-main-bg {
+  background-color: var(--color-theme-main);
+}
+
+.theme-badge {
+  background-color: var(--color-theme-secondary);
+  color: var(--color-theme-bg);
+}
+
+/* CTA Section Styles */
+.theme-cta-bg {
+  background-color: var(--color-theme-headline);
+}
+
+.theme-cta-headline {
+  color: var(--color-theme-bg);
+}
+
+.theme-cta-text {
+  color: var(--color-theme-paragraph);
+  opacity: 0.8;
+}
+
 @layer base {
   *,
   ::after,
