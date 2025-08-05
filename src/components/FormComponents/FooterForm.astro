@@ -1,0 +1,124 @@
+---
+// FooterForm component for newsletter subscription using Web3Forms
+---
+
+<!-- To make this newsletter form work, create your free access key from https://web3forms.com/
+     Then you will get all form submissions in your email inbox. -->
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  id="newsletter-form"
+  class="space-y-3 needs-validation"
+  novalidate>
+  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+  <input type="hidden" name="subject" value="Newsletter Subscription" />
+  <!-- Create your free access key from https://web3forms.com/ -->
+  <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+  
+  <div>
+    <input 
+      type="email" 
+      name="email"
+      placeholder="Enter your email"
+      required
+      class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+    />
+    <div class="empty-feedback text-red-400 text-xs mt-1">
+      Please provide your email address.
+    </div>
+    <div class="invalid-feedback text-red-400 text-xs mt-1">
+      Please provide a valid email address.
+    </div>
+  </div>
+  
+  <button 
+    type="submit"
+    class="w-full bg-indigo-600 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors disabled:opacity-50"
+  >
+    Subscribe
+  </button>
+  
+  <div id="newsletter-result" class="text-xs text-center"></div>
+</form>
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script is:inline>
+  const newsletterForm = document.getElementById("newsletter-form");
+  const newsletterResult = document.getElementById("newsletter-result");
+
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      newsletterForm.classList.add("was-validated");
+      
+      if (!newsletterForm.checkValidity()) {
+        newsletterForm.querySelectorAll(":invalid")[0].focus();
+        return;
+      }
+      
+      const formData = new FormData(newsletterForm);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      const submitButton = newsletterForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = "Subscribing...";
+      newsletterResult.innerHTML = "";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            newsletterResult.classList.add("text-green-500");
+            newsletterResult.innerHTML = "Successfully subscribed!";
+          } else {
+            console.log(response);
+            newsletterResult.classList.add("text-red-500");
+            newsletterResult.innerHTML = json.message || "Subscription failed.";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          newsletterResult.classList.add("text-red-500");
+          newsletterResult.innerHTML = "Something went wrong!";
+        })
+        .then(function () {
+          submitButton.disabled = false;
+          submitButton.textContent = "Subscribe";
+          newsletterForm.reset();
+          newsletterForm.classList.remove("was-validated");
+          
+          setTimeout(() => {
+            newsletterResult.innerHTML = "";
+            newsletterResult.classList.remove("text-green-500", "text-red-500");
+          }, 5000);
+        });
+    });
+  }
+</script>
