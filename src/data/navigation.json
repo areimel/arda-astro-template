@@ -1,35 +1,86 @@
 {
-  "menuitems": [
-    {
-      "title": "Features",
-      "path": "#",
-      "children": [
-        { "title": "Action", "path": "/" },
-        { "title": "Another action", "path": "#" },
-        { "title": "Dropdown Submenu", "path": "#" },
-        { "title": "404 Page", "path": "/404" }
-      ]
-    },
-    {
-      "title": "Pricing",
-      "path": "/pricing"
-    },
-    {
-      "title": "About",
-      "path": "/about"
-    },
-    {
-      "title": "Blog",
-      "path": "/blog"
-    },
-    {
-      "title": "Contact",
-      "path": "/contact"
-    },
-    {
-      "title": "Pro Version",
-      "badge": true,
-      "path": "https://astroship-pro.web3templates.com/"
-    }
-  ]
+  "header": {
+    "menuitems": [
+      {
+        "title": "Features",
+        "path": "#",
+        "children": [
+          { "title": "Action", "path": "/" },
+          { "title": "Another action", "path": "#" },
+          { "title": "Dropdown Submenu", "path": "#" },
+          { "title": "404 Page", "path": "/404" }
+        ]
+      },
+      {
+        "title": "Pricing",
+        "path": "/pricing"
+      },
+      {
+        "title": "About",
+        "path": "/about"
+      },
+      {
+        "title": "Blog",
+        "path": "/blog"
+      },
+      {
+        "title": "Contact",
+        "path": "/contact"
+      },
+      {
+        "title": "Pro Version",
+        "badge": true,
+        "path": "https://astroship-pro.web3templates.com/"
+      }
+    ]
+  },
+  "footer": {
+    "social": [
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com/astroship",
+        "icon": "bx:bxl-twitter"
+      },
+      {
+        "name": "Facebook",
+        "url": "https://facebook.com/astroship",
+        "icon": "bx:bxl-facebook"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/company/astroship",
+        "icon": "bx:bxl-linkedin"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/astroship",
+        "icon": "bx:bxl-github"
+      }
+    ],
+    "legal": [
+      { "title": "Privacy Policy", "path": "#" },
+      { "title": "Terms of Service", "path": "#" },
+      { "title": "Cookie Policy", "path": "#" }
+    ],
+    "sections": [
+      {
+        "title": "Product",
+        "links": [
+          { "title": "Features", "path": "/" },
+          { "title": "Pricing", "path": "/pricing" },
+          { "title": "Blog", "path": "/blog" },
+          { "title": "Changelog", "path": "#" }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          { "title": "About", "path": "/about" },
+          { "title": "Contact", "path": "/contact" },
+          { "title": "Careers", "path": "#" },
+          { "title": "Press", "path": "#" }
+        ]
+      }
+    ]
+  }
 }

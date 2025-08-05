@@ -1,19 +1,92 @@
-<footer class="my-20">
-  <p class="text-center text-sm text-slate-500">
-    Copyright © {new Date().getFullYear()} Astroship. All rights reserved.
-  </p>
-  <!--
-    Can we ask you a favor 🙏
-    Please keep this backlink on your website if possible.
-    or Purchase a commercial license from https://web3templates.com
-  -->
-  <p class="text-center text-xs text-slate-500 mt-1">
-    Made by <a
-      href="https://web3templates.com"
-      target="_blank"
-      rel="noopener"
-      class="hover:underline">
-      Web3Templates
-    </a>
-  </p>
+---
+import { Icon } from "astro-icon/components";
+import Container from "@/components/container.astro";
+import navigationData from "@/data/navigation.json";
+
+const { social, sections, legal } = navigationData.footer;
+---
+
+<footer class="bg-slate-50 border-t border-slate-200 mt-20">
+  <Container>
+    <div class="py-16">
+      <!-- Main Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        
+        <!-- Company Info Section -->
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <span class="text-xl font-bold text-slate-800">Astro</span>
+            <span class="text-xl text-slate-500">ship</span>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Build faster websites with Astro's next-gen island architecture. 
+            Ship less JavaScript and deliver blazing-fast performance.
+          </p>
+          <!-- Social Links -->
+          <div class="flex space-x-4 pt-2">
+            {social.map((link) => (
+              <a href={link.url} class="text-slate-400 hover:text-slate-600 transition-colors" aria-label={link.name}>
+                <Icon name={link.icon} class="w-5 h-5" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Dynamic Footer Sections -->
+        {sections.map((section) => (
+          <div class="space-y-4">
+            <h3 class="font-semibold text-slate-800 text-sm uppercase tracking-wider">{section.title}</h3>
+            <ul class="space-y-3">
+              {section.links.map((link) => (
+                <li>
+                  <a href={link.path} class="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                    {link.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <!-- Newsletter Signup -->
+        <div class="space-y-4">
+          <h3 class="font-semibold text-slate-800 text-sm uppercase tracking-wider">Stay Updated</h3>
+          <p class="text-sm text-slate-600">
+            Get the latest updates and news delivered to your inbox.
+          </p>
+          <form class="space-y-3">
+            <input 
+              type="email" 
+              placeholder="Enter your email"
+              class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            />
+            <button 
+              type="submit"
+              class="w-full bg-indigo-600 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="pt-8 border-t border-slate-200">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+            <p class="text-sm text-slate-500">
+              © {new Date().getFullYear()} ARDA. All rights reserved.
+            </p>
+            <div class="flex space-x-6">
+              {legal.map((link) => (
+                <a href={link.path} class="text-sm text-slate-500 hover:text-slate-700 transition-colors">
+                  {link.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
 </footer>
