@@ -1,0 +1,47 @@
+---
+import DropdownLink from "./DropdownLink.astro";
+import navigationData from "@/data/navigation.json";
+
+const menuitems = navigationData.header.menuitems;
+---
+
+<div class="hidden lg:flex w-full items-center justify-between">
+  <!-- Logo -->
+  <a href="/" class="text-lg">
+    <span class="font-bold text-slate-800">Astro</span><span class="text-slate-500">ship</span>
+  </a>
+  
+  <!-- Navigation Links -->
+  <nav>
+    <ul class="flex items-center gap-3">
+      {
+        menuitems.map((item, index) => (
+          <>
+            {item.children && (
+              <DropdownLink
+                title={item.title}
+                children={item.children}
+                lastItem={index === menuitems.length - 1}
+              />
+            )}
+
+            {!item.children && (
+              <li>
+                <a
+                  href={item.path}
+                  class="flex px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                  <span>{item.title}</span>
+                  {item.badge && (
+                    <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                      New
+                    </span>
+                  )}
+                </a>
+              </li>
+            )}
+          </>
+        ))
+      }
+    </ul>
+  </nav>
+</div>

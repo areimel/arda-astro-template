@@ -1,0 +1,200 @@
+---
+import navigationData from "@/data/navigation.json";
+
+const menuitems = navigationData.header.menuitems;
+---
+
+<div class="lg:hidden flex w-full items-center justify-between">
+  <!-- Logo -->
+  <a href="/" class="text-lg">
+    <span class="font-bold text-slate-800">Astro</span><span class="text-slate-500">ship</span>
+  </a>
+  
+  <!-- Hamburger Menu Button -->
+  <button
+    id="mobile-menu-button"
+    class="mobile-menu-trigger flex items-center justify-center w-8 h-8 text-gray-800 hover:text-gray-900"
+    aria-label="Toggle mobile menu"
+    aria-expanded="false">
+    <svg
+      class="hamburger-icon w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <svg
+      class="close-icon w-5 h-5 hidden"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu-overlay"
+  class="mobile-menu-overlay fixed inset-0 z-50 bg-white transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+  
+  <!-- Mobile Menu Header -->
+  <div class="flex items-center justify-between p-5 border-b">
+    <a href="/" class="text-lg">
+      <span class="font-bold text-slate-800">Astro</span><span class="text-slate-500">ship</span>
+    </a>
+    <button
+      class="mobile-menu-close flex items-center justify-center w-8 h-8 text-gray-800 hover:text-gray-900"
+      aria-label="Close mobile menu">
+      <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu Content -->
+  <nav class="flex-1 px-5 py-6">
+    <ul class="flex flex-col space-y-2">
+      {
+        menuitems.map((item) => (
+          <>
+            {item.children && (
+              <li class="mobile-dropdown-item">
+                <button
+                  class="mobile-dropdown-trigger w-full flex items-center justify-between py-3 text-left text-gray-600 hover:text-gray-900 border-b border-gray-100"
+                  aria-expanded="false">
+                  <span class="font-medium">{item.title}</span>
+                  <svg
+                    class="mobile-dropdown-arrow w-4 h-4 transition-transform duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div class="mobile-dropdown-menu max-h-0 overflow-hidden transition-all duration-300">
+                  <div class="pl-4 pt-2 pb-3">
+                    {item.children.map((child) => (
+                      <a
+                        href={child.path}
+                        class="block py-2 text-gray-500 hover:text-gray-700">
+                        {child.title}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            )}
+
+            {!item.children && (
+              <li>
+                <a
+                  href={item.path}
+                  class="flex items-center py-3 text-gray-600 hover:text-gray-900 border-b border-gray-100">
+                  <span class="font-medium">{item.title}</span>
+                  {item.badge && (
+                    <span class="ml-2 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                      New
+                    </span>
+                  )}
+                </a>
+              </li>
+            )}
+          </>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<script>
+  // Mobile menu functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
+    const menuClose = document.querySelector('.mobile-menu-close');
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    const closeIcon = document.querySelector('.close-icon');
+    
+    if (!menuButton || !menuOverlay) return;
+    
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      
+      if (isOpen) {
+        // Close menu
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuOverlay.classList.add('translate-x-full');
+        document.body.classList.remove('overflow-hidden');
+        
+        if (hamburgerIcon && closeIcon) {
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      } else {
+        // Open menu
+        menuButton.setAttribute('aria-expanded', 'true');
+        menuOverlay.classList.remove('translate-x-full');
+        document.body.classList.add('overflow-hidden');
+        
+        if (hamburgerIcon && closeIcon) {
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        }
+      }
+    }
+    
+    // Event listeners
+    menuButton.addEventListener('click', toggleMobileMenu);
+    
+    if (menuClose) {
+      menuClose.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // Close menu when clicking overlay
+    menuOverlay.addEventListener('click', function(e) {
+      if (e.target === menuOverlay) {
+        toggleMobileMenu();
+      }
+    });
+    
+    // Handle mobile dropdown functionality
+    const mobileDropdownTriggers = document.querySelectorAll('.mobile-dropdown-trigger');
+    
+    mobileDropdownTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        const dropdownMenu = trigger.nextElementSibling;
+        const arrow = trigger.querySelector('.mobile-dropdown-arrow');
+        
+        if (isOpen) {
+          trigger.setAttribute('aria-expanded', 'false');
+          dropdownMenu.style.maxHeight = '0px';
+          arrow.classList.remove('rotate-180');
+        } else {
+          trigger.setAttribute('aria-expanded', 'true');
+          dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + 'px';
+          arrow.classList.add('rotate-180');
+        }
+      });
+    });
+    
+    // Close mobile menu on window resize if it's open
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) { // lg breakpoint
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          toggleMobileMenu();
+        }
+      }
+    });
+  });
+</script>

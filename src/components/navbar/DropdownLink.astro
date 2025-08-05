@@ -1,0 +1,110 @@
+---
+const { title, lastItem, children } = Astro.props;
+---
+
+<li class="relative">
+  <div class="dropdown-container">
+    <button
+      class="dropdown-trigger flex items-center gap-1 w-full lg:w-auto lg:px-3 py-2 text-gray-600 hover:text-gray-900"
+      aria-expanded="false"
+      aria-haspopup="true">
+      <span>{title}</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="3"
+        stroke="currentColor"
+        class="dropdown-arrow w-3 h-3 mt-0.5 transition-transform duration-200">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+      </svg>
+    </button>
+    <div
+      class:list={[
+        "dropdown-menu lg:absolute w-full lg:w-48 z-10 opacity-0 invisible transition-all duration-200",
+        lastItem
+          ? "lg:right-0 origin-top-right"
+          : "lg:left-0 origin-top-left",
+      ]}>
+      <div
+        class="px-3 lg:py-2 lg:bg-white lg:rounded-md lg:shadow-sm lg:border flex flex-col">
+        {
+          children.map((item) => (
+            <a
+              href={item.path}
+              class="py-1 text-gray-600 hover:text-gray-900">
+              {item.title}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</li>
+
+<script>
+  // Handle dropdown functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdownContainers = document.querySelectorAll('.dropdown-container');
+    
+    dropdownContainers.forEach(container => {
+      const trigger = container.querySelector('.dropdown-trigger');
+      const menu = container.querySelector('.dropdown-menu');
+      const arrow = container.querySelector('.dropdown-arrow');
+      
+      if (!trigger || !menu || !arrow) return;
+      
+      // Toggle dropdown
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other dropdowns
+        dropdownContainers.forEach(otherContainer => {
+          if (otherContainer !== container) {
+            const otherTrigger = otherContainer.querySelector('.dropdown-trigger');
+            const otherMenu = otherContainer.querySelector('.dropdown-menu');
+            const otherArrow = otherContainer.querySelector('.dropdown-arrow');
+            
+            if (otherTrigger && otherMenu && otherArrow) {
+              otherTrigger.setAttribute('aria-expanded', 'false');
+              otherMenu.classList.add('opacity-0', 'invisible');
+              otherArrow.classList.remove('rotate-180');
+            }
+          }
+        });
+        
+        // Toggle current dropdown
+        if (isOpen) {
+          trigger.setAttribute('aria-expanded', 'false');
+          menu.classList.add('opacity-0', 'invisible');
+          arrow.classList.remove('rotate-180');
+        } else {
+          trigger.setAttribute('aria-expanded', 'true');
+          menu.classList.remove('opacity-0', 'invisible');
+          arrow.classList.add('rotate-180');
+        }
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+      dropdownContainers.forEach(container => {
+        const trigger = container.querySelector('.dropdown-trigger');
+        const menu = container.querySelector('.dropdown-menu');
+        const arrow = container.querySelector('.dropdown-arrow');
+        
+        if (trigger && menu && arrow) {
+          trigger.setAttribute('aria-expanded', 'false');
+          menu.classList.add('opacity-0', 'invisible');
+          arrow.classList.remove('rotate-180');
+        }
+      });
+    });
+  });
+</script>
