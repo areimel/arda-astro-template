@@ -46,22 +46,31 @@ import colorPalettes from "@/data/color-palettes.json";
           <div class="flex items-center justify-between mb-2">
             <h4 class="font-medium theme-headline text-sm">{palette.name}</h4>
             <div class="flex space-x-1">
-              <!-- Color swatches -->
+              <!-- 5 Color swatches representing key palette colors -->
               <div 
                 class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.bg}; border-color: var(--color-theme-stroke);`}>
+                style={`background-color: ${palette.colors.bg}; border-color: var(--color-theme-stroke);`}
+                title="Background">
               </div>
               <div 
                 class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.button}; border-color: var(--color-theme-stroke);`}>
+                style={`background-color: ${palette.colors.button}; border-color: var(--color-theme-stroke);`}
+                title="Button">
               </div>
               <div 
                 class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.secondary}; border-color: var(--color-theme-stroke);`}>
+                style={`background-color: ${palette.colors.secondary}; border-color: var(--color-theme-stroke);`}
+                title="Secondary">
               </div>
               <div 
                 class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.tertiary}; border-color: var(--color-theme-stroke);`}>
+                style={`background-color: ${palette.colors.tertiary}; border-color: var(--color-theme-stroke);`}
+                title="Tertiary">
+              </div>
+              <div 
+                class="w-3 h-3 rounded-full border"
+                style={`background-color: ${palette.colors.quaternary}; border-color: var(--color-theme-stroke);`}
+                title="Quaternary">
               </div>
             </div>
           </div>

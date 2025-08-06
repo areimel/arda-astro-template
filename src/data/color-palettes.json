@@ -3,81 +3,111 @@
     {
       "id": "palette-1",
       "name": "Default Light",
-      "description": "Clean and bright with teal accents",
+      "description": "Clean whites with teal accents",
       "colors": {
         "bg": "#fffffe",
+        "cardBg": "#f2eef5",
+        "sectionBg": "#f8f8f8",
         "headline": "#181818",
+        "subHeadline": "#2e2e2e",
         "paragraph": "#2e2e2e",
+        "cardText": "#2e2e2e",
         "button": "#4fc4cf",
         "buttonText": "#181818",
+        "link": "#4fc4cf",
         "stroke": "#181818",
-        "main": "#f2eef5",
+        "highlight": "#4fc4cf",
         "secondary": "#994ff3",
-        "tertiary": "#fbdd74"
+        "tertiary": "#fbdd74",
+        "quaternary": "#f2eef5"
       }
     },
     {
       "id": "palette-2",
       "name": "Deep Ocean",
-      "description": "Professional navy with bright teal",
+      "description": "Navy blues with bright highlights",
       "colors": {
         "bg": "#fffffe",
+        "cardBg": "#fffffe",
+        "sectionBg": "#f0f8ff",
         "headline": "#00214d",
+        "subHeadline": "#1b2d45",
         "paragraph": "#1b2d45",
+        "cardText": "#1b2d45",
         "button": "#00ebc7",
         "buttonText": "#00214d",
+        "link": "#00ebc7",
         "stroke": "#00214d",
-        "main": "#fffffe",
+        "highlight": "#00ebc7",
         "secondary": "#ff5470",
-        "tertiary": "#fde24f"
+        "tertiary": "#fde24f",
+        "quaternary": "#e3f6f5"
       }
     },
     {
       "id": "palette-3",
       "name": "Sky Blue",
-      "description": "Calming blues with coral accent",
+      "description": "Calming blues with coral",
       "colors": {
         "bg": "#fffffe",
+        "cardBg": "#fffffe",
+        "sectionBg": "#f0f7ff",
         "headline": "#094067",
+        "subHeadline": "#5f6c7b",
         "paragraph": "#5f6c7b",
+        "cardText": "#5f6c7b",
         "button": "#3da9fc",
         "buttonText": "#fffffe",
+        "link": "#3da9fc",
         "stroke": "#094067",
-        "main": "#fffffe",
+        "highlight": "#3da9fc",
         "secondary": "#90b4ce",
-        "tertiary": "#ef4565"
+        "tertiary": "#ef4565",
+        "quaternary": "#e8f4f8"
       }
     },
     {
       "id": "palette-4",
       "name": "Dark Mode",
-      "description": "Dark theme with purple highlights",
+      "description": "Dark backgrounds with purple",
       "colors": {
         "bg": "#16161a",
+        "cardBg": "#242629",
+        "sectionBg": "#1a1a1e",
         "headline": "#fffffe",
+        "subHeadline": "#94a1b2",
         "paragraph": "#94a1b2",
+        "cardText": "#94a1b2",
         "button": "#7f5af0",
         "buttonText": "#fffffe",
+        "link": "#7f5af0",
         "stroke": "#010101",
-        "main": "#fffffe",
+        "highlight": "#7f5af0",
         "secondary": "#72757e",
-        "tertiary": "#2cb67d"
+        "tertiary": "#2cb67d",
+        "quaternary": "#242629"
       }
     },
     {
       "id": "palette-5",
       "name": "Nature Green",
-      "description": "Earthy greens with warm accents",
+      "description": "Earthy greens and browns",
       "colors": {
         "bg": "#f2f7f5",
+        "cardBg": "#f2f7f5",
+        "sectionBg": "#e8f0eb",
         "headline": "#00473e",
+        "subHeadline": "#475d5b",
         "paragraph": "#475d5b",
+        "cardText": "#475d5b",
         "button": "#faae2b",
         "buttonText": "#00473e",
+        "link": "#faae2b",
         "stroke": "#00332c",
-        "main": "#f2f7f5",
+        "highlight": "#faae2b",
         "secondary": "#ffa8ba",
-        "tertiary": "#fa5246"
+        "tertiary": "#fa5246",
+        "quaternary": "#e8f0eb"
       }
     },
     {
@@ -86,14 +116,262 @@
       "description": "Clean whites with bold purple",
       "colors": {
         "bg": "#fffffe",
+        "cardBg": "#fffffe",
+        "sectionBg": "#f8f8fc",
         "headline": "#2b2c34",
+        "subHeadline": "#2b2c34",
         "paragraph": "#2b2c34",
+        "cardText": "#2b2c34",
         "button": "#6246ea",
         "buttonText": "#fffffe",
+        "link": "#6246ea",
         "stroke": "#2b2c34",
-        "main": "#fffffe",
+        "highlight": "#6246ea",
         "secondary": "#d1d1e9",
-        "tertiary": "#e45858"
+        "tertiary": "#e45858",
+        "quaternary": "#f3f2ff"
+      }
+    },
+    {
+      "id": "palette-7",
+      "name": "Pink Blush",
+      "description": "Soft pinks with deep navy",
+      "colors": {
+        "bg": "#fec7d7",
+        "cardBg": "#fffffe",
+        "sectionBg": "#fdd6e3",
+        "headline": "#0e172c",
+        "subHeadline": "#0e172c",
+        "paragraph": "#0e172c",
+        "cardText": "#0e172c",
+        "button": "#0e172c",
+        "buttonText": "#fffffe",
+        "link": "#0e172c",
+        "stroke": "#0e172c",
+        "highlight": "#fec7d7",
+        "secondary": "#d9d4e7",
+        "tertiary": "#a786df",
+        "quaternary": "#f9f8fc"
+      }
+    },
+    {
+      "id": "palette-8",
+      "name": "Warm Earth",
+      "description": "Warm browns and oranges",
+      "colors": {
+        "bg": "#f8f5f2",
+        "cardBg": "#fffffe",
+        "sectionBg": "#feefe8",
+        "headline": "#232323",
+        "subHeadline": "#222525",
+        "paragraph": "#222525",
+        "cardText": "#222525",
+        "button": "#078080",
+        "buttonText": "#232323",
+        "link": "#078080",
+        "stroke": "#232323",
+        "highlight": "#078080",
+        "secondary": "#f45d48",
+        "tertiary": "#f8f5f2",
+        "quaternary": "#fffffe"
+      }
+    },
+    {
+      "id": "palette-9",
+      "name": "Bright Orange",
+      "description": "Energetic orange with neutrals",
+      "colors": {
+        "bg": "#eff0f3",
+        "cardBg": "#fffffe",
+        "sectionBg": "#eff0f3",
+        "headline": "#0d0d0d",
+        "subHeadline": "#2a2a2a",
+        "paragraph": "#2a2a2a",
+        "cardText": "#2a2a2a",
+        "button": "#ff8e3c",
+        "buttonText": "#0d0d0d",
+        "link": "#ff8e3c",
+        "stroke": "#0d0d0d",
+        "highlight": "#ff8e3c",
+        "secondary": "#fffffe",
+        "tertiary": "#d9376e",
+        "quaternary": "#eff0f3"
+      }
+    },
+    {
+      "id": "palette-10",
+      "name": "Forest Dark",
+      "description": "Deep greens with gold accents",
+      "colors": {
+        "bg": "#004643",
+        "cardBg": "#0f3433",
+        "sectionBg": "#001e1d",
+        "headline": "#fffffe",
+        "subHeadline": "#abd1c6",
+        "paragraph": "#abd1c6",
+        "cardText": "#abd1c6",
+        "button": "#f9bc60",
+        "buttonText": "#001e1d",
+        "link": "#f9bc60",
+        "stroke": "#001e1d",
+        "highlight": "#f9bc60",
+        "secondary": "#abd1c6",
+        "tertiary": "#e16162",
+        "quaternary": "#e8e4e6"
+      }
+    },
+    {
+      "id": "palette-11",
+      "name": "Warm Wood",
+      "description": "Rich browns and cream",
+      "colors": {
+        "bg": "#f9f4ef",
+        "cardBg": "#eaddcf",
+        "sectionBg": "#f9f4ef",
+        "headline": "#020826",
+        "subHeadline": "#716040",
+        "paragraph": "#716040",
+        "cardText": "#716040",
+        "button": "#8c7851",
+        "buttonText": "#fffffe",
+        "link": "#8c7851",
+        "stroke": "#020826",
+        "highlight": "#8c7851",
+        "secondary": "#eaddcf",
+        "tertiary": "#f25042",
+        "quaternary": "#fffffe"
+      }
+    },
+    {
+      "id": "palette-12",
+      "name": "Midnight",
+      "description": "Dark themes with bright orange",
+      "colors": {
+        "bg": "#232946",
+        "cardBg": "#fffffe",
+        "sectionBg": "#d4d8f0",
+        "headline": "#fffffe",
+        "subHeadline": "#b8c1ec",
+        "paragraph": "#b8c1ec",
+        "cardText": "#232946",
+        "button": "#eebbc3",
+        "buttonText": "#232946",
+        "link": "#eebbc3",
+        "stroke": "#121629",
+        "highlight": "#eebbc3",
+        "secondary": "#fffffe",
+        "tertiary": "#eebbc3",
+        "quaternary": "#d4939d"
+      }
+    },
+    {
+      "id": "palette-13",
+      "name": "Dark Energy",
+      "description": "Dark themes with bright accents",
+      "colors": {
+        "bg": "#0f0e17",
+        "cardBg": "#fffffe",
+        "sectionBg": "#1a1a1e",
+        "headline": "#fffffe",
+        "subHeadline": "#a7a9be",
+        "paragraph": "#a7a9be",
+        "cardText": "#0f0e17",
+        "button": "#ff8906",
+        "buttonText": "#fffffe",
+        "link": "#e53170",
+        "stroke": "#000000",
+        "highlight": "#ff8906",
+        "secondary": "#f25f4c",
+        "tertiary": "#e53170",
+        "quaternary": "#a7a9be"
+      }
+    },
+    {
+      "id": "palette-14",
+      "name": "Mint Fresh",
+      "description": "Light mint with yellow accents",
+      "colors": {
+        "bg": "#fffffe",
+        "cardBg": "#fffffe",
+        "sectionBg": "#e3f6f5",
+        "headline": "#272343",
+        "subHeadline": "#2d334a",
+        "paragraph": "#2d334a",
+        "cardText": "#2d334a",
+        "button": "#ffd803",
+        "buttonText": "#272343",
+        "link": "#ffd803",
+        "stroke": "#272343",
+        "highlight": "#ffd803",
+        "secondary": "#e3f6f5",
+        "tertiary": "#bae8e8",
+        "quaternary": "#fffffe"
+      }
+    },
+    {
+      "id": "palette-15",
+      "name": "Peachy Keen",
+      "description": "Soft peaches and mint greens",
+      "colors": {
+        "bg": "#faeee7",
+        "cardBg": "#fffffe",
+        "sectionBg": "#faeee7",
+        "headline": "#33272a",
+        "subHeadline": "#594a4e",
+        "paragraph": "#594a4e",
+        "cardText": "#594a4e",
+        "button": "#ff8ba7",
+        "buttonText": "#33272a",
+        "link": "#ff8ba7",
+        "stroke": "#33272a",
+        "highlight": "#ff8ba7",
+        "secondary": "#ffc6c7",
+        "tertiary": "#c3f0ca",
+        "quaternary": "#fffffe"
+      }
+    },
+    {
+      "id": "palette-16",
+      "name": "Moody Brown",
+      "description": "Rich browns with pink accents",
+      "colors": {
+        "bg": "#55423d",
+        "cardBg": "#55423d",
+        "sectionBg": "#271c19",
+        "headline": "#fffffe",
+        "subHeadline": "#fff3ec",
+        "paragraph": "#fff3ec",
+        "cardText": "#fff3ec",
+        "button": "#ffc0ad",
+        "buttonText": "#271c19",
+        "link": "#e78fb3",
+        "stroke": "#140d0b",
+        "highlight": "#e78fb3",
+        "secondary": "#ffc0ad",
+        "tertiary": "#9656a1",
+        "quaternary": "#fff3ec"
+      }
+    },
+    {
+      "id": "palette-17",
+      "name": "Golden Hour",
+      "description": "Warm golds and blues",
+      "colors": {
+        "bg": "#fef6e4",
+        "cardBg": "#f3d2c1",
+        "sectionBg": "#fffffe",
+        "headline": "#001858",
+        "subHeadline": "#172c66",
+        "paragraph": "#172c66",
+        "cardText": "#172c66",
+        "button": "#f582ae",
+        "buttonText": "#001858",
+        "link": "#f582ae",
+        "stroke": "#001858",
+        "highlight": "#fef6e4",
+        "secondary": "#8bd3dd",
+        "tertiary": "#f582ae",
+        "quaternary": "#f3d2c1"
       }
     }
   ]
