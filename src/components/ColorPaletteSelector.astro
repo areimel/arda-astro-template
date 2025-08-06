@@ -160,9 +160,12 @@ import colorPalettes from "@/data/color-palettes.json";
       }
 
       init() {
-        // Set initial theme
+        // Set initial theme immediately (before loading screen fades)
         this.applyTheme(this.currentTheme);
         this.updateActiveOption();
+        
+        // Notify loading screen that theme is ready
+        this.notifyThemeReady();
         
         // Event listeners
         this.toggleBtn.addEventListener('click', (e) => {
@@ -254,6 +257,14 @@ import colorPalettes from "@/data/color-palettes.json";
           console.warn('Could not read theme from localStorage:', e);
           return null;
         }
+      }
+      
+      notifyThemeReady() {
+        // Dispatch custom event to notify loading screen that theme is ready
+        const themeReadyEvent = new CustomEvent('themeReady', {
+          detail: { themeId: this.currentTheme }
+        });
+        document.dispatchEvent(themeReadyEvent);
       }
     }
 

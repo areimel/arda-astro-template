@@ -3,6 +3,7 @@ import { SEO } from "astro-seo";
 import Footer from "@/components/footer.astro";
 import Navbar from "@/components/navbar/navbar.astro";
 import ColorPaletteSelector from "@/components/ColorPaletteSelector.astro";
+import LoadingScreen from "@/components/LoadingScreen.astro";
 import GoogleTagManagerHead from "@/components/HeadComponents/GoogleTagManagerHead.astro";
 import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBody.astro";
 
@@ -59,11 +60,14 @@ const makeTitle = title
     />
   </head>
   <body class="theme-bg" data-theme="palette-1">
-    <GoogleTagManagerBody />
-    <Navbar />
-    <slot />
-    <Footer />
-    <ColorPaletteSelector />
+    <LoadingScreen />
+    <div class="page-content">
+      <GoogleTagManagerBody />
+      <Navbar />
+      <slot />
+      <Footer />
+      <ColorPaletteSelector />
+    </div>
     <style is:global>
       /* Improve Page speed */
       /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
