@@ -1,0 +1,175 @@
+---
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Accessibility">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Accessibility</Fragment>
+      <Fragment slot="desc">Building inclusive experiences for everyone.</Fragment>
+    </Sectionhead>
+
+    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+      <h2 class="font-bold text-3xl text-gray-800">
+        Accessibility is not optional—it's essential.
+      </h2>
+      <p class="text-lg leading-relaxed text-slate-500">
+        We're committed to creating digital experiences that are usable by everyone, regardless of their abilities. 
+        Our accessibility-first approach ensures compliance with WCAG guidelines and creates better experiences for all users.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mx-auto max-w-6xl mt-16">
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="flex items-center mb-4">
+          <Icon name="mdi:eye" class="w-8 h-8 text-blue-600 mr-3" />
+          <h3 class="text-xl font-semibold text-gray-800">Visual Accessibility</h3>
+        </div>
+        <ul class="space-y-2 text-slate-600">
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            High contrast color schemes
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Scalable fonts and UI elements
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Alternative text for images
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Color-blind friendly design
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="flex items-center mb-4">
+          <Icon name="mdi:keyboard" class="w-8 h-8 text-green-600 mr-3" />
+          <h3 class="text-xl font-semibold text-gray-800">Keyboard Navigation</h3>
+        </div>
+        <ul class="space-y-2 text-slate-600">
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Full keyboard accessibility
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Logical tab order
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Visible focus indicators
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Skip navigation links
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="flex items-center mb-4">
+          <Icon name="mdi:volume-high" class="w-8 h-8 text-purple-600 mr-3" />
+          <h3 class="text-xl font-semibold text-gray-800">Screen Reader Support</h3>
+        </div>
+        <ul class="space-y-2 text-slate-600">
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Semantic HTML structure
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            ARIA labels and descriptions
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Proper heading hierarchy
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Descriptive link text
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm border">
+        <div class="flex items-center mb-4">
+          <Icon name="mdi:gesture-tap" class="w-8 h-8 text-orange-600 mr-3" />
+          <h3 class="text-xl font-semibold text-gray-800">Motor Accessibility</h3>
+        </div>
+        <ul class="space-y-2 text-slate-600">
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Large touch targets (44px minimum)
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Adequate spacing between elements
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            No time-sensitive interactions
+          </li>
+          <li class="flex items-center">
+            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            Alternative input methods
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-4xl mt-16">
+      <h3 class="font-bold text-2xl text-gray-800 mb-6">WCAG Compliance</h3>
+      <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+        <p class="text-slate-700 mb-4">
+          Our websites meet or exceed WCAG 2.1 AA standards, ensuring compliance with accessibility regulations including:
+        </p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="font-semibold text-gray-800 mb-2">Legal Compliance</h4>
+            <ul class="space-y-1 text-sm text-slate-600">
+              <li>• Americans with Disabilities Act (ADA)</li>
+              <li>• Section 508 (US Federal)</li>
+              <li>• EN 301 549 (European)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800 mb-2">Testing & Validation</h4>
+            <ul class="space-y-1 text-sm text-slate-600">
+              <li>• Automated accessibility testing</li>
+              <li>• Manual testing with assistive technologies</li>
+              <li>• User testing with disabled users</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-4xl mt-12">
+      <h3 class="font-bold text-2xl text-gray-800 mb-6">Accessibility Tools</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <Icon name="mdi:palette" class="w-12 h-12 text-blue-600 mx-auto mb-3" />
+          <h4 class="font-semibold text-gray-800 mb-2">Color Palette Selector</h4>
+          <p class="text-sm text-slate-600">Choose from high-contrast color schemes</p>
+        </div>
+        <div class="text-center">
+          <Icon name="mdi:format-size" class="w-12 h-12 text-green-600 mx-auto mb-3" />
+          <h4 class="font-semibold text-gray-800 mb-2">Text Scaling</h4>
+          <p class="text-sm text-slate-600">Adjust font sizes up to 200% zoom</p>
+        </div>
+        <div class="text-center">
+          <Icon name="mdi:motion-pause" class="w-12 h-12 text-purple-600 mx-auto mb-3" />
+          <h4 class="font-semibold text-gray-800 mb-2">Reduced Motion</h4>
+          <p class="text-sm text-slate-600">Respect user motion preferences</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>

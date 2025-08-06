@@ -5,9 +5,9 @@
         "title": "Features",
         "path": "#",
         "children": [
-          { "title": "Action", "path": "/" },
-          { "title": "Another action", "path": "#" },
-          { "title": "Dropdown Submenu", "path": "#" },
+          { "title": "Analytics", "path": "/analytics" },
+          { "title": "Accessibility", "path": "/accessibility" },
+          { "title": "SEO", "path": "/seo" },
           { "title": "404 Page", "path": "/404" }
         ]
       },
