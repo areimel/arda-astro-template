@@ -2,7 +2,11 @@
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import ComponentGrid from "@/components/styleguide/ComponentGrid.astro";
+import ColorPaletteDisplay from "@/components/styleguide/ColorPaletteDisplay.astro";
 import TypographyShowcase from "@/components/styleguide/TypographyShowcase.astro";
+import ButtonShowcase from "@/components/styleguide/ButtonShowcase.astro";
+import CardShowcase from "@/components/styleguide/CardShowcase.astro";
+import IconShowcase from "@/components/styleguide/IconShowcase.astro";
 import SpacingScale from "@/components/styleguide/SpacingScale.astro";
 ---
 
@@ -41,9 +45,7 @@ import SpacingScale from "@/components/styleguide/SpacingScale.astro";
           description="Interactive color swatches showing all 17 available themes with hex codes and CSS variables"
           columns={1}
         >
-          <div class="p-8 rounded-lg theme-card-bg">
-            <p class="theme-paragraph">🚧 ColorPaletteDisplay component coming soon...</p>
-          </div>
+          <ColorPaletteDisplay />
         </ComponentGrid>
       </div>
 
@@ -60,43 +62,34 @@ import SpacingScale from "@/components/styleguide/SpacingScale.astro";
 
       <!-- Buttons Section -->
       <div id="buttons">
-        <!-- ButtonShowcase will be implemented by sub-agent -->
         <ComponentGrid 
           title="Buttons" 
           description="Interactive button variants with different styles and sizes"
-          columns={3}
+          columns={1}
         >
-          <div class="p-8 rounded-lg theme-card-bg">
-            <p class="theme-paragraph">🚧 ButtonShowcase component coming soon...</p>
-          </div>
+          <ButtonShowcase />
         </ComponentGrid>
       </div>
 
       <!-- Cards Section -->
       <div id="cards">
-        <!-- CardShowcase will be implemented by sub-agent -->
         <ComponentGrid 
           title="Cards" 
           description="Content card patterns used throughout the application"
-          columns={2}
+          columns={1}
         >
-          <div class="p-8 rounded-lg theme-card-bg">
-            <p class="theme-paragraph">🚧 CardShowcase component coming soon...</p>
-          </div>
+          <CardShowcase />
         </ComponentGrid>
       </div>
 
       <!-- Icons Section -->
       <div id="icons">
-        <!-- IconShowcase will be implemented by sub-agent -->
         <ComponentGrid 
           title="Icons" 
           description="Available icons from the astro-icon system"
-          columns={4}
+          columns={1}
         >
-          <div class="p-8 rounded-lg theme-card-bg">
-            <p class="theme-paragraph">🚧 IconShowcase component coming soon...</p>
-          </div>
+          <IconShowcase />
         </ComponentGrid>
       </div>
 

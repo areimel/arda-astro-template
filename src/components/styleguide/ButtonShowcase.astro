@@ -421,20 +421,40 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
 
 <style>
   .showcase-item {
-    @apply p-6 rounded-lg border-2 transition-all hover:shadow-lg;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-width: 2px;
+    transition: all 0.3s ease;
     border-color: var(--color-theme-stroke);
     background-color: var(--color-theme-bg);
   }
+  
+  .showcase-item:hover {
+    box-shadow: 0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+  }
 
   .component-demo {
-    @apply flex flex-col items-center justify-center min-h-[100px] p-4 rounded-md;
-    background-color: var(--color-theme-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    background-color: var(--color-theme-section-bg);
     border: 1px dashed var(--color-theme-stroke);
   }
 
   .code-snippet {
-    @apply block text-xs p-3 rounded-md font-mono text-left whitespace-pre-wrap break-all;
-    background-color: var(--color-theme-main);
+    display: block;
+    font-size: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-all;
+    background-color: var(--color-theme-quaternary);
     color: var(--color-theme-paragraph);
     border: 1px solid var(--color-theme-stroke);
   }
@@ -445,8 +465,9 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
 
   /* Focus styles for better accessibility */
   .showcase-item:focus-within {
-    @apply ring-2 ring-offset-2;
-    ring-color: var(--color-theme-button);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--color-theme-button), 0 0 0 4px var(--color-theme-bg);
   }
 
   /* Responsive adjustments */
