@@ -1,0 +1,462 @@
+---
+import Button from "@/components/ui/button.astro";
+import Link from "@/components/ui/link.astro";
+import ComponentGrid from "./ComponentGrid.astro";
+
+// Helper function to generate code snippet
+function generateCodeSnippet(component: string, props: Record<string, any>, content: string): string {
+  const propsString = Object.entries(props)
+    .filter(([_, value]) => value !== undefined && value !== false)
+    .map(([key, value]) => {
+      if (typeof value === 'boolean' && value) {
+        return key;
+      }
+      return `${key}="${value}"`;
+    })
+    .join(' ');
+  
+  return `<${component}${propsString ? ' ' + propsString : ''}>${content}</${component}>`;
+}
+---
+
+<div class="button-showcase space-y-16">
+  <!-- Basic Button Styles -->
+  <ComponentGrid 
+    title="Button Styles" 
+    description="All available button style variants with their default behaviors"
+    columns={3}
+  >
+    <!-- Primary Button -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Button style="primary">Primary Button</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Primary</h4>
+        <p class="text-sm theme-paragraph mb-3">The main call-to-action button with theme colors</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { style: 'primary' }, 'Primary Button')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Outline Button -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Button style="outline">Outline Button</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Outline</h4>
+        <p class="text-sm theme-paragraph mb-3">Secondary button with transparent background</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { style: 'outline' }, 'Outline Button')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Note about inverted -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4 opacity-50">
+        <Button style="primary" class="opacity-50 cursor-not-allowed">Inverted (N/A)</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Inverted</h4>
+        <p class="text-sm theme-paragraph mb-3">Not available for Button component. Use Link component instead.</p>
+        <code class="code-snippet opacity-50">
+          // Not supported in Button
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Button Sizes -->
+  <ComponentGrid 
+    title="Button Sizes" 
+    description="Different button sizes for various use cases"
+    columns={2}
+  >
+    <!-- Medium Size -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Button size="md">Medium Button</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Medium (Default)</h4>
+        <p class="text-sm theme-paragraph mb-3">Standard button size for most interfaces</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { size: 'md' }, 'Medium Button')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Large Size -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Button size="lg">Large Button</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Large</h4>
+        <p class="text-sm theme-paragraph mb-3">Larger button for hero sections and important actions</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { size: 'lg' }, 'Large Button')}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Block Buttons -->
+  <ComponentGrid 
+    title="Block Buttons" 
+    description="Full-width buttons that span the container width"
+    columns={1}
+  >
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Button block>Block Button (Full Width)</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Block Button</h4>
+        <p class="text-sm theme-paragraph mb-3">Spans the full width of its container</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { block: true }, 'Block Button (Full Width)')}
+        </code>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Button style="outline" size="lg" block>Large Outline Block Button</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Combined Variants</h4>
+        <p class="text-sm theme-paragraph mb-3">Block can be combined with any style and size</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { style: 'outline', size: 'lg', block: true }, 'Large Outline Block Button')}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Link Components as Buttons -->
+  <ComponentGrid 
+    title="Link Components" 
+    description="Link components styled as buttons with additional style options"
+    columns={2}
+  >
+    <!-- Primary Link -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Link href="#" style="primary">Primary Link</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Primary Link</h4>
+        <p class="text-sm theme-paragraph mb-3">Link styled as primary button</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', style: 'primary' }, 'Primary Link')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Outline Link -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Link href="#" style="outline">Outline Link</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Outline Link</h4>
+        <p class="text-sm theme-paragraph mb-3">Link styled as outline button</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', style: 'outline' }, 'Outline Link')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Inverted Link -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Link href="#" style="inverted">Inverted Link</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Inverted Link</h4>
+        <p class="text-sm theme-paragraph mb-3">Light background with dark text, ideal for dark sections</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', style: 'inverted' }, 'Inverted Link')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Muted Link -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Link href="#" style="muted">Muted Link</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Muted Link</h4>
+        <p class="text-sm theme-paragraph mb-3">Subtle button style for secondary actions</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', style: 'muted' }, 'Muted Link')}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Link Sizes -->
+  <ComponentGrid 
+    title="Link Sizes" 
+    description="Size variants for link components (note: different default than Button)"
+    columns={2}
+  >
+    <!-- Medium Link -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Link href="#" size="md">Medium Link</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Medium Link</h4>
+        <p class="text-sm theme-paragraph mb-3">Smaller link size</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', size: 'md' }, 'Medium Link')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Large Link -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <Link href="#" size="lg">Large Link (Default)</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Large Link (Default)</h4>
+        <p class="text-sm theme-paragraph mb-3">Default size for link components</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', size: 'lg' }, 'Large Link (Default)')}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Interactive States -->
+  <ComponentGrid 
+    title="Interactive States" 
+    description="Hover and focus states are automatically handled by the components"
+    columns={2}
+  >
+    <div class="showcase-item">
+      <div class="component-demo mb-4 space-y-3">
+        <Button style="primary">Hover me</Button>
+        <Button style="outline">Focus with Tab</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Button States</h4>
+        <p class="text-sm theme-paragraph mb-3">Buttons have built-in hover and focus-visible states with transitions</p>
+        <ul class="text-xs theme-paragraph space-y-1">
+          <li>• Hover: Opacity change and slight lift effect</li>
+          <li>• Focus: Ring outline for accessibility</li>
+          <li>• Transitions: Smooth animations on state changes</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="component-demo mb-4 space-y-3">
+        <Link href="#" style="primary">Hover me</Link>
+        <Link href="#" style="inverted">Focus with Tab</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Link States</h4>
+        <p class="text-sm theme-paragraph mb-3">Links have similar interactive states as buttons</p>
+        <ul class="text-xs theme-paragraph space-y-1">
+          <li>• Hover: Style-specific hover effects</li>
+          <li>• Focus: Accessible ring outline</li>
+          <li>• Active: Visual feedback on click</li>
+        </ul>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Disabled States -->
+  <ComponentGrid 
+    title="Disabled States" 
+    description="How to handle disabled buttons and accessibility"
+    columns={2}
+  >
+    <div class="showcase-item">
+      <div class="component-demo mb-4 space-y-3">
+        <Button disabled>Disabled Button</Button>
+        <Button style="outline" disabled>Disabled Outline</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Disabled Buttons</h4>
+        <p class="text-sm theme-paragraph mb-3">Use the native disabled attribute</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { disabled: true }, 'Disabled Button')}
+        </code>
+      </div>
+    </div>
+
+    <div class="showcase-item">
+      <div class="component-demo mb-4 space-y-3">
+        <Link href="#" style="primary" class="opacity-50 pointer-events-none">Disabled Link</Link>
+        <Link href="#" style="muted" class="opacity-50 pointer-events-none">Disabled Muted</Link>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Disabled Links</h4>
+        <p class="text-sm theme-paragraph mb-3">Use CSS classes for disabled appearance</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', class: 'opacity-50 pointer-events-none' }, 'Disabled Link')}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Practical Examples -->
+  <ComponentGrid 
+    title="Practical Examples" 
+    description="Real-world button usage patterns and combinations"
+    columns={1}
+  >
+    <!-- Form Actions -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="flex flex-col sm:flex-row gap-3 justify-end">
+          <Button style="outline">Cancel</Button>
+          <Button style="primary">Save Changes</Button>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Form Actions</h4>
+        <p class="text-sm theme-paragraph mb-3">Common pattern for form submission with primary and secondary actions</p>
+        <code class="code-snippet">
+          &lt;div class="flex gap-3"&gt;<br>
+          &nbsp;&nbsp;{generateCodeSnippet('Button', { style: 'outline' }, 'Cancel')}<br>
+          &nbsp;&nbsp;{generateCodeSnippet('Button', { style: 'primary' }, 'Save Changes')}<br>
+          &lt;/div&gt;
+        </code>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="text-center space-y-4">
+          <Link href="#" style="primary" size="lg" block>Get Started Today</Link>
+          <Link href="#" style="muted" size="md">Learn More</Link>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Call-to-Action Section</h4>
+        <p class="text-sm theme-paragraph mb-3">Hero section with primary CTA and secondary link</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Link', { href: '#', style: 'primary', size: 'lg', block: true }, 'Get Started Today')}<br>
+          {generateCodeSnippet('Link', { href: '#', style: 'muted', size: 'md' }, 'Learn More')}
+        </code>
+      </div>
+    </div>
+
+    <!-- Button Group -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="inline-flex rounded-sm border border-gray-200" role="group">
+          <Button class="border-0 rounded-none rounded-l-sm border-r border-gray-200">Option A</Button>
+          <Button style="outline" class="border-0 rounded-none border-r border-gray-200">Option B</Button>
+          <Button style="outline" class="border-0 rounded-none rounded-r-sm">Option C</Button>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Button Group</h4>
+        <p class="text-sm theme-paragraph mb-3">Connected buttons for related actions (requires custom styling)</p>
+        <code class="code-snippet">
+          &lt;div class="inline-flex rounded-sm border" role="group"&gt;<br>
+          &nbsp;&nbsp;{generateCodeSnippet('Button', { class: 'border-0 rounded-none rounded-l-sm' }, 'Option A')}<br>
+          &nbsp;&nbsp;{generateCodeSnippet('Button', { style: 'outline', class: 'border-0 rounded-none' }, 'Option B')}<br>
+          &lt;/div&gt;
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Accessibility Guidelines -->
+  <ComponentGrid 
+    title="Accessibility Guidelines" 
+    description="Best practices for button accessibility and usability"
+    columns={1}
+  >
+    <div class="showcase-item">
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-3">Accessibility Best Practices</h4>
+        <div class="space-y-4 text-sm theme-paragraph">
+          <div>
+            <h5 class="font-medium theme-headline mb-2">Button vs Link Usage</h5>
+            <ul class="space-y-1 ml-4">
+              <li>• Use <code class="px-1 rounded bg-gray-100">Button</code> for actions that change the application state</li>
+              <li>• Use <code class="px-1 rounded bg-gray-100">Link</code> for navigation to different pages or sections</li>
+              <li>• Both components support keyboard navigation and screen readers</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h5 class="font-medium theme-headline mb-2">Visual Hierarchy</h5>
+            <ul class="space-y-1 ml-4">
+              <li>• Use <code class="px-1 rounded bg-gray-100">primary</code> style for the main action</li>
+              <li>• Use <code class="px-1 rounded bg-gray-100">outline</code> for secondary actions</li>
+              <li>• Use <code class="px-1 rounded bg-gray-100">muted</code> for tertiary or less important actions</li>
+              <li>• Limit to one primary button per section</li>
+            </ul>
+          </div>
+
+          <div>
+            <h5 class="font-medium theme-headline mb-2">Focus and Interaction</h5>
+            <ul class="space-y-1 ml-4">
+              <li>• All buttons include focus-visible ring for keyboard navigation</li>
+              <li>• Hover states provide visual feedback</li>
+              <li>• Disabled buttons should include aria-disabled or disabled attributes</li>
+              <li>• Use descriptive button text that explains the action</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ComponentGrid>
+</div>
+
+<style>
+  .showcase-item {
+    @apply p-6 rounded-lg border-2 transition-all hover:shadow-lg;
+    border-color: var(--color-theme-stroke);
+    background-color: var(--color-theme-bg);
+  }
+
+  .component-demo {
+    @apply flex flex-col items-center justify-center min-h-[100px] p-4 rounded-md;
+    background-color: var(--color-theme-main);
+    border: 1px dashed var(--color-theme-stroke);
+  }
+
+  .code-snippet {
+    @apply block text-xs p-3 rounded-md font-mono text-left whitespace-pre-wrap break-all;
+    background-color: var(--color-theme-main);
+    color: var(--color-theme-paragraph);
+    border: 1px solid var(--color-theme-stroke);
+  }
+
+  .button-showcase h4 {
+    color: var(--color-theme-headline);
+  }
+
+  /* Focus styles for better accessibility */
+  .showcase-item:focus-within {
+    @apply ring-2 ring-offset-2;
+    ring-color: var(--color-theme-button);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .component-demo {
+      min-height: 80px;
+    }
+    
+    .code-snippet {
+      font-size: 10px;
+    }
+  }
+</style>

@@ -1,0 +1,415 @@
+---
+// Typography Showcase Component for Design System
+// Demonstrates font hierarchy, theme-aware text styles, and typography patterns
+---
+
+<div class="typography-showcase space-y-16">
+  <!-- Font Family Overview -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Font Families</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Bricolage Grotesque -->
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-3" style="font-family: 'Bricolage Grotesque Variable', sans-serif;">
+          Bricolage Grotesque Variable
+        </h4>
+        <p class="theme-paragraph mb-4" style="font-family: 'Bricolage Grotesque Variable', sans-serif;">
+          A modern, geometric sans-serif with distinctive character. Perfect for headlines, 
+          buttons, and display text that needs to make a statement.
+        </p>
+        <div class="text-sm theme-card-text opacity-75">Primary display font</div>
+      </div>
+
+      <!-- Inter Variable -->
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-3" style="font-family: 'Inter Variable', sans-serif;">
+          Inter Variable
+        </h4>
+        <p class="theme-paragraph mb-4" style="font-family: 'Inter Variable', sans-serif;">
+          Designed for excellent readability at all sizes. Optimized for body text, 
+          UI elements, and long-form content with superior legibility.
+        </p>
+        <div class="text-sm theme-card-text opacity-75">Primary body font</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Heading Hierarchy -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Heading Hierarchy</h3>
+    <div class="space-y-6">
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h1 class="text-6xl font-bold theme-headline mb-2">H1 Heading</h1>
+        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-6xl font-bold theme-headline</code>
+        <p class="text-sm theme-paragraph mt-2">Used for page titles and primary hero headlines</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h2 class="text-5xl font-bold theme-headline mb-2">H2 Heading</h2>
+        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-5xl font-bold theme-headline</code>
+        <p class="text-sm theme-paragraph mt-2">Section headers and major content divisions</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h3 class="text-4xl font-bold theme-headline mb-2">H3 Heading</h3>
+        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-4xl font-bold theme-headline</code>
+        <p class="text-sm theme-paragraph mt-2">Subsection headers and feature titles</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-3xl font-semibold theme-sub-headline mb-2">H4 Heading</h4>
+        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-3xl font-semibold theme-sub-headline</code>
+        <p class="text-sm theme-paragraph mt-2">Card titles and component headers</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h5 class="text-2xl font-semibold theme-sub-headline mb-2">H5 Heading</h5>
+        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-2xl font-semibold theme-sub-headline</code>
+        <p class="text-sm theme-paragraph mt-2">Minor section headers and list titles</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h6 class="text-xl font-semibold theme-sub-headline mb-2">H6 Heading</h6>
+        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-xl font-semibold theme-sub-headline</code>
+        <p class="text-sm theme-paragraph mt-2">Small headers and emphasized text blocks</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body Text Variations -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Body Text Variations</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Paragraph Styles -->
+      <div class="space-y-6">
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h4 class="text-lg font-semibold theme-headline mb-4">Paragraph Text</h4>
+          <p class="text-lg theme-paragraph mb-3 leading-relaxed">
+            This is large body text (text-lg) with relaxed line height. Perfect for introductory 
+            paragraphs, hero descriptions, and content that needs extra emphasis while maintaining readability.
+          </p>
+          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-lg theme-paragraph leading-relaxed</code>
+        </div>
+
+        <div class="p-6 rounded-lg theme-card-bg">
+          <p class="text-base theme-paragraph mb-3 leading-normal">
+            This is standard body text (text-base) with normal line height. The workhorse of content, 
+            used for most paragraphs, descriptions, and general reading material throughout the application.
+          </p>
+          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-base theme-paragraph leading-normal</code>
+        </div>
+
+        <div class="p-6 rounded-lg theme-card-bg">
+          <p class="text-sm theme-card-text mb-3">
+            This is small text (text-sm) using theme-card-text color. Ideal for captions, 
+            metadata, secondary information, and supplementary details that support the main content.
+          </p>
+          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-sm theme-card-text</code>
+        </div>
+
+        <div class="p-6 rounded-lg theme-card-bg">
+          <p class="text-xs theme-card-text opacity-75 mb-3">
+            This is extra small text (text-xs) with reduced opacity. Used for fine print, 
+            legal text, timestamps, and other minimal supporting information.
+          </p>
+          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-xs theme-card-text opacity-75</code>
+        </div>
+      </div>
+
+      <!-- Special Text Styles -->
+      <div class="space-y-6">
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h4 class="text-lg font-semibold theme-headline mb-4">Special Text Styles</h4>
+          
+          <div class="space-y-3">
+            <p class="theme-link">This is link text using theme-link color</p>
+            <p class="theme-highlight font-medium">This is highlighted text with theme-highlight</p>
+            <p class="text-base theme-paragraph font-bold">This is bold paragraph text</p>
+            <p class="text-base theme-paragraph italic">This is italic paragraph text</p>
+            <p class="text-base theme-paragraph underline">This is underlined text</p>
+            <p class="text-base theme-paragraph line-through opacity-60">This is struck-through text</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h4 class="text-lg font-semibold theme-headline mb-4">Code & Monospace</h4>
+          <div class="space-y-3">
+            <p class="theme-paragraph">Inline code: <code class="bg-gray-100 px-2 py-1 rounded font-mono text-sm">const hello = 'world'</code></p>
+            <pre class="bg-gray-100 p-4 rounded font-mono text-sm overflow-x-auto theme-card-text"><code>// Code block example
+function greet(name) {
+  return `Hello, ${name}!`;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Font Weights & Styles -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Font Weights & Styles</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="font-semibold theme-headline mb-4">Font Weights</h4>
+        <div class="space-y-2">
+          <p class="font-light theme-paragraph">Light (300)</p>
+          <p class="font-normal theme-paragraph">Normal (400)</p>
+          <p class="font-medium theme-paragraph">Medium (500)</p>
+          <p class="font-semibold theme-paragraph">Semi Bold (600)</p>
+          <p class="font-bold theme-paragraph">Bold (700)</p>
+          <p class="font-extrabold theme-paragraph">Extra Bold (800)</p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="font-semibold theme-headline mb-4">Text Decorations</h4>
+        <div class="space-y-2">
+          <p class="underline theme-paragraph">Underlined text</p>
+          <p class="overline theme-paragraph">Overlined text</p>
+          <p class="line-through theme-paragraph">Line-through text</p>
+          <p class="no-underline theme-link">Link without underline</p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="font-semibold theme-headline mb-4">Text Transforms</h4>
+        <div class="space-y-2">
+          <p class="uppercase theme-paragraph">Uppercase text</p>
+          <p class="lowercase theme-paragraph">LOWERCASE TEXT</p>
+          <p class="capitalize theme-paragraph">capitalize each word</p>
+          <p class="normal-case theme-paragraph">Normal Case</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Line Heights & Letter Spacing -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Line Heights & Letter Spacing</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="font-semibold theme-headline mb-4">Line Heights</h4>
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm theme-card-text mb-1">Tight (leading-tight)</p>
+            <p class="leading-tight theme-paragraph">
+              This paragraph has tight line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm theme-card-text mb-1">Normal (leading-normal)</p>
+            <p class="leading-normal theme-paragraph">
+              This paragraph has normal line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm theme-card-text mb-1">Relaxed (leading-relaxed)</p>
+            <p class="leading-relaxed theme-paragraph">
+              This paragraph has relaxed line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="font-semibold theme-headline mb-4">Letter Spacing</h4>
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm theme-card-text mb-1">Tight (tracking-tight)</p>
+            <p class="tracking-tight theme-paragraph">This text has tight letter spacing for compact layouts.</p>
+          </div>
+          <div>
+            <p class="text-sm theme-card-text mb-1">Normal (tracking-normal)</p>
+            <p class="tracking-normal theme-paragraph">This text has normal letter spacing for readability.</p>
+          </div>
+          <div>
+            <p class="text-sm theme-card-text mb-1">Wide (tracking-wide)</p>
+            <p class="tracking-wide theme-paragraph">This text has wide letter spacing for emphasis.</p>
+          </div>
+          <div>
+            <p class="text-sm theme-card-text mb-1">Wider (tracking-wider)</p>
+            <p class="tracking-wider theme-paragraph uppercase">Perfect for uppercase headings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theme Color Examples -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Theme-Aware Text Colors</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="theme-headline font-semibold mb-2">Headline</h4>
+        <p class="text-sm theme-card-text opacity-75">theme-headline</p>
+        <p class="text-xs theme-card-text mt-2">Primary headings and titles</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="theme-sub-headline font-semibold mb-2">Sub Headline</h4>
+        <p class="text-sm theme-card-text opacity-75">theme-sub-headline</p>
+        <p class="text-xs theme-card-text mt-2">Secondary headings and subtitles</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <p class="theme-paragraph font-medium mb-2">Paragraph Text</p>
+        <p class="text-sm theme-card-text opacity-75">theme-paragraph</p>
+        <p class="text-xs theme-card-text mt-2">Body content and descriptions</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <p class="theme-card-text font-medium mb-2">Card Text</p>
+        <p class="text-sm theme-card-text opacity-75">theme-card-text</p>
+        <p class="text-xs theme-card-text mt-2">Text within cards and components</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <p class="theme-link font-medium mb-2">Link Color</p>
+        <p class="text-sm theme-card-text opacity-75">theme-link</p>
+        <p class="text-xs theme-card-text mt-2">Interactive links and CTAs</p>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <p class="theme-highlight font-medium mb-2">Highlight Color</p>
+        <p class="text-sm theme-card-text opacity-75">theme-highlight</p>
+        <p class="text-xs theme-card-text mt-2">Emphasized text and accents</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real-World Usage Examples -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Real-World Usage Examples</h3>
+    <div class="space-y-8">
+      <!-- Blog Post Preview -->
+      <div class="p-8 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-6">Blog Post Preview Layout</h4>
+        <div class="space-y-4">
+          <h2 class="text-3xl font-bold theme-headline leading-tight">
+            The Future of Web Development: Trends to Watch in 2025
+          </h2>
+          <div class="flex items-center gap-4 text-sm theme-card-text">
+            <span>By Jane Developer</span>
+            <span>•</span>
+            <time>March 15, 2024</time>
+            <span>•</span>
+            <span>5 min read</span>
+          </div>
+          <p class="text-lg theme-paragraph leading-relaxed">
+            Discover the emerging technologies and methodologies that will shape how we build 
+            web applications in the coming year. From AI integration to new frameworks.
+          </p>
+          <a href="#" class="theme-link hover:underline font-medium">Read full article →</a>
+        </div>
+      </div>
+
+      <!-- Product Card -->
+      <div class="p-8 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-6">Product Card Layout</h4>
+        <div class="max-w-sm">
+          <div class="h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+            <span class="theme-card-text">Product Image</span>
+          </div>
+          <h3 class="text-xl font-bold theme-headline mb-2">Premium Web Template</h3>
+          <p class="theme-paragraph mb-4 leading-normal">
+            A comprehensive starter template with modern design patterns and optimized performance.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-bold theme-highlight">$49</span>
+            <button class="px-4 py-2 rounded theme-button-primary">Add to Cart</button>
+          </div>
+          <p class="text-xs theme-card-text opacity-75 mt-2">Free updates included</p>
+        </div>
+      </div>
+
+      <!-- Feature Section -->
+      <div class="p-8 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-6">Feature Section Layout</h4>
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-4xl font-bold theme-headline mb-4">
+            Built for Performance
+          </h2>
+          <p class="text-xl theme-sub-headline mb-8 leading-relaxed">
+            Every component is optimized for speed, accessibility, and user experience
+          </p>
+          <div class="grid md:grid-cols-3 gap-6 text-left">
+            <div>
+              <h3 class="text-lg font-semibold theme-headline mb-2">Fast Loading</h3>
+              <p class="theme-paragraph text-sm">Optimized assets and lazy loading ensure quick page loads</p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold theme-headline mb-2">Accessible</h3>
+              <p class="theme-paragraph text-sm">WCAG compliant with proper semantic markup</p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold theme-headline mb-2">Responsive</h3>
+              <p class="theme-paragraph text-sm">Perfect display across all device sizes</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography Best Practices -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Typography Best Practices</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">✅ Do</h4>
+        <ul class="space-y-3 theme-paragraph">
+          <li>• Use theme classes for consistent colors across themes</li>
+          <li>• Maintain proper heading hierarchy (H1 → H6)</li>
+          <li>• Apply appropriate line heights for readability</li>
+          <li>• Use font weights to create visual hierarchy</li>
+          <li>• Keep line lengths between 45-75 characters</li>
+          <li>• Ensure sufficient color contrast for accessibility</li>
+        </ul>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">❌ Don't</h4>
+        <ul class="space-y-3 theme-paragraph">
+          <li>• Use hardcoded colors instead of theme classes</li>
+          <li>• Skip heading levels (H1 → H3)</li>
+          <li>• Use too many different font sizes on one page</li>
+          <li>• Make text too small for mobile devices</li>
+          <li>• Use excessive letter spacing on body text</li>
+          <li>• Rely solely on color to convey information</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .typography-showcase {
+    font-family: var(--font-sans);
+  }
+
+  /* Ensure proper spacing for typography examples */
+  .typography-showcase code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  /* Custom styling for better visual separation */
+  .typography-showcase section {
+    scroll-margin-top: 2rem;
+  }
+
+  /* Enhanced code block styling */
+  .typography-showcase pre {
+    background-color: var(--color-theme-quaternary);
+    border: 1px solid;
+    border-color: var(--color-theme-stroke);
+    opacity: 0.1;
+  }
+
+  .typography-showcase code {
+    background-color: var(--color-theme-quaternary);
+    color: var(--color-theme-card-text);
+  }
+</style>

@@ -1,0 +1,788 @@
+---
+// SpacingScale Component for Design System
+// Demonstrates spacing scale, padding, margin, and gap usage with interactive examples
+---
+
+<div class="spacing-showcase space-y-16">
+  <!-- Spacing Scale Overview -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Tailwind Spacing Scale</h3>
+    <p class="theme-paragraph mb-8 text-lg leading-relaxed">
+      Our design system uses Tailwind's default spacing scale where each unit represents 0.25rem (4px). 
+      This creates consistent spacing throughout the application.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Common Spacing Values -->
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Most Used Values</h4>
+        <div class="space-y-3">
+          <div class="flex items-center gap-4">
+            <div class="w-4 h-4 theme-button" style="background-color: var(--color-theme-button);"></div>
+            <code class="text-sm font-mono theme-card-text">1 = 4px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-8 h-4 theme-button" style="background-color: var(--color-theme-button);"></div>
+            <code class="text-sm font-mono theme-card-text">2 = 8px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-4 theme-button" style="background-color: var(--color-theme-button);"></div>
+            <code class="text-sm font-mono theme-card-text">3 = 12px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-4 theme-button" style="background-color: var(--color-theme-button);"></div>
+            <code class="text-sm font-mono theme-card-text">4 = 16px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-20 h-4 theme-button" style="background-color: var(--color-theme-button);"></div>
+            <code class="text-sm font-mono theme-card-text">5 = 20px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-24 h-4 theme-button" style="background-color: var(--color-theme-button);"></div>
+            <code class="text-sm font-mono theme-card-text">6 = 24px</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Larger Values</h4>
+        <div class="space-y-3">
+          <div class="flex items-center gap-4">
+            <div class="w-32 h-4 theme-secondary" style="background-color: var(--color-theme-secondary);"></div>
+            <code class="text-sm font-mono theme-card-text">8 = 32px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-40 h-4 theme-secondary" style="background-color: var(--color-theme-secondary);"></div>
+            <code class="text-sm font-mono theme-card-text">10 = 40px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-48 h-4 theme-secondary" style="background-color: var(--color-theme-secondary);"></div>
+            <code class="text-sm font-mono theme-card-text">12 = 48px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-64 h-4 theme-secondary" style="background-color: var(--color-theme-secondary);"></div>
+            <code class="text-sm font-mono theme-card-text">16 = 64px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-80 h-4 theme-secondary" style="background-color: var(--color-theme-secondary);"></div>
+            <code class="text-sm font-mono theme-card-text">20 = 80px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-96 h-4 theme-secondary" style="background-color: var(--color-theme-secondary);"></div>
+            <code class="text-sm font-mono theme-card-text">24 = 96px</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Layout Values</h4>
+        <div class="space-y-3">
+          <div class="flex items-center gap-4">
+            <div class="h-4 theme-tertiary" style="width: 128px; background-color: var(--color-theme-tertiary);"></div>
+            <code class="text-sm font-mono theme-card-text">32 = 128px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="h-4 theme-tertiary" style="width: 160px; background-color: var(--color-theme-tertiary);"></div>
+            <code class="text-sm font-mono theme-card-text">40 = 160px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="h-4 theme-tertiary" style="width: 192px; background-color: var(--color-theme-tertiary);"></div>
+            <code class="text-sm font-mono theme-card-text">48 = 192px</code>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="h-4 theme-tertiary" style="width: 256px; background-color: var(--color-theme-tertiary);"></div>
+            <code class="text-sm font-mono theme-card-text">64 = 256px</code>
+          </div>
+        </div>
+        <p class="text-xs theme-card-text opacity-75 mt-4">Used for section spacing and large layouts</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Padding Examples -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Padding Examples</h3>
+    <p class="theme-paragraph mb-8">
+      Padding adds internal spacing to elements. Use consistent padding values to create visual harmony.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Uniform Padding -->
+      <div class="space-y-6">
+        <h4 class="text-lg font-semibold theme-headline">Uniform Padding</h4>
+        
+        <div class="space-y-4">
+          <div class="theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="p-2 theme-button" style="background-color: var(--color-theme-button); opacity: 0.2;">
+              <div class="theme-card-bg p-2 rounded">
+                <code class="text-sm theme-card-text">p-2 (8px all sides)</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="p-4 theme-secondary" style="background-color: var(--color-theme-secondary); opacity: 0.2;">
+              <div class="theme-card-bg p-2 rounded">
+                <code class="text-sm theme-card-text">p-4 (16px all sides)</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="p-6 theme-tertiary" style="background-color: var(--color-theme-tertiary); opacity: 0.2;">
+              <div class="theme-card-bg p-2 rounded">
+                <code class="text-sm theme-card-text">p-6 (24px all sides)</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="p-8 theme-highlight" style="background-color: var(--color-theme-highlight); opacity: 0.2;">
+              <div class="theme-card-bg p-2 rounded">
+                <code class="text-sm theme-card-text">p-8 (32px all sides)</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Directional Padding -->
+      <div class="space-y-6">
+        <h4 class="text-lg font-semibold theme-headline">Directional Padding</h4>
+        
+        <div class="space-y-4">
+          <div class="theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="px-6 py-3 theme-button" style="background-color: var(--color-theme-button); opacity: 0.2;">
+              <div class="theme-card-bg p-2 rounded text-center">
+                <code class="text-sm theme-card-text">px-6 py-3</code>
+                <p class="text-xs theme-card-text opacity-75 mt-1">Horizontal: 24px, Vertical: 12px</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="px-4 py-8 theme-secondary" style="background-color: var(--color-theme-secondary); opacity: 0.2;">
+              <div class="theme-card-bg p-2 rounded text-center">
+                <code class="text-sm theme-card-text">px-4 py-8</code>
+                <p class="text-xs theme-card-text opacity-75 mt-1">Horizontal: 16px, Vertical: 32px</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="pt-2 pr-6 pb-4 pl-3 theme-tertiary" style="background-color: var(--color-theme-tertiary); opacity: 0.2;">
+              <div class="theme-card-bg p-2 rounded text-center">
+                <code class="text-sm theme-card-text">pt-2 pr-6 pb-4 pl-3</code>
+                <p class="text-xs theme-card-text opacity-75 mt-1">Top: 8px, Right: 24px, Bottom: 16px, Left: 12px</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Component Examples -->
+    <div class="mt-12">
+      <h4 class="text-lg font-semibold theme-headline mb-6">Real Component Examples</h4>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Button Padding -->
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h5 class="font-semibold theme-headline mb-4">Button Padding</h5>
+          <div class="space-y-3">
+            <button class="px-3 py-1.5 text-sm rounded theme-button-primary">Small (px-3 py-1.5)</button>
+            <button class="px-4 py-2 rounded theme-button-primary">Default (px-4 py-2)</button>
+            <button class="px-6 py-3 text-lg rounded theme-button-primary">Large (px-6 py-3)</button>
+          </div>
+        </div>
+
+        <!-- Card Padding -->
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h5 class="font-semibold theme-headline mb-4">Card Padding</h5>
+          <div class="space-y-4">
+            <div class="p-3 rounded border theme-card-bg" style="border-color: var(--color-theme-stroke); opacity: 0.2;">
+              <p class="text-sm theme-card-text">Compact card (p-3)</p>
+            </div>
+            <div class="p-4 rounded border theme-card-bg" style="border-color: var(--color-theme-stroke); opacity: 0.2;">
+              <p class="text-sm theme-card-text">Standard card (p-4)</p>
+            </div>
+            <div class="p-6 rounded border theme-card-bg" style="border-color: var(--color-theme-stroke); opacity: 0.2;">
+              <p class="text-sm theme-card-text">Spacious card (p-6)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Padding -->
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h5 class="font-semibold theme-headline mb-4">Form Element Padding</h5>
+          <div class="space-y-3">
+            <input type="text" placeholder="px-3 py-2" class="w-full px-3 py-2 border rounded theme-card-bg theme-card-text" style="border-color: var(--color-theme-stroke); opacity: 0.5;">
+            <textarea placeholder="px-4 py-3 for larger inputs" class="w-full px-4 py-3 border rounded theme-card-bg theme-card-text h-20 resize-none" style="border-color: var(--color-theme-stroke); opacity: 0.5;"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Margin Examples -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Margin Examples</h3>
+    <p class="theme-paragraph mb-8">
+      Margins create space between elements. Use consistent margin values to establish clear content hierarchy.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Vertical Margins -->
+      <div class="space-y-6">
+        <h4 class="text-lg font-semibold theme-headline">Vertical Margins</h4>
+        
+        <div class="border-2 border-dashed p-4" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+          <div class="theme-card-bg p-3 rounded">
+            <p class="text-sm theme-card-text">First element</p>
+          </div>
+          
+          <div class="mt-2 theme-secondary p-3 rounded" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+            <p class="text-sm theme-card-text">mt-2 (8px top margin)</p>
+          </div>
+
+          <div class="mt-4 theme-tertiary p-3 rounded" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+            <p class="text-sm theme-card-text">mt-4 (16px top margin)</p>
+          </div>
+
+          <div class="mt-8 theme-highlight p-3 rounded" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+            <p class="text-sm theme-card-text">mt-8 (32px top margin)</p>
+          </div>
+
+          <div class="mt-16 theme-button p-3 rounded" style="background-color: var(--color-theme-button); opacity: 0.3;">
+            <p class="text-sm theme-card-text">mt-16 (64px top margin)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal Margins -->
+      <div class="space-y-6">
+        <h4 class="text-lg font-semibold theme-headline">Horizontal Margins & Centering</h4>
+        
+        <div class="border-2 border-dashed p-4" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+          <div class="w-32 theme-card-bg p-3 rounded mb-4">
+            <p class="text-xs theme-card-text">Default (no margin)</p>
+          </div>
+
+          <div class="w-32 ml-4 theme-secondary p-3 rounded mb-4" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+            <p class="text-xs theme-card-text">ml-4 (16px left)</p>
+          </div>
+
+          <div class="w-32 ml-8 theme-tertiary p-3 rounded mb-4" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+            <p class="text-xs theme-card-text">ml-8 (32px left)</p>
+          </div>
+
+          <div class="w-32 mx-auto theme-highlight p-3 rounded mb-4" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+            <p class="text-xs theme-card-text text-center">mx-auto (centered)</p>
+          </div>
+
+          <div class="w-32 mr-0 ml-auto theme-button p-3 rounded" style="background-color: var(--color-theme-button); opacity: 0.3;">
+            <p class="text-xs theme-card-text text-center">ml-auto (right aligned)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Common Margin Patterns -->
+    <div class="mt-12">
+      <h4 class="text-lg font-semibold theme-headline mb-6">Common Margin Patterns</h4>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h5 class="font-semibold theme-headline mb-4">Section Spacing</h5>
+          <div class="space-y-2 text-sm theme-card-text">
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mt-16</code> - Major sections</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mt-12</code> - Subsections</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mt-8</code> - Content blocks</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mt-6</code> - Related content</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h5 class="font-semibold theme-headline mb-4">Typography Spacing</h5>
+          <div class="space-y-2 text-sm theme-card-text">
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mb-4</code> - After headings</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mb-6</code> - After large headings</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mb-2</code> - Between related items</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mb-8</code> - End of sections</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-lg theme-card-bg">
+          <h5 class="font-semibold theme-headline mb-4">Layout Centering</h5>
+          <div class="space-y-2 text-sm theme-card-text">
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mx-auto</code> - Center blocks</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">ml-auto</code> - Push right</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mr-auto</code> - Push left</p>
+            <p><code class="bg-gray-100 px-2 py-1 rounded">mx-4</code> - Horizontal margins</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gap Examples -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Gap Examples (Flexbox & Grid)</h3>
+    <p class="theme-paragraph mb-8">
+      Gap creates consistent spacing between flex and grid items without affecting external margins.
+    </p>
+
+    <!-- Flexbox Gaps -->
+    <div class="mb-12">
+      <h4 class="text-lg font-semibold theme-headline mb-6">Flexbox Gap Examples</h4>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>flex gap-2</code> (8px between items)</p>
+            <div class="flex gap-2">
+              <div class="flex-1 p-2 theme-button rounded" style="background-color: var(--color-theme-button); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 1</span>
+              </div>
+              <div class="flex-1 p-2 theme-button rounded" style="background-color: var(--color-theme-button); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 2</span>
+              </div>
+              <div class="flex-1 p-2 theme-button rounded" style="background-color: var(--color-theme-button); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>flex gap-4</code> (16px between items)</p>
+            <div class="flex gap-4">
+              <div class="flex-1 p-2 theme-secondary rounded" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 1</span>
+              </div>
+              <div class="flex-1 p-2 theme-secondary rounded" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 2</span>
+              </div>
+              <div class="flex-1 p-2 theme-secondary rounded" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>flex gap-8</code> (32px between items)</p>
+            <div class="flex gap-8">
+              <div class="flex-1 p-2 theme-tertiary rounded" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 1</span>
+              </div>
+              <div class="flex-1 p-2 theme-tertiary rounded" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Item 2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>flex flex-col gap-3</code> (12px vertical)</p>
+            <div class="flex flex-col gap-3">
+              <div class="p-2 theme-highlight rounded" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Vertical Item 1</span>
+              </div>
+              <div class="p-2 theme-highlight rounded" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Vertical Item 2</span>
+              </div>
+              <div class="p-2 theme-highlight rounded" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Vertical Item 3</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>flex items-center gap-6</code></p>
+            <div class="flex items-center gap-6">
+              <div class="w-8 h-8 theme-button rounded-full" style="background-color: var(--color-theme-button); opacity: 0.5;"></div>
+              <div class="flex-1">
+                <p class="text-sm theme-card-text">Content with icon</p>
+                <p class="text-xs theme-card-text opacity-75">Subtitle text</p>
+              </div>
+              <button class="px-3 py-1 text-xs rounded theme-button-outline">Action</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid Gaps -->
+    <div class="mb-12">
+      <h4 class="text-lg font-semibold theme-headline mb-6">CSS Grid Gap Examples</h4>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>grid grid-cols-3 gap-4</code></p>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+                <span class="text-xs theme-card-text">1</span>
+              </div>
+              <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+                <span class="text-xs theme-card-text">2</span>
+              </div>
+              <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+                <span class="text-xs theme-card-text">3</span>
+              </div>
+              <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+                <span class="text-xs theme-card-text">4</span>
+              </div>
+              <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+                <span class="text-xs theme-card-text">5</span>
+              </div>
+              <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+                <span class="text-xs theme-card-text">6</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>grid grid-cols-2 gap-6</code></p>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="aspect-square theme-secondary rounded flex items-center justify-center" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">A</span>
+              </div>
+              <div class="aspect-square theme-secondary rounded flex items-center justify-center" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">B</span>
+              </div>
+              <div class="aspect-square theme-secondary rounded flex items-center justify-center" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">C</span>
+              </div>
+              <div class="aspect-square theme-secondary rounded flex items-center justify-center" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">D</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>grid md:grid-cols-4 gap-3</code></p>
+            <div class="grid md:grid-cols-4 gap-3">
+              <div class="aspect-square theme-tertiary rounded flex items-center justify-center" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">1</span>
+              </div>
+              <div class="aspect-square theme-tertiary rounded flex items-center justify-center" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">2</span>
+              </div>
+              <div class="aspect-square theme-tertiary rounded flex items-center justify-center" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">3</span>
+              </div>
+              <div class="aspect-square theme-tertiary rounded flex items-center justify-center" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+                <span class="text-xs theme-card-text">4</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg theme-card-bg border-2 border-dashed" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <p class="text-sm theme-card-text mb-3"><code>grid gap-x-8 gap-y-4</code></p>
+            <div class="grid grid-cols-3 gap-x-8 gap-y-4">
+              <div class="h-12 theme-highlight rounded flex items-center justify-center" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">X</span>
+              </div>
+              <div class="h-12 theme-highlight rounded flex items-center justify-center" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Y</span>
+              </div>
+              <div class="h-12 theme-highlight rounded flex items-center justify-center" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">Z</span>
+              </div>
+              <div class="h-12 theme-highlight rounded flex items-center justify-center" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">A</span>
+              </div>
+              <div class="h-12 theme-highlight rounded flex items-center justify-center" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">B</span>
+              </div>
+              <div class="h-12 theme-highlight rounded flex items-center justify-center" style="background-color: var(--color-theme-highlight); opacity: 0.3;">
+                <span class="text-xs theme-card-text">C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsive Spacing -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Responsive Spacing</h3>
+    <p class="theme-paragraph mb-8">
+      Use responsive modifiers to adjust spacing across different screen sizes for optimal layouts.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Responsive Padding</h4>
+        <div class="space-y-4">
+          <div class="p-2 md:p-4 lg:p-6 xl:p-8 border-2 border-dashed" style="border-color: var(--color-theme-button); opacity: 0.3;">
+            <div class="theme-card-bg p-2 rounded text-center">
+              <code class="text-sm theme-card-text">p-2 md:p-4 lg:p-6 xl:p-8</code>
+              <p class="text-xs theme-card-text opacity-75 mt-1">Grows with screen size</p>
+            </div>
+          </div>
+          
+          <div class="px-4 py-2 md:px-8 md:py-4 border-2 border-dashed" style="border-color: var(--color-theme-secondary); opacity: 0.3;">
+            <div class="theme-card-bg p-2 rounded text-center">
+              <code class="text-sm theme-card-text">px-4 py-2 md:px-8 md:py-4</code>
+              <p class="text-xs theme-card-text opacity-75 mt-1">More horizontal padding on larger screens</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Responsive Margins</h4>
+        <div class="space-y-4">
+          <div class="border-2 border-dashed p-4" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+            <div class="theme-secondary p-2 rounded mb-2" style="background-color: var(--color-theme-secondary); opacity: 0.3;">
+              <span class="text-xs theme-card-text">First item</span>
+            </div>
+            <div class="mt-4 md:mt-8 lg:mt-12 theme-tertiary p-2 rounded" style="background-color: var(--color-theme-tertiary); opacity: 0.3;">
+              <span class="text-xs theme-card-text">mt-4 md:mt-8 lg:mt-12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive Grid Examples -->
+    <div class="mt-8">
+      <h4 class="text-lg font-semibold theme-headline mb-6">Responsive Grid Gaps</h4>
+      <div class="p-6 rounded-lg theme-card-bg">
+        <p class="text-sm theme-card-text mb-4"><code>grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8</code></p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+          <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+            <span class="text-sm theme-card-text">1</span>
+          </div>
+          <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+            <span class="text-sm theme-card-text">2</span>
+          </div>
+          <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+            <span class="text-sm theme-card-text">3</span>
+          </div>
+          <div class="aspect-square bg-gray-200 rounded flex items-center justify-center">
+            <span class="text-sm theme-card-text">4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Component Spacing Patterns -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Component Spacing Patterns</h3>
+    <p class="theme-paragraph mb-8">
+      Common spacing patterns used in real components throughout the design system.
+    </p>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- Navigation Component -->
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Navigation Component</h4>
+        <div class="border-2 border-dashed p-4" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+          <nav class="flex items-center justify-between py-4 px-6">
+            <div class="flex items-center gap-8">
+              <div class="w-8 h-8 theme-button rounded" style="background-color: var(--color-theme-button); opacity: 0.5;"></div>
+              <div class="hidden md:flex items-center gap-6">
+                <span class="text-sm theme-card-text">Home</span>
+                <span class="text-sm theme-card-text">About</span>
+                <span class="text-sm theme-card-text">Services</span>
+              </div>
+            </div>
+            <button class="px-4 py-2 text-sm rounded theme-button-primary">Get Started</button>
+          </nav>
+          <div class="mt-4 p-2 rounded theme-quaternary" style="background-color: var(--color-theme-quaternary); opacity: 0.3;">
+            <code class="text-xs theme-card-text">py-4 px-6 (container) • gap-8 gap-6 (nav items) • px-4 py-2 (button)</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Component -->
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Card Component</h4>
+        <div class="border-2 border-dashed p-4" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+          <div class="p-6 rounded-lg theme-section-bg">
+            <div class="w-full h-32 bg-gray-200 rounded mb-4"></div>
+            <h3 class="text-lg font-semibold theme-headline mb-2">Card Title</h3>
+            <p class="theme-paragraph mb-4 text-sm">Card description with proper spacing between elements.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm theme-card-text">$99</span>
+              <button class="px-3 py-1.5 text-sm rounded theme-button-primary">Buy Now</button>
+            </div>
+          </div>
+          <div class="mt-4 p-2 rounded theme-quaternary" style="background-color: var(--color-theme-quaternary); opacity: 0.3;">
+            <code class="text-xs theme-card-text">p-6 (card) • mb-4 mb-2 mb-4 (content spacing) • px-3 py-1.5 (button)</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Component -->
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Form Component</h4>
+        <div class="border-2 border-dashed p-4" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+          <form class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium theme-headline mb-2">Name</label>
+              <input type="text" class="w-full px-3 py-2 border rounded theme-card-bg" style="border-color: var(--color-theme-stroke); opacity: 0.5;">
+            </div>
+            <div>
+              <label class="block text-sm font-medium theme-headline mb-2">Email</label>
+              <input type="email" class="w-full px-3 py-2 border rounded theme-card-bg" style="border-color: var(--color-theme-stroke); opacity: 0.5;">
+            </div>
+            <div class="flex gap-4">
+              <button type="button" class="flex-1 px-4 py-2 border rounded theme-button-outline">Cancel</button>
+              <button type="submit" class="flex-1 px-4 py-2 rounded theme-button-primary">Submit</button>
+            </div>
+          </form>
+          <div class="mt-4 p-2 rounded theme-quaternary" style="background-color: var(--color-theme-quaternary); opacity: 0.3;">
+            <code class="text-xs theme-card-text">space-y-6 (form) • mb-2 (labels) • px-3 py-2 (inputs) • gap-4 (buttons)</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Section -->
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">Hero Section</h4>
+        <div class="border-2 border-dashed p-4" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+          <div class="text-center py-16 px-6">
+            <h1 class="text-4xl font-bold theme-headline mb-4">Hero Title</h1>
+            <p class="text-lg theme-paragraph mb-8 max-w-2xl mx-auto">Hero description with proper spacing for readability and visual hierarchy.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button class="px-6 py-3 rounded theme-button-primary">Primary CTA</button>
+              <button class="px-6 py-3 rounded theme-button-outline">Secondary CTA</button>
+            </div>
+          </div>
+          <div class="mt-4 p-2 rounded theme-quaternary" style="background-color: var(--color-theme-quaternary); opacity: 0.3;">
+            <code class="text-xs theme-card-text">py-16 px-6 (section) • mb-4 mb-8 (content) • gap-4 (buttons) • px-6 py-3 (CTAs)</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Practices -->
+  <section>
+    <h3 class="text-2xl font-bold theme-headline mb-6">Spacing Best Practices</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">✅ Do</h4>
+        <ul class="space-y-3 theme-paragraph">
+          <li>• Use consistent spacing scale (4, 8, 16, 24, 32px)</li>
+          <li>• Apply larger spacing between unrelated sections</li>
+          <li>• Use gap for flexbox and grid layouts</li>
+          <li>• Consider responsive spacing for different screen sizes</li>
+          <li>• Use semantic spacing (more space = less relation)</li>
+          <li>• Prefer margin-top for vertical rhythm</li>
+          <li>• Use mx-auto for centering block elements</li>
+        </ul>
+      </div>
+
+      <div class="p-6 rounded-lg theme-card-bg">
+        <h4 class="text-lg font-semibold theme-headline mb-4">❌ Don't</h4>
+        <ul class="space-y-3 theme-paragraph">
+          <li>• Mix different spacing scales inconsistently</li>
+          <li>• Use excessive spacing that breaks visual connections</li>
+          <li>• Rely only on padding for all spacing needs</li>
+          <li>• Ignore responsive spacing requirements</li>
+          <li>• Use arbitrary spacing values outside the scale</li>
+          <li>• Apply both margin and padding when gap would work</li>
+          <li>• Use negative margins excessively for layout</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quick Reference -->
+    <div class="mt-12">
+      <h4 class="text-lg font-semibold theme-headline mb-6">Quick Reference</h4>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="p-4 rounded-lg theme-section-bg">
+          <h5 class="font-semibold theme-headline mb-3">Micro Spacing</h5>
+          <div class="space-y-1 text-sm theme-card-text">
+            <p>1-2 (4-8px)</p>
+            <p>Element borders</p>
+            <p>Icon gaps</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg theme-section-bg">
+          <h5 class="font-semibold theme-headline mb-3">Component Spacing</h5>
+          <div class="space-y-1 text-sm theme-card-text">
+            <p>3-6 (12-24px)</p>
+            <p>Button padding</p>
+            <p>Card content</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg theme-section-bg">
+          <h5 class="font-semibold theme-headline mb-3">Layout Spacing</h5>
+          <div class="space-y-1 text-sm theme-card-text">
+            <p>8-16 (32-64px)</p>
+            <p>Between sections</p>
+            <p>Grid gaps</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-lg theme-section-bg">
+          <h5 class="font-semibold theme-headline mb-3">Macro Spacing</h5>
+          <div class="space-y-1 text-sm theme-card-text">
+            <p>20+ (80px+)</p>
+            <p>Page sections</p>
+            <p>Hero areas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .spacing-showcase {
+    font-family: var(--font-sans);
+  }
+
+  /* Custom styles for better visual demonstrations */
+  .spacing-showcase code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    background-color: var(--color-theme-quaternary);
+    color: var(--color-theme-card-text);
+  }
+
+  /* Ensure proper scroll margins for anchor links */
+  .spacing-showcase section {
+    scroll-margin-top: 2rem;
+  }
+
+  /* Interactive visual helpers */
+  .spacing-showcase .border-dashed {
+    border-style: dashed;
+  }
+
+  /* Enhanced visual indicators for spacing demonstrations */
+  .spacing-showcase input,
+  .spacing-showcase textarea {
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .spacing-showcase input:focus,
+  .spacing-showcase textarea:focus {
+    border-color: var(--color-theme-button);
+  }
+
+  /* Better contrast for demonstration elements */
+  .spacing-showcase .aspect-square {
+    min-height: 60px;
+  }
+
+  /* Responsive adjustments for better mobile viewing */
+  @media (max-width: 768px) {
+    .spacing-showcase .grid-cols-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .spacing-showcase .md\:grid-cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
