@@ -49,8 +49,10 @@ This is an Astroship template - a SAAS/startup website template built with Astro
 - `public/` - Static assets served directly
 
 ### Content Collections
-Two collections are configured:
+Four collections are configured:
 - **blog**: Blog posts with schema for title, snippet, image, date, author, category, tags
+- **case-studies**: Case studies with schema for title, snippet, image, date, author, client, industry, tags
+- **products**: Products with schema for title, snippet, image, date, author, category, price, features, tags
 - **team**: Team member profiles with name, title, avatar, publish date
 
 ### Component System
@@ -69,6 +71,8 @@ Two collections are configured:
 ### Page Structure
 - Homepage with hero, features, logos, pricing, CTA sections
 - Blog with individual post pages at `/blog/[slug]`
+- Case Studies with individual pages at `/case-studies/[slug]`
+- Products with individual pages at `/products/[slug]`
 - Static pages: About, Contact, Pricing, Analytics, Accessibility, SEO, 404
 - **Styleguide Page** (`/styleguide`) - Comprehensive design system documentation
 - Working contact form component included
@@ -215,6 +219,87 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - Styleguide components: `/src/components/styleguide/`
 - UI primitives: `/src/components/ui/`
 - Color data: `/src/data/color-palettes.json`
+
+## New Content Section Workflow
+
+Use this standardized workflow when creating new content sections (like Case Studies, Products, etc.) that follow the directory + slug page pattern:
+
+### Step 1: Content Collection Setup
+1. **Update `src/content/config.ts`**:
+   - Add new collection schema with `defineCollection()`
+   - Define Zod schema with appropriate fields for your content type
+   - Add collection to exports object: `'section-name': collectionName`
+
+2. **Create metadata file**: `src/data/section-name.json`
+   - Include `title` and `description` fields for section header
+
+### Step 2: Page Structure Creation
+1. **Create directory page**: `src/pages/section-name.astro`
+   - Clone structure from existing sections (blog.astro or case-studies.astro)
+   - Update collection name in `getCollection("section-name")`
+   - Apply theme classes (`theme-headline`, `theme-paragraph`, etc.)
+   - Customize display fields based on your schema
+
+2. **Create slug page**: `src/pages/section-name/[slug].astro`
+   - Clone structure from existing slug pages
+   - Update `getStaticPaths()` to use your collection
+   - Customize metadata display based on schema fields
+   - Update "Back to Section" link
+
+### Step 3: Navigation Integration
+**Update `src/data/navigation.json`**:
+- Add new menu item to `header.menuitems` array
+- Add link to footer `sections.Product.links` array
+
+### Step 4: Content & Assets
+1. **Create content directory**: `src/content/section-name/`
+2. **Write sample content**: Create 3-4 sample `.md` files following schema
+3. **Create image directory**: `public/images/section-name/`
+4. **Add images**: Download/add relevant images for each content piece
+
+### Required Schema Fields
+**Standard fields for all content collections:**
+- `draft: z.boolean()`
+- `title: z.string()`
+- `snippet: z.string()`
+- `image: z.object({ src: z.string(), alt: z.string() })`
+- `publishDate: z.string().transform(str => new Date(str))`
+- `author: z.string().default('Astroship')`
+- `tags: z.array(z.string())`
+
+**Add custom fields** based on content type (e.g., `client`, `industry`, `price`, `features`)
+
+### Theme Integration Checklist
+- ✅ Use `theme-headline` for main headings
+- ✅ Use `theme-paragraph` for body text
+- ✅ Use `theme-button-outline` for back navigation
+- ✅ Apply `style="color: var(--color-theme-button);"` for accent elements
+- ✅ Test with multiple color palettes via ColorPaletteSelector
+
+### File Organization Pattern
+```
+src/
+├── content/
+│   ├── config.ts (add new collection)
+│   └── section-name/
+│       ├── item-1.md
+│       └── item-2.md
+├── data/
+│   ├── navigation.json (add links)
+│   └── section-name.json (metadata)
+└── pages/
+    ├── section-name.astro (directory)
+    └── section-name/
+        └── [slug].astro (individual pages)
+
+public/
+└── images/
+    └── section-name/
+        ├── item-1-image.jpg
+        └── item-2-image.jpg
+```
+
+This workflow ensures consistency with existing sections and maintains the design system patterns established in the project.
 
 ## Color System Instructions for Claude Code
 
