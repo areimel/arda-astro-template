@@ -4,7 +4,8 @@
       "WebFetch(domain:www.happyhues.co)",
       "Bash(pnpm build:*)",
       "Bash(mv:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(curl:*)"
     ],
     "deny": []
   }
