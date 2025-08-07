@@ -29,6 +29,10 @@
         "path": "/case-studies"
       },
       {
+        "title": "Products",
+        "path": "/products"
+      },
+      {
         "title": "Contact",
         "path": "/contact"
       }
@@ -70,6 +74,7 @@
           { "title": "Pricing", "path": "/pricing" },
           { "title": "Blog", "path": "/blog" },
           { "title": "Case Studies", "path": "/case-studies" },
+          { "title": "Products", "path": "/products" },
           { "title": "Changelog", "path": "#" }
         ]
       },
