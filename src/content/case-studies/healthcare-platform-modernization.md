@@ -3,7 +3,7 @@ draft: false
 title: "Healthcare Platform Modernization: Improving Patient Care Through Technology"
 snippet: "Modernizing a legacy healthcare system to improve patient outcomes, reduce administrative burden, and ensure HIPAA compliance while maintaining 99.9% uptime."
 image: {
-    src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?&fit=crop&w=430&h=240",
+    src: "/images/case-studies/healthcare-modernization.jpg",
     alt: "Healthcare platform modernization"
 }
 publishDate: "2024-03-10 09:45"

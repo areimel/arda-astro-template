@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:www.happyhues.co)",
       "Bash(pnpm build:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": []
   }

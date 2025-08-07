@@ -3,7 +3,7 @@ draft: false
 title: "E-commerce Platform Transformation: Scaling from Startup to Enterprise"
 snippet: "How we helped a growing e-commerce startup transform their platform to handle 10x traffic growth while improving performance and user experience."
 image: {
-    src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?&fit=crop&w=430&h=240",
+    src: "/images/case-studies/ecommerce-transformation.jpg",
     alt: "E-commerce platform transformation"
 }
 publishDate: "2024-01-15 10:30"

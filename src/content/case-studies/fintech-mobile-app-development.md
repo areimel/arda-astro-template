@@ -3,7 +3,7 @@ draft: false
 title: "FinTech Mobile App: Revolutionizing Personal Finance Management"
 snippet: "Building a secure, intuitive mobile banking application that increased user engagement by 250% and won multiple industry awards."
 image: {
-    src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?&fit=crop&w=430&h=240",
+    src: "/images/case-studies/fintech-mobile-app.jpg",
     alt: "FinTech mobile app development"
 }
 publishDate: "2024-02-20 14:15"
