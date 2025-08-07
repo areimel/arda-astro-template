@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import { Picture } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import caseStudiesData from "@/data/case-studies.json";
+
+// Filter case studies entries with 'draft: false' & date before current date
+const publishedCaseStudiesEntries = await getCollection("case-studies", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+});
+
+// Sort content entries by publication date
+publishedCaseStudiesEntries.sort(function (a, b) {
+  return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
+});
+---
+
+<Layout title="Case Studies">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">{caseStudiesData.title}</Fragment>
+      <Fragment slot="desc">
+        {caseStudiesData.description}
+      </Fragment>
+    </Sectionhead>
+    <main class="mt-16">
+      <ul class="grid gap-16 max-w-4xl mx-auto">
+        {
+          publishedCaseStudiesEntries.map((caseStudyEntry, index) => (
+            <li>
+              <a href={`/case-studies/${caseStudyEntry.slug}`}>
+                <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+                  <Picture
+                    src={caseStudyEntry.data.image.src}
+                    alt={caseStudyEntry.data.image.alt}
+                    sizes="(max-width: 800px) 100vw, 800px"
+                    width={800}
+                    height={600}
+                    loading={index <= 2 ? "eager" : "lazy"}
+                    decoding={index <= 2 ? "sync" : "async"}
+                    class="w-full rounded-md object-cover object-center bg-white"
+                  />
+                  <div>
+                    <span class="uppercase tracking-wider text-sm font-medium" style="color: var(--color-theme-button);">
+                      {caseStudyEntry.data.industry}
+                    </span>
+
+                    <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 theme-headline">
+                      {caseStudyEntry.data.title}
+                    </h2>
+
+                    <div class="flex gap-2 mt-3">
+                      <span class="theme-paragraph">
+                        {caseStudyEntry.data.client}
+                      </span>
+                      <span class="theme-paragraph">• </span>
+                      <time
+                        class="theme-paragraph"
+                        datetime={caseStudyEntry.data.publishDate.toISOString()}>
+                        {caseStudyEntry.data.publishDate.toDateString()}
+                      </time>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </Container>
+</Layout>
