@@ -1,0 +1,433 @@
+---
+import { Icon } from "astro-icon/components";
+
+// Icons actually used in the project - organized by purpose
+const projectIcons = {
+  features: [
+    { name: "bx:bxs-briefcase", label: "Business/Framework" },
+    { name: "bx:bxs-window-alt", label: "Static HTML" },
+    { name: "bx:bxs-data", label: "Data/Components" },
+    { name: "bx:bxs-bot", label: "Integration/Bot" },
+    { name: "bx:bxs-file-find", label: "SEO/Search" },
+    { name: "bx:bxs-user", label: "Community/User" },
+  ],
+  social: [
+    { name: "bx:bxl-twitter", label: "Twitter" },
+    { name: "bx:bxl-facebook", label: "Facebook" },
+    { name: "bx:bxl-linkedin", label: "LinkedIn" },
+    { name: "bx:bxl-github", label: "GitHub" },
+  ],
+  contact: [
+    { name: "uil:map-marker", label: "Location" },
+    { name: "uil:envelope", label: "Email" },
+    { name: "uil:phone", label: "Phone" },
+  ],
+  actions: [
+    { name: "bx:bxs-cloud-download", label: "Download" },
+    { name: "bx:bxl-github", label: "GitHub" },
+  ],
+  technologies: [
+    { name: "simple-icons:react", label: "React" },
+    { name: "simple-icons:svelte", label: "Svelte" },
+    { name: "simple-icons:astro", label: "Astro" },
+    { name: "simple-icons:tailwindcss", label: "Tailwind" },
+    { name: "simple-icons:alpinedotjs", label: "Alpine.js" },
+    { name: "simple-icons:vercel", label: "Vercel" },
+  ],
+};
+
+// Additional popular icons from each collection for showcase
+const collectionSamples = {
+  boxIcons: [
+    { name: "bx:bx-home", label: "Home" },
+    { name: "bx:bx-search", label: "Search" },
+    { name: "bx:bx-heart", label: "Heart" },
+    { name: "bx:bx-star", label: "Star" },
+    { name: "bx:bx-menu", label: "Menu" },
+    { name: "bx:bx-x", label: "Close" },
+    { name: "bx:bx-check", label: "Check" },
+    { name: "bx:bx-plus", label: "Plus" },
+  ],
+  unicons: [
+    { name: "uil:arrow-right", label: "Arrow Right" },
+    { name: "uil:calendar-alt", label: "Calendar" },
+    { name: "uil:clock", label: "Clock" },
+    { name: "uil:setting", label: "Settings" },
+    { name: "uil:user", label: "User" },
+    { name: "uil:shield-check", label: "Shield" },
+    { name: "uil:chart-line", label: "Chart" },
+    { name: "uil:cloud", label: "Cloud" },
+  ],
+  simpleIcons: [
+    { name: "simple-icons:javascript", label: "JavaScript" },
+    { name: "simple-icons:typescript", label: "TypeScript" },
+    { name: "simple-icons:react", label: "React" },
+    { name: "simple-icons:astro", label: "Astro" },
+    { name: "simple-icons:figma", label: "Figma" },
+    { name: "simple-icons:github", label: "GitHub" },
+    { name: "simple-icons:twitter", label: "Twitter" },
+    { name: "simple-icons:linkedin", label: "LinkedIn" },
+  ],
+};
+
+const iconSizes = [
+  { class: "w-4 h-4", label: "Small (16px)" },
+  { class: "w-6 h-6", label: "Medium (24px)" },
+  { class: "w-8 h-8", label: "Large (32px)" },
+  { class: "w-12 h-12", label: "XL (48px)" },
+];
+---
+
+<div class="space-y-12">
+  <!-- Most Used Icons Section -->
+  <div class="icon-section">
+    <h3 class="text-2xl font-semibold theme-headline mb-6">Currently Used in Project</h3>
+    
+    <!-- Features Icons -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium theme-headline mb-4">Feature Icons</h4>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {projectIcons.features.map((icon) => (
+          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
+            <div class="icon-container">
+              <Icon name={icon.name} class="w-6 h-6 text-white" />
+            </div>
+            <span class="icon-label">{icon.label}</span>
+            <code class="icon-code">{icon.name}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium theme-headline mb-4">Social Media</h4>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {projectIcons.social.map((icon) => (
+          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
+            <div class="icon-container">
+              <Icon name={icon.name} class="w-6 h-6 text-white" />
+            </div>
+            <span class="icon-label">{icon.label}</span>
+            <code class="icon-code">{icon.name}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Contact Icons -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium theme-headline mb-4">Contact & Location</h4>
+      <div class="grid grid-cols-3 gap-4">
+        {projectIcons.contact.map((icon) => (
+          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
+            <div class="icon-container">
+              <Icon name={icon.name} class="w-6 h-6 text-white" />
+            </div>
+            <span class="icon-label">{icon.label}</span>
+            <code class="icon-code">{icon.name}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Technology Icons -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium theme-headline mb-4">Technologies</h4>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {projectIcons.technologies.map((icon) => (
+          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
+            <div class="icon-container">
+              <Icon name={icon.name} class="w-6 h-6 text-white" />
+            </div>
+            <span class="icon-label">{icon.label}</span>
+            <code class="icon-code">{icon.name}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Icon Collections -->
+  <div class="icon-section">
+    <h3 class="text-2xl font-semibold theme-headline mb-6">Icon Collections</h3>
+    
+    <!-- Box Icons -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium theme-headline mb-2">Box Icons (bx:)</h4>
+      <p class="text-sm theme-paragraph mb-4">Popular general-purpose icons with solid and outlined variants</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+        {collectionSamples.boxIcons.map((icon) => (
+          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
+            <div class="icon-container">
+              <Icon name={icon.name} class="w-6 h-6 text-white" />
+            </div>
+            <span class="icon-label">{icon.label}</span>
+            <code class="icon-code">{icon.name}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Unicons -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium theme-headline mb-2">Unicons (uil:)</h4>
+      <p class="text-sm theme-paragraph mb-4">Clean line icons perfect for UI elements</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+        {collectionSamples.unicons.map((icon) => (
+          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
+            <div class="icon-container">
+              <Icon name={icon.name} class="w-6 h-6 text-white" />
+            </div>
+            <span class="icon-label">{icon.label}</span>
+            <code class="icon-code">{icon.name}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Simple Icons -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium theme-headline mb-2">Simple Icons (simple-icons:)</h4>
+      <p class="text-sm theme-paragraph mb-4">Brand icons for popular services and technologies</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+        {collectionSamples.simpleIcons.map((icon) => (
+          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
+            <div class="icon-container">
+              <Icon name={icon.name} class="w-6 h-6 text-white" />
+            </div>
+            <span class="icon-label">{icon.label}</span>
+            <code class="icon-code">{icon.name}</code>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Icon Sizes -->
+  <div class="icon-section">
+    <h3 class="text-2xl font-semibold theme-headline mb-6">Icon Sizes</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {iconSizes.map((size) => (
+        <div class="text-center p-6 rounded-lg theme-card-bg">
+          <div class="flex justify-center mb-4">
+            <div class="rounded-full p-3" style="background-color: var(--color-theme-button);">
+              <Icon name="bx:bxs-star" class={`${size.class} text-white`} />
+            </div>
+          </div>
+          <p class="font-medium theme-headline mb-1">{size.label}</p>
+          <code class="text-sm theme-paragraph bg-gray-100 px-2 py-1 rounded">{size.class}</code>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="icon-section">
+    <h3 class="text-2xl font-semibold theme-headline mb-6">Usage Examples</h3>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- In Buttons -->
+      <div class="example-card">
+        <h4 class="text-lg font-medium theme-headline mb-4">In Buttons</h4>
+        <div class="space-y-4">
+          <button class="flex items-center gap-2 px-4 py-2 rounded-lg text-white" style="background-color: var(--color-theme-button);">
+            <Icon name="bx:bxs-cloud-download" class="w-5 h-5" />
+            Download
+          </button>
+          <button class="flex items-center gap-2 px-4 py-2 rounded-lg border theme-paragraph" style="border-color: var(--color-theme-stroke);">
+            <Icon name="bx:bxl-github" class="w-4 h-4" />
+            View on GitHub
+          </button>
+        </div>
+        <div class="mt-4 p-3 rounded bg-gray-50">
+          <code class="text-sm">
+            &lt;Icon name="bx:bxs-cloud-download" class="w-5 h-5" /&gt;
+          </code>
+        </div>
+      </div>
+
+      <!-- In Feature Cards -->
+      <div class="example-card">
+        <h4 class="text-lg font-medium theme-headline mb-4">In Feature Cards</h4>
+        <div class="flex gap-4 items-start p-4 rounded-lg theme-card-bg">
+          <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
+            <Icon class="text-white" name="bx:bxs-briefcase" />
+          </div>
+          <div>
+            <h5 class="font-semibold theme-headline">Feature Title</h5>
+            <p class="mt-1 text-sm theme-paragraph">Description text here</p>
+          </div>
+        </div>
+        <div class="mt-4 p-3 rounded bg-gray-50">
+          <code class="text-sm">
+            &lt;Icon class="text-white" name="bx:bxs-briefcase" /&gt;
+          </code>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="example-card">
+        <h4 class="text-lg font-medium theme-headline mb-4">Social Links</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="theme-paragraph hover:theme-headline transition-colors">
+            <Icon name="bx:bxl-twitter" class="w-5 h-5" />
+          </a>
+          <a href="#" class="theme-paragraph hover:theme-headline transition-colors">
+            <Icon name="bx:bxl-facebook" class="w-5 h-5" />
+          </a>
+          <a href="#" class="theme-paragraph hover:theme-headline transition-colors">
+            <Icon name="bx:bxl-linkedin" class="w-5 h-5" />
+          </a>
+        </div>
+        <div class="mt-4 p-3 rounded bg-gray-50">
+          <code class="text-sm">
+            &lt;Icon name="bx:bxl-twitter" class="w-5 h-5" /&gt;
+          </code>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="example-card">
+        <h4 class="text-lg font-medium theme-headline mb-4">Contact Info</h4>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <Icon class="text-gray-400 w-4 h-4" name="uil:map-marker" />
+            <span class="text-sm theme-paragraph">123 Main St, City</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" />
+            <span class="text-sm theme-paragraph">hello@example.com</span>
+          </div>
+        </div>
+        <div class="mt-4 p-3 rounded bg-gray-50">
+          <code class="text-sm">
+            &lt;Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /&gt;
+          </code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copy Notification -->
+  <div id="copy-notification" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300">
+    Icon name copied to clipboard!
+  </div>
+</div>
+
+<style>
+  .icon-section {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-theme-stroke);
+  }
+
+  .icon-section:last-child {
+    border-bottom: none;
+  }
+
+  .icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-theme-card-bg);
+    border: 1px solid var(--color-theme-stroke);
+    transition: all 0.2s ease;
+  }
+
+  .icon-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-theme-button);
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-theme-button);
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+  }
+
+  .icon-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-theme-headline);
+    margin-bottom: 0.25rem;
+  }
+
+  .icon-code {
+    font-size: 0.625rem;
+    color: var(--color-theme-paragraph);
+    font-family: monospace;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  .icon-card:hover .icon-code {
+    opacity: 1;
+  }
+
+  .example-card {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-theme-card-bg);
+    border: 1px solid var(--color-theme-stroke);
+  }
+
+  /* Copy notification animation */
+  .copy-notification-show {
+    transform: translateX(0) !important;
+  }
+</style>
+
+<script>
+  // Copy icon name to clipboard functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const iconCards = document.querySelectorAll('.icon-card[data-icon]');
+    const notification = document.getElementById('copy-notification');
+
+    iconCards.forEach(card => {
+      card.addEventListener('click', async function() {
+        const iconName = this.getAttribute('data-icon');
+        
+        try {
+          await navigator.clipboard.writeText(iconName);
+          
+          // Show notification
+          if (notification) {
+            notification.classList.add('copy-notification-show');
+            
+            // Hide notification after 2 seconds
+            setTimeout(() => {
+              notification.classList.remove('copy-notification-show');
+            }, 2000);
+          }
+        } catch (err) {
+          // Fallback for older browsers
+          const textArea = document.createElement('textarea');
+          textArea.value = iconName;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          
+          if (notification) {
+            notification.classList.add('copy-notification-show');
+            setTimeout(() => {
+              notification.classList.remove('copy-notification-show');
+            }, 2000);
+          }
+        }
+      });
+    });
+  });
+</script>

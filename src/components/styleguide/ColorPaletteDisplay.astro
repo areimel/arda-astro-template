@@ -1,0 +1,418 @@
+---
+import colorPalettes from "@/data/color-palettes.json";
+
+interface Props {
+  showActiveOnly?: boolean;
+  class?: string;
+}
+
+const { showActiveOnly = false, class: className } = Astro.props;
+
+// Group colors by category for better organization
+const colorGroups = [
+  {
+    name: "Backgrounds",
+    colors: ["bg", "cardBg", "sectionBg", "quaternary"],
+    description: "Primary background colors used throughout the interface"
+  },
+  {
+    name: "Text Colors",
+    colors: ["headline", "subHeadline", "paragraph", "cardText"],
+    description: "Typography colors for headings, body text, and card content"
+  },
+  {
+    name: "Action Colors",
+    colors: ["button", "buttonText", "link"],
+    description: "Interactive elements like buttons and links"
+  },
+  {
+    name: "Accent Colors",
+    colors: ["highlight", "secondary", "tertiary", "stroke"],
+    description: "Accent colors for highlights, borders, and visual emphasis"
+  }
+];
+
+// CSS variable mapping
+const cssVariableMap: Record<string, string> = {
+  bg: "--color-theme-bg",
+  cardBg: "--color-theme-card-bg",
+  sectionBg: "--color-theme-section-bg",
+  headline: "--color-theme-headline",
+  subHeadline: "--color-theme-sub-headline",
+  paragraph: "--color-theme-paragraph",
+  cardText: "--color-theme-card-text",
+  button: "--color-theme-button",
+  buttonText: "--color-theme-button-text",
+  link: "--color-theme-link",
+  stroke: "--color-theme-stroke",
+  highlight: "--color-theme-highlight",
+  secondary: "--color-theme-secondary",
+  tertiary: "--color-theme-tertiary",
+  quaternary: "--color-theme-quaternary"
+};
+
+// Helper function to get readable color names
+const getColorName = (key: string): string => {
+  const nameMap: Record<string, string> = {
+    bg: "Background",
+    cardBg: "Card Background",
+    sectionBg: "Section Background",
+    headline: "Headline Text",
+    subHeadline: "Sub Headline",
+    paragraph: "Paragraph Text",
+    cardText: "Card Text",
+    button: "Button",
+    buttonText: "Button Text",
+    link: "Link",
+    stroke: "Stroke/Border",
+    highlight: "Highlight",
+    secondary: "Secondary",
+    tertiary: "Tertiary",
+    quaternary: "Quaternary"
+  };
+  return nameMap[key] || key;
+};
+---
+
+<div class:list={["color-palette-display", className]}>
+  {colorPalettes.palettes.map((palette) => (
+    <div 
+      class="palette-section mb-12 p-6 rounded-lg theme-card-bg border"
+      style="border-color: var(--color-theme-stroke);"
+      data-palette-id={palette.id}
+    >
+      <!-- Palette Header -->
+      <div class="palette-header mb-8 pb-4 border-b" style="border-color: var(--color-theme-stroke);">
+        <div class="flex items-start justify-between flex-wrap gap-4">
+          <div class="flex-1 min-w-0">
+            <h3 class="text-2xl font-bold theme-headline mb-2">{palette.name}</h3>
+            <p class="text-lg theme-paragraph mb-3">{palette.description}</p>
+            <div class="flex items-center gap-2">
+              <span class="text-sm theme-paragraph font-medium">Palette ID:</span>
+              <code class="px-2 py-1 rounded text-sm font-mono theme-bg border" style="border-color: var(--color-theme-stroke);">
+                {palette.id}
+              </code>
+              <button 
+                class="copy-btn p-1 rounded hover:bg-opacity-10 transition-colors"
+                data-copy-text={palette.id}
+                title="Copy palette ID"
+                style="hover:background-color: var(--color-theme-button);"
+              >
+                <svg class="w-4 h-4 theme-paragraph" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Quick Preview Swatches -->
+          <div class="flex items-center gap-2">
+            <span class="text-sm theme-paragraph font-medium hidden sm:block">Quick Preview:</span>
+            <div class="flex gap-1">
+              {Object.entries(palette.colors).slice(0, 6).map(([key, color]) => (
+                <div 
+                  class="w-8 h-8 rounded-full border-2 shadow-sm"
+                  style={`background-color: ${color}; border-color: var(--color-theme-stroke);`}
+                  title={`${getColorName(key)}: ${color}`}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color Groups -->
+      <div class="color-groups space-y-8">
+        {colorGroups.map((group) => (
+          <div class="color-group">
+            <div class="group-header mb-4">
+              <h4 class="text-lg font-semibold theme-headline mb-1">{group.name}</h4>
+              <p class="text-sm theme-paragraph">{group.description}</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {group.colors.filter(colorKey => palette.colors[colorKey as keyof typeof palette.colors]).map((colorKey) => {
+                const colorValue = palette.colors[colorKey as keyof typeof palette.colors];
+                const cssVar = cssVariableMap[colorKey];
+                return (
+                  <div class="color-swatch p-4 rounded-lg theme-bg border transition-all duration-200 hover:shadow-md hover:scale-105" style="border-color: var(--color-theme-stroke);">
+                    <!-- Color Preview -->
+                    <div class="flex items-center gap-3 mb-3">
+                      <div 
+                        class="color-preview w-12 h-12 rounded-lg border-2 shadow-sm flex-shrink-0"
+                        style={`background-color: ${colorValue}; border-color: var(--color-theme-stroke);`}
+                      ></div>
+                      <div class="flex-1 min-w-0">
+                        <h5 class="font-medium theme-headline text-sm mb-1">{getColorName(colorKey)}</h5>
+                        <div class="flex items-center gap-2">
+                          <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-1 py-0.5 rounded" style="background-color: var(--color-theme-section-bg);">
+                            {colorValue}
+                          </code>
+                          <button 
+                            class="copy-btn p-0.5 rounded hover:bg-opacity-10 transition-colors flex-shrink-0"
+                            data-copy-text={colorValue}
+                            title={`Copy ${colorValue}`}
+                            style="hover:background-color: var(--color-theme-button);"
+                          >
+                            <svg class="w-3 h-3 theme-paragraph" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- CSS Variable -->
+                    {cssVar && (
+                      <div class="css-variable">
+                        <span class="text-xs theme-paragraph font-medium">CSS Variable:</span>
+                        <div class="flex items-center gap-2 mt-1">
+                          <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-2 py-1 rounded flex-1" style="background-color: var(--color-theme-section-bg);">
+                            {cssVar}
+                          </code>
+                          <button 
+                            class="copy-btn p-1 rounded hover:bg-opacity-10 transition-colors flex-shrink-0"
+                            data-copy-text={cssVar}
+                            title={`Copy ${cssVar}`}
+                            style="hover:background-color: var(--color-theme-button);"
+                          >
+                            <svg class="w-3 h-3 theme-paragraph" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <!-- Theme Class Helper -->
+                    <div class="theme-class mt-2">
+                      <span class="text-xs theme-paragraph font-medium">Theme Class:</span>
+                      <div class="flex items-center gap-2 mt-1">
+                        <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-2 py-1 rounded flex-1" style="background-color: var(--color-theme-section-bg);">
+                          theme-{colorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}
+                        </code>
+                        <button 
+                          class="copy-btn p-1 rounded hover:bg-opacity-10 transition-colors flex-shrink-0"
+                          data-copy-text={`theme-${colorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`}
+                          title={`Copy theme-${colorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`}
+                          style="hover:background-color: var(--color-theme-button);"
+                        >
+                          <svg class="w-3 h-3 theme-paragraph" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<!-- Toast notification for copy feedback -->
+<div 
+  id="copy-toast" 
+  class="fixed top-4 right-4 px-4 py-2 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full opacity-0 z-50 theme-button-primary"
+>
+  <div class="flex items-center gap-2">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <span class="text-sm font-medium">Copied to clipboard!</span>
+  </div>
+</div>
+
+<style>
+  .color-palette-display {
+    scroll-behavior: smooth;
+  }
+  
+  .palette-section {
+    scroll-margin-top: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .palette-section[data-current-theme="true"] {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    border-width: 2px;
+    border-color: var(--color-theme-button) !important;
+  }
+  
+  .palette-section[data-current-theme="true"]::before {
+    content: "Currently Active";
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--color-theme-button);
+    color: var(--color-theme-button-text);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+  }
+  
+  .color-swatch {
+    position: relative;
+  }
+  
+  .copy-btn {
+    opacity: 0.7;
+    transition: all 0.2s ease;
+  }
+  
+  .copy-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  
+  .color-preview {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .color-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 45%, rgba(0,0,0,0.1) 50%, transparent 55%);
+    pointer-events: none;
+  }
+  
+  #copy-toast {
+    z-index: 9999;
+  }
+  
+  #copy-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  /* Responsive improvements */
+  @media (max-width: 640px) {
+    .palette-header .flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .color-groups .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    class ColorPaletteDisplay {
+      constructor() {
+        this.copyButtons = document.querySelectorAll('.copy-btn');
+        this.toast = document.getElementById('copy-toast');
+        this.currentTheme = this.getCurrentTheme();
+        
+        this.init();
+      }
+      
+      init() {
+        this.highlightCurrentTheme();
+        this.setupCopyButtons();
+        
+        // Listen for theme changes
+        document.addEventListener('themeChanged', () => {
+          this.currentTheme = this.getCurrentTheme();
+          this.highlightCurrentTheme();
+        });
+      }
+      
+      getCurrentTheme() {
+        return document.documentElement.getAttribute('data-theme') || 
+               document.body.getAttribute('data-theme') || 
+               'palette-1';
+      }
+      
+      highlightCurrentTheme() {
+        // Remove current theme highlighting
+        document.querySelectorAll('.palette-section').forEach(section => {
+          section.removeAttribute('data-current-theme');
+        });
+        
+        // Add highlighting to current theme
+        const currentSection = document.querySelector(`[data-palette-id="${this.currentTheme}"]`);
+        if (currentSection) {
+          currentSection.setAttribute('data-current-theme', 'true');
+        }
+      }
+      
+      setupCopyButtons() {
+        this.copyButtons.forEach(button => {
+          button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const textToCopy = button.dataset.copyText;
+            
+            if (textToCopy) {
+              try {
+                await navigator.clipboard.writeText(textToCopy);
+                this.showToast();
+                
+                // Add visual feedback to the button
+                const originalContent = button.innerHTML;
+                button.innerHTML = `
+                  <svg class="w-3 h-3 theme-paragraph" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                `;
+                
+                setTimeout(() => {
+                  button.innerHTML = originalContent;
+                }, 1000);
+                
+              } catch (err) {
+                console.error('Failed to copy to clipboard:', err);
+                // Fallback for older browsers
+                this.fallbackCopy(textToCopy);
+              }
+            }
+          });
+        });
+      }
+      
+      fallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          this.showToast();
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+        }
+        
+        document.body.removeChild(textArea);
+      }
+      
+      showToast() {
+        if (!this.toast) return;
+        
+        this.toast.classList.add('show');
+        
+        setTimeout(() => {
+          this.toast.classList.remove('show');
+        }, 2000);
+      }
+    }
+    
+    // Initialize the color palette display
+    new ColorPaletteDisplay();
+  });
+</script>

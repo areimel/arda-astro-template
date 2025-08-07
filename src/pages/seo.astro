@@ -13,161 +13,161 @@ import { Icon } from "astro-icon/components";
     </Sectionhead>
 
     <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
-      <h2 class="font-bold text-3xl text-gray-800">
+      <h2 class="font-bold text-3xl theme-headline">
         Built for search engines, designed for users.
       </h2>
-      <p class="text-lg leading-relaxed text-slate-500">
+      <p class="text-lg leading-relaxed theme-paragraph">
         Our SEO-optimized templates help you rank higher in search results while providing exceptional user experiences. 
         Every element is crafted with both search engines and your audience in mind.
       </p>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto max-w-6xl mt-16">
-      <div class="bg-white p-6 rounded-lg shadow-sm border">
+      <div class="theme-card-bg p-6 rounded-lg shadow-sm border-2" style="border-color: var(--color-theme-stroke);">
         <div class="flex items-center mb-4">
-          <Icon name="mdi:code-tags" class="w-8 h-8 text-blue-600 mr-3" />
-          <h3 class="text-xl font-semibold text-gray-800">Technical SEO</h3>
+          <Icon name="bx:bx-code-alt" class="w-8 h-8 mr-3" style="color: var(--color-theme-button);" />
+          <h3 class="text-xl font-semibold theme-headline">Technical SEO</h3>
         </div>
-        <ul class="space-y-2 text-slate-600">
+        <ul class="space-y-2 theme-card-text">
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Clean, semantic HTML structure
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Optimized meta tags and descriptions
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Structured data markup (JSON-LD)
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             XML sitemaps and robots.txt
           </li>
         </ul>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow-sm border">
+      <div class="theme-card-bg p-6 rounded-lg shadow-sm border-2" style="border-color: var(--color-theme-stroke);">
         <div class="flex items-center mb-4">
-          <Icon name="mdi:speedometer" class="w-8 h-8 text-green-600 mr-3" />
-          <h3 class="text-xl font-semibold text-gray-800">Core Web Vitals</h3>
+          <Icon name="bx:bx-tachometer" class="w-8 h-8 mr-3" style="color: var(--color-theme-secondary);" />
+          <h3 class="text-xl font-semibold theme-headline">Core Web Vitals</h3>
         </div>
-        <ul class="space-y-2 text-slate-600">
+        <ul class="space-y-2 theme-card-text">
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Largest Contentful Paint (LCP) &lt; 2.5s
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             First Input Delay (FID) &lt; 100ms
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Cumulative Layout Shift (CLS) &lt; 0.1
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Optimized images and lazy loading
           </li>
         </ul>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow-sm border">
+      <div class="theme-card-bg p-6 rounded-lg shadow-sm border-2" style="border-color: var(--color-theme-stroke);">
         <div class="flex items-center mb-4">
-          <Icon name="mdi:cellphone" class="w-8 h-8 text-purple-600 mr-3" />
-          <h3 class="text-xl font-semibold text-gray-800">Mobile-First</h3>
+          <Icon name="bx:bx-mobile" class="w-8 h-8 mr-3" style="color: var(--color-theme-tertiary);" />
+          <h3 class="text-xl font-semibold theme-headline">Mobile-First</h3>
         </div>
-        <ul class="space-y-2 text-slate-600">
+        <ul class="space-y-2 theme-card-text">
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Responsive design principles
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Mobile-optimized content
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Touch-friendly navigation
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Fast mobile loading speeds
           </li>
         </ul>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow-sm border">
+      <div class="theme-card-bg p-6 rounded-lg shadow-sm border-2" style="border-color: var(--color-theme-stroke);">
         <div class="flex items-center mb-4">
-          <Icon name="mdi:file-document-outline" class="w-8 h-8 text-orange-600 mr-3" />
-          <h3 class="text-xl font-semibold text-gray-800">Content Optimization</h3>
+          <Icon name="bx:bx-file" class="w-8 h-8 mr-3" style="color: var(--color-theme-highlight);" />
+          <h3 class="text-xl font-semibold theme-headline">Content Optimization</h3>
         </div>
-        <ul class="space-y-2 text-slate-600">
+        <ul class="space-y-2 theme-card-text">
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Keyword-optimized headings
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Internal linking strategy
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Image alt text optimization
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Content hierarchy and readability
           </li>
         </ul>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow-sm border">
+      <div class="theme-card-bg p-6 rounded-lg shadow-sm border-2" style="border-color: var(--color-theme-stroke);">
         <div class="flex items-center mb-4">
-          <Icon name="mdi:share-variant" class="w-8 h-8 text-red-600 mr-3" />
-          <h3 class="text-xl font-semibold text-gray-800">Social Media</h3>
+          <Icon name="bx:bx-share-alt" class="w-8 h-8 mr-3" style="color: var(--color-theme-secondary);" />
+          <h3 class="text-xl font-semibold theme-headline">Social Media</h3>
         </div>
-        <ul class="space-y-2 text-slate-600">
+        <ul class="space-y-2 theme-card-text">
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Open Graph meta tags
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Twitter Card optimization
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Social sharing buttons
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Rich snippets support
           </li>
         </ul>
       </div>
 
-      <div class="bg-white p-6 rounded-lg shadow-sm border">
+      <div class="theme-card-bg p-6 rounded-lg shadow-sm border-2" style="border-color: var(--color-theme-stroke);">
         <div class="flex items-center mb-4">
-          <Icon name="mdi:chart-line" class="w-8 h-8 text-teal-600 mr-3" />
-          <h3 class="text-xl font-semibold text-gray-800">Analytics Integration</h3>
+          <Icon name="bx:bx-line-chart" class="w-8 h-8 mr-3" style="color: var(--color-theme-button);" />
+          <h3 class="text-xl font-semibold theme-headline">Analytics Integration</h3>
         </div>
-        <ul class="space-y-2 text-slate-600">
+        <ul class="space-y-2 theme-card-text">
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Google Analytics 4 setup
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Search Console integration
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Conversion tracking
           </li>
           <li class="flex items-center">
-            <Icon name="mdi:check" class="w-4 h-4 text-green-600 mr-2" />
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
             Performance monitoring
           </li>
         </ul>
@@ -175,54 +175,54 @@ import { Icon } from "astro-icon/components";
     </div>
 
     <div class="mx-auto max-w-4xl mt-16">
-      <h3 class="font-bold text-2xl text-gray-800 mb-6">SEO Performance Metrics</h3>
+      <h3 class="font-bold text-2xl theme-headline mb-6">SEO Performance Metrics</h3>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
-          <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
-            <Icon name="mdi:google" class="w-6 h-6 text-blue-600 mr-2" />
+        <div class="theme-quaternary-bg p-6 rounded-lg border-2" style="border-color: var(--color-theme-button);">
+          <h4 class="font-semibold theme-headline mb-4 flex items-center">
+            <Icon name="bx:bxl-google" class="w-6 h-6 mr-2" style="color: var(--color-theme-button);" />
             Google PageSpeed Insights
           </h4>
           <div class="space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">Performance Score</span>
-              <span class="font-bold text-green-600">95+</span>
+              <span class="theme-card-text">Performance Score</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">95+</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">Accessibility Score</span>
-              <span class="font-bold text-green-600">100</span>
+              <span class="theme-card-text">Accessibility Score</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">100</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">Best Practices</span>
-              <span class="font-bold text-green-600">100</span>
+              <span class="theme-card-text">Best Practices</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">100</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">SEO Score</span>
-              <span class="font-bold text-green-600">100</span>
+              <span class="theme-card-text">SEO Score</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">100</span>
             </div>
           </div>
         </div>
 
-        <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
-          <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
-            <Icon name="mdi:lighthouse" class="w-6 h-6 text-green-600 mr-2" />
+        <div class="theme-quaternary-bg p-6 rounded-lg border-2" style="border-color: var(--color-theme-secondary);">
+          <h4 class="font-semibold theme-headline mb-4 flex items-center">
+            <Icon name="bx:bx-buildings" class="w-6 h-6 mr-2" style="color: var(--color-theme-secondary);" />
             Lighthouse Audit
           </h4>
           <div class="space-y-3">
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">First Contentful Paint</span>
-              <span class="font-bold text-green-600">&lt; 1.5s</span>
+              <span class="theme-card-text">First Contentful Paint</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">&lt; 1.5s</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">Speed Index</span>
-              <span class="font-bold text-green-600">&lt; 2.0s</span>
+              <span class="theme-card-text">Speed Index</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">&lt; 2.0s</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">Time to Interactive</span>
-              <span class="font-bold text-green-600">&lt; 3.0s</span>
+              <span class="theme-card-text">Time to Interactive</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">&lt; 3.0s</span>
             </div>
             <div class="flex justify-between items-center">
-              <span class="text-slate-700">Total Blocking Time</span>
-              <span class="font-bold text-green-600">&lt; 200ms</span>
+              <span class="theme-card-text">Total Blocking Time</span>
+              <span class="font-bold" style="color: var(--color-theme-button);">&lt; 200ms</span>
             </div>
           </div>
         </div>
@@ -230,27 +230,27 @@ import { Icon } from "astro-icon/components";
     </div>
 
     <div class="mx-auto max-w-4xl mt-12">
-      <h3 class="font-bold text-2xl text-gray-800 mb-6">SEO Best Practices</h3>
+      <h3 class="font-bold text-2xl theme-headline mb-6">SEO Best Practices</h3>
       <div class="space-y-4">
         <div class="flex items-start space-x-3">
-          <Icon name="mdi:check-circle" class="w-6 h-6 text-green-600 mt-0.5" />
+          <Icon name="bx:bx-check-circle" class="w-6 h-6 mt-0.5" style="color: var(--color-theme-button);" />
           <div>
-            <h4 class="font-semibold text-gray-800">URL Structure</h4>
-            <p class="text-slate-600">Clean, descriptive URLs that reflect your content hierarchy and include relevant keywords.</p>
+            <h4 class="font-semibold theme-headline">URL Structure</h4>
+            <p class="theme-paragraph">Clean, descriptive URLs that reflect your content hierarchy and include relevant keywords.</p>
           </div>
         </div>
         <div class="flex items-start space-x-3">
-          <Icon name="mdi:check-circle" class="w-6 h-6 text-green-600 mt-0.5" />
+          <Icon name="bx:bx-check-circle" class="w-6 h-6 mt-0.5" style="color: var(--color-theme-button);" />
           <div>
-            <h4 class="font-semibold text-gray-800">Schema Markup</h4>
-            <p class="text-slate-600">Structured data implementation to help search engines understand your content better.</p>
+            <h4 class="font-semibold theme-headline">Schema Markup</h4>
+            <p class="theme-paragraph">Structured data implementation to help search engines understand your content better.</p>
           </div>
         </div>
         <div class="flex items-start space-x-3">
-          <Icon name="mdi:check-circle" class="w-6 h-6 text-green-600 mt-0.5" />
+          <Icon name="bx:bx-check-circle" class="w-6 h-6 mt-0.5" style="color: var(--color-theme-button);" />
           <div>
-            <h4 class="font-semibold text-gray-800">Local SEO</h4>
-            <p class="text-slate-600">Optimized for local search results with proper business information and location data.</p>
+            <h4 class="font-semibold theme-headline">Local SEO</h4>
+            <p class="theme-paragraph">Optimized for local search results with proper business information and location data.</p>
           </div>
         </div>
       </div>

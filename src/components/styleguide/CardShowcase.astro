@@ -1,0 +1,683 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon/components";
+import { Tick } from "@/components/ui/icons";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
+import ComponentGrid from "./ComponentGrid.astro";
+
+// Helper function to generate code snippet
+function generateCodeSnippet(html: string): string {
+  return html.replace(/^\s+/gm, '').trim();
+}
+
+// Sample data for demonstrations
+const featureCards = [
+  {
+    title: "Fast Performance",
+    description: "Lightning-fast loading times with optimized components and minimal JavaScript.",
+    icon: "bx:bxs-bolt-circle",
+  },
+  {
+    title: "Developer Experience",
+    description: "Built with modern tooling and best practices for an excellent development workflow.",
+    icon: "bx:bxs-wrench",
+  },
+  {
+    title: "Responsive Design",
+    description: "Looks great on all devices with mobile-first responsive design principles.",
+    icon: "bx:bxs-devices",
+  },
+];
+
+const pricingPlans = [
+  {
+    name: "Starter",
+    price: "$9",
+    features: ["5 Projects", "10GB Storage", "Email Support", "Basic Analytics"],
+    popular: false,
+  },
+  {
+    name: "Pro",
+    price: "$29",
+    features: ["Unlimited Projects", "100GB Storage", "Priority Support", "Advanced Analytics", "Team Collaboration"],
+    popular: true,
+  },
+];
+---
+
+<div class="card-showcase space-y-16">
+  <!-- Basic Cards -->
+  <ComponentGrid 
+    title="Basic Cards" 
+    description="Simple content cards with theme-card-bg styling and consistent spacing"
+    columns={3}
+  >
+    <!-- Simple Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="p-6 rounded-lg theme-card-bg max-w-sm">
+          <h3 class="font-semibold text-lg theme-headline mb-2">Card Title</h3>
+          <p class="theme-paragraph">This is a basic card with simple content and consistent theming.</p>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Simple Card</h4>
+        <p class="text-sm theme-paragraph mb-3">Basic card structure with theme-card-bg and standard padding</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="p-6 rounded-lg theme-card-bg">
+  <h3 class="font-semibold text-lg theme-headline">Card Title</h3>
+  <p class="theme-paragraph">Card content...</p>
+</div>`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Card with Header/Body/Footer -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="rounded-lg theme-card-bg max-w-sm overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="font-semibold text-lg theme-headline">Header</h3>
+          </div>
+          <div class="px-6 py-4">
+            <p class="theme-paragraph">Main content area with structured layout.</p>
+          </div>
+          <div class="px-6 py-4 border-t border-gray-200">
+            <p class="text-sm theme-paragraph opacity-75">Footer content</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Structured Card</h4>
+        <p class="text-sm theme-paragraph mb-3">Card with distinct header, body, and footer sections</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="rounded-lg theme-card-bg overflow-hidden">
+  <div class="px-6 py-4 border-b border-gray-200">
+    <h3 class="font-semibold text-lg theme-headline">Header</h3>
+  </div>
+  <div class="px-6 py-4">
+    <p class="theme-paragraph">Content...</p>
+  </div>
+  <div class="px-6 py-4 border-t border-gray-200">
+    <p class="text-sm theme-paragraph">Footer</p>
+  </div>
+</div>`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Card with Action -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="p-6 rounded-lg theme-card-bg max-w-sm">
+          <h3 class="font-semibold text-lg theme-headline mb-2">Action Card</h3>
+          <p class="theme-paragraph mb-4">Card with integrated action button for user interaction.</p>
+          <Button size="md" style="primary">Take Action</Button>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Action Card</h4>
+        <p class="text-sm theme-paragraph mb-3">Card with integrated button or link for user actions</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="p-6 rounded-lg theme-card-bg">
+  <h3 class="font-semibold text-lg theme-headline">Title</h3>
+  <p class="theme-paragraph mb-4">Content...</p>
+  <Button style="primary">Take Action</Button>
+</div>`)}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Feature Cards -->
+  <ComponentGrid 
+    title="Feature Cards" 
+    description="Icon-based cards similar to the features.astro component pattern"
+    columns={2}
+  >
+    <!-- Icon Feature Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="flex gap-4 items-start max-w-sm">
+          <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
+            <Icon class="text-white" name="bx:bxs-star" />
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg theme-headline">Premium Feature</h3>
+            <p class="mt-2 leading-relaxed theme-paragraph">Advanced functionality with icon-based visual hierarchy.</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Icon Feature</h4>
+        <p class="text-sm theme-paragraph mb-3">Feature card with circular icon background (matches features.astro pattern)</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="flex gap-4 items-start">
+  <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" 
+       style="background-color: var(--color-theme-button);">
+    <Icon class="text-white" name="bx:bxs-star" />
+  </div>
+  <div>
+    <h3 class="font-semibold text-lg theme-headline">Title</h3>
+    <p class="mt-2 leading-relaxed theme-paragraph">Description...</p>
+  </div>
+</div>`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="grid gap-8 max-w-lg">
+          {featureCards.slice(0, 2).map((feature) => (
+            <div class="flex gap-4 items-start">
+              <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
+                <Icon class="text-white" name={feature.icon} />
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg theme-headline">{feature.title}</h3>
+                <p class="mt-2 leading-relaxed theme-paragraph text-sm">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Feature Grid</h4>
+        <p class="text-sm theme-paragraph mb-3">Multiple feature cards in a grid layout</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="grid gap-8">
+  {features.map((feature) => (
+    <div class="flex gap-4 items-start">
+      <div class="rounded-full p-2 w-8 h-8" 
+           style="background-color: var(--color-theme-button);">
+        <Icon class="text-white" name={feature.icon} />
+      </div>
+      <div>
+        <h3 class="theme-headline">{feature.title}</h3>
+        <p class="theme-paragraph">{feature.description}</p>
+      </div>
+    </div>
+  ))}
+</div>`)}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Bordered Cards (Pricing Style) -->
+  <ComponentGrid 
+    title="Bordered Cards" 
+    description="Cards with borders similar to pricing.astro component pattern"
+    columns={2}
+  >
+    <!-- Basic Bordered Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md max-w-sm">
+          <div class="text-center">
+            <h4 class="text-lg font-medium theme-paragraph">Basic Plan</h4>
+            <p class="mt-3 text-4xl font-bold theme-headline">$19</p>
+          </div>
+          <ul class="grid mt-8 text-left gap-y-4">
+            <li class="flex items-start gap-3 theme-paragraph">
+              <Tick class="w-6 h-6" />
+              <span>Feature included</span>
+            </li>
+            <li class="flex items-start gap-3 theme-paragraph">
+              <Tick class="w-6 h-6" />
+              <span>Another feature</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Bordered Pricing</h4>
+        <p class="text-sm theme-paragraph mb-3">Pricing card with border styling (matches pricing.astro pattern)</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md">
+  <div class="text-center">
+    <h4 class="text-lg font-medium theme-paragraph">Plan Name</h4>
+    <p class="mt-3 text-4xl font-bold theme-headline">$19</p>
+  </div>
+  <ul class="grid mt-8 text-left gap-y-4">
+    <li class="flex items-start gap-3 theme-paragraph">
+      <Tick class="w-6 h-6" />
+      <span>Feature</span>
+    </li>
+  </ul>
+</div>`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Complete Pricing Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md max-w-sm">
+          <div class="text-center">
+            <h4 class="text-lg font-medium theme-paragraph">Pro Plan</h4>
+            <p class="mt-3 text-4xl font-bold theme-headline">$49</p>
+          </div>
+          <ul class="grid mt-8 text-left gap-y-4">
+            <li class="flex items-start gap-3 theme-paragraph">
+              <Tick class="w-6 h-6" />
+              <span>Everything in Basic</span>
+            </li>
+            <li class="flex items-start gap-3 theme-paragraph">
+              <Tick class="w-6 h-6" />
+              <span>Advanced features</span>
+            </li>
+            <li class="flex items-start gap-3 theme-paragraph">
+              <Tick class="w-6 h-6" />
+              <span>Priority support</span>
+            </li>
+          </ul>
+          <div class="flex mt-8">
+            <Link href="#" block style="primary">Get Started</Link>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Complete Pricing</h4>
+        <p class="text-sm theme-paragraph mb-3">Full pricing card with features list and CTA button</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md">
+  <!-- Header with pricing -->
+  <div class="text-center">...</div>
+  
+  <!-- Features list -->
+  <ul class="grid mt-8 text-left gap-y-4">...</ul>
+  
+  <!-- CTA Button -->
+  <div class="flex mt-8">
+    <Link href="#" block style="primary">Get Started</Link>
+  </div>
+</div>`)}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Image Cards -->
+  <ComponentGrid 
+    title="Image Cards" 
+    description="Cards featuring images with various layouts and overlays"
+    columns={2}
+  >
+    <!-- Image with Content -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="rounded-lg theme-card-bg overflow-hidden max-w-sm">
+          <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500"></div>
+          <div class="p-6">
+            <h3 class="font-semibold text-lg theme-headline mb-2">Image Card</h3>
+            <p class="theme-paragraph">Card with image header and content below.</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Image Header</h4>
+        <p class="text-sm theme-paragraph mb-3">Card with image at top and content below</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="rounded-lg theme-card-bg overflow-hidden">
+  <img src="image.jpg" alt="Description" class="w-full h-48 object-cover" />
+  <div class="p-6">
+    <h3 class="font-semibold text-lg theme-headline">Title</h3>
+    <p class="theme-paragraph">Content...</p>
+  </div>
+</div>`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Image with Overlay -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="relative rounded-lg overflow-hidden max-w-sm">
+          <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500"></div>
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
+            <div class="p-6 text-white">
+              <h3 class="font-semibold text-lg mb-2">Overlay Card</h3>
+              <p class="text-sm opacity-90">Content overlaid on image background.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Image Overlay</h4>
+        <p class="text-sm theme-paragraph mb-3">Card with content overlaid on image background</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="relative rounded-lg overflow-hidden">
+  <img src="image.jpg" alt="Description" class="w-full h-48 object-cover" />
+  <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
+    <div class="p-6 text-white">
+      <h3 class="font-semibold text-lg">Title</h3>
+      <p class="text-sm">Content...</p>
+    </div>
+  </div>
+</div>`)}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Card Spacing and Padding -->
+  <ComponentGrid 
+    title="Spacing Variations" 
+    description="Different padding and spacing options for various use cases"
+    columns={3}
+  >
+    <!-- Compact Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="p-4 rounded-lg theme-card-bg max-w-sm">
+          <h3 class="font-medium theme-headline mb-1">Compact</h3>
+          <p class="text-sm theme-paragraph">Minimal padding for dense layouts.</p>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Compact (p-4)</h4>
+        <p class="text-sm theme-paragraph mb-3">Minimal padding for dense information</p>
+        <code class="code-snippet">p-4 rounded-lg theme-card-bg</code>
+      </div>
+    </div>
+
+    <!-- Standard Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="p-6 rounded-lg theme-card-bg max-w-sm">
+          <h3 class="font-medium theme-headline mb-2">Standard</h3>
+          <p class="text-sm theme-paragraph">Default padding for most use cases.</p>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Standard (p-6)</h4>
+        <p class="text-sm theme-paragraph mb-3">Default padding used throughout the design system</p>
+        <code class="code-snippet">p-6 rounded-lg theme-card-bg</code>
+      </div>
+    </div>
+
+    <!-- Spacious Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="p-8 rounded-lg theme-card-bg max-w-sm">
+          <h3 class="font-medium theme-headline mb-3">Spacious</h3>
+          <p class="text-sm theme-paragraph">Extra padding for hero sections or emphasis.</p>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Spacious (p-8)</h4>
+        <p class="text-sm theme-paragraph mb-3">Extra padding for important content or hero sections</p>
+        <code class="code-snippet">p-8 rounded-lg theme-card-bg</code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Hover Effects and Interactions -->
+  <ComponentGrid 
+    title="Interactive Cards" 
+    description="Cards with hover effects, transitions, and interactive states"
+    columns={2}
+  >
+    <!-- Hover Lift Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="p-6 rounded-lg theme-card-bg max-w-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+          <h3 class="font-semibold text-lg theme-headline mb-2">Hover Lift</h3>
+          <p class="theme-paragraph">Card lifts up on hover with shadow effect.</p>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Hover Lift Effect</h4>
+        <p class="text-sm theme-paragraph mb-3">Card with lift animation and shadow on hover</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="p-6 rounded-lg theme-card-bg transition-all duration-300 
+     hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+  <h3 class="theme-headline">Hover Lift</h3>
+  <p class="theme-paragraph">Content...</p>
+</div>`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Hover Border Card -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="p-6 rounded-lg theme-card-bg border-2 border-transparent max-w-sm transition-all duration-300 hover:border-current cursor-pointer" style="border-color: transparent; --tw-border-opacity: 0;">
+          <h3 class="font-semibold text-lg theme-headline mb-2">Hover Border</h3>
+          <p class="theme-paragraph">Border appears on hover interaction.</p>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Hover Border</h4>
+        <p class="text-sm theme-paragraph mb-3">Card with border that appears on hover</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="p-6 rounded-lg theme-card-bg border-2 border-transparent 
+     transition-all duration-300 hover:border-current cursor-pointer">
+  <h3 class="theme-headline">Hover Border</h3>
+  <p class="theme-paragraph">Content...</p>
+</div>`)}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Responsive Card Layouts -->
+  <ComponentGrid 
+    title="Responsive Layouts" 
+    description="Cards that adapt to different screen sizes and grid systems"
+    columns={1}
+  >
+    <!-- Responsive Grid -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
+          {featureCards.map((feature) => (
+            <div class="p-6 rounded-lg theme-card-bg">
+              <div class="mb-4 rounded-full p-2 w-8 h-8 inline-flex items-center justify-center" style="background-color: var(--color-theme-button);">
+                <Icon class="text-white w-4 h-4" name={feature.icon} />
+              </div>
+              <h3 class="font-semibold text-lg theme-headline mb-2">{feature.title}</h3>
+              <p class="theme-paragraph text-sm">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Responsive Card Grid</h4>
+        <p class="text-sm theme-paragraph mb-3">Cards that stack on mobile and form grids on larger screens</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {cards.map((card) => (
+    <div class="p-6 rounded-lg theme-card-bg">
+      <!-- Card content -->
+    </div>
+  ))}
+</div>`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Flex Layout -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="flex flex-col md:flex-row gap-6 max-w-4xl">
+          <div class="flex-1 p-6 rounded-lg theme-card-bg">
+            <h3 class="font-semibold text-lg theme-headline mb-2">Flex Card 1</h3>
+            <p class="theme-paragraph">Cards in flexible layout that adjusts to content.</p>
+          </div>
+          <div class="flex-1 p-6 rounded-lg theme-card-bg">
+            <h3 class="font-semibold text-lg theme-headline mb-2">Flex Card 2</h3>
+            <p class="theme-paragraph">Equal width cards that stack on mobile devices.</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Flexible Layout</h4>
+        <p class="text-sm theme-paragraph mb-3">Cards in flex layout that adapts to screen size</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<div class="flex flex-col md:flex-row gap-6">
+  <div class="flex-1 p-6 rounded-lg theme-card-bg">
+    <!-- Card content -->
+  </div>
+  <div class="flex-1 p-6 rounded-lg theme-card-bg">
+    <!-- Card content -->
+  </div>
+</div>`)}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Theme Adaptation -->
+  <ComponentGrid 
+    title="Theme Adaptation" 
+    description="How cards adapt to different theme configurations"
+    columns={2}
+  >
+    <!-- Theme Colors Demo -->
+    <div class="showcase-item">
+      <div class="component-demo mb-4">
+        <div class="space-y-4 max-w-sm">
+          <div class="p-4 rounded-lg theme-card-bg">
+            <h4 class="font-medium theme-headline">Card Background</h4>
+            <p class="text-sm theme-paragraph">Uses theme-card-bg variable</p>
+          </div>
+          <div class="p-4 rounded-lg" style="background-color: var(--color-theme-main);">
+            <h4 class="font-medium theme-headline">Main Background</h4>
+            <p class="text-sm theme-paragraph">Uses theme-main for contrast</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Theme Variables</h4>
+        <p class="text-sm theme-paragraph mb-3">Cards automatically adapt to current theme colors</p>
+        <code class="code-snippet">
+          {generateCodeSnippet(`<!-- Card background -->
+theme-card-bg
+
+<!-- Main background -->
+background-color: var(--color-theme-main)
+
+<!-- Text colors -->
+theme-headline
+theme-paragraph`)}
+        </code>
+      </div>
+    </div>
+
+    <!-- Accessibility -->
+    <div class="showcase-item">
+      <div class="component-info">
+        <h4 class="font-semibold theme-headline mb-2">Accessibility Features</h4>
+        <div class="space-y-3 text-sm theme-paragraph">
+          <div>
+            <h5 class="font-medium theme-headline mb-1">Color Contrast</h5>
+            <p>Theme colors maintain accessible contrast ratios across all themes</p>
+          </div>
+          <div>
+            <h5 class="font-medium theme-headline mb-1">Focus States</h5>
+            <p>Interactive cards include focus-visible states for keyboard navigation</p>
+          </div>
+          <div>
+            <h5 class="font-medium theme-headline mb-1">Screen Readers</h5>
+            <p>Semantic HTML structure with proper heading hierarchy and alt text</p>
+          </div>
+          <div>
+            <h5 class="font-medium theme-headline mb-1">Responsive Design</h5>
+            <p>Cards remain usable and readable at all screen sizes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ComponentGrid>
+</div>
+
+<style>
+  .showcase-item {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-width: 2px;
+    transition: all 0.3s ease;
+    border-color: var(--color-theme-stroke);
+    background-color: var(--color-theme-bg);
+  }
+  
+  .showcase-item:hover {
+    box-shadow: 0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .component-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    background-color: var(--color-theme-section-bg);
+    border: 1px dashed var(--color-theme-stroke);
+  }
+
+  .code-snippet {
+    display: block;
+    font-size: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-all;
+    background-color: var(--color-theme-quaternary);
+    color: var(--color-theme-paragraph);
+    border: 1px solid var(--color-theme-stroke);
+  }
+
+  .card-showcase h4 {
+    color: var(--color-theme-headline);
+  }
+
+  /* Focus styles for better accessibility */
+  .showcase-item:focus-within {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--color-theme-button), 0 0 0 4px var(--color-theme-bg);
+  }
+
+  /* Interactive card hover effects */
+  .component-demo .p-6.rounded-lg.theme-card-bg.transition-all:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Hover border effect */
+  .component-demo .hover\\:border-current:hover {
+    border-color: var(--color-theme-button) !important;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .component-demo {
+      min-height: 100px;
+      padding: 0.75rem;
+    }
+    
+    .code-snippet {
+      font-size: 10px;
+    }
+
+    .component-demo .max-w-sm,
+    .component-demo .max-w-lg,
+    .component-demo .max-w-4xl {
+      max-width: 100%;
+    }
+  }
+
+  /* Ensure proper contrast for overlaid text */
+  .component-demo .absolute.inset-0 {
+    backdrop-filter: blur(1px);
+  }
+</style>

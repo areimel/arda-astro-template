@@ -1,0 +1,127 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import ComponentGrid from "@/components/styleguide/ComponentGrid.astro";
+import ColorPaletteDisplay from "@/components/styleguide/ColorPaletteDisplay.astro";
+import TypographyShowcase from "@/components/styleguide/TypographyShowcase.astro";
+import ButtonShowcase from "@/components/styleguide/ButtonShowcase.astro";
+import CardShowcase from "@/components/styleguide/CardShowcase.astro";
+import IconShowcase from "@/components/styleguide/IconShowcase.astro";
+import SpacingScale from "@/components/styleguide/SpacingScale.astro";
+---
+
+<Layout title="Styleguide">
+  <main class="theme-bg min-h-screen">
+    <Container>
+      <!-- Header Section -->
+      <div class="py-16 text-center">
+        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
+          Design System Styleguide
+        </h1>
+        <p class="text-xl theme-paragraph max-w-2xl mx-auto">
+          A comprehensive overview of our design system including color palettes, 
+          typography, components, and interactive elements.
+        </p>
+      </div>
+
+      <!-- Table of Contents -->
+      <nav class="mb-16 p-6 rounded-lg theme-card-bg">
+        <h2 class="text-2xl font-semibold theme-headline mb-4">Quick Navigation</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+          <a href="#colors" class="theme-link hover:underline">🎨 Color Palettes</a>
+          <a href="#typography" class="theme-link hover:underline">📝 Typography</a>
+          <a href="#buttons" class="theme-link hover:underline">🔘 Buttons</a>
+          <a href="#cards" class="theme-link hover:underline">📄 Cards</a>
+          <a href="#icons" class="theme-link hover:underline">✨ Icons</a>
+          <a href="#spacing" class="theme-link hover:underline">📏 Spacing</a>
+        </div>
+      </nav>
+
+      <!-- Color Palettes Section -->
+      <div id="colors">
+        <!-- ColorPaletteDisplay will be implemented by sub-agent -->
+        <ComponentGrid 
+          title="Color Palettes" 
+          description="Interactive color swatches showing all 17 available themes with hex codes and CSS variables"
+          columns={1}
+        >
+          <ColorPaletteDisplay />
+        </ComponentGrid>
+      </div>
+
+      <!-- Typography Section -->
+      <div id="typography">
+        <ComponentGrid 
+          title="Typography" 
+          description="Font hierarchy, text styles, and reading patterns using Inter Variable and Bricolage Grotesque Variable"
+          columns={1}
+        >
+          <TypographyShowcase />
+        </ComponentGrid>
+      </div>
+
+      <!-- Buttons Section -->
+      <div id="buttons">
+        <ComponentGrid 
+          title="Buttons" 
+          description="Interactive button variants with different styles and sizes"
+          columns={1}
+        >
+          <ButtonShowcase />
+        </ComponentGrid>
+      </div>
+
+      <!-- Cards Section -->
+      <div id="cards">
+        <ComponentGrid 
+          title="Cards" 
+          description="Content card patterns used throughout the application"
+          columns={1}
+        >
+          <CardShowcase />
+        </ComponentGrid>
+      </div>
+
+      <!-- Icons Section -->
+      <div id="icons">
+        <ComponentGrid 
+          title="Icons" 
+          description="Available icons from the astro-icon system"
+          columns={1}
+        >
+          <IconShowcase />
+        </ComponentGrid>
+      </div>
+
+      <!-- Spacing Section -->
+      <div id="spacing">
+        <ComponentGrid 
+          title="Spacing Scale" 
+          description="Visual guide to margin, padding, and layout spacing with Tailwind's spacing system"
+          columns={1}
+        >
+          <SpacingScale />
+        </ComponentGrid>
+      </div>
+
+      <!-- Footer -->
+      <div class="py-16 text-center">
+        <p class="theme-paragraph">
+          This styleguide is automatically generated from our design system components.
+        </p>
+      </div>
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  /* Smooth scroll behavior for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure proper scroll padding for fixed navigation */
+  [id] {
+    scroll-margin-top: 2rem;
+  }
+</style>

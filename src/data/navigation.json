@@ -8,6 +8,7 @@
           { "title": "Analytics", "path": "/analytics" },
           { "title": "Accessibility", "path": "/accessibility" },
           { "title": "SEO", "path": "/seo" },
+          { "title": "Styleguide", "path": "/styleguide" },
           { "title": "404 Page", "path": "/404" }
         ]
       },
