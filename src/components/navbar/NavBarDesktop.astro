@@ -1,14 +1,15 @@
 ---
 import DropdownLink from "./DropdownLink.astro";
 import navigationData from "@/data/navigation.json";
+import Logo from "@/components/SvgComponents/Logo.astro";
 
 const menuitems = navigationData.header.menuitems;
 ---
 
 <div class="hidden lg:flex w-full items-center justify-between">
   <!-- Logo -->
-  <a href="/" class="text-lg">
-    <span class="font-bold theme-headline">Astro</span><span class="theme-paragraph">ship</span>
+  <a href="/" class="text-lg max-w-[150px]">
+    <Logo fillColor="var(--color-theme-stroke)" />
   </a>
   
   <!-- Navigation Links -->
@@ -31,7 +32,7 @@ const menuitems = navigationData.header.menuitems;
                   href={item.path}
                   class="flex px-3 py-2 items-center theme-paragraph hover:theme-headline transition-colors">
                   <span>{item.title}</span>
-                  {item.badge && (
+                  {('badge' in item) && (item as any).badge && (
                     <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white rounded-full theme-badge">
                       New
                     </span>
