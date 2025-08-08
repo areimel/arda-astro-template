@@ -3,7 +3,7 @@ const { title, lastItem, children } = Astro.props;
 ---
 
 <li class="relative">
-  <div class="dropdown-container">
+  <div class="dropdown-container ">
     <button
       class="dropdown-trigger flex items-center gap-1 w-full lg:w-auto lg:px-3 py-2 theme-paragraph hover:theme-headline transition-colors"
       aria-expanded="false"
@@ -24,7 +24,7 @@ const { title, lastItem, children } = Astro.props;
     </button>
     <div
       class:list={[
-        "dropdown-menu lg:absolute w-full lg:w-48 z-10 opacity-0 invisible transition-all duration-200",
+        "dropdown-menu lg:absolute theme-bg w-full lg:w-48 z-10 opacity-0 invisible transition-all duration-200",
         lastItem
           ? "lg:right-0 origin-top-right"
           : "lg:left-0 origin-top-left",

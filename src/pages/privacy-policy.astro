@@ -1,0 +1,144 @@
+---
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const lastUpdated = new Date().toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+---
+
+<Layout title="Privacy Policy">
+	<Container>
+		<Sectionhead>
+			<Fragment slot="title">Privacy Policy</Fragment>
+			<Fragment slot="desc">How we collect, use, and protect your information.</Fragment>
+		</Sectionhead>
+
+		<div class="mx-auto max-w-3xl mt-12 space-y-8">
+			<p class="theme-paragraph">Last updated: {lastUpdated}</p>
+
+			<p class="theme-paragraph">
+				This template provides a sample Privacy Policy for demonstration purposes only and does not constitute legal advice. Replace placeholders and sections to reflect your actual data practices and consult legal counsel as needed.
+			</p>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Information We Collect</h2>
+				<p class="theme-paragraph">We may collect the following categories of information:</p>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li>Contact information such as name, email address, phone number.</li>
+					<li>Account information such as credentials and profile details.</li>
+					<li>Transactional information related to purchases or subscriptions.</li>
+					<li>Usage data including pages visited, links clicked, and interactions.</li>
+					<li>Device and technical data such as IP address, browser type, and operating system.</li>
+					<li>Cookies and similar technologies as described in our Cookie Policy.</li>
+				</ul>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">How We Use Your Information</h2>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li>Provide, operate, and maintain the website and services.</li>
+					<li>Personalize content and improve user experience.</li>
+					<li>Process transactions, send confirmations, and deliver purchased products or services.</li>
+					<li>Communicate with you, including responding to inquiries and providing updates.</li>
+					<li>Analyze usage and performance to improve functionality and security.</li>
+					<li>Comply with legal obligations and enforce our Terms of Service.</li>
+				</ul>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Legal Bases for Processing</h2>
+				<p class="theme-paragraph">If you are located in the EEA/UK, we process personal data under these legal bases:</p>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li>Consent (e.g., optional analytics cookies, marketing communications).</li>
+					<li>Contract (to provide requested services or fulfill purchases).</li>
+					<li>Legal obligation (to comply with applicable laws and regulations).</li>
+					<li>Legitimate interests (e.g., website security, product improvement).</li>
+				</ul>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Cookies and Tracking</h2>
+				<p class="theme-paragraph">
+					We use cookies and similar technologies to operate the site, measure performance, and personalize content. For details on the types of cookies and how to manage preferences, see our <a href="/cookie-policy" class="underline">Cookie Policy</a>.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Analytics and Third Parties</h2>
+				<p class="theme-paragraph">
+					We may use third‑party analytics providers (such as Google Analytics) to understand site usage. These providers may set cookies and collect information in accordance with their own policies. Where required, we obtain your consent before enabling non‑essential analytics.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Data Sharing</h2>
+				<p class="theme-paragraph">We may share information with:</p>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li>Service providers who assist in hosting, analytics, payments, communications, and support.</li>
+					<li>Professional advisers, auditors, and insurers under confidentiality obligations.</li>
+					<li>Authorities or third parties where required by law, to protect rights, or in connection with a business transaction.</li>
+				</ul>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">International Transfers</h2>
+				<p class="theme-paragraph">
+					If we transfer personal data internationally, we implement appropriate safeguards such as standard contractual clauses or rely on adequacy decisions, as required by applicable law.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Data Retention</h2>
+				<p class="theme-paragraph">
+					We retain personal data for as long as necessary to fulfill the purposes outlined in this policy, comply with legal obligations, resolve disputes, and enforce agreements. Retention periods vary depending on data type and context.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Your Rights</h2>
+				<p class="theme-paragraph">Depending on your location, you may have rights to:</p>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li>Access, correct, or delete your personal information.</li>
+					<li>Object to or restrict certain processing, or withdraw consent.</li>
+					<li>Receive a copy of your data in a portable format.</li>
+					<li>Lodge a complaint with your local data protection authority.</li>
+				</ul>
+				<p class="theme-paragraph">To exercise rights, contact us using the details below.</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Security</h2>
+				<p class="theme-paragraph">
+					We implement administrative, technical, and organizational measures designed to protect personal data. No method of transmission or storage is completely secure; use the services at your own risk.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Children’s Privacy</h2>
+				<p class="theme-paragraph">
+					Our services are not directed to children under 13 (or other age as defined by law). If you believe we have collected data from a child, please contact us to request deletion.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Changes to This Policy</h2>
+				<p class="theme-paragraph">
+					We may update this Privacy Policy periodically. Material changes will be indicated by updating the “Last updated” date above. Your continued use of the services signifies acceptance of the revised policy.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Contact</h2>
+				<p class="theme-paragraph">
+					Questions or requests? Contact us via the details on our <a href="/contact" class="underline">Contact</a> page.
+				</p>
+			</section>
+		</div>
+	</Container>
+</Layout>
+
+

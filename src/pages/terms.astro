@@ -1,0 +1,130 @@
+---
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const lastUpdated = new Date().toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+---
+
+<Layout title="Terms of Service">
+	<Container>
+		<Sectionhead>
+			<Fragment slot="title">Terms of Service</Fragment>
+			<Fragment slot="desc">The rules and conditions that govern use of this website and services.</Fragment>
+		</Sectionhead>
+
+		<div class="mx-auto max-w-3xl mt-12 space-y-8">
+			<p class="theme-paragraph">Last updated: {lastUpdated}</p>
+			<p class="theme-paragraph">
+				This Terms of Service template is provided for demonstration purposes only and does not constitute legal advice. Customize it for your business and consult legal counsel as needed.
+			</p>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">1. Acceptance of Terms</h2>
+				<p class="theme-paragraph">
+					By accessing or using the website, you agree to be bound by these Terms and all applicable laws. If you do not agree, do not use the services.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">2. Changes to Terms</h2>
+				<p class="theme-paragraph">
+					We may modify these Terms at any time. Material changes will be notified by updating the date above and/or providing notice. Your continued use indicates acceptance.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">3. Eligibility</h2>
+				<p class="theme-paragraph">You must be at least the age of majority in your jurisdiction to use the services.</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">4. Accounts</h2>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li>You are responsible for maintaining the confidentiality of your credentials.</li>
+					<li>You are responsible for all activities under your account.</li>
+					<li>Provide accurate, complete information and keep it updated.</li>
+				</ul>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">5. Acceptable Use</h2>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li>No unlawful, harmful, or abusive activity.</li>
+					<li>No infringing, misleading, or fraudulent content.</li>
+					<li>No interference with security, integrity, or availability of the services.</li>
+					<li>No scraping or reverse engineering except as permitted by law.</li>
+				</ul>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">6. Intellectual Property</h2>
+				<p class="theme-paragraph">
+					The site and its content are protected by intellectual property laws. Except as expressly allowed, you may not copy, distribute, or create derivative works without permission.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">7. Purchases and Payments</h2>
+				<p class="theme-paragraph">
+					If the site offers paid products or services, you agree to pay all fees and applicable taxes. All sales terms, billing cycles, and refund policies will be disclosed at purchase.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">8. Third-Party Services</h2>
+				<p class="theme-paragraph">
+					We are not responsible for third‑party websites or services linked from our site. Use them at your own risk and subject to their terms.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">9. Disclaimer of Warranties</h2>
+				<p class="theme-paragraph">
+					The services are provided "as is" and "as available" without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non‑infringement.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">10. Limitation of Liability</h2>
+				<p class="theme-paragraph">
+					To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, data, or goodwill.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">11. Indemnification</h2>
+				<p class="theme-paragraph">
+					You agree to indemnify and hold us harmless from claims arising out of your use of the services or violation of these Terms.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">12. Termination</h2>
+				<p class="theme-paragraph">
+					We may suspend or terminate access at any time for any reason, including violation of these Terms. Upon termination, provisions that by their nature should survive will survive.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">13. Governing Law</h2>
+				<p class="theme-paragraph">
+					These Terms are governed by the laws of your chosen jurisdiction. Venue and jurisdiction will be specified by your organization in production.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">14. Contact</h2>
+				<p class="theme-paragraph">
+					For questions about these Terms, contact us via the details on our <a href="/contact" class="underline">Contact</a> page.
+				</p>
+			</section>
+		</div>
+	</Container>
+</Layout>
+
+

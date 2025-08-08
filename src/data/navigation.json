@@ -62,9 +62,9 @@
       }
     ],
     "legal": [
-      { "title": "Privacy Policy", "path": "#" },
-      { "title": "Terms of Service", "path": "#" },
-      { "title": "Cookie Policy", "path": "#" }
+      { "title": "Privacy Policy", "path": "/privacy-policy" },
+      { "title": "Terms of Service", "path": "/terms" },
+      { "title": "Cookie Policy", "path": "/cookie-policy" }
     ],
     "sections": [
       {

@@ -1,0 +1,86 @@
+---
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+
+const lastUpdated = new Date().toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+---
+
+<Layout title="Cookie Policy">
+	<Container>
+		<Sectionhead>
+			<Fragment slot="title">Cookie Policy</Fragment>
+			<Fragment slot="desc">How we use cookies and similar technologies.</Fragment>
+		</Sectionhead>
+
+		<div class="mx-auto max-w-3xl mt-12 space-y-8">
+			<p class="theme-paragraph">Last updated: {lastUpdated}</p>
+			<p class="theme-paragraph">
+				This Cookie Policy template is for demonstration only. Update it to reflect your actual cookie usage and consult legal counsel where required.
+			</p>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">What Are Cookies?</h2>
+				<p class="theme-paragraph">
+					Cookies are small text files placed on your device by websites you visit. They are widely used to make websites work, improve efficiency, and provide reporting information.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Types of Cookies We Use</h2>
+				<ul class="list-disc pl-6 space-y-2 theme-paragraph">
+					<li><strong>Strictly Necessary</strong>: Required for core site functionality and security. These cannot be disabled.</li>
+					<li><strong>Performance/Analytics</strong>: Help us understand how the site is used (e.g., pages visited, time on page).</li>
+					<li><strong>Functionality</strong>: Remember choices (e.g., preferences, themes) to provide a better experience.</li>
+					<li><strong>Advertising/Targeting</strong>: Used to deliver relevant ads. Not used unless explicitly implemented by you.</li>
+				</ul>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Managing Cookies</h2>
+				<p class="theme-paragraph">
+					You can manage or disable cookies through your browser settings. Disabling certain cookies may affect site functionality. Where required by law, we will request your consent before using non‑essential cookies.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Specific Cookies Used</h2>
+				<p class="theme-paragraph">
+					If you enable analytics or other integrations (e.g., Google Analytics, advertising networks), list them here with purpose, provider, duration, and type (first/third‑party).
+				</p>
+				<div class="theme-quaternary-bg p-4 rounded border-2" style="border-color: var(--color-theme-stroke);">
+					<p class="text-sm theme-paragraph">
+						Example: _ga (Google Analytics) – Used to distinguish users – 2 years – Third‑party.
+					</p>
+				</div>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Consent Preferences</h2>
+				<p class="theme-paragraph">
+					Implement a cookie banner and preference center to allow users to opt in/out of non‑essential cookies. Record and respect user choices in accordance with applicable laws (e.g., GDPR, ePrivacy).
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Changes to This Policy</h2>
+				<p class="theme-paragraph">
+					We may update this Cookie Policy from time to time. Material changes will be communicated by updating the “Last updated” date and, where appropriate, additional notice.
+				</p>
+			</section>
+
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold theme-headline">Contact</h2>
+				<p class="theme-paragraph">
+					Questions about this Cookie Policy? Contact us via the details on our <a href="/contact" class="underline">Contact</a> page.
+				</p>
+			</section>
+		</div>
+	</Container>
+</Layout>
+
+

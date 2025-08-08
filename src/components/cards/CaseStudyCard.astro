@@ -1,0 +1,53 @@
+---
+import { Picture } from "astro:assets";
+
+interface CaseStudyCardProps {
+	href: string;
+	image: { src: string; alt: string };
+	industry: string;
+	title: string;
+	client: string;
+	publishDate: Date;
+	index: number;
+}
+
+const { href, image, industry, title, client, publishDate, index } = Astro.props as CaseStudyCardProps;
+---
+
+<a href={href}>
+	<div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+		<Picture
+			src={image.src}
+			alt={image.alt}
+			sizes="(max-width: 800px) 100vw, 800px"
+			width={800}
+			height={600}
+			loading={index <= 2 ? "eager" : "lazy"}
+			decoding={index <= 2 ? "sync" : "async"}
+			class="w-full rounded-md object-cover object-center bg-white"
+		/>
+		<div>
+			<span class="uppercase tracking-wider text-sm font-medium" style="color: var(--color-theme-button);">
+				{industry}
+			</span>
+
+			<h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 theme-headline">
+				{title}
+			</h2>
+
+			<div class="flex gap-2 mt-3">
+				<span class="theme-paragraph">
+					{client}
+				</span>
+				<span class="theme-paragraph">• </span>
+				<time
+					class="theme-paragraph"
+					datetime={publishDate.toISOString()}>
+					{publishDate.toDateString()}
+				</time>
+			</div>
+		</div>
+	</div>
+</a>
+
+

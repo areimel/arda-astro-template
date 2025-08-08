@@ -1,0 +1,58 @@
+---
+import { Picture } from "astro:assets";
+
+interface ProductCardProps {
+	href: string;
+	image: { src: string; alt: string };
+	category: string;
+	title: string;
+	price: string;
+	snippet: string;
+	publishDate: Date;
+	index: number;
+}
+
+const { href, image, category, title, price, snippet, publishDate, index } = Astro.props as ProductCardProps;
+---
+
+<a href={href}>
+	<div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+		<Picture
+			src={image.src}
+			alt={image.alt}
+			sizes="(max-width: 800px) 100vw, 800px"
+			width={800}
+			height={600}
+			loading={index <= 2 ? "eager" : "lazy"}
+			decoding={index <= 2 ? "sync" : "async"}
+			class="w-full rounded-md object-cover object-center bg-white"
+		/>
+		<div>
+			<span class="uppercase tracking-wider text-sm font-medium" style="color: var(--color-theme-button);">
+				{category}
+			</span>
+
+			<h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 theme-headline">
+				{title}
+			</h2>
+
+			<div class="flex gap-2 mt-3 items-center">
+				<span class="text-2xl font-bold" style="color: var(--color-theme-button);">
+					{price}
+				</span>
+				<span class="theme-paragraph">•</span>
+				<time
+					class="theme-paragraph"
+					datetime={publishDate.toISOString()}>
+					{publishDate.toDateString()}
+				</time>
+			</div>
+
+			<p class="theme-paragraph mt-2">
+				{snippet}
+			</p>
+		</div>
+	</div>
+</a>
+
+
