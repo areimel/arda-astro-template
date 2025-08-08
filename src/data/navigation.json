@@ -33,6 +33,10 @@
         "path": "/products"
       },
       {
+        "title": "Careers",
+        "path": "/careers"
+      },
+      {
         "title": "Contact",
         "path": "/contact"
       }
@@ -83,7 +87,7 @@
         "links": [
           { "title": "About", "path": "/about" },
           { "title": "Contact", "path": "/contact" },
-          { "title": "Careers", "path": "#" },
+          { "title": "Careers", "path": "/careers" },
           { "title": "Press", "path": "#" }
         ]
       }
