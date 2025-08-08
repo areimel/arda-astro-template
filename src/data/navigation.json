@@ -13,8 +13,14 @@
         ]
       },
       {
-        "title": "Pricing",
-        "path": "/pricing"
+        "title": "Dynamic Pages",
+        "path": "#",
+        "children": [
+          { "title": "Blog", "path": "/blog" },
+          { "title": "Case Studies", "path": "/case-studies" },
+          { "title": "Products", "path": "/products" },
+          { "title": "Careers", "path": "/careers" }
+        ]
       },
       {
         "title": "About",
@@ -23,18 +29,6 @@
       {
         "title": "Blog",
         "path": "/blog"
-      },
-      {
-        "title": "Case Studies",
-        "path": "/case-studies"
-      },
-      {
-        "title": "Products",
-        "path": "/products"
-      },
-      {
-        "title": "Careers",
-        "path": "/careers"
       },
       {
         "title": "Contact",
@@ -76,7 +70,6 @@
         "links": [
           { "title": "Features", "path": "/" },
           { "title": "Pricing", "path": "/pricing" },
-          { "title": "Blog", "path": "/blog" },
           { "title": "Case Studies", "path": "/case-studies" },
           { "title": "Products", "path": "/products" },
           { "title": "Changelog", "path": "#" }
@@ -88,7 +81,7 @@
           { "title": "About", "path": "/about" },
           { "title": "Contact", "path": "/contact" },
           { "title": "Careers", "path": "/careers" },
-          { "title": "Press", "path": "#" }
+          { "title": "Blog", "path": "/blog" }
         ]
       }
     ]
