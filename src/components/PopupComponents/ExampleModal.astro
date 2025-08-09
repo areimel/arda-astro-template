@@ -1,0 +1,166 @@
+---
+import ModalWrapper from "@/components/PopupComponents/ModalWrapper.astro";
+import { Icon } from "astro-icon/components";
+
+// ExampleModal.astro - Example modal demonstrating the modal system
+// This component serves as a template for creating new modals
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<ModalWrapper 
+  modalId="ExampleModal"
+  size="md"
+  padding="lg"
+  showCloseButton={true}
+  class={className}
+>
+  <!-- Modal Header -->
+  <div class="text-center mb-6">
+    <div class="flex justify-center mb-4">
+      <div 
+        class="rounded-full p-3 w-16 h-16 flex items-center justify-center"
+        style="background-color: var(--color-theme-button);"
+      >
+        <Icon 
+          name="bx:bx-info-circle" 
+          class="w-8 h-8"
+          style="color: var(--color-theme-button-text);"
+        />
+      </div>
+    </div>
+    
+    <h2 
+      id="ExampleModal-title"
+      class="theme-headline text-2xl font-bold mb-2"
+    >
+      Example Modal Dialog
+    </h2>
+  </div>
+
+  <!-- Modal Body -->
+  <div id="ExampleModal-description" class="mb-8">
+    <p class="theme-paragraph text-center leading-relaxed">
+      This is a demonstration of the modal system. This example modal shows how to create 
+      interactive dialogs using the ModalWrapper component with proper theme integration, 
+      accessibility attributes, and responsive design.
+    </p>
+    
+    <div class="mt-6 p-4 theme-quaternary-bg rounded-lg border-2" style="border-color: var(--color-theme-stroke);">
+      <div class="flex items-start">
+        <Icon 
+          name="bx:bx-lightbulb" 
+          class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0"
+          style="color: var(--color-theme-button);"
+        />
+        <div>
+          <h4 class="theme-sub-headline font-semibold mb-1">Modal System Features:</h4>
+          <ul class="theme-card-text text-sm space-y-1">
+            <li>• Theme-aware styling with CSS custom properties</li>
+            <li>• Keyboard navigation and ESC key support</li>
+            <li>• Click outside to close functionality</li>
+            <li>• Focus management and accessibility</li>
+            <li>• Smooth animations and transitions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Actions -->
+  <div class="flex flex-col sm:flex-row gap-3 sm:justify-end">
+    <!-- Secondary Action - Cancel Button -->
+    <button
+      type="button"
+      data-modal-close
+      class="theme-button-outline px-6 py-3 rounded-md transition focus:ring-2 focus:ring-offset-2 order-2 sm:order-1"
+      style="--tw-ring-color: var(--color-theme-button);"
+    >
+      <Icon name="bx:bx-x" class="w-4 h-4 inline mr-2" />
+      Cancel
+    </button>
+    
+    <!-- Primary Action - Confirm Button -->
+    <button
+      type="button"
+      class="theme-button-primary px-6 py-3 rounded-md transition focus:ring-2 focus:ring-offset-2 order-1 sm:order-2"
+      style="--tw-ring-color: var(--color-theme-button);"
+      onclick="handleConfirmAction()"
+    >
+      <Icon name="bx:bx-check" class="w-4 h-4 inline mr-2" />
+      Confirm Action
+    </button>
+  </div>
+</ModalWrapper>
+
+<script>
+  // Example action handler - demonstrates how to handle modal interactions
+  window.handleConfirmAction = function() {
+    // Get the modal element
+    const modal = document.getElementById('ExampleModal');
+    
+    // Example: Show a brief success state
+    const confirmButton = modal?.querySelector('.theme-button-primary');
+    if (confirmButton) {
+      const originalText = confirmButton.innerHTML;
+      confirmButton.innerHTML = '<svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Success!';
+      
+      // Reset after 1 second and close modal
+      setTimeout(() => {
+        if (confirmButton) {
+          confirmButton.innerHTML = originalText;
+        }
+        
+        // Close the modal using the modal system
+        const modalWrapper = modal?.closest('.modal-wrapper');
+        if (modalWrapper) {
+          modalWrapper.classList.remove('modal-open');
+          setTimeout(() => {
+            if (!modalWrapper.classList.contains('modal-open')) {
+              modalWrapper.style.visibility = 'hidden';
+            }
+          }, 300);
+          document.body.classList.remove('modal-open');
+        }
+      }, 1000);
+    }
+    
+    // Example: You could also dispatch a custom event here
+    modal?.dispatchEvent(new CustomEvent('exampleConfirm', {
+      detail: { message: 'Action confirmed from example modal' }
+    }));
+  };
+</script>
+
+<style>
+  /* Custom focus ring colors for modal buttons */
+  [data-modal-id="ExampleModal"] button:focus {
+    --tw-ring-opacity: 0.3;
+  }
+  
+  /* Ensure proper button spacing in mobile */
+  @media (max-width: 640px) {
+    [data-modal-id="ExampleModal"] .flex.flex-col button {
+      width: 100%;
+    }
+  }
+  
+  /* Smooth transitions for button states */
+  [data-modal-id="ExampleModal"] button {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Enhanced hover states */
+  [data-modal-id="ExampleModal"] .theme-button-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  [data-modal-id="ExampleModal"] .theme-button-outline:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+
+// ModalCloseButton.astro - Reusable close button for modals
+// Features X icon with theme-aware colors and hover effects
+interface Props {
+  class?: string;
+  size?: "sm" | "md" | "lg";
+}
+
+const { 
+  class: className = "",
+  size = "md"
+} = Astro.props;
+
+const sizes = {
+  sm: "w-4 h-4",
+  md: "w-5 h-5", 
+  lg: "w-6 h-6"
+};
+
+const buttonSizes = {
+  sm: "p-1",
+  md: "p-1.5",
+  lg: "p-2"
+};
+---
+
+<button
+  type="button"
+  class:list={[
+    "modal-close-btn",
+    "absolute top-4 right-4 rounded-full transition-all duration-200 ease-out",
+    "hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2",
+    "active:scale-95",
+    buttonSizes[size],
+    className
+  ]}
+  style="color: var(--color-theme-paragraph); background-color: var(--color-theme-card-bg); border: 1px solid var(--color-theme-stroke);"
+  data-modal-close
+  aria-label="Close modal"
+  title="Close modal"
+>
+  <Icon 
+    name="bx:bx-x" 
+    class:list={[
+      sizes[size],
+      "transition-transform duration-200"
+    ]} 
+  />
+</button>
+
+<style>
+  .modal-close-btn {
+    /* Ensure proper z-index for close button */
+    z-index: 60;
+  }
+  
+  .modal-close-btn:hover {
+    background-color: var(--color-theme-quaternary);
+    color: var(--color-theme-button);
+    border-color: var(--color-theme-button);
+  }
+  
+  .modal-close-btn:focus {
+    background-color: var(--color-theme-quaternary);
+    color: var(--color-theme-button);
+    border-color: var(--color-theme-button);
+    ring-color: var(--color-theme-button);
+  }
+  
+  .modal-close-btn:active {
+    background-color: var(--color-theme-button);
+    color: var(--color-theme-button-text);
+  }
+  
+  /* Smooth color transitions */
+  .modal-close-btn {
+    transition: 
+      background-color 0.2s ease-out,
+      color 0.2s ease-out,
+      border-color 0.2s ease-out,
+      transform 0.2s ease-out;
+  }
+</style>

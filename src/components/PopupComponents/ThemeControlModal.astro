@@ -1,0 +1,84 @@
+---
+import colorPalettes from "@/data/color-palettes.json";
+import PaletteOption from "@/components/ThemeComponents/PaletteOption.astro";
+import PaletteHeading from "@/components/ThemeComponents/PaletteHeading.astro";
+import ModalWrapper from "@/components/PopupComponents/ModalWrapper.astro";
+---
+
+<ModalWrapper 
+  modalId="ThemeControlModal"
+  size="xl"
+  padding="sm"
+  showCloseButton={true}
+  class="theme-control-modal"
+>
+  <!-- Modal content structure exactly like PalettePanel -->
+  <div class="theme-bg rounded-lg overflow-hidden" style="border-color: var(--color-theme-stroke);">
+    <PaletteHeading />
+
+    <div class="p-4 space-y-3 max-h-96 overflow-y-auto">
+      {colorPalettes.palettes.map((palette) => (
+        <PaletteOption palette={palette} />
+      ))}
+    </div>
+  </div>
+</ModalWrapper>
+
+<style>
+  /* Additional styling to ensure theme compatibility */
+  .theme-control-modal .palette-option {
+    /* Preserve all existing PaletteOption functionality */
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .theme-control-modal .palette-option:hover {
+    transform: scale(1.02);
+  }
+
+  .theme-control-modal .palette-option.active {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .theme-control-modal .palette-option.active::before {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--palette-button-color);
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 10;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Auto-close modal when theme is selected
+    // Listen for palette option clicks within the modal
+    const modal = document.getElementById('ThemeControlModal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        const paletteOption = e.target.closest('.palette-option');
+        if (paletteOption && paletteOption.hasAttribute('data-theme')) {
+          // Close modal after a brief delay to show the selection
+          setTimeout(() => {
+            modal.classList.remove('modal-open');
+            setTimeout(() => {
+              if (!modal.classList.contains('modal-open')) {
+                modal.style.visibility = 'hidden';
+              }
+            }, 300);
+            document.body.classList.remove('modal-open');
+            
+            // Dispatch close event
+            modal.dispatchEvent(new CustomEvent('modalClose', {
+              detail: { modalId: 'ThemeControlModal' }
+            }));
+          }, 150);
+        }
+      });
+    }
+  });
+</script>

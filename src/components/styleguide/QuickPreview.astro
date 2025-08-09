@@ -1,0 +1,107 @@
+---
+interface Palette {
+  id: string;
+  name: string;
+  description: string;
+  colors: Record<string, string>;
+}
+
+interface Props {
+  colors: Record<string, string>;
+  palette?: Palette;
+  maxColors?: number;
+  class?: string;
+}
+
+const { colors, palette, maxColors = 6, class: className = '' } = Astro.props;
+
+// Color calculation utilities (from PaletteOption.astro)
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    const r = parseInt(normalized[0] + normalized[0], 16);
+    const g = parseInt(normalized[1] + normalized[1], 16);
+    const b = parseInt(normalized[2] + normalized[2], 16);
+    return { r, g, b };
+  }
+  if (normalized.length === 6) {
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return { r, g, b };
+  }
+  return null;
+}
+
+function getRelativeLuminance({ r, g, b }: { r: number; g: number; b: number }): number {
+  const srgb = [r, g, b].map((v) => v / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+  return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+}
+
+function getContrastTextColor(bgHex: string): string {
+  const rgb = hexToRgb(bgHex);
+  if (!rgb) return '#111111';
+  const luminance = getRelativeLuminance(rgb);
+  return luminance > 0.5 ? '#111111' : '#ffffff';
+}
+
+function rgbaFromHex(hex: string, alpha: number): string {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return `rgba(0,0,0,${alpha})`;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+}
+
+// Helper function to get readable color names
+const getColorName = (key: string): string => {
+  const nameMap: Record<string, string> = {
+    bg: "Background",
+    cardBg: "Card Background",
+    sectionBg: "Section Background", 
+    headline: "Headline Text",
+    subHeadline: "Sub Headline",
+    paragraph: "Paragraph Text",
+    cardText: "Card Text",
+    button: "Button",
+    buttonText: "Button Text",
+    link: "Link",
+    stroke: "Stroke/Border",
+    highlight: "Highlight",
+    secondary: "Secondary",
+    tertiary: "Tertiary",
+    quaternary: "Quaternary"
+  };
+  return nameMap[key] || key;
+};
+
+// Calculate border color based on palette context
+let borderColor = 'var(--color-theme-stroke)';
+let textColor = '';
+
+if (palette) {
+  const bgColor = palette.colors.bg || '#ffffff';
+  const calculatedTextColor = getContrastTextColor(bgColor);
+  borderColor = rgbaFromHex(calculatedTextColor, 0.25);
+  textColor = palette.colors.paragraph || rgbaFromHex(calculatedTextColor, 0.8);
+}
+
+const colorEntries = Object.entries(colors).slice(0, maxColors);
+---
+
+<div class:list={["quick-preview flex items-center gap-2", className]}>
+  <span 
+    class="text-sm font-medium hidden sm:block"
+    style={palette ? `color: ${textColor};` : ""}
+    class:list={!palette && "theme-paragraph"}
+  >
+    Quick Preview:
+  </span>
+  <div class="flex gap-1">
+    {colorEntries.map(([key, color]) => (
+      <div 
+        class="w-8 h-8 rounded-full border-2 shadow-sm transition-transform hover:scale-110"
+        style={`background-color: ${color}; border-color: ${borderColor};`}
+        title={`${getColorName(key)}: ${color}`}
+      ></div>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,234 @@
+---
+import PaletteToggleButton from "@/components/ThemeComponents/PaletteToggleButton.astro";
+import ThemeControlModal from "@/components/PopupComponents/ThemeControlModal.astro";
+---
+
+<div class="color-palette-selector fixed bottom-4 left-4 transform z-50">
+  <!-- Toggle Button -->
+  <PaletteToggleButton />
+</div>
+
+<!-- Theme Control Modal -->
+<ThemeControlModal />
+
+<!-- Include Modal Functions -->
+<script>
+  // Since we can't directly import functions.js as a module in Astro,
+  // we'll load it as a separate script tag in the layout or create a simpler inline version
+  
+  // Simple modal management for theme control
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle modal open triggers
+    document.addEventListener('click', function(e) {
+      const trigger = e.target.closest('[data-modal-open]');
+      if (trigger) {
+        e.preventDefault();
+        const modalId = trigger.dataset.modalOpen;
+        if (modalId) {
+          openModal(modalId);
+        }
+      }
+    });
+
+    // Handle modal close triggers  
+    document.addEventListener('click', function(e) {
+      const closeBtn = e.target.closest('[data-modal-close]');
+      if (closeBtn) {
+        e.preventDefault();
+        const modalId = closeBtn.dataset.modalClose;
+        if (modalId) {
+          closeModal(modalId);
+        } else {
+          closeAllModals();
+        }
+      }
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeAllModals();
+      }
+    });
+
+    // Handle backdrop clicks
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('modal-backdrop')) {
+        const modal = e.target.closest('[data-modal-id]');
+        if (modal) {
+          const modalId = modal.dataset.modalId;
+          closeModal(modalId);
+        }
+      }
+    });
+
+    function openModal(modalId) {
+      const modal = document.querySelector(`[data-modal-id="${modalId}"]`);
+      if (modal) {
+        modal.classList.add('modal-open');
+        modal.style.visibility = 'visible';
+        document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus management
+        const focusableElement = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusableElement) {
+          focusableElement.focus();
+        }
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.querySelector(`[data-modal-id="${modalId}"]`);
+      if (modal) {
+        modal.classList.remove('modal-open');
+        setTimeout(() => {
+          modal.style.visibility = 'hidden';
+        }, 300);
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeAllModals() {
+      const openModals = document.querySelectorAll('[data-modal-id].modal-open');
+      openModals.forEach(modal => {
+        modal.classList.remove('modal-open');
+        setTimeout(() => {
+          modal.style.visibility = 'hidden';
+        }, 300);
+      });
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+    }
+
+    // Make functions available globally for theme manager
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+    window.closeAllModals = closeAllModals;
+  });
+</script>
+
+<style>
+  .color-palette-selector {
+    z-index: 1000;
+  }
+</style>
+
+<script>
+  // Import modal functions from the global window object
+  // The functions.js script is included separately and attaches to window
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    class ThemeManager {
+      /** @type {NodeListOf<HTMLButtonElement>} */
+      options;
+      /** @type {string} */
+      currentTheme;
+      
+      constructor() {
+        this.currentTheme = this.getStoredTheme() || 'palette-1';
+        this.init();
+      }
+
+      init() {
+        // Set initial theme immediately (before loading screen fades)
+        this.applyTheme(this.currentTheme);
+        
+        // Notify loading screen that theme is ready
+        this.notifyThemeReady();
+        
+        // Wait for modal content to be available, then set up theme options
+        this.setupThemeOptions();
+        
+        // Listen for modal opened events to refresh theme options
+        document.addEventListener('modalOpened', (e) => {
+          if (e.detail.modalId === 'ThemeControlModal') {
+            this.setupThemeOptions();
+          }
+        });
+      }
+
+      setupThemeOptions() {
+        // Use setTimeout to ensure modal content is rendered
+        setTimeout(() => {
+          this.options = document.querySelectorAll('.palette-option');
+          this.updateActiveOption();
+          
+          this.options.forEach(option => {
+            // Remove existing listeners to avoid duplicates
+            option.removeEventListener('click', this.handleThemeSelection);
+            // Add theme selection listener
+            option.addEventListener('click', (e) => this.handleThemeSelection(e));
+          });
+        }, 100);
+      }
+
+      handleThemeSelection = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const theme = e.currentTarget.dataset.theme;
+        if (theme) {
+          this.selectTheme(theme);
+        }
+      }
+
+      selectTheme(themeId) {
+        this.currentTheme = themeId;
+        this.applyTheme(themeId);
+        this.storeTheme(themeId);
+        this.updateActiveOption();
+        
+        // Close the modal after theme selection
+        if (window.closeModal) {
+          window.closeModal('ThemeControlModal');
+        }
+      }
+
+      applyTheme(themeId) {
+        document.documentElement.setAttribute('data-theme', themeId);
+        // Also apply to body for immediate effect
+        document.body.setAttribute('data-theme', themeId);
+      }
+
+      updateActiveOption() {
+        if (this.options) {
+          this.options.forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.theme === this.currentTheme) {
+              option.classList.add('active');
+            }
+          });
+        }
+      }
+
+      storeTheme(themeId) {
+        try {
+          localStorage.setItem('selected-theme', themeId);
+        } catch (e) {
+          console.warn('Could not save theme to localStorage:', e);
+        }
+      }
+
+      getStoredTheme() {
+        try {
+          return localStorage.getItem('selected-theme');
+        } catch (e) {
+          console.warn('Could not read theme from localStorage:', e);
+          return null;
+        }
+      }
+      
+      notifyThemeReady() {
+        // Dispatch custom event to notify loading screen that theme is ready
+        const themeReadyEvent = new CustomEvent('themeReady', {
+          detail: { themeId: this.currentTheme }
+        });
+        document.dispatchEvent(themeReadyEvent);
+      }
+    }
+
+    // Initialize the theme manager
+    new ThemeManager();
+  });
+</script>

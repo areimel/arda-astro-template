@@ -8,7 +8,7 @@
     system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
   
-  /* Expanded 15-Variable Theme Color System */
+  /* Expanded 19-Variable Theme Color System with Background-Specific Text Colors */
   --color-theme-bg: #fffffe;
   --color-theme-card-bg: #f2eef5;
   --color-theme-section-bg: #f8f8f8;
@@ -24,9 +24,13 @@
   --color-theme-secondary: #994ff3;
   --color-theme-tertiary: #fbdd74;
   --color-theme-quaternary: #e8e4e6;
+  --color-theme-section-text: #181818;
+  --color-theme-card-text-alt: #181818;
+  --color-theme-quaternary-text: #181818;
+  --color-theme-inverted-text: #fffffe;
 }
 
-/* Happy Hues Color Palette Definitions - 17 Palettes with 15 Variables Each */
+/* Happy Hues Color Palette Definitions - 17 Palettes with 19 Variables Each */
 
 /* Palette 1: Default Light - Clean whites with teal accents */
 [data-theme="palette-1"] {
@@ -45,6 +49,10 @@
   --color-theme-secondary: #994ff3;
   --color-theme-tertiary: #fbdd74;
   --color-theme-quaternary: #f2eef5;
+  --color-theme-section-text: #181818;
+  --color-theme-card-text-alt: #181818;
+  --color-theme-quaternary-text: #181818;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 2: Deep Ocean - Navy blues with bright highlights */
@@ -64,6 +72,10 @@
   --color-theme-secondary: #ff5470;
   --color-theme-tertiary: #fde24f;
   --color-theme-quaternary: #e3f6f5;
+  --color-theme-section-text: #00214d;
+  --color-theme-card-text-alt: #1b2d45;
+  --color-theme-quaternary-text: #00214d;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 3: Sky Blue - Calming blues with coral */
@@ -83,6 +95,10 @@
   --color-theme-secondary: #90b4ce;
   --color-theme-tertiary: #ef4565;
   --color-theme-quaternary: #e8f4f8;
+  --color-theme-section-text: #094067;
+  --color-theme-card-text-alt: #5f6c7b;
+  --color-theme-quaternary-text: #094067;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 4: Dark Mode - Dark backgrounds with purple */
@@ -102,6 +118,10 @@
   --color-theme-secondary: #72757e;
   --color-theme-tertiary: #2cb67d;
   --color-theme-quaternary: #242629;
+  --color-theme-section-text: #fffffe;
+  --color-theme-card-text-alt: #94a1b2;
+  --color-theme-quaternary-text: #94a1b2;
+  --color-theme-inverted-text: #16161a;
 }
 
 /* Palette 5: Nature Green - Earthy greens and browns */
@@ -121,6 +141,10 @@
   --color-theme-secondary: #ffa8ba;
   --color-theme-tertiary: #fa5246;
   --color-theme-quaternary: #e8f0eb;
+  --color-theme-section-text: #00473e;
+  --color-theme-card-text-alt: #475d5b;
+  --color-theme-quaternary-text: #00473e;
+  --color-theme-inverted-text: #f2f7f5;
 }
 
 /* Palette 6: Royal Purple - Clean whites with bold purple */
@@ -140,6 +164,10 @@
   --color-theme-secondary: #d1d1e9;
   --color-theme-tertiary: #e45858;
   --color-theme-quaternary: #f3f2ff;
+  --color-theme-section-text: #2b2c34;
+  --color-theme-card-text-alt: #2b2c34;
+  --color-theme-quaternary-text: #2b2c34;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 7: Pink Blush - Soft pinks with deep navy */
@@ -159,6 +187,10 @@
   --color-theme-secondary: #d9d4e7;
   --color-theme-tertiary: #a786df;
   --color-theme-quaternary: #f9f8fc;
+  --color-theme-section-text: #0e172c;
+  --color-theme-card-text-alt: #0e172c;
+  --color-theme-quaternary-text: #0e172c;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 8: Warm Earth - Warm browns and oranges */
@@ -178,6 +210,10 @@
   --color-theme-secondary: #f45d48;
   --color-theme-tertiary: #f8f5f2;
   --color-theme-quaternary: #fffffe;
+  --color-theme-section-text: #232323;
+  --color-theme-card-text-alt: #222525;
+  --color-theme-quaternary-text: #222525;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 9: Bright Orange - Energetic orange with neutrals */
@@ -197,6 +233,10 @@
   --color-theme-secondary: #fffffe;
   --color-theme-tertiary: #d9376e;
   --color-theme-quaternary: #eff0f3;
+  --color-theme-section-text: #2a2a2a;
+  --color-theme-card-text-alt: #2a2a2a;
+  --color-theme-quaternary-text: #2a2a2a;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 10: Forest Dark - Deep greens with gold accents */
@@ -216,6 +256,10 @@
   --color-theme-secondary: #abd1c6;
   --color-theme-tertiary: #e16162;
   --color-theme-quaternary: #e8e4e6;
+  --color-theme-section-text: #fffffe;
+  --color-theme-card-text-alt: #abd1c6;
+  --color-theme-quaternary-text: #004643;
+  --color-theme-inverted-text: #001e1d;
 }
 
 /* Palette 11: Warm Wood - Rich browns and cream */
@@ -235,6 +279,10 @@
   --color-theme-secondary: #eaddcf;
   --color-theme-tertiary: #f25042;
   --color-theme-quaternary: #fffffe;
+  --color-theme-section-text: #716040;
+  --color-theme-card-text-alt: #020826;
+  --color-theme-quaternary-text: #716040;
+  --color-theme-inverted-text: #f9f4ef;
 }
 
 /* Palette 12: Midnight - Dark themes with bright orange */
@@ -254,6 +302,10 @@
   --color-theme-secondary: #fffffe;
   --color-theme-tertiary: #eebbc3;
   --color-theme-quaternary: #d4939d;
+  --color-theme-section-text: #232946;
+  --color-theme-card-text-alt: #232946;
+  --color-theme-quaternary-text: #232946;
+  --color-theme-inverted-text: #d4d8f0;
 }
 
 /* Palette 13: Dark Energy - Dark themes with bright accents */
@@ -273,6 +325,10 @@
   --color-theme-secondary: #f25f4c;
   --color-theme-tertiary: #e53170;
   --color-theme-quaternary: #a7a9be;
+  --color-theme-section-text: #fffffe;
+  --color-theme-card-text-alt: #0f0e17;
+  --color-theme-quaternary-text: #0f0e17;
+  --color-theme-inverted-text: #1a1a1e;
 }
 
 /* Palette 14: Mint Fresh - Light mint with yellow accents */
@@ -292,6 +348,10 @@
   --color-theme-secondary: #e3f6f5;
   --color-theme-tertiary: #bae8e8;
   --color-theme-quaternary: #fffffe;
+  --color-theme-section-text: #272343;
+  --color-theme-card-text-alt: #2d334a;
+  --color-theme-quaternary-text: #2d334a;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 15: Peachy Keen - Soft peaches and mint greens */
@@ -311,6 +371,10 @@
   --color-theme-secondary: #ffc6c7;
   --color-theme-tertiary: #c3f0ca;
   --color-theme-quaternary: #fffffe;
+  --color-theme-section-text: #594a4e;
+  --color-theme-card-text-alt: #594a4e;
+  --color-theme-quaternary-text: #594a4e;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /* Palette 16: Moody Brown - Rich browns with pink accents */
@@ -330,6 +394,10 @@
   --color-theme-secondary: #ffc0ad;
   --color-theme-tertiary: #9656a1;
   --color-theme-quaternary: #fff3ec;
+  --color-theme-section-text: #fffffe;
+  --color-theme-card-text-alt: #fff3ec;
+  --color-theme-quaternary-text: #271c19;
+  --color-theme-inverted-text: #271c19;
 }
 
 /* Palette 17: Golden Hour - Warm golds and blues */
@@ -349,6 +417,10 @@
   --color-theme-secondary: #8bd3dd;
   --color-theme-tertiary: #f582ae;
   --color-theme-quaternary: #f3d2c1;
+  --color-theme-section-text: #172c66;
+  --color-theme-card-text-alt: #001858;
+  --color-theme-quaternary-text: #001858;
+  --color-theme-inverted-text: #fffffe;
 }
 
 /*
@@ -456,6 +528,22 @@
   color: var(--color-theme-highlight);
 }
 
+.theme-section-text {
+  color: var(--color-theme-section-text);
+}
+
+.theme-card-text-alt {
+  color: var(--color-theme-card-text-alt);
+}
+
+.theme-quaternary-text {
+  color: var(--color-theme-quaternary-text);
+}
+
+.theme-inverted-text {
+  color: var(--color-theme-inverted-text);
+}
+
 /* Background Styles */
 .theme-bg {
   background-color: var(--color-theme-bg);
@@ -500,8 +588,7 @@
 }
 
 .theme-cta-text {
-  color: var(--color-theme-paragraph);
-  opacity: 0.8;
+  color: var(--color-theme-section-text);
 }
 
 @layer base {

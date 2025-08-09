@@ -1,0 +1,114 @@
+---
+import ColorSwatch from './ColorSwatch.astro';
+
+interface ColorGroup {
+  name: string;
+  colors: string[];
+  description: string;
+}
+
+interface Palette {
+  id: string;
+  name: string;
+  description: string;
+  colors: Record<string, string>;
+}
+
+interface Props {
+  group: ColorGroup;
+  palette: Palette;
+  cssVariableMap: Record<string, string>;
+  class?: string;
+}
+
+const { group, palette, cssVariableMap, class: className = '' } = Astro.props;
+
+// Color calculation utilities (from PaletteOption.astro)
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    const r = parseInt(normalized[0] + normalized[0], 16);
+    const g = parseInt(normalized[1] + normalized[1], 16);
+    const b = parseInt(normalized[2] + normalized[2], 16);
+    return { r, g, b };
+  }
+  if (normalized.length === 6) {
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return { r, g, b };
+  }
+  return null;
+}
+
+function getRelativeLuminance({ r, g, b }: { r: number; g: number; b: number }): number {
+  const srgb = [r, g, b].map((v) => v / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+  return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+}
+
+function getContrastTextColor(bgHex: string): string {
+  const rgb = hexToRgb(bgHex);
+  if (!rgb) return '#111111';
+  const luminance = getRelativeLuminance(rgb);
+  return luminance > 0.5 ? '#111111' : '#ffffff';
+}
+
+function rgbaFromHex(hex: string, alpha: number): string {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return `rgba(0,0,0,${alpha})`;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+}
+
+// Calculate palette-specific colors for styling
+const paletteBackgroundColor = palette.colors.bg || palette.colors.cardBg || '#ffffff';
+const paletteTextColor = getContrastTextColor(paletteBackgroundColor);
+const paletteBorderColor = rgbaFromHex(paletteTextColor, 0.25);
+const paletteHeadlineColor = palette.colors.headline || paletteTextColor;
+const paletteParagraphColor = palette.colors.paragraph || rgbaFromHex(paletteTextColor, 0.8);
+
+// Filter colors that exist in the palette
+const availableColors = group.colors.filter(colorKey => 
+  palette.colors[colorKey as keyof typeof palette.colors]
+);
+---
+
+<div 
+  class:list={["color-group p-4 rounded-lg border", className]}
+  style={`
+    background-color: ${paletteBackgroundColor};
+    border-color: ${paletteBorderColor};
+  `}
+>
+  <div class="group-header mb-4">
+    <h4 class="text-lg font-semibold mb-1" style={`color: ${paletteHeadlineColor};`}>
+      {group.name}
+    </h4>
+    <p class="text-sm" style={`color: ${paletteParagraphColor};`}>
+      {group.description}
+    </p>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    {availableColors.map((colorKey) => {
+      const colorValue = palette.colors[colorKey as keyof typeof palette.colors];
+      const cssVar = cssVariableMap[colorKey];
+      return (
+        <ColorSwatch 
+          colorKey={colorKey}
+          colorValue={colorValue}
+          cssVar={cssVar}
+          palette={palette}
+        />
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  /* Responsive grid adjustments */
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

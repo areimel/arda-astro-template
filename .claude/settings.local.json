@@ -5,7 +5,8 @@
       "Bash(pnpm build:*)",
       "Bash(mv:*)",
       "Bash(mkdir:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(pnpm dev:*)"
     ],
     "deny": []
   }

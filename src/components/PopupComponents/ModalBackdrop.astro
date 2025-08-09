@@ -1,0 +1,45 @@
+---
+// ModalBackdrop.astro - Dark semi-transparent backdrop overlay for modals
+// Provides click-to-close functionality and smooth fade transitions
+---
+
+<div 
+  class="modal-backdrop fixed inset-0 backdrop-blur-sm transition-all duration-300 ease-out z-40"
+  data-modal-backdrop
+  style="background-color: rgba(0, 0, 0, 0.7);"
+  role="presentation"
+  aria-hidden="true"
+>
+</div>
+
+<style>
+  .modal-backdrop {
+    /* Ensure backdrop is hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  /* When modal is open, show the backdrop */
+  :global(.modal-open) .modal-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  /* Smooth transitions for backdrop appearance */
+  .modal-backdrop {
+    transition: 
+      opacity 0.3s ease-out,
+      visibility 0.3s ease-out,
+      backdrop-filter 0.3s ease-out;
+  }
+  
+  /* Enhanced blur effect for supported browsers */
+  @supports (backdrop-filter: blur(4px)) {
+    .modal-backdrop {
+      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+</style>

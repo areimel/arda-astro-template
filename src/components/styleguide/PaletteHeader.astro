@@ -1,0 +1,124 @@
+---
+import CopyButton from './CopyButton.astro';
+import QuickPreview from './QuickPreview.astro';
+
+interface Palette {
+  id: string;
+  name: string;
+  description: string;
+  colors: Record<string, string>;
+}
+
+interface Props {
+  palette: Palette;
+  isActive?: boolean;
+  class?: string;
+}
+
+const { palette, isActive = false, class: className = '' } = Astro.props;
+
+// Color calculation utilities (from PaletteOption.astro)
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    const r = parseInt(normalized[0] + normalized[0], 16);
+    const g = parseInt(normalized[1] + normalized[1], 16);
+    const b = parseInt(normalized[2] + normalized[2], 16);
+    return { r, g, b };
+  }
+  if (normalized.length === 6) {
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return { r, g, b };
+  }
+  return null;
+}
+
+function getRelativeLuminance({ r, g, b }: { r: number; g: number; b: number }): number {
+  const srgb = [r, g, b].map((v) => v / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+  return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+}
+
+function getContrastTextColor(bgHex: string): string {
+  const rgb = hexToRgb(bgHex);
+  if (!rgb) return '#111111';
+  const luminance = getRelativeLuminance(rgb);
+  return luminance > 0.5 ? '#111111' : '#ffffff';
+}
+
+function rgbaFromHex(hex: string, alpha: number): string {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return `rgba(0,0,0,${alpha})`;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+}
+
+// Calculate palette-specific colors for header styling
+const headerBackgroundColor = palette.colors.bg || '#ffffff';
+const headerTextColor = getContrastTextColor(headerBackgroundColor);
+const headerBorderColor = rgbaFromHex(headerTextColor, 0.25);
+const headerHeadlineColor = palette.colors.headline || headerTextColor;
+const headerParagraphColor = palette.colors.paragraph || rgbaFromHex(headerTextColor, 0.8);
+const headerCodeBackgroundColor = palette.colors.cardBg || rgbaFromHex(headerTextColor, 0.05);
+---
+
+<summary 
+  class:list={["palette-header cursor-pointer select-none list-none", className]}
+  style={`
+    background-color: ${headerBackgroundColor};
+  `}
+>
+  <div class="p-6 border-b" style={`border-color: ${headerBorderColor};`}>
+    <div class="flex items-start justify-between flex-wrap gap-4">
+      <div class="flex-1 min-w-0">
+        <h3 class="text-2xl font-bold mb-2" style={`color: ${headerHeadlineColor};`}>
+          {palette.name}
+        </h3>
+        <p class="text-lg mb-3" style={`color: ${headerParagraphColor};`}>
+          {palette.description}
+        </p>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-medium" style={`color: ${headerParagraphColor};`}>
+            Palette ID:
+          </span>
+          <code 
+            class="px-2 py-1 rounded text-sm font-mono border" 
+            style={`
+              background-color: ${headerCodeBackgroundColor};
+              border-color: ${headerBorderColor};
+              color: ${headerTextColor};
+            `}
+          >
+            {palette.id}
+          </code>
+          <CopyButton text={palette.id} title="Copy palette ID" />
+        </div>
+      </div>
+      
+      <!-- Quick Preview Swatches -->
+      <QuickPreview colors={palette.colors} palette={palette} />
+    </div>
+  </div>
+</summary>
+
+<style>
+  .palette-header summary::-webkit-details-marker { 
+    display: none; 
+  }
+  
+  .palette-header summary::marker { 
+    content: ""; 
+  }
+  
+  .palette-header summary {
+    outline: none;
+  }
+  
+  /* Responsive improvements */
+  @media (max-width: 640px) {
+    .palette-header .flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
