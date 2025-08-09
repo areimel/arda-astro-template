@@ -301,6 +301,153 @@ public/
 
 This workflow ensures consistency with existing sections and maintains the design system patterns established in the project.
 
+## Modal System
+
+This project includes a comprehensive reusable modal system located in `/src/components/PopupComponents/`.
+
+### Modal System Architecture
+
+**Core Components:**
+- **`ModalWrapper.astro`** - Main container with backdrop and content slots
+- **`ModalBackdrop.astro`** - Theme-aware backdrop overlay with click-to-close
+- **`ModalContent.astro`** - Responsive content container with multiple size options
+- **`ModalCloseButton.astro`** - Reusable close button with theme integration
+- **`functions.js`** - Centralized JavaScript for modal management (available but currently unused)
+
+### Data-Attribute System
+
+**Opening Modals:**
+```html
+<!-- Add to any button or element to open a modal -->
+<button data-modal-open="ModalName">Open Modal</button>
+```
+
+**Closing Modals:**
+```html
+<!-- Close specific modal -->
+<button data-modal-close="ModalName">Close This Modal</button>
+
+<!-- Close any modal (used by ModalCloseButton) -->
+<button data-modal-close>Close Modal</button>
+```
+
+**Modal Identification:**
+```astro
+<!-- Modal must have data-modal-id to be targeted -->
+<ModalWrapper modalId="ModalName">
+  <!-- Modal content -->
+</ModalWrapper>
+```
+
+### Creating New Modals
+
+**1. Basic Modal Structure:**
+```astro
+---
+import ModalWrapper from "@/components/PopupComponents/ModalWrapper.astro";
+---
+
+<ModalWrapper 
+  modalId="YourModalName"
+  size="lg"
+  showCloseButton={true}
+>
+  <h2 id="YourModalName-title" class="theme-headline text-xl mb-4">
+    Modal Title
+  </h2>
+  <p id="YourModalName-description" class="theme-paragraph mb-6">
+    Modal content goes here.
+  </p>
+  <div class="flex gap-3 justify-end">
+    <button class="theme-button-outline px-4 py-2 rounded-lg" data-modal-close>
+      Cancel
+    </button>
+    <button class="theme-button-primary px-4 py-2 rounded-lg">
+      Confirm
+    </button>
+  </div>
+</ModalWrapper>
+```
+
+**2. ModalWrapper Props:**
+- `modalId` (required) - Unique identifier for the modal
+- `size` - "sm", "md", "lg", "xl", "full" (default: "md")  
+- `padding` - "sm", "md", "lg" (default: "md")
+- `showCloseButton` - boolean (default: true)
+- `closeButtonSize` - "sm", "md", "lg" (default: "md")
+- `class` - Additional CSS classes
+
+### Modal JavaScript Integration
+
+The modal system uses inline JavaScript within `ColorPaletteSelector.astro` that provides:
+
+**Available Functions:**
+- `openModal(modalId)` - Opens specific modal
+- `closeModal(modalId)` - Closes specific modal  
+- `closeAllModals()` - Closes all open modals
+
+**Automatic Event Handling:**
+- **Escape Key** - Closes all modals
+- **Backdrop Clicks** - Closes modal when clicking outside content
+- **Data Attributes** - Automatically handles `data-modal-open` and `data-modal-close`
+
+**Features:**
+- **Body Scroll Locking** - Prevents background scrolling when modal is open
+- **Focus Management** - Auto-focuses first interactive element
+- **CSS Animations** - Smooth open/close transitions via `modal-open` class
+- **Accessibility** - Proper ARIA attributes and keyboard navigation
+
+### Theme Integration
+
+**Always use theme classes in modals:**
+```astro
+<h2 class="theme-headline">Modal Title</h2>
+<p class="theme-paragraph">Modal content</p>
+<button class="theme-button-primary">Action</button>
+<button class="theme-button-outline" data-modal-close>Cancel</button>
+```
+
+**For borders and accents:**
+```astro
+<div style="border-color: var(--color-theme-stroke);">
+  <span style="color: var(--color-theme-button);">Accent text</span>
+</div>
+```
+
+### Example Modals
+
+**Reference Examples:**
+- **`ExampleModal.astro`** - Complete demo modal with headline, body, and buttons
+- **`ThemeControlModal.astro`** - Theme selector modal (replaces old PalettePanel)
+
+**Usage Pattern:**
+```astro
+<!-- In your page/component -->
+---
+import YourModal from "@/components/PopupComponents/YourModal.astro";
+---
+
+<!-- Modal trigger -->
+<button data-modal-open="YourModal" class="theme-button-primary">
+  Open Modal
+</button>
+
+<!-- Modal (can be anywhere in the page) -->
+<YourModal />
+```
+
+### Best Practices
+
+1. **Modal IDs** - Use PascalCase and descriptive names (e.g., "ContactFormModal", "DeleteConfirmModal")
+2. **Content Structure** - Always include proper heading and description elements with IDs
+3. **Button Placement** - Use consistent button layouts (Cancel on left, Primary action on right)
+4. **Responsive Design** - Test modals on mobile devices and adjust size accordingly
+5. **Accessibility** - Include proper ARIA labels and ensure keyboard navigation works
+6. **Theme Compliance** - Always use theme classes and CSS custom properties
+7. **Auto-closing** - For action modals, close automatically after successful operations
+
+The modal system integrates seamlessly with the existing theme system and provides a solid foundation for any modal implementations throughout the project.
+
 ## Color System Instructions for Claude Code
 
 When working with this project, ALWAYS:
