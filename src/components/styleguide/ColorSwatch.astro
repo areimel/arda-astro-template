@@ -1,14 +1,58 @@
 ---
 import CopyButton from './CopyButton.astro';
 
+interface Palette {
+  id: string;
+  name: string;
+  description: string;
+  colors: Record<string, string>;
+}
+
 interface Props {
   colorKey: string;
   colorValue: string;
   cssVar?: string;
+  palette?: Palette;
   class?: string;
 }
 
-const { colorKey, colorValue, cssVar, class: className = '' } = Astro.props;
+const { colorKey, colorValue, cssVar, palette, class: className = '' } = Astro.props;
+
+// Color calculation utilities (from PaletteOption.astro)
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    const r = parseInt(normalized[0] + normalized[0], 16);
+    const g = parseInt(normalized[1] + normalized[1], 16);
+    const b = parseInt(normalized[2] + normalized[2], 16);
+    return { r, g, b };
+  }
+  if (normalized.length === 6) {
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return { r, g, b };
+  }
+  return null;
+}
+
+function getRelativeLuminance({ r, g, b }: { r: number; g: number; b: number }): number {
+  const srgb = [r, g, b].map((v) => v / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+  return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+}
+
+function getContrastTextColor(bgHex: string): string {
+  const rgb = hexToRgb(bgHex);
+  if (!rgb) return '#111111';
+  const luminance = getRelativeLuminance(rgb);
+  return luminance > 0.5 ? '#111111' : '#ffffff';
+}
+
+function rgbaFromHex(hex: string, alpha: number): string {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return `rgba(0,0,0,${alpha})`;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+}
 
 // Helper function to get readable color names
 const getColorName = (key: string): string => {
@@ -33,23 +77,44 @@ const getColorName = (key: string): string => {
 };
 
 const themeClass = `theme-${colorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+
+// Calculate swatch-specific colors when palette is provided
+let swatchBackgroundColor = '#ffffff';
+let swatchTextColor = '#111111';
+let swatchBorderColor = 'rgba(17, 17, 17, 0.25)';
+let swatchCodeBackgroundColor = 'rgba(0, 0, 0, 0.05)';
+
+if (palette) {
+  swatchBackgroundColor = palette.colors.cardBg || palette.colors.bg || '#ffffff';
+  swatchTextColor = getContrastTextColor(swatchBackgroundColor);
+  swatchBorderColor = rgbaFromHex(swatchTextColor, 0.25);
+  swatchCodeBackgroundColor = rgbaFromHex(swatchTextColor, 0.05);
+}
 ---
 
 <div class:list={[
-  "color-swatch p-4 rounded-lg theme-bg border transition-all duration-200 hover:shadow-md hover:scale-105",
+  "color-swatch p-4 rounded-lg border transition-all duration-200 hover:shadow-md hover:scale-105",
   className
-]} style="border-color: var(--color-theme-stroke);">
+]} style={palette ? `
+  background-color: ${swatchBackgroundColor};
+  border-color: ${swatchBorderColor};
+` : "background-color: var(--color-theme-bg); border-color: var(--color-theme-stroke);"}>
   
   <!-- Color Preview -->
   <div class="flex items-center gap-3 mb-3">
     <div 
       class="color-preview w-12 h-12 rounded-lg border-2 shadow-sm flex-shrink-0"
-      style={`background-color: ${colorValue}; border-color: var(--color-theme-stroke);`}
+      style={`background-color: ${colorValue}; border-color: ${palette ? swatchBorderColor : 'var(--color-theme-stroke)'};`}
     ></div>
     <div class="flex-1 min-w-0">
-      <h5 class="font-medium theme-headline text-sm mb-1">{getColorName(colorKey)}</h5>
+      <h5 class="font-medium text-sm mb-1" style={palette ? `color: ${swatchTextColor};` : ""} class:list={!palette && "theme-headline"}>
+        {getColorName(colorKey)}
+      </h5>
       <div class="flex items-center gap-2">
-        <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-1 py-0.5 rounded" style="background-color: var(--color-theme-section-bg);">
+        <code class="text-xs font-mono px-1 py-0.5 rounded" style={palette ? `
+          color: ${swatchTextColor};
+          background-color: ${swatchCodeBackgroundColor};
+        ` : "background-color: var(--color-theme-section-bg);"} class:list={!palette && "theme-paragraph"}>
           {colorValue}
         </code>
         <CopyButton text={colorValue} />
@@ -60,9 +125,14 @@ const themeClass = `theme-${colorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
   <!-- CSS Variable -->
   {cssVar && (
     <div class="css-variable mb-2">
-      <span class="text-xs theme-paragraph font-medium">CSS Variable:</span>
+      <span class="text-xs font-medium" style={palette ? `color: ${swatchTextColor};` : ""} class:list={!palette && "theme-paragraph"}>
+        CSS Variable:
+      </span>
       <div class="flex items-center gap-2 mt-1">
-        <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-2 py-1 rounded flex-1" style="background-color: var(--color-theme-section-bg);">
+        <code class="text-xs font-mono px-2 py-1 rounded flex-1" style={palette ? `
+          color: ${swatchTextColor};
+          background-color: ${swatchCodeBackgroundColor};
+        ` : "background-color: var(--color-theme-section-bg);"} class:list={!palette && "theme-paragraph"}>
           {cssVar}
         </code>
         <CopyButton text={cssVar} />
@@ -72,9 +142,14 @@ const themeClass = `theme-${colorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
   
   <!-- Theme Class Helper -->
   <div class="theme-class">
-    <span class="text-xs theme-paragraph font-medium">Theme Class:</span>
+    <span class="text-xs font-medium" style={palette ? `color: ${swatchTextColor};` : ""} class:list={!palette && "theme-paragraph"}>
+      Theme Class:
+    </span>
     <div class="flex items-center gap-2 mt-1">
-      <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-2 py-1 rounded flex-1" style="background-color: var(--color-theme-section-bg);">
+      <code class="text-xs font-mono px-2 py-1 rounded flex-1" style={palette ? `
+        color: ${swatchTextColor};
+        background-color: ${swatchCodeBackgroundColor};
+      ` : "background-color: var(--color-theme-section-bg);"} class:list={!palette && "theme-paragraph"}>
         {themeClass}
       </code>
       <CopyButton text={themeClass} />
