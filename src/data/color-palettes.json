@@ -19,7 +19,11 @@
         "highlight": "#4fc4cf",
         "secondary": "#994ff3",
         "tertiary": "#fbdd74",
-        "quaternary": "#f2eef5"
+        "quaternary": "#f2eef5",
+        "sectionText": "#181818",
+        "cardTextAlt": "#181818",
+        "quaternaryText": "#181818",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -41,7 +45,11 @@
         "highlight": "#00ebc7",
         "secondary": "#ff5470",
         "tertiary": "#fde24f",
-        "quaternary": "#e3f6f5"
+        "quaternary": "#e3f6f5",
+        "sectionText": "#00214d",
+        "cardTextAlt": "#1b2d45",
+        "quaternaryText": "#00214d",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -63,7 +71,11 @@
         "highlight": "#3da9fc",
         "secondary": "#90b4ce",
         "tertiary": "#ef4565",
-        "quaternary": "#e8f4f8"
+        "quaternary": "#e8f4f8",
+        "sectionText": "#094067",
+        "cardTextAlt": "#5f6c7b",
+        "quaternaryText": "#094067",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -85,7 +97,11 @@
         "highlight": "#7f5af0",
         "secondary": "#72757e",
         "tertiary": "#2cb67d",
-        "quaternary": "#242629"
+        "quaternary": "#242629",
+        "sectionText": "#fffffe",
+        "cardTextAlt": "#94a1b2",
+        "quaternaryText": "#94a1b2",
+        "invertedText": "#16161a"
       }
     },
     {
@@ -107,7 +123,11 @@
         "highlight": "#faae2b",
         "secondary": "#ffa8ba",
         "tertiary": "#fa5246",
-        "quaternary": "#e8f0eb"
+        "quaternary": "#e8f0eb",
+        "sectionText": "#00473e",
+        "cardTextAlt": "#475d5b",
+        "quaternaryText": "#00473e",
+        "invertedText": "#f2f7f5"
       }
     },
     {
@@ -129,7 +149,11 @@
         "highlight": "#6246ea",
         "secondary": "#d1d1e9",
         "tertiary": "#e45858",
-        "quaternary": "#f3f2ff"
+        "quaternary": "#f3f2ff",
+        "sectionText": "#2b2c34",
+        "cardTextAlt": "#2b2c34",
+        "quaternaryText": "#2b2c34",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -151,7 +175,11 @@
         "highlight": "#fec7d7",
         "secondary": "#d9d4e7",
         "tertiary": "#a786df",
-        "quaternary": "#f9f8fc"
+        "quaternary": "#f9f8fc",
+        "sectionText": "#0e172c",
+        "cardTextAlt": "#0e172c",
+        "quaternaryText": "#0e172c",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -173,7 +201,11 @@
         "highlight": "#078080",
         "secondary": "#f45d48",
         "tertiary": "#f8f5f2",
-        "quaternary": "#fffffe"
+        "quaternary": "#fffffe",
+        "sectionText": "#232323",
+        "cardTextAlt": "#222525",
+        "quaternaryText": "#222525",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -195,7 +227,11 @@
         "highlight": "#ff8e3c",
         "secondary": "#fffffe",
         "tertiary": "#d9376e",
-        "quaternary": "#eff0f3"
+        "quaternary": "#eff0f3",
+        "sectionText": "#2a2a2a",
+        "cardTextAlt": "#2a2a2a",
+        "quaternaryText": "#2a2a2a",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -217,7 +253,11 @@
         "highlight": "#f9bc60",
         "secondary": "#abd1c6",
         "tertiary": "#e16162",
-        "quaternary": "#e8e4e6"
+        "quaternary": "#e8e4e6",
+        "sectionText": "#fffffe",
+        "cardTextAlt": "#abd1c6",
+        "quaternaryText": "#004643",
+        "invertedText": "#001e1d"
       }
     },
     {
@@ -239,7 +279,11 @@
         "highlight": "#8c7851",
         "secondary": "#eaddcf",
         "tertiary": "#f25042",
-        "quaternary": "#fffffe"
+        "quaternary": "#fffffe",
+        "sectionText": "#716040",
+        "cardTextAlt": "#020826",
+        "quaternaryText": "#716040",
+        "invertedText": "#f9f4ef"
       }
     },
     {
@@ -261,7 +305,11 @@
         "highlight": "#eebbc3",
         "secondary": "#fffffe",
         "tertiary": "#eebbc3",
-        "quaternary": "#d4939d"
+        "quaternary": "#d4939d",
+        "sectionText": "#232946",
+        "cardTextAlt": "#232946",
+        "quaternaryText": "#232946",
+        "invertedText": "#d4d8f0"
       }
     },
     {
@@ -283,7 +331,11 @@
         "highlight": "#ff8906",
         "secondary": "#f25f4c",
         "tertiary": "#e53170",
-        "quaternary": "#a7a9be"
+        "quaternary": "#a7a9be",
+        "sectionText": "#fffffe",
+        "cardTextAlt": "#0f0e17",
+        "quaternaryText": "#0f0e17",
+        "invertedText": "#1a1a1e"
       }
     },
     {
@@ -305,7 +357,11 @@
         "highlight": "#ffd803",
         "secondary": "#e3f6f5",
         "tertiary": "#bae8e8",
-        "quaternary": "#fffffe"
+        "quaternary": "#fffffe",
+        "sectionText": "#272343",
+        "cardTextAlt": "#2d334a",
+        "quaternaryText": "#2d334a",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -327,7 +383,11 @@
         "highlight": "#ff8ba7",
         "secondary": "#ffc6c7",
         "tertiary": "#c3f0ca",
-        "quaternary": "#fffffe"
+        "quaternary": "#fffffe",
+        "sectionText": "#594a4e",
+        "cardTextAlt": "#594a4e",
+        "quaternaryText": "#594a4e",
+        "invertedText": "#fffffe"
       }
     },
     {
@@ -349,7 +409,11 @@
         "highlight": "#e78fb3",
         "secondary": "#ffc0ad",
         "tertiary": "#9656a1",
-        "quaternary": "#fff3ec"
+        "quaternary": "#fff3ec",
+        "sectionText": "#fffffe",
+        "cardTextAlt": "#fff3ec",
+        "quaternaryText": "#271c19",
+        "invertedText": "#271c19"
       }
     },
     {
@@ -371,7 +435,11 @@
         "highlight": "#fef6e4",
         "secondary": "#8bd3dd",
         "tertiary": "#f582ae",
-        "quaternary": "#f3d2c1"
+        "quaternary": "#f3d2c1",
+        "sectionText": "#172c66",
+        "cardTextAlt": "#001858",
+        "quaternaryText": "#001858",
+        "invertedText": "#fffffe"
       }
     }
   ]

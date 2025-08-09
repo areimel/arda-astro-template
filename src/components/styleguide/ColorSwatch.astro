@@ -100,12 +100,20 @@ if (palette) {
   border-color: ${swatchBorderColor};
 ` : "background-color: var(--color-theme-bg); border-color: var(--color-theme-stroke);"}>
   
-  <!-- Color Preview -->
+  <!-- Color Preview with Text Contrast -->
   <div class="flex items-center gap-3 mb-3">
     <div 
-      class="color-preview w-12 h-12 rounded-lg border-2 shadow-sm flex-shrink-0"
+      class="color-preview w-12 h-12 rounded-lg border-2 shadow-sm flex-shrink-0 relative flex items-center justify-center"
       style={`background-color: ${colorValue}; border-color: ${palette ? swatchBorderColor : 'var(--color-theme-stroke)'};`}
-    ></div>
+    >
+      <span 
+        class="text-xs font-bold text-center leading-tight"
+        style={`color: ${getContrastTextColor(colorValue)};`}
+        title={`Contrast text color: ${getContrastTextColor(colorValue)}`}
+      >
+        Aa
+      </span>
+    </div>
     <div class="flex-1 min-w-0">
       <h5 class="font-medium text-sm mb-1" style={palette ? `color: ${swatchTextColor};` : ""} class:list={!palette && "theme-headline"}>
         {getColorName(colorKey)}
@@ -163,11 +171,5 @@ if (palette) {
     overflow: hidden;
   }
   
-  .color-preview::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, transparent 45%, rgba(0,0,0,0.1) 50%, transparent 55%);
-    pointer-events: none;
-  }
+  /* Removed diagonal stripe - now showing actual contrast text instead */
 </style>
