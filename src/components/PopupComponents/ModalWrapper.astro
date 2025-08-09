@@ -1,0 +1,81 @@
+---
+import ModalBackdrop from "@/components/PopupComponents/ModalBackdrop.astro";
+import ModalContent from "@/components/PopupComponents/ModalContent.astro";
+import ModalCloseButton from "@/components/PopupComponents/ModalCloseButton.astro";
+
+// ModalWrapper.astro - Main container that combines backdrop + content
+// Manages modal visibility states and provides full modal functionality
+interface Props {
+  modalId: string;
+  size?: "sm" | "md" | "lg" | "xl" | "full";
+  padding?: "sm" | "md" | "lg";
+  showCloseButton?: boolean;
+  closeButtonSize?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const { 
+  modalId,
+  size = "md",
+  padding = "md", 
+  showCloseButton = true,
+  closeButtonSize = "md",
+  class: className = ""
+} = Astro.props;
+---
+
+<div
+  id={modalId}
+  class:list={[
+    "modal-wrapper",
+    "fixed inset-0 flex items-center justify-center z-40",
+    className
+  ]}
+  data-modal-id={modalId}
+  style="visibility: hidden;"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${modalId}-title`}
+  aria-describedby={`${modalId}-description`}
+>
+  <!-- Backdrop -->
+  <ModalBackdrop />
+  
+  <!-- Modal Content Container -->
+  <ModalContent size={size} padding={padding}>
+    <!-- Close Button (if enabled) -->
+    {showCloseButton && (
+      <ModalCloseButton size={closeButtonSize} />
+    )}
+    
+    <!-- Content Slot -->
+    <slot />
+  </ModalContent>
+</div>
+
+<style>
+  .modal-wrapper {
+    /* Initially hidden */
+    visibility: hidden;
+    opacity: 0;
+    
+    /* Smooth transitions */
+    transition: 
+      visibility 0s linear 0.3s,
+      opacity 0.3s ease-out;
+  }
+  
+  /* When modal is open */
+  .modal-wrapper.modal-open {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+  
+  /* Ensure modal is above other content */
+  .modal-wrapper {
+    z-index: 1000;
+  }
+</style>
+
+<!-- Modal functionality is handled by the centralized functions.js system -->

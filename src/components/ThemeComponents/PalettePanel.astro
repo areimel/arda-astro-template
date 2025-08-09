@@ -1,0 +1,42 @@
+---
+import colorPalettes from "@/data/color-palettes.json";
+import PaletteOption from "@/components/ThemeComponents/PaletteOption.astro";
+import PaletteHeading from "@/components/ThemeComponents/PaletteHeading.astro";
+---
+
+<div
+  id="palette-panel"
+  class="palette-panel absolute bottom-0 w-80 max-h-96 overflow-y-auto rounded-lg shadow-2xl border transform translate-x-full opacity-0 transition-all duration-300 theme-bg"
+  style="border-color: var(--color-theme-stroke); left: 64px;">
+  
+  <PaletteHeading />
+
+  <div class="p-4 space-y-3">
+    {colorPalettes.palettes.map((palette) => (
+      <PaletteOption palette={palette} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .palette-panel {
+    z-index: 999;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  
+  .palette-panel.open {
+    transform: translateX(0%) !important;
+    opacity: 1 !important;
+    pointer-events: auto;
+    visibility: visible;
+  }
+  
+  /* Ensure the panel starts hidden */
+  .palette-panel:not(.open) {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+</style>
