@@ -1,0 +1,98 @@
+---
+import CopyButton from './CopyButton.astro';
+
+interface Props {
+  colorKey: string;
+  colorValue: string;
+  cssVar?: string;
+  class?: string;
+}
+
+const { colorKey, colorValue, cssVar, class: className = '' } = Astro.props;
+
+// Helper function to get readable color names
+const getColorName = (key: string): string => {
+  const nameMap: Record<string, string> = {
+    bg: "Background",
+    cardBg: "Card Background",
+    sectionBg: "Section Background",
+    headline: "Headline Text",
+    subHeadline: "Sub Headline",
+    paragraph: "Paragraph Text",
+    cardText: "Card Text",
+    button: "Button",
+    buttonText: "Button Text",
+    link: "Link",
+    stroke: "Stroke/Border",
+    highlight: "Highlight",
+    secondary: "Secondary",
+    tertiary: "Tertiary",
+    quaternary: "Quaternary"
+  };
+  return nameMap[key] || key;
+};
+
+const themeClass = `theme-${colorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+---
+
+<div class:list={[
+  "color-swatch p-4 rounded-lg theme-bg border transition-all duration-200 hover:shadow-md hover:scale-105",
+  className
+]} style="border-color: var(--color-theme-stroke);">
+  
+  <!-- Color Preview -->
+  <div class="flex items-center gap-3 mb-3">
+    <div 
+      class="color-preview w-12 h-12 rounded-lg border-2 shadow-sm flex-shrink-0"
+      style={`background-color: ${colorValue}; border-color: var(--color-theme-stroke);`}
+    ></div>
+    <div class="flex-1 min-w-0">
+      <h5 class="font-medium theme-headline text-sm mb-1">{getColorName(colorKey)}</h5>
+      <div class="flex items-center gap-2">
+        <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-1 py-0.5 rounded" style="background-color: var(--color-theme-section-bg);">
+          {colorValue}
+        </code>
+        <CopyButton text={colorValue} />
+      </div>
+    </div>
+  </div>
+  
+  <!-- CSS Variable -->
+  {cssVar && (
+    <div class="css-variable mb-2">
+      <span class="text-xs theme-paragraph font-medium">CSS Variable:</span>
+      <div class="flex items-center gap-2 mt-1">
+        <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-2 py-1 rounded flex-1" style="background-color: var(--color-theme-section-bg);">
+          {cssVar}
+        </code>
+        <CopyButton text={cssVar} />
+      </div>
+    </div>
+  )}
+  
+  <!-- Theme Class Helper -->
+  <div class="theme-class">
+    <span class="text-xs theme-paragraph font-medium">Theme Class:</span>
+    <div class="flex items-center gap-2 mt-1">
+      <code class="text-xs font-mono theme-paragraph bg-opacity-50 px-2 py-1 rounded flex-1" style="background-color: var(--color-theme-section-bg);">
+        {themeClass}
+      </code>
+      <CopyButton text={themeClass} />
+    </div>
+  </div>
+</div>
+
+<style>
+  .color-preview {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .color-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 45%, rgba(0,0,0,0.1) 50%, transparent 55%);
+    pointer-events: none;
+  }
+</style>

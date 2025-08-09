@@ -1,0 +1,130 @@
+---
+interface PaletteColors {
+  bg: string;
+  button: string;
+  secondary: string;
+  tertiary: string;
+  quaternary: string;
+}
+
+interface Palette {
+  id: string;
+  name: string;
+  description: string;
+  colors: PaletteColors;
+}
+
+const { palette } = Astro.props as { palette: Palette };
+
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    const r = parseInt(normalized[0] + normalized[0], 16);
+    const g = parseInt(normalized[1] + normalized[1], 16);
+    const b = parseInt(normalized[2] + normalized[2], 16);
+    return { r, g, b };
+  }
+  if (normalized.length === 6) {
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    return { r, g, b };
+  }
+  return null;
+}
+
+function getRelativeLuminance({ r, g, b }: { r: number; g: number; b: number }): number {
+  const srgb = [r, g, b].map((v) => v / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+  return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+}
+
+function getContrastTextColor(bgHex: string): string {
+  const rgb = hexToRgb(bgHex);
+  if (!rgb) return '#111111';
+  const luminance = getRelativeLuminance(rgb);
+  return luminance > 0.5 ? '#111111' : '#ffffff';
+}
+
+function rgbaFromHex(hex: string, alpha: number): string {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return `rgba(0,0,0,${alpha})`;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+}
+
+const textColor = getContrastTextColor(palette.colors.bg);
+const borderColor = rgbaFromHex(textColor, 0.25);
+---
+
+<button
+  class="palette-option cursor-pointer w-full p-3 rounded-lg border transition-all duration-200 hover:scale-105"
+  style={`
+    background-color: ${palette.colors.bg};
+    color: ${textColor};
+    border-color: ${borderColor};
+    --palette-button-color: ${palette.colors.button};
+    --palette-text-color: ${textColor};
+    --palette-border-color: ${borderColor};
+  `}
+  data-theme={palette.id}
+  data-palette-name={palette.name}>
+  <div class="flex items-center justify-between mb-2">
+    <h4 class="font-medium text-sm">{palette.name}</h4>
+    <div class="flex space-x-1">
+      <div
+        class="w-3 h-3 rounded-full border"
+        style={`background-color: ${palette.colors.bg}; border-color: var(--palette-border-color);`}
+        title="Background">
+      </div>
+      <div
+        class="w-3 h-3 rounded-full border"
+        style={`background-color: ${palette.colors.button}; border-color: var(--palette-border-color);`}
+        title="Button">
+      </div>
+      <div
+        class="w-3 h-3 rounded-full border"
+        style={`background-color: ${palette.colors.secondary}; border-color: var(--palette-border-color);`}
+        title="Secondary">
+      </div>
+      <div
+        class="w-3 h-3 rounded-full border"
+        style={`background-color: ${palette.colors.tertiary}; border-color: var(--palette-border-color);`}
+        title="Tertiary">
+      </div>
+      <div
+        class="w-3 h-3 rounded-full border"
+        style={`background-color: ${palette.colors.quaternary}; border-color: var(--palette-border-color);`}
+        title="Quaternary">
+      </div>
+    </div>
+  </div>
+  <p class="text-xs text-left" style={`color: var(--palette-text-color); opacity: 0.9;`}>{palette.description}</p>
+</button>
+
+<style>
+  .palette-option {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .palette-option:hover {
+    transform: scale(1.02);
+  }
+
+  .palette-option.active {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .palette-option.active::before {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--palette-button-color);
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 10;
+  }
+</style>
+
+

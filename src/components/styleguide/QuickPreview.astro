@@ -1,0 +1,46 @@
+---
+interface Props {
+  colors: Record<string, string>;
+  maxColors?: number;
+  class?: string;
+}
+
+const { colors, maxColors = 6, class: className = '' } = Astro.props;
+
+// Helper function to get readable color names
+const getColorName = (key: string): string => {
+  const nameMap: Record<string, string> = {
+    bg: "Background",
+    cardBg: "Card Background",
+    sectionBg: "Section Background", 
+    headline: "Headline Text",
+    subHeadline: "Sub Headline",
+    paragraph: "Paragraph Text",
+    cardText: "Card Text",
+    button: "Button",
+    buttonText: "Button Text",
+    link: "Link",
+    stroke: "Stroke/Border",
+    highlight: "Highlight",
+    secondary: "Secondary",
+    tertiary: "Tertiary",
+    quaternary: "Quaternary"
+  };
+  return nameMap[key] || key;
+};
+
+const colorEntries = Object.entries(colors).slice(0, maxColors);
+---
+
+<div class:list={["quick-preview flex items-center gap-2", className]}>
+  <span class="text-sm theme-paragraph font-medium hidden sm:block">Quick Preview:</span>
+  <div class="flex gap-1">
+    {colorEntries.map(([key, color]) => (
+      <div 
+        class="w-8 h-8 rounded-full border-2 shadow-sm transition-transform hover:scale-110"
+        style={`background-color: ${color}; border-color: var(--color-theme-stroke);`}
+        title={`${getColorName(key)}: ${color}`}
+      ></div>
+    ))}
+  </div>
+</div>

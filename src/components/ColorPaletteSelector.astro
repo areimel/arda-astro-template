@@ -1,5 +1,6 @@
 ---
 import colorPalettes from "@/data/color-palettes.json";
+import PaletteOption from "@/components/ThemeComponents/PaletteOption.astro";
 ---
 
 <div class="color-palette-selector fixed top-1/2 right-4 transform -translate-y-1/2 z-50">
@@ -37,46 +38,7 @@ import colorPalettes from "@/data/color-palettes.json";
 
     <div class="p-4 space-y-3">
       {colorPalettes.palettes.map((palette) => (
-        <button
-          class="palette-option w-full p-3 rounded-lg border transition-all duration-200 hover:scale-105 theme-main-bg"
-          style="border-color: var(--color-theme-stroke);"
-          data-theme={palette.id}
-          data-palette-name={palette.name}>
-          
-          <div class="flex items-center justify-between mb-2">
-            <h4 class="font-medium theme-headline text-sm">{palette.name}</h4>
-            <div class="flex space-x-1">
-              <!-- 5 Color swatches representing key palette colors -->
-              <div 
-                class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.bg}; border-color: var(--color-theme-stroke);`}
-                title="Background">
-              </div>
-              <div 
-                class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.button}; border-color: var(--color-theme-stroke);`}
-                title="Button">
-              </div>
-              <div 
-                class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.secondary}; border-color: var(--color-theme-stroke);`}
-                title="Secondary">
-              </div>
-              <div 
-                class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.tertiary}; border-color: var(--color-theme-stroke);`}
-                title="Tertiary">
-              </div>
-              <div 
-                class="w-3 h-3 rounded-full border"
-                style={`background-color: ${palette.colors.quaternary}; border-color: var(--color-theme-stroke);`}
-                title="Quaternary">
-              </div>
-            </div>
-          </div>
-          
-          <p class="text-xs theme-paragraph text-left">{palette.description}</p>
-        </button>
+        <PaletteOption palette={palette} />
       ))}
     </div>
   </div>
@@ -110,30 +72,7 @@ import colorPalettes from "@/data/color-palettes.json";
     visibility: visible;
   }
   
-  .palette-option {
-    position: relative;
-    transition: all 0.2s ease;
-  }
   
-  .palette-option:hover {
-    transform: scale(1.02);
-  }
-  
-  .palette-option.active {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .palette-option.active::before {
-    content: '✓';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    color: var(--color-theme-button);
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 10;
-  }
   
   /* Ensure the panel starts hidden */
   .palette-panel:not(.open) {
@@ -145,6 +84,14 @@ import colorPalettes from "@/data/color-palettes.json";
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     class ColorPaletteSelector {
+      /** @type {HTMLButtonElement | null} */
+      toggleBtn;
+      /** @type {HTMLElement | null} */
+      panel;
+      /** @type {NodeListOf<HTMLButtonElement>} */
+      options;
+      /** @type {string} */
+      currentTheme;
       constructor() {
         this.toggleBtn = document.getElementById('palette-toggle');
         this.panel = document.getElementById('palette-panel');
@@ -187,7 +134,10 @@ import colorPalettes from "@/data/color-palettes.json";
         
         // Close panel when clicking outside
         document.addEventListener('click', (e) => {
-          if (!e.target.closest('.color-palette-selector')) {
+          const container = document.querySelector('.color-palette-selector') as HTMLElement | null;
+          const targetNode = e.target as Node | null;
+          const isInside = !!(container && targetNode && container.contains(targetNode));
+          if (!isInside) {
             this.closePanel();
           }
         });
