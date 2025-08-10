@@ -8,7 +8,18 @@
           { "title": "Analytics", "path": "/analytics" },
           { "title": "Accessibility", "path": "/accessibility" },
           { "title": "SEO", "path": "/seo" },
-          { "title": "Styleguide", "path": "/styleguide" },
+          { 
+            "title": "Styleguide", 
+            "path": "/styleguide",
+            "children": [
+              { "title": "Colors", "path": "/styleguide/colors" },
+              { "title": "Typography", "path": "/styleguide/typography" },
+              { "title": "Buttons", "path": "/styleguide/buttons" },
+              { "title": "Cards", "path": "/styleguide/cards" },
+              { "title": "Icons", "path": "/styleguide/icons" },
+              { "title": "Spacing", "path": "/styleguide/spacing" }
+            ]
+          },
           { "title": "404 Page", "path": "/404" }
         ]
       },

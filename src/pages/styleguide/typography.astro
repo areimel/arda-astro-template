@@ -1,0 +1,150 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import ComponentGrid from "@/components/styleguide/ComponentGrid.astro";
+import TypographyShowcase from "@/components/styleguide/TypographyShowcase.astro";
+import Link from "@/components/ui/link.astro";
+---
+
+<Layout title="Typography - Styleguide">
+  <main class="theme-bg min-h-screen">
+    <Container>
+      <!-- Header Section -->
+      <div class="py-16 text-center">
+        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
+          Typography
+        </h1>
+        <p class="text-xl theme-paragraph max-w-2xl mx-auto mb-8">
+          Font hierarchy, text styles, and reading patterns using Inter Variable and Bricolage Grotesque Variable.
+          Explore our complete typography system with theme-aware styling.
+        </p>
+        
+        <!-- Back to Styleguide Navigation -->
+        <div class="flex justify-center">
+          <Link href="/styleguide" style="outline" size="md" class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 19-7-7 7-7"/>
+              <path d="M19 12H5"/>
+            </svg>
+            Back to Styleguide
+          </Link>
+        </div>
+      </div>
+
+      <!-- Typography Section -->
+      <div id="typography">
+        <ComponentGrid 
+          title="Typography System" 
+          description="Complete overview of our typography hierarchy, font families, text styles, and theme-aware color classes"
+          columns={1}
+        >
+          <TypographyShowcase />
+        </ComponentGrid>
+      </div>
+
+      <!-- Quick Reference Section -->
+      <div class="py-16">
+        <ComponentGrid 
+          title="Quick Reference" 
+          description="Common typography patterns and their corresponding CSS classes"
+          columns={2}
+        >
+          <!-- Theme Classes Reference -->
+          <div class="p-6 rounded-lg theme-card-bg">
+            <h3 class="text-lg font-semibold theme-headline mb-4">Theme Text Classes</h3>
+            <div class="space-y-2 text-sm font-mono">
+              <div class="flex justify-between">
+                <span class="theme-card-text">.theme-headline</span>
+                <span class="theme-headline">Primary headings</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="theme-card-text">.theme-sub-headline</span>
+                <span class="theme-sub-headline">Secondary headings</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="theme-card-text">.theme-paragraph</span>
+                <span class="theme-paragraph">Body text</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="theme-card-text">.theme-card-text</span>
+                <span class="theme-card-text">Card content</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="theme-card-text">.theme-link</span>
+                <span class="theme-link">Interactive links</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="theme-card-text">.theme-highlight</span>
+                <span class="theme-highlight">Accent text</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Common Size Classes -->
+          <div class="p-6 rounded-lg theme-card-bg">
+            <h3 class="text-lg font-semibold theme-headline mb-4">Text Size Classes</h3>
+            <div class="space-y-2">
+              <div class="flex items-center gap-3">
+                <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-6xl</code>
+                <span class="text-6xl theme-headline">H1</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-5xl</code>
+                <span class="text-5xl theme-headline">H2</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-4xl</code>
+                <span class="text-4xl theme-headline">H3</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-3xl</code>
+                <span class="text-3xl theme-sub-headline">H4</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-lg</code>
+                <span class="text-lg theme-paragraph">Large body</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-base</code>
+                <span class="text-base theme-paragraph">Body text</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-sm</code>
+                <span class="text-sm theme-card-text">Small text</span>
+              </div>
+            </div>
+          </div>
+        </ComponentGrid>
+      </div>
+
+      <!-- Footer -->
+      <div class="py-16 text-center border-t" style="border-color: var(--color-theme-stroke);">
+        <p class="theme-paragraph mb-4">
+          This typography system ensures consistent, accessible, and theme-aware text across all components.
+        </p>
+        <Link href="/styleguide" style="outline" size="sm">
+          Return to Main Styleguide
+        </Link>
+      </div>
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  /* Smooth scroll behavior for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure proper scroll padding for fixed navigation */
+  [id] {
+    scroll-margin-top: 2rem;
+  }
+
+  /* Quick reference styling */
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+</style>

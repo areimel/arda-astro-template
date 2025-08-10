@@ -154,7 +154,46 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - **Responsive Design** - Mobile-friendly documentation
 - **Developer-Focused** - Built for team consistency and onboarding
 
-## Development Guidelines
+## Component Development Guidelines
+
+### 🎨 ALWAYS Reference the Styleguide First
+
+**CRITICAL: Before building any new components, ALWAYS review the relevant styleguide pages to maintain consistency:**
+
+- **📋 Main Styleguide Hub**: `/styleguide` - Overview and navigation to all sections
+- **🎨 Colors**: `/styleguide/colors` - 17-palette theme system, CSS variables, and theme classes
+- **📝 Typography**: `/styleguide/typography` - Font hierarchy, text styles, and theme text classes
+- **🔘 Buttons**: `/styleguide/buttons` - Button variants, sizes, styles, and interactive states
+- **📄 Cards**: `/styleguide/cards` - Card patterns, layouts, pricing cards, and image cards
+- **✨ Icons**: `/styleguide/icons` - Available icon libraries (bx, uil, simple-icons) and usage patterns
+- **📏 Spacing**: `/styleguide/spacing` - Tailwind spacing system and layout consistency
+
+### Component Development Workflow
+
+**1. Check Existing Patterns First**
+- Review `/styleguide` pages to see if similar components already exist
+- Look at existing components in `/src/components/` for established patterns
+- Check theme integration and responsive behavior examples
+
+**2. Follow Established Design Patterns**
+- Use theme classes from colors styleguide (`theme-headline`, `theme-paragraph`, etc.)
+- Apply consistent button styles from buttons styleguide
+- Follow card layout patterns from cards styleguide
+- Use approved icons from icons styleguide (prefer `bx:` icons)
+- Maintain spacing consistency using spacing styleguide examples
+
+**3. Theme System Integration**
+- NEVER use hard-coded colors - always use theme classes or CSS custom properties
+- Test components with different color palettes using the ColorPaletteSelector
+- Ensure components work across all 17 available themes
+
+**4. Component Quality Checklist**
+- ✅ Uses theme classes instead of hard-coded colors
+- ✅ Follows established spacing patterns
+- ✅ Uses approved icon libraries and patterns
+- ✅ Responsive design that matches existing components
+- ✅ Consistent typography hierarchy
+- ✅ Tested across multiple color themes
 
 ### Working with the Color System
 
@@ -204,6 +243,14 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - Use `bx:bxs-*` for solid variants  
 - Use `bx:bxl-*` for brand/logo icons
 - Always apply theme colors via CSS custom properties
+
+**CRITICAL: Icon Component Usage Rules**
+- ✅ ALWAYS use static Icon components: `<Icon name="bx:bx-star" class="w-6 h-6" />`
+- ❌ NEVER use Icon components inside `.map()` calls: `{items.map(item => <Icon name={item.icon} />)}`
+- ❌ NEVER render Icons via function calls or dynamic rendering
+- ✅ Convert any dynamic icon rendering to static individual Icon components
+- ✅ Always put `name` attribute first, then `class` attribute: `<Icon name="..." class="..." />`
+- ❌ Wrong attribute order will cause build failures: `<Icon class="..." name="..." />`
 
 ### Component Development
 

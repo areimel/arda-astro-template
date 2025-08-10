@@ -12,23 +12,6 @@ function generateCodeSnippet(html: string): string {
 }
 
 // Sample data for demonstrations
-const featureCards = [
-  {
-    title: "Fast Performance",
-    description: "Lightning-fast loading times with optimized components and minimal JavaScript.",
-    icon: "bx:bxs-bolt-circle",
-  },
-  {
-    title: "Developer Experience",
-    description: "Built with modern tooling and best practices for an excellent development workflow.",
-    icon: "bx:bxs-wrench",
-  },
-  {
-    title: "Responsive Design",
-    description: "Looks great on all devices with mobile-first responsive design principles.",
-    icon: "bx:bxs-devices",
-  },
-];
 
 const pricingPlans = [
   {
@@ -141,7 +124,7 @@ const pricingPlans = [
       <div class="component-demo mb-4">
         <div class="flex gap-4 items-start max-w-sm">
           <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
-            <Icon class="text-white" name="bx:bxs-star" />
+            <Icon name="bx:bxs-star" class="text-white" />
           </div>
           <div>
             <h3 class="font-semibold text-lg theme-headline">Premium Feature</h3>
@@ -156,7 +139,7 @@ const pricingPlans = [
           {generateCodeSnippet(`<div class="flex gap-4 items-start">
   <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" 
        style="background-color: var(--color-theme-button);">
-    <Icon class="text-white" name="bx:bxs-star" />
+    <Icon name="bx:bxs-star" class="text-white" />
   </div>
   <div>
     <h3 class="font-semibold text-lg theme-headline">Title</h3>
@@ -171,17 +154,24 @@ const pricingPlans = [
     <div class="showcase-item">
       <div class="component-demo mb-4">
         <div class="grid gap-8 max-w-lg">
-          {featureCards.slice(0, 2).map((feature) => (
-            <div class="flex gap-4 items-start">
-              <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
-                <Icon class="text-white" name={feature.icon} />
-              </div>
-              <div>
-                <h3 class="font-semibold text-lg theme-headline">{feature.title}</h3>
-                <p class="mt-2 leading-relaxed theme-paragraph text-sm">{feature.description}</p>
-              </div>
+          <div class="flex gap-4 items-start">
+            <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
+              <Icon name="bx:bxs-bolt-circle" class="text-white" />
             </div>
-          ))}
+            <div>
+              <h3 class="font-semibold text-lg theme-headline">Fast Performance</h3>
+              <p class="mt-2 leading-relaxed theme-paragraph text-sm">Lightning-fast loading times with optimized components and minimal JavaScript.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
+              <Icon name="bx:bxs-wrench" class="text-white" />
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg theme-headline">Developer Experience</h3>
+              <p class="mt-2 leading-relaxed theme-paragraph text-sm">Built with modern tooling and best practices for an excellent development workflow.</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="component-info">
@@ -189,18 +179,16 @@ const pricingPlans = [
         <p class="text-sm theme-paragraph mb-3">Multiple feature cards in a grid layout</p>
         <code class="code-snippet">
           {generateCodeSnippet(`<div class="grid gap-8">
-  {features.map((feature) => (
-    <div class="flex gap-4 items-start">
-      <div class="rounded-full p-2 w-8 h-8" 
-           style="background-color: var(--color-theme-button);">
-        <Icon class="text-white" name={feature.icon} />
-      </div>
-      <div>
-        <h3 class="theme-headline">{feature.title}</h3>
-        <p class="theme-paragraph">{feature.description}</p>
-      </div>
+  <div class="flex gap-4 items-start">
+    <div class="rounded-full p-2 w-8 h-8" 
+         style="background-color: var(--color-theme-button);">
+      <Icon name="bx:bxs-star" class="text-white" />
     </div>
-  ))}
+    <div>
+      <h3 class="theme-headline">Feature Title</h3>
+      <p class="theme-paragraph">Feature description...</p>
+    </div>
+  </div>
 </div>`)}
         </code>
       </div>
@@ -475,15 +463,27 @@ const pricingPlans = [
     <div class="showcase-item">
       <div class="component-demo mb-4">
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
-          {featureCards.map((feature) => (
-            <div class="p-6 rounded-lg theme-card-bg">
-              <div class="mb-4 rounded-full p-2 w-8 h-8 inline-flex items-center justify-center" style="background-color: var(--color-theme-button);">
-                <Icon class="text-white w-4 h-4" name={feature.icon} />
-              </div>
-              <h3 class="font-semibold text-lg theme-headline mb-2">{feature.title}</h3>
-              <p class="theme-paragraph text-sm">{feature.description}</p>
+          <div class="p-6 rounded-lg theme-card-bg">
+            <div class="mb-4 rounded-full p-2 w-8 h-8 inline-flex items-center justify-center" style="background-color: var(--color-theme-button);">
+              <Icon name="bx:bxs-bolt-circle" class="text-white w-4 h-4" />
             </div>
-          ))}
+            <h3 class="font-semibold text-lg theme-headline mb-2">Fast Performance</h3>
+            <p class="theme-paragraph text-sm">Lightning-fast loading times with optimized components and minimal JavaScript.</p>
+          </div>
+          <div class="p-6 rounded-lg theme-card-bg">
+            <div class="mb-4 rounded-full p-2 w-8 h-8 inline-flex items-center justify-center" style="background-color: var(--color-theme-button);">
+              <Icon name="bx:bxs-wrench" class="text-white w-4 h-4" />
+            </div>
+            <h3 class="font-semibold text-lg theme-headline mb-2">Developer Experience</h3>
+            <p class="theme-paragraph text-sm">Built with modern tooling and best practices for an excellent development workflow.</p>
+          </div>
+          <div class="p-6 rounded-lg theme-card-bg">
+            <div class="mb-4 rounded-full p-2 w-8 h-8 inline-flex items-center justify-center" style="background-color: var(--color-theme-button);">
+              <Icon name="bx:bxs-devices" class="text-white w-4 h-4" />
+            </div>
+            <h3 class="font-semibold text-lg theme-headline mb-2">Responsive Design</h3>
+            <p class="theme-paragraph text-sm">Looks great on all devices with mobile-first responsive design principles.</p>
+          </div>
         </div>
       </div>
       <div class="component-info">

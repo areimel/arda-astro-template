@@ -1,81 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-
-// Icons actually used in the project - organized by purpose
-const projectIcons = {
-  features: [
-    { name: "bx:bxs-briefcase", label: "Business/Framework" },
-    { name: "bx:bxs-window-alt", label: "Static HTML" },
-    { name: "bx:bxs-data", label: "Data/Components" },
-    { name: "bx:bxs-bot", label: "Integration/Bot" },
-    { name: "bx:bxs-file-find", label: "SEO/Search" },
-    { name: "bx:bxs-user", label: "Community/User" },
-  ],
-  social: [
-    { name: "bx:bxl-twitter", label: "Twitter" },
-    { name: "bx:bxl-facebook", label: "Facebook" },
-    { name: "bx:bxl-linkedin", label: "LinkedIn" },
-    { name: "bx:bxl-github", label: "GitHub" },
-  ],
-  contact: [
-    { name: "uil:map-marker", label: "Location" },
-    { name: "uil:envelope", label: "Email" },
-    { name: "uil:phone", label: "Phone" },
-  ],
-  actions: [
-    { name: "bx:bxs-cloud-download", label: "Download" },
-    { name: "bx:bxl-github", label: "GitHub" },
-  ],
-  technologies: [
-    { name: "simple-icons:react", label: "React" },
-    { name: "simple-icons:svelte", label: "Svelte" },
-    { name: "simple-icons:astro", label: "Astro" },
-    { name: "simple-icons:tailwindcss", label: "Tailwind" },
-    { name: "simple-icons:alpinedotjs", label: "Alpine.js" },
-    { name: "simple-icons:vercel", label: "Vercel" },
-  ],
-};
-
-// Additional popular icons from each collection for showcase
-const collectionSamples = {
-  boxIcons: [
-    { name: "bx:bx-home", label: "Home" },
-    { name: "bx:bx-search", label: "Search" },
-    { name: "bx:bx-heart", label: "Heart" },
-    { name: "bx:bx-star", label: "Star" },
-    { name: "bx:bx-menu", label: "Menu" },
-    { name: "bx:bx-x", label: "Close" },
-    { name: "bx:bx-check", label: "Check" },
-    { name: "bx:bx-plus", label: "Plus" },
-  ],
-  unicons: [
-    { name: "uil:arrow-right", label: "Arrow Right" },
-    { name: "uil:calendar-alt", label: "Calendar" },
-    { name: "uil:clock", label: "Clock" },
-    { name: "uil:setting", label: "Settings" },
-    { name: "uil:user", label: "User" },
-    { name: "uil:shield-check", label: "Shield" },
-    { name: "uil:chart-line", label: "Chart" },
-    { name: "uil:cloud", label: "Cloud" },
-  ],
-  simpleIcons: [
-    { name: "simple-icons:javascript", label: "JavaScript" },
-    { name: "simple-icons:typescript", label: "TypeScript" },
-    { name: "simple-icons:react", label: "React" },
-    { name: "simple-icons:astro", label: "Astro" },
-    { name: "simple-icons:figma", label: "Figma" },
-    { name: "simple-icons:github", label: "GitHub" },
-    { name: "simple-icons:twitter", label: "Twitter" },
-    { name: "simple-icons:linkedin", label: "LinkedIn" },
-  ],
-};
-
-const iconSizes = [
-  { class: "w-4 h-4", label: "Small (16px)" },
-  { class: "w-6 h-6", label: "Medium (24px)" },
-  { class: "w-8 h-8", label: "Large (32px)" },
-  { class: "w-12 h-12", label: "XL (48px)" },
-];
 ---
 
 <div class="space-y-12">
@@ -87,15 +11,48 @@ const iconSizes = [
     <div class="mb-8">
       <h4 class="text-lg font-medium theme-headline mb-4">Feature Icons</h4>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {projectIcons.features.map((icon) => (
-          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
-            <div class="icon-container">
-              <Icon name={icon.name} class="w-6 h-6 text-white" />
-            </div>
-            <span class="icon-label">{icon.label}</span>
-            <code class="icon-code">{icon.name}</code>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxs-briefcase">
+          <div class="icon-container">
+            <Icon name="bx:bxs-briefcase" class="w-6 h-6 text-white" />
           </div>
-        ))}
+          <span class="icon-label">Business/Framework</span>
+          <code class="icon-code">bx:bxs-briefcase</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxs-window-alt">
+          <div class="icon-container">
+            <Icon name="bx:bxs-window-alt" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Static HTML</span>
+          <code class="icon-code">bx:bxs-window-alt</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxs-data">
+          <div class="icon-container">
+            <Icon name="bx:bxs-data" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Data/Components</span>
+          <code class="icon-code">bx:bxs-data</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxs-bot">
+          <div class="icon-container">
+            <Icon name="bx:bxs-bot" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Integration/Bot</span>
+          <code class="icon-code">bx:bxs-bot</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxs-file-find">
+          <div class="icon-container">
+            <Icon name="bx:bxs-file-find" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">SEO/Search</span>
+          <code class="icon-code">bx:bxs-file-find</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxs-user">
+          <div class="icon-container">
+            <Icon name="bx:bxs-user" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Community/User</span>
+          <code class="icon-code">bx:bxs-user</code>
+        </div>
       </div>
     </div>
 
@@ -103,15 +60,34 @@ const iconSizes = [
     <div class="mb-8">
       <h4 class="text-lg font-medium theme-headline mb-4">Social Media</h4>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {projectIcons.social.map((icon) => (
-          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
-            <div class="icon-container">
-              <Icon name={icon.name} class="w-6 h-6 text-white" />
-            </div>
-            <span class="icon-label">{icon.label}</span>
-            <code class="icon-code">{icon.name}</code>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxl-twitter">
+          <div class="icon-container">
+            <Icon name="bx:bxl-twitter" class="w-6 h-6 text-white" />
           </div>
-        ))}
+          <span class="icon-label">Twitter</span>
+          <code class="icon-code">bx:bxl-twitter</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxl-facebook">
+          <div class="icon-container">
+            <Icon name="bx:bxl-facebook" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Facebook</span>
+          <code class="icon-code">bx:bxl-facebook</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxl-linkedin">
+          <div class="icon-container">
+            <Icon name="bx:bxl-linkedin" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">LinkedIn</span>
+          <code class="icon-code">bx:bxl-linkedin</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bxl-github">
+          <div class="icon-container">
+            <Icon name="bx:bxl-github" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">GitHub</span>
+          <code class="icon-code">bx:bxl-github</code>
+        </div>
       </div>
     </div>
 
@@ -119,15 +95,27 @@ const iconSizes = [
     <div class="mb-8">
       <h4 class="text-lg font-medium theme-headline mb-4">Contact & Location</h4>
       <div class="grid grid-cols-3 gap-4">
-        {projectIcons.contact.map((icon) => (
-          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
-            <div class="icon-container">
-              <Icon name={icon.name} class="w-6 h-6 text-white" />
-            </div>
-            <span class="icon-label">{icon.label}</span>
-            <code class="icon-code">{icon.name}</code>
+        <div class="icon-card group cursor-pointer" data-icon="uil:map-marker">
+          <div class="icon-container">
+            <Icon name="uil:map-marker" class="w-6 h-6 text-white" />
           </div>
-        ))}
+          <span class="icon-label">Location</span>
+          <code class="icon-code">uil:map-marker</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:envelope">
+          <div class="icon-container">
+            <Icon name="uil:envelope" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Email</span>
+          <code class="icon-code">uil:envelope</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:phone">
+          <div class="icon-container">
+            <Icon name="uil:phone" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Phone</span>
+          <code class="icon-code">uil:phone</code>
+        </div>
       </div>
     </div>
 
@@ -135,15 +123,48 @@ const iconSizes = [
     <div class="mb-8">
       <h4 class="text-lg font-medium theme-headline mb-4">Technologies</h4>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {projectIcons.technologies.map((icon) => (
-          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
-            <div class="icon-container">
-              <Icon name={icon.name} class="w-6 h-6 text-white" />
-            </div>
-            <span class="icon-label">{icon.label}</span>
-            <code class="icon-code">{icon.name}</code>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:react">
+          <div class="icon-container">
+            <Icon name="simple-icons:react" class="w-6 h-6 text-white" />
           </div>
-        ))}
+          <span class="icon-label">React</span>
+          <code class="icon-code">simple-icons:react</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:svelte">
+          <div class="icon-container">
+            <Icon name="simple-icons:svelte" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Svelte</span>
+          <code class="icon-code">simple-icons:svelte</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:astro">
+          <div class="icon-container">
+            <Icon name="simple-icons:astro" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Astro</span>
+          <code class="icon-code">simple-icons:astro</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:tailwindcss">
+          <div class="icon-container">
+            <Icon name="simple-icons:tailwindcss" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Tailwind</span>
+          <code class="icon-code">simple-icons:tailwindcss</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:alpinedotjs">
+          <div class="icon-container">
+            <Icon name="simple-icons:alpinedotjs" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Alpine.js</span>
+          <code class="icon-code">simple-icons:alpinedotjs</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:vercel">
+          <div class="icon-container">
+            <Icon name="simple-icons:vercel" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Vercel</span>
+          <code class="icon-code">simple-icons:vercel</code>
+        </div>
       </div>
     </div>
   </div>
@@ -157,15 +178,62 @@ const iconSizes = [
       <h4 class="text-lg font-medium theme-headline mb-2">Box Icons (bx:)</h4>
       <p class="text-sm theme-paragraph mb-4">Popular general-purpose icons with solid and outlined variants</p>
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-        {collectionSamples.boxIcons.map((icon) => (
-          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
-            <div class="icon-container">
-              <Icon name={icon.name} class="w-6 h-6 text-white" />
-            </div>
-            <span class="icon-label">{icon.label}</span>
-            <code class="icon-code">{icon.name}</code>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-home">
+          <div class="icon-container">
+            <Icon name="bx:bx-home" class="w-6 h-6 text-white" />
           </div>
-        ))}
+          <span class="icon-label">Home</span>
+          <code class="icon-code">bx:bx-home</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-search">
+          <div class="icon-container">
+            <Icon name="bx:bx-search" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Search</span>
+          <code class="icon-code">bx:bx-search</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-heart">
+          <div class="icon-container">
+            <Icon name="bx:bx-heart" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Heart</span>
+          <code class="icon-code">bx:bx-heart</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-star">
+          <div class="icon-container">
+            <Icon name="bx:bx-star" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Star</span>
+          <code class="icon-code">bx:bx-star</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-menu">
+          <div class="icon-container">
+            <Icon name="bx:bx-menu" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Menu</span>
+          <code class="icon-code">bx:bx-menu</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-x">
+          <div class="icon-container">
+            <Icon name="bx:bx-x" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Close</span>
+          <code class="icon-code">bx:bx-x</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-check">
+          <div class="icon-container">
+            <Icon name="bx:bx-check" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Check</span>
+          <code class="icon-code">bx:bx-check</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="bx:bx-plus">
+          <div class="icon-container">
+            <Icon name="bx:bx-plus" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Plus</span>
+          <code class="icon-code">bx:bx-plus</code>
+        </div>
       </div>
     </div>
 
@@ -174,15 +242,62 @@ const iconSizes = [
       <h4 class="text-lg font-medium theme-headline mb-2">Unicons (uil:)</h4>
       <p class="text-sm theme-paragraph mb-4">Clean line icons perfect for UI elements</p>
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-        {collectionSamples.unicons.map((icon) => (
-          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
-            <div class="icon-container">
-              <Icon name={icon.name} class="w-6 h-6 text-white" />
-            </div>
-            <span class="icon-label">{icon.label}</span>
-            <code class="icon-code">{icon.name}</code>
+        <div class="icon-card group cursor-pointer" data-icon="uil:arrow-right">
+          <div class="icon-container">
+            <Icon name="uil:arrow-right" class="w-6 h-6 text-white" />
           </div>
-        ))}
+          <span class="icon-label">Arrow Right</span>
+          <code class="icon-code">uil:arrow-right</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:calendar-alt">
+          <div class="icon-container">
+            <Icon name="uil:calendar-alt" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Calendar</span>
+          <code class="icon-code">uil:calendar-alt</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:clock">
+          <div class="icon-container">
+            <Icon name="uil:clock" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Clock</span>
+          <code class="icon-code">uil:clock</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:setting">
+          <div class="icon-container">
+            <Icon name="uil:setting" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Settings</span>
+          <code class="icon-code">uil:setting</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:user">
+          <div class="icon-container">
+            <Icon name="uil:user" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">User</span>
+          <code class="icon-code">uil:user</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:shield-check">
+          <div class="icon-container">
+            <Icon name="uil:shield-check" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Shield</span>
+          <code class="icon-code">uil:shield-check</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:chart-line">
+          <div class="icon-container">
+            <Icon name="uil:chart-line" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Chart</span>
+          <code class="icon-code">uil:chart-line</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="uil:cloud">
+          <div class="icon-container">
+            <Icon name="uil:cloud" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Cloud</span>
+          <code class="icon-code">uil:cloud</code>
+        </div>
       </div>
     </div>
 
@@ -191,15 +306,62 @@ const iconSizes = [
       <h4 class="text-lg font-medium theme-headline mb-2">Simple Icons (simple-icons:)</h4>
       <p class="text-sm theme-paragraph mb-4">Brand icons for popular services and technologies</p>
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-        {collectionSamples.simpleIcons.map((icon) => (
-          <div class="icon-card group cursor-pointer" data-icon={icon.name}>
-            <div class="icon-container">
-              <Icon name={icon.name} class="w-6 h-6 text-white" />
-            </div>
-            <span class="icon-label">{icon.label}</span>
-            <code class="icon-code">{icon.name}</code>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:javascript">
+          <div class="icon-container">
+            <Icon name="simple-icons:javascript" class="w-6 h-6 text-white" />
           </div>
-        ))}
+          <span class="icon-label">JavaScript</span>
+          <code class="icon-code">simple-icons:javascript</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:typescript">
+          <div class="icon-container">
+            <Icon name="simple-icons:typescript" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">TypeScript</span>
+          <code class="icon-code">simple-icons:typescript</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:react">
+          <div class="icon-container">
+            <Icon name="simple-icons:react" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">React</span>
+          <code class="icon-code">simple-icons:react</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:astro">
+          <div class="icon-container">
+            <Icon name="simple-icons:astro" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Astro</span>
+          <code class="icon-code">simple-icons:astro</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:figma">
+          <div class="icon-container">
+            <Icon name="simple-icons:figma" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Figma</span>
+          <code class="icon-code">simple-icons:figma</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:github">
+          <div class="icon-container">
+            <Icon name="simple-icons:github" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">GitHub</span>
+          <code class="icon-code">simple-icons:github</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:twitter">
+          <div class="icon-container">
+            <Icon name="simple-icons:twitter" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">Twitter</span>
+          <code class="icon-code">simple-icons:twitter</code>
+        </div>
+        <div class="icon-card group cursor-pointer" data-icon="simple-icons:linkedin">
+          <div class="icon-container">
+            <Icon name="simple-icons:linkedin" class="w-6 h-6 text-white" />
+          </div>
+          <span class="icon-label">LinkedIn</span>
+          <code class="icon-code">simple-icons:linkedin</code>
+        </div>
       </div>
     </div>
   </div>
@@ -208,17 +370,42 @@ const iconSizes = [
   <div class="icon-section">
     <h3 class="text-2xl font-semibold theme-headline mb-6">Icon Sizes</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {iconSizes.map((size) => (
-        <div class="text-center p-6 rounded-lg theme-card-bg">
-          <div class="flex justify-center mb-4">
-            <div class="rounded-full p-3" style="background-color: var(--color-theme-button);">
-              <Icon name="bx:bxs-star" class={`${size.class} text-white`} />
-            </div>
+      <div class="text-center p-6 rounded-lg theme-card-bg">
+        <div class="flex justify-center mb-4">
+          <div class="rounded-full p-3" style="background-color: var(--color-theme-button);">
+            <Icon name="bx:bxs-star" class="w-4 h-4 text-white" />
           </div>
-          <p class="font-medium theme-headline mb-1">{size.label}</p>
-          <code class="text-sm theme-paragraph bg-gray-100 px-2 py-1 rounded">{size.class}</code>
         </div>
-      ))}
+        <p class="font-medium theme-headline mb-1">Small (16px)</p>
+        <code class="text-sm theme-paragraph bg-gray-100 px-2 py-1 rounded">w-4 h-4</code>
+      </div>
+      <div class="text-center p-6 rounded-lg theme-card-bg">
+        <div class="flex justify-center mb-4">
+          <div class="rounded-full p-3" style="background-color: var(--color-theme-button);">
+            <Icon name="bx:bxs-star" class="w-6 h-6 text-white" />
+          </div>
+        </div>
+        <p class="font-medium theme-headline mb-1">Medium (24px)</p>
+        <code class="text-sm theme-paragraph bg-gray-100 px-2 py-1 rounded">w-6 h-6</code>
+      </div>
+      <div class="text-center p-6 rounded-lg theme-card-bg">
+        <div class="flex justify-center mb-4">
+          <div class="rounded-full p-3" style="background-color: var(--color-theme-button);">
+            <Icon name="bx:bxs-star" class="w-8 h-8 text-white" />
+          </div>
+        </div>
+        <p class="font-medium theme-headline mb-1">Large (32px)</p>
+        <code class="text-sm theme-paragraph bg-gray-100 px-2 py-1 rounded">w-8 h-8</code>
+      </div>
+      <div class="text-center p-6 rounded-lg theme-card-bg">
+        <div class="flex justify-center mb-4">
+          <div class="rounded-full p-3" style="background-color: var(--color-theme-button);">
+            <Icon name="bx:bxs-star" class="w-12 h-12 text-white" />
+          </div>
+        </div>
+        <p class="font-medium theme-headline mb-1">XL (48px)</p>
+        <code class="text-sm theme-paragraph bg-gray-100 px-2 py-1 rounded">w-12 h-12</code>
+      </div>
     </div>
   </div>
 
@@ -252,7 +439,7 @@ const iconSizes = [
         <h4 class="text-lg font-medium theme-headline mb-4">In Feature Cards</h4>
         <div class="flex gap-4 items-start p-4 rounded-lg theme-card-bg">
           <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
-            <Icon class="text-white" name="bx:bxs-briefcase" />
+            <Icon name="bx:bxs-briefcase" class="text-white" />
           </div>
           <div>
             <h5 class="font-semibold theme-headline">Feature Title</h5>
@@ -292,11 +479,11 @@ const iconSizes = [
         <h4 class="text-lg font-medium theme-headline mb-4">Contact Info</h4>
         <div class="space-y-3">
           <div class="flex items-center gap-3">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:map-marker" />
+            <Icon name="uil:map-marker" class="text-gray-400 w-4 h-4" />
             <span class="text-sm theme-paragraph">123 Main St, City</span>
           </div>
           <div class="flex items-center gap-3">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" />
+            <Icon name="uil:envelope" class="text-gray-400 w-4 h-4" />
             <span class="text-sm theme-paragraph">hello@example.com</span>
           </div>
         </div>

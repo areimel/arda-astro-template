@@ -1,0 +1,146 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import ComponentGrid from "@/components/styleguide/ComponentGrid.astro";
+import ColorPaletteDisplay from "@/components/styleguide/ColorPaletteDisplay.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Colors - Styleguide">
+  <main class="theme-bg min-h-screen">
+    <Container>
+      <!-- Header Section -->
+      <div class="py-16 text-center">
+        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
+          Color System
+        </h1>
+        <p class="text-xl theme-paragraph max-w-2xl mx-auto mb-8">
+          Explore our comprehensive 17-palette color system with dynamic theme switching. 
+          Each palette contains 15 carefully crafted color variables for consistent theming.
+        </p>
+        
+        <!-- Back to Styleguide Navigation -->
+        <a 
+          href="/styleguide" 
+          class="inline-flex items-center gap-2 theme-button-outline px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105"
+        >
+          <Icon name="bx:bx-arrow-back" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          Back to Styleguide
+        </a>
+      </div>
+
+      <!-- Color System Overview -->
+      <div class="mb-16 p-8 rounded-lg theme-card-bg border" style="border-color: var(--color-theme-stroke);">
+        <h2 class="text-3xl font-bold theme-headline mb-6">Color System Overview</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold theme-sub-headline mb-4">15 CSS Variables Per Theme</h3>
+            <ul class="space-y-2 theme-paragraph">
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-bg</code> - Main background</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-card-bg</code> - Card backgrounds</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-section-bg</code> - Section backgrounds</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-headline</code> - Primary headings</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-paragraph</code> - Body text</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-button</code> - Primary buttons</li>
+              <li>...and 9 more color variables</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold theme-sub-headline mb-4">Theme Classes Available</h3>
+            <ul class="space-y-2 theme-paragraph">
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-headline</code> - For headings</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-paragraph</code> - For body text</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-button-primary</code> - Primary buttons</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-button-outline</code> - Outline buttons</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-card-bg</code> - Card backgrounds</li>
+              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-link</code> - Links</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage Guidelines -->
+      <div class="mb-16 p-8 rounded-lg theme-section-bg border" style="border-color: var(--color-theme-stroke);">
+        <h2 class="text-3xl font-bold theme-headline mb-6">Usage Guidelines</h2>
+        <div class="grid lg:grid-cols-2 gap-8">
+          <div class="p-6 rounded-lg theme-card-bg">
+            <h3 class="text-xl font-semibold mb-4" style="color: var(--color-theme-highlight);">✅ Do This</h3>
+            <div class="space-y-4">
+              <div>
+                <p class="theme-paragraph mb-2">Use theme classes for consistent styling:</p>
+                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
+                  &lt;h1 class="theme-headline"&gt;Title&lt;/h1&gt;
+                </code>
+              </div>
+              <div>
+                <p class="theme-paragraph mb-2">Use CSS variables for dynamic elements:</p>
+                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
+                  style="color: var(--color-theme-button);"
+                </code>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 rounded-lg theme-card-bg">
+            <h3 class="text-xl font-semibold mb-4" style="color: var(--color-theme-secondary);">❌ Avoid This</h3>
+            <div class="space-y-4">
+              <div>
+                <p class="theme-paragraph mb-2">Don't use hard-coded colors:</p>
+                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
+                  &lt;h1 class="text-gray-800"&gt;Title&lt;/h1&gt;
+                </code>
+              </div>
+              <div>
+                <p class="theme-paragraph mb-2">Don't use fixed background colors:</p>
+                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
+                  &lt;div class="bg-white"&gt;Content&lt;/div&gt;
+                </code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Color Palettes -->
+      <div id="color-palettes">
+        <ComponentGrid 
+          title="Interactive Color Palettes" 
+          description="Click any color swatch to copy its hex value or CSS variable. The currently active theme is highlighted and shown first."
+          columns={1}
+        >
+          <ColorPaletteDisplay />
+        </ComponentGrid>
+      </div>
+
+      <!-- Footer -->
+      <div class="py-16 text-center">
+        <p class="theme-paragraph mb-4">
+          Need to switch themes? Use the color palette selector in the bottom right corner of any page.
+        </p>
+        <a 
+          href="/styleguide" 
+          class="theme-link hover:underline"
+        >
+          ← Back to Complete Styleguide
+        </a>
+      </div>
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  /* Smooth scroll behavior for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure proper scroll padding for sections */
+  [id] {
+    scroll-margin-top: 2rem;
+  }
+
+  /* Style code blocks to be theme-aware */
+  code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+  }
+</style>
