@@ -1,0 +1,346 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import ComponentGrid from "@/components/styleguide/ComponentGrid.astro";
+import SpacingScale from "@/components/styleguide/SpacingScale.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Spacing - Design System">
+  <main class="theme-bg min-h-screen">
+    <Container>
+      <!-- Header Section -->
+      <div class="py-16 text-center">
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <a 
+            href="/styleguide" 
+            class="inline-flex items-center gap-2 theme-link hover:underline text-lg"
+            aria-label="Back to main styleguide"
+          >
+            <Icon name="bx:bx-arrow-back" class="w-5 h-5" style="color: var(--color-theme-link);" />
+            Back to Styleguide
+          </a>
+        </div>
+        
+        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
+          Spacing System
+        </h1>
+        <p class="text-xl theme-paragraph max-w-3xl mx-auto">
+          A comprehensive guide to our spacing system including padding, margins, 
+          gaps, and responsive spacing patterns using Tailwind's consistent scale.
+        </p>
+      </div>
+
+      <!-- Quick Navigation -->
+      <nav class="mb-16 p-6 rounded-lg theme-card-bg">
+        <h2 class="text-2xl font-semibold theme-headline mb-4">Page Navigation</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="#spacing-scale" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-ruler" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Spacing Scale
+          </a>
+          <a href="#padding" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-border-inner" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Padding Examples
+          </a>
+          <a href="#margins" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-border-outer" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Margin Examples
+          </a>
+          <a href="#gaps" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-grid" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Gap & Grid Systems
+          </a>
+          <a href="#responsive" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-mobile" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Responsive Spacing
+          </a>
+          <a href="#patterns" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-cube" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Component Patterns
+          </a>
+          <a href="#best-practices" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-check-circle" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Best Practices
+          </a>
+          <a href="#reference" class="theme-link hover:underline flex items-center gap-2">
+            <Icon name="bx:bx-book" class="w-4 h-4" style="color: var(--color-theme-link);" />
+            Quick Reference
+          </a>
+        </div>
+      </nav>
+
+      <!-- Introduction -->
+      <div class="mb-16 p-8 rounded-lg theme-section-bg">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-3xl font-bold theme-headline mb-4">Design System Spacing</h2>
+            <p class="theme-paragraph text-lg leading-relaxed mb-6">
+              Our spacing system is built on Tailwind CSS's consistent scale where each unit 
+              represents 0.25rem (4px). This creates predictable, harmonious spacing 
+              throughout the entire application.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <div class="flex items-center gap-3 p-3 rounded-lg theme-card-bg">
+                <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+                <span class="theme-card-text font-medium">Consistent Scale</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg theme-card-bg">
+                <Icon name="bx:bx-mobile-alt" class="w-5 h-5" style="color: var(--color-theme-button);" />
+                <span class="theme-card-text font-medium">Responsive Ready</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg theme-card-bg">
+                <Icon name="bx:bx-palette" class="w-5 h-5" style="color: var(--color-theme-button);" />
+                <span class="theme-card-text font-medium">Theme Integrated</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="w-64 h-64 theme-card-bg rounded-lg border-4 border-dashed flex items-center justify-center relative" style="border-color: var(--color-theme-stroke); opacity: 0.5;">
+              <div class="absolute inset-4 flex items-center justify-center">
+                <div class="w-full h-full theme-button rounded flex items-center justify-center" style="background-color: var(--color-theme-button); opacity: 0.2;">
+                  <Icon name="bx:bx-ruler" class="w-12 h-12" style="color: var(--color-theme-button);" />
+                </div>
+              </div>
+              <div class="absolute -top-2 left-4 right-4 h-0.5" style="background-color: var(--color-theme-button); opacity: 0.8;"></div>
+              <div class="absolute -bottom-2 left-4 right-4 h-0.5" style="background-color: var(--color-theme-button); opacity: 0.8;"></div>
+              <div class="absolute -left-2 top-4 bottom-4 w-0.5" style="background-color: var(--color-theme-button); opacity: 0.8;"></div>
+              <div class="absolute -right-2 top-4 bottom-4 w-0.5" style="background-color: var(--color-theme-button); opacity: 0.8;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Spacing Scale Section -->
+      <div id="spacing-scale">
+        <ComponentGrid 
+          title="Spacing Scale & Examples" 
+          description="Interactive demonstrations of our spacing system including padding, margins, gaps, and responsive patterns"
+          columns={1}
+        >
+          <SpacingScale />
+        </ComponentGrid>
+      </div>
+
+      <!-- Key Concepts Quick Reference -->
+      <div class="mb-16">
+        <ComponentGrid 
+          title="Key Spacing Concepts" 
+          description="Essential spacing concepts and when to use each approach"
+          columns={3}
+        >
+          <div class="p-6 rounded-lg theme-card-bg">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="bx:bx-border-inner" class="w-6 h-6" style="color: var(--color-theme-button);" />
+              <h3 class="text-lg font-semibold theme-headline">Padding</h3>
+            </div>
+            <p class="theme-card-text mb-4">
+              Internal spacing within elements. Use for button sizing, card content, and form field spacing.
+            </p>
+            <div class="space-y-2">
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">p-4</code>
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">px-6 py-3</code>
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">pt-8</code>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-lg theme-card-bg">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="bx:bx-border-outer" class="w-6 h-6" style="color: var(--color-theme-secondary);" />
+              <h3 class="text-lg font-semibold theme-headline">Margin</h3>
+            </div>
+            <p class="theme-card-text mb-4">
+              External spacing between elements. Use for content separation, centering, and layout positioning.
+            </p>
+            <div class="space-y-2">
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">mt-8</code>
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">mx-auto</code>
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">mb-4</code>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-lg theme-card-bg">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="bx:bx-grid" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+              <h3 class="text-lg font-semibold theme-headline">Gap</h3>
+            </div>
+            <p class="theme-card-text mb-4">
+              Space between flex and grid items. Use for consistent spacing in layouts without affecting external margins.
+            </p>
+            <div class="space-y-2">
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">gap-6</code>
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">gap-x-8</code>
+              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">space-y-4</code>
+            </div>
+          </div>
+        </ComponentGrid>
+      </div>
+
+      <!-- Usage Guidelines -->
+      <div class="mb-16">
+        <ComponentGrid 
+          title="Usage Guidelines" 
+          description="When and how to apply different spacing approaches effectively"
+          columns={2}
+        >
+          <div class="p-6 rounded-lg theme-section-bg">
+            <h3 class="text-xl font-semibold theme-headline mb-4 flex items-center gap-2">
+              <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              Recommended Practices
+            </h3>
+            <ul class="space-y-3 theme-paragraph">
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-button);" />
+                Use gap for flexbox and grid layouts instead of margins
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-button);" />
+                Apply consistent spacing scale (4px increments)
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-button);" />
+                Use larger spacing between unrelated content sections
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-button);" />
+                Implement responsive spacing for different screen sizes
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-button);" />
+                Prefer margin-top for establishing vertical rhythm
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-lg theme-section-bg">
+            <h3 class="text-xl font-semibold theme-headline mb-4 flex items-center gap-2">
+              <Icon name="bx:bx-x-circle" class="w-5 h-5" style="color: var(--color-theme-highlight);" />
+              What to Avoid
+            </h3>
+            <ul class="space-y-3 theme-paragraph">
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-x" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-highlight);" />
+                Mixing inconsistent spacing values randomly
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-x" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-highlight);" />
+                Using excessive spacing that breaks visual relationships
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-x" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-highlight);" />
+                Applying arbitrary spacing values outside the design system
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-x" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-highlight);" />
+                Over-relying on negative margins for layout adjustments
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon name="bx:bx-x" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-highlight);" />
+                Ignoring responsive spacing requirements
+              </li>
+            </ul>
+          </div>
+        </ComponentGrid>
+      </div>
+
+      <!-- Footer with Additional Resources -->
+      <div class="py-16 text-center border-t" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+        <div class="mb-8">
+          <h2 class="text-2xl font-semibold theme-headline mb-4">Related Resources</h2>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a 
+              href="/styleguide" 
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg theme-button-outline hover:opacity-80 transition-opacity"
+            >
+              <Icon name="bx:bx-home" class="w-4 h-4" />
+              Main Styleguide
+            </a>
+            <a 
+              href="/styleguide#typography" 
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg theme-button-outline hover:opacity-80 transition-opacity"
+            >
+              <Icon name="bx:bx-text" class="w-4 h-4" />
+              Typography System
+            </a>
+            <a 
+              href="/styleguide#colors" 
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg theme-button-outline hover:opacity-80 transition-opacity"
+            >
+              <Icon name="bx:bx-palette" class="w-4 h-4" />
+              Color Palettes
+            </a>
+            <a 
+              href="/styleguide#buttons" 
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg theme-button-outline hover:opacity-80 transition-opacity"
+            >
+              <Icon name="bx:bx-mouse" class="w-4 h-4" />
+              Button Components
+            </a>
+          </div>
+        </div>
+        
+        <p class="theme-paragraph text-lg">
+          This spacing system ensures consistency and visual harmony across all components and layouts.
+        </p>
+        
+        <p class="theme-paragraph text-sm mt-4 opacity-75">
+          All spacing examples above work seamlessly with our color theme system. 
+          Try switching themes using the color palette selector to see the spacing system in action.
+        </p>
+      </div>
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  /* Smooth scroll behavior for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure proper scroll padding for fixed navigation */
+  [id] {
+    scroll-margin-top: 2rem;
+  }
+
+  /* Enhanced styling for the page-specific elements */
+  .theme-quaternary-bg {
+    background-color: var(--color-theme-quaternary);
+    opacity: 0.5;
+  }
+
+  /* Improved focus states for better accessibility */
+  a:focus-visible {
+    outline: 2px solid var(--color-theme-button);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Better hover states for interactive elements */
+  .theme-button-outline:hover {
+    background-color: var(--color-theme-button);
+    color: var(--color-theme-button-text);
+  }
+
+  /* Responsive adjustments for mobile viewing */
+  @media (max-width: 768px) {
+    .grid-cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .lg\:grid-cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Adjust hero spacing on mobile */
+    .py-16 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    /* Stack navigation items vertically on small screens */
+    .md\:grid-cols-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import ComponentGrid from "@/components/styleguide/ComponentGrid.astro";
+import CardShowcase from "@/components/styleguide/CardShowcase.astro";
+import Link from "@/components/ui/link.astro";
+---
+
+<Layout title="Cards - Styleguide">
+  <main class="theme-bg min-h-screen">
+    <Container>
+      <!-- Header Section -->
+      <div class="py-16 text-center">
+        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
+          Card Components
+        </h1>
+        <p class="text-xl theme-paragraph max-w-2xl mx-auto mb-8">
+          Comprehensive collection of card components including basic cards, feature cards, 
+          pricing cards, image cards, and interactive variants. All cards integrate seamlessly 
+          with the dynamic color theming system.
+        </p>
+        
+        <!-- Back Navigation -->
+        <div class="flex justify-center">
+          <Link href="/styleguide" style="outline" size="md">
+            ← Back to Styleguide
+          </Link>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="mb-16">
+        <ComponentGrid 
+          title="Complete Card System" 
+          description="All available card components, layouts, and usage patterns organized by category and use case"
+          columns={1}
+        >
+          <CardShowcase />
+        </ComponentGrid>
+      </div>
+
+      <!-- Footer -->
+      <div class="py-16 text-center">
+        <div class="space-y-4">
+          <p class="theme-paragraph">
+            These card components automatically adapt to all 17 color themes and maintain 
+            proper accessibility standards. Try switching themes with the color palette 
+            selector to see them in different contexts.
+          </p>
+          <div class="flex justify-center">
+            <Link href="/styleguide" style="primary" size="md">
+              Explore More Components
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  /* Smooth scroll behavior for any anchor links within CardShowcase */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure proper scroll padding for any internal navigation */
+  [id] {
+    scroll-margin-top: 2rem;
+  }
+</style>

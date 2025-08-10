@@ -154,7 +154,46 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - **Responsive Design** - Mobile-friendly documentation
 - **Developer-Focused** - Built for team consistency and onboarding
 
-## Development Guidelines
+## Component Development Guidelines
+
+### 🎨 ALWAYS Reference the Styleguide First
+
+**CRITICAL: Before building any new components, ALWAYS review the relevant styleguide pages to maintain consistency:**
+
+- **📋 Main Styleguide Hub**: `/styleguide` - Overview and navigation to all sections
+- **🎨 Colors**: `/styleguide/colors` - 17-palette theme system, CSS variables, and theme classes
+- **📝 Typography**: `/styleguide/typography` - Font hierarchy, text styles, and theme text classes
+- **🔘 Buttons**: `/styleguide/buttons` - Button variants, sizes, styles, and interactive states
+- **📄 Cards**: `/styleguide/cards` - Card patterns, layouts, pricing cards, and image cards
+- **✨ Icons**: `/styleguide/icons` - Available icon libraries (bx, uil, simple-icons) and usage patterns
+- **📏 Spacing**: `/styleguide/spacing` - Tailwind spacing system and layout consistency
+
+### Component Development Workflow
+
+**1. Check Existing Patterns First**
+- Review `/styleguide` pages to see if similar components already exist
+- Look at existing components in `/src/components/` for established patterns
+- Check theme integration and responsive behavior examples
+
+**2. Follow Established Design Patterns**
+- Use theme classes from colors styleguide (`theme-headline`, `theme-paragraph`, etc.)
+- Apply consistent button styles from buttons styleguide
+- Follow card layout patterns from cards styleguide
+- Use approved icons from icons styleguide (prefer `bx:` icons)
+- Maintain spacing consistency using spacing styleguide examples
+
+**3. Theme System Integration**
+- NEVER use hard-coded colors - always use theme classes or CSS custom properties
+- Test components with different color palettes using the ColorPaletteSelector
+- Ensure components work across all 17 available themes
+
+**4. Component Quality Checklist**
+- ✅ Uses theme classes instead of hard-coded colors
+- ✅ Follows established spacing patterns
+- ✅ Uses approved icon libraries and patterns
+- ✅ Responsive design that matches existing components
+- ✅ Consistent typography hierarchy
+- ✅ Tested across multiple color themes
 
 ### Working with the Color System
 
@@ -204,6 +243,14 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - Use `bx:bxs-*` for solid variants  
 - Use `bx:bxl-*` for brand/logo icons
 - Always apply theme colors via CSS custom properties
+
+**CRITICAL: Icon Component Usage Rules**
+- ✅ ALWAYS use static Icon components: `<Icon name="bx:bx-star" class="w-6 h-6" />`
+- ❌ NEVER use Icon components inside `.map()` calls: `{items.map(item => <Icon name={item.icon} />)}`
+- ❌ NEVER render Icons via function calls or dynamic rendering
+- ✅ Convert any dynamic icon rendering to static individual Icon components
+- ✅ Always put `name` attribute first, then `class` attribute: `<Icon name="..." class="..." />`
+- ❌ Wrong attribute order will cause build failures: `<Icon class="..." name="..." />`
 
 ### Component Development
 
@@ -300,6 +347,153 @@ public/
 ```
 
 This workflow ensures consistency with existing sections and maintains the design system patterns established in the project.
+
+## Modal System
+
+This project includes a comprehensive reusable modal system located in `/src/components/PopupComponents/`.
+
+### Modal System Architecture
+
+**Core Components:**
+- **`ModalWrapper.astro`** - Main container with backdrop and content slots
+- **`ModalBackdrop.astro`** - Theme-aware backdrop overlay with click-to-close
+- **`ModalContent.astro`** - Responsive content container with multiple size options
+- **`ModalCloseButton.astro`** - Reusable close button with theme integration
+- **`functions.js`** - Centralized JavaScript for modal management (available but currently unused)
+
+### Data-Attribute System
+
+**Opening Modals:**
+```html
+<!-- Add to any button or element to open a modal -->
+<button data-modal-open="ModalName">Open Modal</button>
+```
+
+**Closing Modals:**
+```html
+<!-- Close specific modal -->
+<button data-modal-close="ModalName">Close This Modal</button>
+
+<!-- Close any modal (used by ModalCloseButton) -->
+<button data-modal-close>Close Modal</button>
+```
+
+**Modal Identification:**
+```astro
+<!-- Modal must have data-modal-id to be targeted -->
+<ModalWrapper modalId="ModalName">
+  <!-- Modal content -->
+</ModalWrapper>
+```
+
+### Creating New Modals
+
+**1. Basic Modal Structure:**
+```astro
+---
+import ModalWrapper from "@/components/PopupComponents/ModalWrapper.astro";
+---
+
+<ModalWrapper 
+  modalId="YourModalName"
+  size="lg"
+  showCloseButton={true}
+>
+  <h2 id="YourModalName-title" class="theme-headline text-xl mb-4">
+    Modal Title
+  </h2>
+  <p id="YourModalName-description" class="theme-paragraph mb-6">
+    Modal content goes here.
+  </p>
+  <div class="flex gap-3 justify-end">
+    <button class="theme-button-outline px-4 py-2 rounded-lg" data-modal-close>
+      Cancel
+    </button>
+    <button class="theme-button-primary px-4 py-2 rounded-lg">
+      Confirm
+    </button>
+  </div>
+</ModalWrapper>
+```
+
+**2. ModalWrapper Props:**
+- `modalId` (required) - Unique identifier for the modal
+- `size` - "sm", "md", "lg", "xl", "full" (default: "md")  
+- `padding` - "sm", "md", "lg" (default: "md")
+- `showCloseButton` - boolean (default: true)
+- `closeButtonSize` - "sm", "md", "lg" (default: "md")
+- `class` - Additional CSS classes
+
+### Modal JavaScript Integration
+
+The modal system uses inline JavaScript within `ColorPaletteSelector.astro` that provides:
+
+**Available Functions:**
+- `openModal(modalId)` - Opens specific modal
+- `closeModal(modalId)` - Closes specific modal  
+- `closeAllModals()` - Closes all open modals
+
+**Automatic Event Handling:**
+- **Escape Key** - Closes all modals
+- **Backdrop Clicks** - Closes modal when clicking outside content
+- **Data Attributes** - Automatically handles `data-modal-open` and `data-modal-close`
+
+**Features:**
+- **Body Scroll Locking** - Prevents background scrolling when modal is open
+- **Focus Management** - Auto-focuses first interactive element
+- **CSS Animations** - Smooth open/close transitions via `modal-open` class
+- **Accessibility** - Proper ARIA attributes and keyboard navigation
+
+### Theme Integration
+
+**Always use theme classes in modals:**
+```astro
+<h2 class="theme-headline">Modal Title</h2>
+<p class="theme-paragraph">Modal content</p>
+<button class="theme-button-primary">Action</button>
+<button class="theme-button-outline" data-modal-close>Cancel</button>
+```
+
+**For borders and accents:**
+```astro
+<div style="border-color: var(--color-theme-stroke);">
+  <span style="color: var(--color-theme-button);">Accent text</span>
+</div>
+```
+
+### Example Modals
+
+**Reference Examples:**
+- **`ExampleModal.astro`** - Complete demo modal with headline, body, and buttons
+- **`ThemeControlModal.astro`** - Theme selector modal (replaces old PalettePanel)
+
+**Usage Pattern:**
+```astro
+<!-- In your page/component -->
+---
+import YourModal from "@/components/PopupComponents/YourModal.astro";
+---
+
+<!-- Modal trigger -->
+<button data-modal-open="YourModal" class="theme-button-primary">
+  Open Modal
+</button>
+
+<!-- Modal (can be anywhere in the page) -->
+<YourModal />
+```
+
+### Best Practices
+
+1. **Modal IDs** - Use PascalCase and descriptive names (e.g., "ContactFormModal", "DeleteConfirmModal")
+2. **Content Structure** - Always include proper heading and description elements with IDs
+3. **Button Placement** - Use consistent button layouts (Cancel on left, Primary action on right)
+4. **Responsive Design** - Test modals on mobile devices and adjust size accordingly
+5. **Accessibility** - Include proper ARIA labels and ensure keyboard navigation works
+6. **Theme Compliance** - Always use theme classes and CSS custom properties
+7. **Auto-closing** - For action modals, close automatically after successful operations
+
+The modal system integrates seamlessly with the existing theme system and provides a solid foundation for any modal implementations throughout the project.
 
 ## Color System Instructions for Claude Code
 
