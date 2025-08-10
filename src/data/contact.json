@@ -1,20 +1,20 @@
 {
 	"title": "Contact",
 	"description": "We are a here to help.",
-	"heading": "Contact Astroship",
+	"heading": "Contact ARDA",
 	"subheading": "Have something to say? We are here to help. Fill up the form or send email or call phone.",
 	"address": {
-		"text": "1734 Sanfransico, CA 93063",
+		"text": "Philadelphia, PA",
 		"icon": "uil:map-marker"
 	},
 	"email": {
-		"text": "hello@astroshipstarter.com",
-		"href": "mailto:hello@astroshipstarter.com",
+		"text": "info@advancedresearch.dev",
+		"href": "mailto:info@advancedresearch.dev",
 		"icon": "uil:envelope"
 	},
 	"phone": {
-		"text": "+1 (987) 4587 899",
-		"href": "tel:+1 (987) 4587 899",
+		"text": "+1 (610) 908 6127",
+		"href": "tel:+1 (610) 908 6127",
 		"icon": "uil:phone"
 	}
 } 

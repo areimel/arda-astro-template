@@ -1,20 +1,20 @@
 {
-	"siteName": "Astroship",
-	"defaultTitle": "Astroship - Starter Template for Astro with Tailwind CSS",
-	"defaultDescription": "Astroship is a starter website template for Astro built with TailwindCSS.",
+	"siteName": "ARDA Astro Template",
+	"defaultTitle": "ARDA Astro Template - Starter Template built with Astro and TailwindCSS",
+	"defaultDescription": "ARDA Astro Template is a starter website template built with Astro and TailwindCSS. Built by",
 	"openGraphImage": "/opengraph.jpg",
 	"twitter": {
-		"creator": "@surjithctly",
-		"site": "@web3templates",
+		"creator": "@ardacodes",
+		"site": "@ardacodes",
 		"card": "summary_large_image"
 	},
 	"openGraph": {
 		"basic": {
 			"type": "website",
-			"title": "Astroship - Starter Template for Astro"
+			"title": "ARDA Astro Template - Starter Template built with Astro and TailwindCSS"
 		},
 		"image": {
-			"alt": "Astroship Homepage Screenshot"
+			"alt": "ARDA Astro Template Homepage Screenshot"
 		}
 	}
 } 
