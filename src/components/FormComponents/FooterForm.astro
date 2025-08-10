@@ -1,5 +1,6 @@
 ---
 // FooterForm component for newsletter subscription using Web3Forms
+const WEB3FORMS_KEY = import.meta.env.WEB3FORMS_KEY ?? "";
 ---
 
 <!-- To make this newsletter form work, create your free access key from https://web3forms.com/
@@ -10,7 +11,7 @@
   id="newsletter-form"
   class="space-y-3 needs-validation"
   novalidate>
-  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+  <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
   <input type="hidden" name="subject" value="Newsletter Subscription" />
   <!-- Create your free access key from https://web3forms.com/ -->
   <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
