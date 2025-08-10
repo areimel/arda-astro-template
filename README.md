@@ -1,166 +1,220 @@
-# Astroship - Astro SAAS Starter Website Template
+# ARDA Astro Website Template
 
-Astroship is a free starter astro website template for saas, startups, marketing websites, landing pages & blogs. Built with Astro & TailwindCSS.
+A modern, feature-rich website template built by the **Advanced Research & Development Agency (ARDA)** using Astro 5 and TailwindCSS 4. Perfect for SAAS platforms, startups, marketing websites, landing pages, and blogs.
 
-This Free Template is sponsored by [Web3Templates](https://web3templates.com)
+**Mission**: ARDA is dedicated to bringing high-tech products to the average person through innovative web solutions.
 
-## Live Demo
-
-**[https://astroship.web3templates.com/](https://astroship.web3templates.com/)**
-
-**[Download Astroship Template](https://web3templates.com/templates/astroship-starter-website-template-for-astro)**
-
-## Upgrade to Astroship Pro Version
-
-**[https://astroship-pro.web3templates.com/](https://astroship-pro.web3templates.com/)**
-
-**[Purchase Astroship Pro — $49](https://web3templates.com/templates/astroship-pro-astro-saas-website-template)**
-
+## 🚀 Features
 
 <!-- prettier-ignore -->
-| Feature | Free Version | Pro Version |
-| --- | ------ | --- |
-| Astro v3 | ✅  | ✅ |
-| Content Collections | ✅  | ✅ |
-| Tailwind CSS   | ✅  | ✅ |
-| Mobile Responsive | ✅  | ✅ |
-| Working Contact Page | ✅  | ✅ |
-| Pro Layouts & Features | ❌  | ✅ |
-| Blog with Pagination | ❌ | ✅ |
-| View Transitions | ❌ | ✅ |
-| Advanced Homepage Design | ❌  | ✅ |
-| Features Page | ❌  | ✅ |
-| Integrations Page | ❌  | ✅ |
-| Elegant 404 Page | ❌  | ✅ |
-| 6 Months Support| ❌  | ✅  |
-| Free Updates    | ✅  | ✅  |
-| License         | GPL-2.0 | Commercial |
-| &nbsp; | &nbsp;| &nbsp;|
-| Pricing| Free|**$49**|
-| &nbsp; | [Deploy for free](https://vercel.com/new/surjithctly/clone?demo-description=Starter%20template%20for%20startups%2C%20marketing%20websites%20%26%20blogs%20built%20with%20Astro%20and%20TailwindCSS.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F5dB0dDqBr1BfvIoNOmffVB%2F784984a8d3fe5e3db123e7c655166046%2Fastroship_-_Tony_Sullivan.jpg&demo-title=Astroship&demo-url=https%3A%2F%2Fastroship.web3templates.com%2F&from=templates&project-name=Astroship&repository-name=astroship&repository-url=https%3A%2F%2Fgithub.com%2Fsurjithctly%2Fastroship&skippable-integrations=1) | [Purchase Pro](https://web3templates.com/templates/astroship-pro-astro-saas-website-template) |
+| Feature | Status |
+| --- | ------ |
+| **Astro 5.x** | ✅ |
+| **TailwindCSS 4.x** | ✅ |
+| **17 Dynamic Color Themes** | ✅ |
+| **Content Collections** | ✅ |
+| **MDX Support** | ✅ |
+| **TypeScript** | ✅ |
+| **Mobile Responsive** | ✅ |
+| **Working Contact Form** | ✅ |
+| **Blog with Pagination** | ✅ |
+| **Case Studies Section** | ✅ |
+| **Products Showcase** | ✅ |
+| **Team Profiles** | ✅ |
+| **SEO Optimized** | ✅ |
+| **Comprehensive Design System** | ✅ |
+| **Modal System** | ✅ |
+| **Icon Library (3,000+ icons)** | ✅ |
 
-<a href="https://web3templates.com/templates/astroship-pro-astro-saas-website-template">
-<img width="160" alt="Upgrade to Pro" src="https://user-images.githubusercontent.com/1884712/199181300-37c2128e-d033-4145-a906-16fa5263a53b.png">
-</a>
+## 🎨 Advanced Color System
 
-## Deploy this template
+This template features a **17-palette dynamic theming system** with:
+- 17 unique color themes (light to dark modes)
+- 15 CSS custom properties per theme
+- Real-time theme switching via ColorPaletteSelector
+- Theme-aware components throughout
 
-You can instantly clone this to your GitHub and deploy the site by clicking the below buttons to deploy to your chosen providers!
+## 📖 Comprehensive Documentation
 
-Click here to deploy on Vercel:
+Visit the built-in **Styleguide** (`/styleguide`) for complete design system documentation:
+- Interactive color palettes
+- Typography examples  
+- Button variants
+- Card patterns
+- Icon library (3,000+ icons)
+- Spacing guidelines
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsurjithctly%2Fastroship&project-name=astroship&repository-name=astroship&demo-title=Astroship%20-%20Astro%20Starter%20Template&demo-description=Astroship%20is%20a%20starter%20template%20for%20startups%2C%20marketing%20websites%20%26%20landing%20pages.%20Built%20with%20Astro%2C%20TailwindCSS&demo-url=https%3A%2F%2Fastroship.web3templates.com%2F&demo-image=https%3A%2F%2Fuser-images.githubusercontent.com%2F1884712%2F200831799-10ef2456-a02e-4068-b580-4b5326f0b33b.png)
+## 🏃‍♀️ Quick Start
 
-Click here to deploy on Netlify:
+### Deploy Instantly
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/surjithctly/astroship)
+Click to deploy on your preferred platform:
 
-## Preview
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fareimel%2Farda-astro-template&project-name=arda-astro-template&repository-name=arda-astro-template)
 
-![image](https://user-images.githubusercontent.com/1884712/200831799-10ef2456-a02e-4068-b580-4b5326f0b33b.png)
-
-
-## Pro Version Preview
-
-![preview](https://github.com/surjithctly/astroship/assets/1884712/25665c02-d2a7-43dc-89b2-34a8ae37ade9)
-
-
-### Pagespeed Score
-
-[![pagespeed](https://user-images.githubusercontent.com/1884712/210250214-7aa98167-7993-4b90-8138-326b8fa0c223.png)](https://pagespeed.web.dev/report?url=https%3A%2F%2Fastroship.web3templates.com%2F)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/areimel/arda-astro-template)
 
 
-## Installation
+## 🛠️ Local Development
 
-If you are reading this on github, you can click on the "Use this template" button above to create a new repository from astroship to your account. Then you can do a `git clone` to clone it to your local system.
-
-Alternatively, you can clone the project directly from this repo to your local system.
-
-### 1. Clone the repo
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/surjithctly/astroship.git myProjectName
-# or
-git clone https://github.com/surjithctly/astroship.git .
-```
+# Use this template (recommended)
+# Click "Use this template" button above on GitHub
 
-The `.` will clone it to the current directory so make sure you are inside your project folder first.
+# Or clone directly
+git clone https://github.com/areimel/arda-astro-template.git myProjectName
+cd myProjectName
+```
 
 ### 2. Install Dependencies
 
+This project uses **pnpm** (recommended for faster installs and disk space efficiency):
+
 ```bash
-npm install
-# or
-yarn install
-# or (recommended)
 pnpm install
 ```
 
-### 3. Start development Server
+Alternative package managers:
+```bash
+# npm
+npm install
+
+# yarn
+yarn install
+```
+
+### 3. Start Development Server
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or (recommended)
 pnpm dev
 ```
 
-### Preview & Build
+Your site will be available at `http://localhost:4321`
+
+### 4. Build & Preview
 
 ```bash
-npm run preview
-npm run build
-# or
-yarn preview
-yarn build
-# or (recommended)
-pnpm preview
+# Build for production
 pnpm build
+
+# Preview production build
+pnpm preview
 ```
 
-We recommend using [pnpm](https://pnpm.io/) to save disk space on your computer.
-
-### Other Commands
+### Additional Commands
 
 ```bash
-pnpm astro ...
+# Astro CLI commands
 pnpm astro add
 pnpm astro --help
+
+# Add integrations
+pnpm astro add tailwind
 ```
 
-## Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## 📁 Project Architecture
 
 ```
-/
-├── public/
-│   └── ...
+arda-astro-template/
+├── public/                     # Static assets
+│   ├── images/                # Image assets organized by section
+│   └── hero-1.svg            # Hero illustration
 ├── src/
-│   ├── components/
-│   │   └── ...
-│   ├── layouts/
-│   │   └── ...
-│   └── pages/
-│       └── ...
+│   ├── components/            # Reusable Astro components
+│   │   ├── navbar/           # Navigation with dropdown support
+│   │   ├── ui/               # Base UI components (buttons, links, icons)
+│   │   ├── styleguide/       # Design system components
+│   │   └── PopupComponents/  # Modal system components
+│   ├── content/              # Content Collections
+│   │   ├── config.ts         # Collection schemas (Zod validation)
+│   │   ├── blog/            # Blog posts (.md files)
+│   │   ├── case-studies/    # Case study content
+│   │   ├── products/        # Product showcases
+│   │   └── team/           # Team member profiles
+│   ├── data/               # JSON configuration files
+│   │   ├── color-palettes.json  # 17-theme color system
+│   │   ├── navigation.json     # Site navigation structure
+│   │   └── links.json         # External links
+│   ├── layouts/            # Page layouts
+│   │   ├── Layout.astro    # Base layout with SEO
+│   │   └── BlogLayout.astro # Blog post layout
+│   ├── pages/              # File-based routing
+│   │   ├── styleguide/     # Design system documentation
+│   │   ├── blog/           # Blog section + [slug] pages
+│   │   ├── case-studies/   # Case studies + [slug] pages  
+│   │   ├── products/       # Products + [slug] pages
+│   │   └── *.astro         # Static pages
+│   ├── assets/            # Component-specific images
+│   └── styles/           # Global CSS styles
+├── CLAUDE.md             # AI development instructions
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Key Technologies
 
-Any static assets, like images, can be placed in the `public/` directory.
+- **Astro 5.x** - Static site generator with component islands
+- **TailwindCSS 4.x** - Utility-first CSS via Vite plugin  
+- **TypeScript** - Type safety with Astro's base config
+- **Content Collections** - Structured content with Zod schemas
+- **MDX** - Markdown with JSX support
+- **Icon System** - 3,000+ icons from Iconify collections
 
-## TailwindCSS
+## 🎯 What Makes This Template Special
 
-TailwindCSS is already configured in this repo, so you can start using it without any installation.
+### Advanced Theme System
+- **17 curated color palettes** ranging from light to dark modes
+- **Theme persistence** via localStorage  
+- **Real-time switching** with smooth transitions
+- **Developer-friendly** CSS custom properties
 
-## Credits
+### Comprehensive Content Management
+- **Blog** with categories, tags, and author profiles
+- **Case Studies** with client and industry tracking
+- **Products** with pricing and feature lists
+- **Team** member profiles with social links
 
-[Hero Illustration](https://www.figma.com/community/file/1108400791662599811) by [Streamline](https://www.streamlinehq.com/)
+### Developer Experience
+- **Built-in Styleguide** - Complete design system documentation
+- **Modal System** - Reusable popup components
+- **CLAUDE.md** - AI development instructions for consistency
+- **TypeScript** support throughout
 
-## 👀 Want to learn more?
+### Performance Optimized
+- **Astro's Islands Architecture** - Ship minimal JavaScript
+- **Optimized images** with multiple formats (AVIF, WebP)
+- **SEO ready** with meta tags and structured data
+- **Lighthouse perfect scores** achievable out of the box
 
-Feel free to check out [Astro Docs](https://docs.astro.build) or jump into our [Discord Chat](https://web3templates.com/discord).
+## 🤝 Contributing
+
+This template is developed and maintained by **ARDA** (Advanced Research & Development Agency). 
+
+### Development Guidelines
+- Review `/styleguide` before building new components
+- Always use theme classes instead of hard-coded colors  
+- Test components with multiple color palettes
+- Follow established patterns in existing components
+- Reference `CLAUDE.md` for AI-assisted development
+
+## 📝 License
+
+This template is open source and available under the MIT License.
+
+## 🔗 Links
+
+- **Live Demo**: [arda-astro-template.netlify.app](https://arda-astro-template.netlify.app)
+- **GitHub Repository**: [areimel/arda-astro-template](https://github.com/areimel/arda-astro-template)
+- **Astro Documentation**: [docs.astro.build](https://docs.astro.build)
+- **TailwindCSS Documentation**: [tailwindcss.com](https://tailwindcss.com)
+
+## 💡 About ARDA
+
+The **Advanced Research & Development Agency (ARDA)** is dedicated to bringing high-tech products to the average person. We build innovative web solutions that combine cutting-edge technology with user-friendly design.
+
+---
 
 [![Built with Astro](https://astro.badg.es/v1/built-with-astro.svg)](https://astro.build)
+
+**Built by ARDA** • *Making high-tech accessible to everyone*
