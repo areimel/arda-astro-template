@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import Container from "@/components/container.astro";
 import FooterForm from "@/components/FormComponents/FooterForm.astro";
 import navigationData from "@/data/navigation.json";
-
+import Logo from "@/components/SvgComponents/Logo.astro";
 const { social, sections, legal } = navigationData.footer;
 ---
 
@@ -15,8 +15,9 @@ const { social, sections, legal } = navigationData.footer;
         <!-- Company Info Section -->
         <div class="space-y-4">
           <div class="flex items-center space-x-2">
-            <span class="text-xl font-bold theme-headline">Astro</span>
-            <span class="text-xl theme-paragraph">ship</span>
+            <a href="/" class="text-lg max-w-[150px]">
+              <Logo fillColor="var(--color-theme-stroke)" />
+            </a>
           </div>
           <p class="text-sm theme-paragraph leading-relaxed">
             Build faster websites with Astro's next-gen island architecture.
