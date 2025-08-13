@@ -1,0 +1,59 @@
+---
+import TrustBar from "./TrustBar.astro";
+
+// Example logo data - replace with your actual client logos
+const exampleLogos = [
+  {
+    src: "/images/logos/client-1.svg",
+    alt: "Acme Corporation",
+    url: "https://acme.com"
+  },
+  {
+    src: "/images/logos/client-2.svg", 
+    alt: "TechCorp Solutions",
+    url: "https://techcorp.com"
+  },
+  {
+    src: "/images/logos/client-3.svg",
+    alt: "Global Industries",
+    url: "https://globalindustries.com"
+  },
+  {
+    src: "/images/logos/client-4.svg",
+    alt: "Innovative Systems"
+    // Note: No URL provided - will render as non-clickable image
+  },
+  {
+    src: "/images/logos/client-5.svg",
+    alt: "Future Dynamics",
+    url: "https://futuredynamics.com"
+  },
+  {
+    src: "/images/logos/client-6.svg",
+    alt: "Prime Solutions",
+    url: "https://primesolutions.com"
+  }
+];
+---
+
+<!-- Basic usage with default headline -->
+<TrustBar logos={exampleLogos} />
+
+<!-- Custom headline -->
+<TrustBar 
+  headline="Used by 500+ companies worldwide"
+  logos={exampleLogos}
+/>
+
+<!-- With custom styling -->
+<TrustBar 
+  headline="Our trusted partners"
+  logos={exampleLogos}
+  class="bg-gray-50 dark:bg-gray-900"
+/>
+
+<!-- Minimal version without headline -->
+<TrustBar 
+  headline=""
+  logos={exampleLogos}
+/>

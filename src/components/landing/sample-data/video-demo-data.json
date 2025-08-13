@@ -1,0 +1,134 @@
+{
+  "hero": {
+    "headline": "See How We Help Companies Grow 10X Faster",
+    "subheadline": "Watch this 3-minute demo to discover how our platform automates your entire growth process and delivers measurable results.",
+    "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "videoType": "youtube",
+    "ctaText": "Start Your Free Trial",
+    "ctaHref": "#demo-form"
+  },
+  "benefits": [
+    {
+      "icon": "bx:bx-line-chart",
+      "title": "Automated Growth Analytics",
+      "description": "Track every metric that matters with real-time dashboards, automated reporting, and predictive insights that guide your decisions."
+    },
+    {
+      "icon": "bx:bx-rocket", 
+      "title": "One-Click Campaign Launch",
+      "description": "Deploy multi-channel marketing campaigns across email, social, and ads with our AI-powered campaign builder in minutes."
+    },
+    {
+      "icon": "bx:bx-target-lock",
+      "title": "Smart Lead Scoring",
+      "description": "Our AI analyzes 50+ data points to identify your highest-value prospects and automatically prioritize your outreach efforts."
+    },
+    {
+      "icon": "bx:bx-infinite",
+      "title": "Seamless Integrations",
+      "description": "Connect with 500+ tools including Salesforce, HubSpot, Slack, and Zapier through our comprehensive API ecosystem."
+    },
+    {
+      "icon": "bx:bxs-shield",
+      "title": "Enterprise Security",
+      "description": "SOC2 compliant, GDPR ready, with enterprise-grade encryption and security monitoring that protects your data 24/7."
+    },
+    {
+      "icon": "bx:bxs-user-voice",
+      "title": "White-Glove Onboarding",
+      "description": "Our dedicated success team sets up your account, migrates your data, and trains your team for immediate results."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "This platform transformed our lead generation completely. We went from 20 leads per month to 300+ qualified leads, with 40% better conversion rates.",
+      "name": "David Martinez",
+      "title": "VP of Marketing",
+      "company": "ScaleTech Inc",
+      "avatar": "/images/testimonials/david-m.jpg",
+      "rating": 5
+    },
+    {
+      "quote": "The ROI speaks for itself - $250K in new revenue in our first 90 days. The automation features saved our team 15+ hours per week.",
+      "name": "Jennifer Lee",
+      "title": "CEO", 
+      "company": "Growth Partners",
+      "avatar": "/images/testimonials/jennifer-l.jpg",
+      "rating": 5
+    },
+    {
+      "quote": "Implementation was seamless and the support team is incredible. We saw results within the first week - something that never happens with new tools.",
+      "name": "Robert Kim",
+      "title": "Head of Sales",
+      "company": "Enterprise Solutions",
+      "avatar": "/images/testimonials/robert-k.jpg", 
+      "rating": 5
+    }
+  ],
+  "trustLogos": [
+    {
+      "src": "/images/logos/client-microsoft.svg",
+      "alt": "Microsoft",
+      "url": "https://microsoft.com"
+    },
+    {
+      "src": "/images/logos/client-google.svg", 
+      "alt": "Google",
+      "url": "https://google.com"
+    },
+    {
+      "src": "/images/logos/client-amazon.svg",
+      "alt": "Amazon", 
+      "url": "https://amazon.com"
+    },
+    {
+      "src": "/images/logos/client-salesforce.svg",
+      "alt": "Salesforce",
+      "url": "https://salesforce.com"
+    },
+    {
+      "src": "/images/logos/client-hubspot.svg",
+      "alt": "HubSpot",
+      "url": "https://hubspot.com"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How long does it take to see results?",
+      "answer": "Most customers see their first qualified leads within 7-14 days of setup. Full campaign optimization typically shows maximum ROI within 30-45 days as our AI learns your ideal customer patterns."
+    },
+    {
+      "question": "Do you integrate with our existing tools?",
+      "answer": "Yes! We have native integrations with 500+ tools including all major CRMs, email platforms, analytics tools, and marketing automation systems. Our API also supports custom integrations."
+    },
+    {
+      "question": "What kind of support do you provide?",
+      "answer": "Every customer gets a dedicated Customer Success Manager, plus 24/7 technical support via chat and email. Enterprise customers also receive priority phone support and quarterly strategy reviews."
+    },
+    {
+      "question": "Can we try before we commit?", 
+      "answer": "Absolutely! We offer a 14-day free trial with full access to all features. No credit card required, and you can upgrade or cancel anytime with no long-term contracts."
+    },
+    {
+      "question": "Is my data secure?",
+      "answer": "Security is our top priority. We're SOC2 Type II certified, GDPR compliant, and use bank-level encryption. Your data is hosted on secure AWS infrastructure with 99.99% uptime guarantee."
+    }
+  ],
+  "guarantees": [
+    {
+      "icon": "bx:bxs-shield",
+      "title": "14-Day Free Trial", 
+      "description": "Try all features risk-free for 14 days. No credit card required, cancel anytime with one click."
+    },
+    {
+      "icon": "bx:bx-dollar-circle",
+      "title": "ROI Guarantee",
+      "description": "We're so confident you'll see results, we guarantee 3X ROI within 90 days or your money back."
+    },
+    {
+      "icon": "bx:bx-time-five",
+      "title": "Setup in 24 Hours",
+      "description": "Our team will have you up and running with your first campaigns live within 24 hours of signup."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "testimonials": [
+    {
+      "quote": "This platform has completely transformed how we manage our customer relationships. The intuitive interface and powerful features have increased our team's productivity by 40%. I can't imagine running our business without it.",
+      "name": "Sarah Chen",
+      "title": "CEO",
+      "company": "TechStart Solutions",
+      "avatar": "/images/testimonials/sarah-chen.jpg",
+      "rating": 5
+    },
+    {
+      "quote": "The support team is absolutely phenomenal. Every question gets answered within minutes, and they've helped us customize the platform to fit our unique workflow perfectly. It's like having an extended team member.",
+      "name": "Marcus Rodriguez",
+      "title": "Operations Manager",
+      "company": "Digital Dynamics",
+      "rating": 5
+    },
+    {
+      "quote": "We tried several competitors before finding this solution. The difference in user experience and feature completeness is night and day. Our entire sales process is now streamlined and automated.",
+      "name": "Emily Watson",
+      "title": "Sales Director",
+      "company": "Growth Partners",
+      "avatar": "/images/testimonials/emily-watson.jpg",
+      "rating": 5
+    },
+    {
+      "quote": "Implementation was surprisingly smooth and the ROI was evident within the first month. The analytics and reporting features have given us insights we never had before, helping us make better data-driven decisions.",
+      "name": "David Park",
+      "title": "CTO",
+      "company": "Innovation Labs",
+      "rating": 4
+    },
+    {
+      "quote": "The mobile app is fantastic - I can manage everything on the go. Whether I'm traveling or working from home, I never miss a beat. The cross-platform synchronization is flawless.",
+      "name": "Jessica Thompson",
+      "title": "Marketing Manager",
+      "company": "Creative Studio",
+      "avatar": "/images/testimonials/jessica-thompson.jpg",
+      "rating": 5
+    }
+  ]
+}

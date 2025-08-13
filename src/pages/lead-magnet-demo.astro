@@ -1,0 +1,30 @@
+---
+import Container from "@/components/container.astro";
+import Cta from "@/components/ui/cta.astro";
+import Features from "@/components/features.astro";
+import LeadMagnetHero from "@/components/landing/LeadMagnetHero.astro";
+import Logos from "@/components/logos.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Lead Magnet Demo - ARDA Template">
+  <LeadMagnetHero 
+    headline="Master Modern Web Development"
+    subheadline="Get our comprehensive guide and transform your coding skills in just 30 days"
+    leadMagnetTitle="The Complete Web Dev Roadmap 2024"
+    benefits={[
+      "Learn the most in-demand technologies and frameworks",
+      "Step-by-step roadmap from beginner to professional",
+      "Access to exclusive templates and code examples", 
+      "Join a community of 10,000+ developers",
+      "Regular updates with latest industry trends"
+    ]}
+    ctaText="Download Free Guide"
+  />
+  
+  <Container>
+    <Features />
+    <Logos />
+    <Cta />
+  </Container>
+</Layout>

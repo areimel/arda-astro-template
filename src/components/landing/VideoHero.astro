@@ -1,0 +1,187 @@
+---
+import { Icon } from "astro-icon/components";
+import Link from "@/components/ui/link.astro";
+import Container from "@/components/container.astro";
+
+interface Props {
+  headline: string;
+  subheadline?: string;
+  videoUrl: string;
+  videoType?: "youtube" | "vimeo" | "local";
+  ctaText?: string;
+  ctaHref?: string;
+  ctaStyle?: "primary" | "outline";
+  thumbnailUrl?: string;
+  showPlayButton?: boolean;
+  class?: string;
+}
+
+const {
+  headline,
+  subheadline,
+  videoUrl,
+  videoType = "youtube",
+  ctaText = "Get Started",
+  ctaHref = "#",
+  ctaStyle = "primary",
+  thumbnailUrl,
+  showPlayButton = true,
+  class: className,
+} = Astro.props;
+
+// Function to extract video ID from YouTube URL
+function getYouTubeId(url: string): string {
+  const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : "";
+}
+
+// Function to extract video ID from Vimeo URL
+function getVimeoId(url: string): string {
+  const regex = /(?:vimeo)\.com.*(?:videos|video|channels|)\/([\d]+)/i;
+  const match = url.match(regex);
+  return match ? match[1] : "";
+}
+
+// Generate embed URL based on video type
+function getEmbedUrl(url: string, type: string): string {
+  switch (type) {
+    case "youtube":
+      const youtubeId = getYouTubeId(url);
+      return `https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`;
+    case "vimeo":
+      const vimeoId = getVimeoId(url);
+      return `https://player.vimeo.com/video/${vimeoId}`;
+    case "local":
+      return url;
+    default:
+      return url;
+  }
+}
+
+// Generate thumbnail URL for YouTube videos
+function getYouTubeThumbnail(url: string): string {
+  const youtubeId = getYouTubeId(url);
+  return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+}
+
+const embedUrl = getEmbedUrl(videoUrl, videoType);
+const defaultThumbnail = videoType === "youtube" ? getYouTubeThumbnail(videoUrl) : thumbnailUrl;
+
+// Unique ID for this video hero instance
+const videoId = `video-hero-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<section class:list={["py-16 md:py-24", className]}>
+  <Container>
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <!-- Video Section -->
+      <div class="order-2 lg:order-1">
+        <div class="relative w-full">
+          <!-- Video Container with 16:9 Aspect Ratio -->
+          <div class="relative w-full pb-[56.25%] bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+            {videoType === "local" ? (
+              <!-- Local Video -->
+              <video 
+                class="absolute inset-0 w-full h-full object-cover"
+                controls
+                preload="metadata"
+                poster={thumbnailUrl}
+              >
+                <source src={videoUrl} type="video/mp4">
+                <p class="theme-paragraph">Your browser doesn't support HTML5 video.</p>
+              </video>
+            ) : (
+              <!-- Embedded Video with Thumbnail Overlay -->
+              <>
+                {defaultThumbnail && (
+                  <div 
+                    id={`${videoId}-thumbnail`}
+                    class="absolute inset-0 w-full h-full cursor-pointer group"
+                    onclick={`document.getElementById('${videoId}-thumbnail').style.display='none'; document.getElementById('${videoId}-iframe').style.display='block'; document.getElementById('${videoId}-iframe').src=document.getElementById('${videoId}-iframe').dataset.src;`}
+                  >
+                    <img 
+                      src={defaultThumbnail}
+                      alt="Video thumbnail"
+                      class="w-full h-full object-cover"
+                    />
+                    {showPlayButton && (
+                      <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-40 transition-all duration-300">
+                        <div class="bg-white bg-opacity-90 rounded-full p-4 group-hover:bg-opacity-100 group-hover:scale-110 transition-all duration-300 shadow-lg">
+                          <Icon 
+                            name="bx:bxs-right-arrow-circle" 
+                            class="w-12 h-12 text-gray-800"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+                
+                <iframe 
+                  id={`${videoId}-iframe`}
+                  class="absolute inset-0 w-full h-full"
+                  data-src={embedUrl}
+                  src={defaultThumbnail ? "" : embedUrl}
+                  style={defaultThumbnail ? "display: none;" : ""}
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  title="Demo Video"
+                >
+                </iframe>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Section -->
+      <div class="order-1 lg:order-2 text-center lg:text-left">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight theme-headline mb-6">
+          {headline}
+        </h1>
+        
+        {subheadline && (
+          <p class="text-lg md:text-xl theme-paragraph mb-8 max-w-2xl mx-auto lg:mx-0">
+            {subheadline}
+          </p>
+        )}
+
+        {ctaText && ctaHref && (
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <Link
+              href={ctaHref}
+              size="lg"
+              style={ctaStyle}
+              class="flex gap-2 items-center justify-center min-w-[180px]"
+            >
+              <Icon name="bx:bxs-right-arrow-circle" class="w-5 h-5" />
+              {ctaText}
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  /* Smooth transitions for video loading */
+  .video-container {
+    transition: all 0.3s ease;
+  }
+  
+  /* Ensure proper aspect ratio on all devices */
+  @media (max-width: 640px) {
+    .video-container {
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+  }
+  
+  /* Custom focus styles for accessibility */
+  .video-thumbnail:focus {
+    outline: 2px solid var(--color-theme-button);
+    outline-offset: 2px;
+  }
+</style>

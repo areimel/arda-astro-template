@@ -1,0 +1,321 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/button.astro";
+
+interface Props {
+  headline: string;
+  subheadline: string;
+  leadMagnetTitle: string;
+  benefits: string[];
+  formAction?: string;
+  ctaText?: string;
+}
+
+const {
+  headline,
+  subheadline,
+  leadMagnetTitle,
+  benefits,
+  formAction = "https://api.web3forms.com/submit",
+  ctaText = "Get Free Access"
+} = Astro.props;
+
+const WEB3FORMS_KEY = import.meta.env.WEB3FORMS_KEY ?? "";
+---
+
+<section class="relative min-h-screen flex items-center theme-bg">
+  <!-- Background gradient overlay -->
+  <div class="absolute inset-0 opacity-5" style="background: linear-gradient(135deg, var(--color-theme-button) 0%, var(--color-theme-secondary) 100%);"></div>
+  
+  <div class="relative z-10 container mx-auto px-4 py-16">
+    <div class="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+      
+      <!-- Left Content -->
+      <div class="text-center lg:text-left">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight theme-headline mb-6">
+          {headline}
+        </h1>
+        
+        <p class="text-xl md:text-2xl theme-paragraph mb-8 opacity-90">
+          {subheadline}
+        </p>
+
+        <!-- Benefits List -->
+        <div class="mb-8">
+          <ul class="space-y-4">
+            {benefits.map((benefit) => (
+              <li class="flex items-start gap-3">
+                <Icon 
+                  name="bx:bx-check-circle" 
+                  class="w-6 h-6 mt-1 flex-shrink-0" 
+                  style="color: var(--color-theme-button);"
+                />
+                <span class="theme-paragraph text-lg">{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="flex items-center justify-center lg:justify-start gap-4 mb-8 opacity-80">
+          <div class="flex -space-x-2">
+            <div class="w-10 h-10 rounded-full theme-button flex items-center justify-center">
+              <Icon name="bx:bx-user" class="w-5 h-5" style="color: var(--color-theme-button-text);" />
+            </div>
+            <div class="w-10 h-10 rounded-full theme-secondary flex items-center justify-center">
+              <Icon name="bx:bx-user" class="w-5 h-5" style="color: var(--color-theme-button-text);" />
+            </div>
+            <div class="w-10 h-10 rounded-full theme-highlight flex items-center justify-center">
+              <Icon name="bx:bx-user" class="w-5 h-5" style="color: var(--color-theme-button-text);" />
+            </div>
+          </div>
+          <span class="theme-paragraph text-sm">Join 10,000+ subscribers</span>
+        </div>
+      </div>
+
+      <!-- Right Content - Lead Magnet & Form -->
+      <div class="max-w-md mx-auto w-full">
+        <!-- Lead Magnet Preview -->
+        <div class="theme-card-bg rounded-lg shadow-lg p-6 mb-8" style="border: 1px solid var(--color-theme-stroke);">
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-16 h-20 rounded-lg mb-4" style="background: var(--color-theme-button); opacity: 0.1;">
+              <Icon name="bx:bxs-file-pdf" class="w-12 h-12" style="color: var(--color-theme-button);" />
+            </div>
+            <h3 class="text-xl font-semibold theme-headline mb-2">{leadMagnetTitle}</h3>
+            <p class="theme-paragraph text-sm opacity-75">Free PDF Download</p>
+          </div>
+
+          <!-- Lead Capture Form -->
+          <form
+            action={formAction}
+            method="POST"
+            id="leadMagnetForm"
+            class="needs-validation space-y-4"
+            novalidate>
+            <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+            <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+            <input type="hidden" name="subject" value={`New Lead Magnet Download: ${leadMagnetTitle}`} />
+
+            <!-- Name Field -->
+            <div>
+              <input
+                type="text"
+                placeholder="Your First Name"
+                required
+                class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 theme-card-bg theme-card-text"
+                style="border-color: var(--color-theme-stroke); --tw-ring-color: var(--color-theme-button);"
+                name="name"
+              />
+              <div class="empty-feedback invalid-feedback text-sm mt-1" style="color: var(--color-theme-stroke);">
+                Please provide your first name.
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div>
+              <input
+                type="email"
+                placeholder="Your Email Address"
+                name="email"
+                required
+                class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 theme-card-bg theme-card-text"
+                style="border-color: var(--color-theme-stroke); --tw-ring-color: var(--color-theme-button);"
+              />
+              <div class="empty-feedback text-sm mt-1" style="color: var(--color-theme-stroke);">
+                Please provide your email address.
+              </div>
+              <div class="invalid-feedback text-sm mt-1" style="color: var(--color-theme-stroke);">
+                Please provide a valid email address.
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <Button type="submit" size="lg" block class="mt-6">
+              <Icon name="bx:bx-download" class="w-5 h-5 mr-2" />
+              {ctaText}
+            </Button>
+
+            <div id="leadResult" class="mt-3 text-center theme-paragraph text-sm"></div>
+          </form>
+
+          <!-- Trust Indicators -->
+          <div class="text-center mt-6 pt-4" style="border-top: 1px solid var(--color-theme-stroke);">
+            <div class="flex items-center justify-center gap-4 text-xs opacity-60">
+              <div class="flex items-center gap-1">
+                <Icon name="bx:bx-lock-alt" class="w-4 h-4" style="color: var(--color-theme-stroke);" />
+                <span class="theme-paragraph">Secure</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <Icon name="bx:bx-envelope" class="w-4 h-4" style="color: var(--color-theme-stroke);" />
+                <span class="theme-paragraph">No Spam</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <Icon name="bx:bx-time" class="w-4 h-4" style="color: var(--color-theme-stroke);" />
+                <span class="theme-paragraph">Instant Access</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional CTA -->
+        <div class="text-center">
+          <p class="theme-paragraph text-sm opacity-75">
+            Download starts immediately after submission
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #ef4444 !important;
+  }
+
+  /* Custom theme background classes */
+  .theme-button {
+    background-color: var(--color-theme-button);
+  }
+
+  .theme-secondary {
+    background-color: var(--color-theme-secondary);
+  }
+
+  .theme-highlight {
+    background-color: var(--color-theme-highlight);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  /* Focus styles */
+  input:focus {
+    ring-width: 2px;
+    ring-offset-width: 2px;
+  }
+
+  /* Success state for form */
+  .form-success {
+    border-color: var(--color-theme-button) !important;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById("leadMagnetForm");
+    const result = document.getElementById("leadResult");
+
+    if (!form || !result) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      form.classList.add("was-validated");
+      
+      if (!form.checkValidity()) {
+        const firstInvalid = form.querySelectorAll(":invalid")[0];
+        if (firstInvalid) {
+          firstInvalid.focus();
+        }
+        return;
+      }
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      result.innerHTML = "Processing your download...";
+      result.style.color = "var(--color-theme-paragraph)";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            result.style.color = "var(--color-theme-button)";
+            result.innerHTML = "✓ Success! Check your email for the download link.";
+            
+            // Add success styling to form
+            const inputs = form.querySelectorAll('input[type="text"], input[type="email"]');
+            inputs.forEach(input => {
+              input.classList.add('form-success');
+            });
+
+          } else {
+            console.log(response);
+            result.style.color = "var(--color-theme-stroke)";
+            result.innerHTML = json.message || "Something went wrong. Please try again.";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          result.style.color = "var(--color-theme-stroke)";
+          result.innerHTML = "Network error. Please check your connection and try again.";
+        })
+        .then(function () {
+          form.reset();
+          form.classList.remove("was-validated");
+          
+          // Remove success styling after reset
+          setTimeout(() => {
+            const inputs = form.querySelectorAll('input[type="text"], input[type="email"]');
+            inputs.forEach(input => {
+              input.classList.remove('form-success');
+            });
+          }, 100);
+
+          // Hide result message after 8 seconds
+          setTimeout(() => {
+            result.style.opacity = "0";
+            result.style.transition = "opacity 0.5s ease-out";
+            setTimeout(() => {
+              result.innerHTML = "";
+              result.style.opacity = "1";
+              result.style.transition = "";
+            }, 500);
+          }, 8000);
+        });
+    });
+
+    // Real-time validation feedback
+    const inputs = form.querySelectorAll('input[required]');
+    inputs.forEach(input => {
+      input.addEventListener('blur', function() {
+        if (this.value.trim()) {
+          form.classList.add('was-validated');
+        }
+      });
+
+      input.addEventListener('input', function() {
+        if (this.checkValidity()) {
+          this.classList.remove('is-invalid');
+        }
+      });
+    });
+  });
+</script>
