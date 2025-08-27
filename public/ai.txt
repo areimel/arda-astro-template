@@ -1,0 +1,108 @@
+# AI Crawler Management Configuration
+# This file documents our AI crawler strategy and policies for the ARDA Astro Template
+
+## Template Information
+Project: ARDA Astro Template
+Purpose: Modern website template showcase and documentation
+Owner: Advanced Research & Development Agency (ARDA)
+Last Updated: 2025-08-27
+
+## AI Crawler Policy
+
+### ALLOWED AI Crawlers (Search & Assistant Bots)
+# These bots help users discover our template and provide helpful information
+
+# OpenAI Search and Assistant Bots
+ChatGPT-User: ALLOWED - Helps users with template questions and implementation
+OAI-SearchBot: ALLOWED - Enables template discovery in ChatGPT search results
+
+# Google AI Search
+Google-Extended: ALLOWED - Helps with AI search visibility (controlled via robots.txt)
+
+# Other Search-Focused AI Bots
+PerplexityBot: ALLOWED - Educational content discovery
+Anthropic Claude-Web: ALLOWED - Assistant functionality for developers
+
+### RESTRICTED AI Crawlers (Training Data Collection)
+# These bots are restricted to prevent unauthorized use of our template content
+
+# OpenAI Training Bots
+GPTBot: RESTRICTED - Prevents template content from being used in training without permission
+
+# Anthropic Training Bots  
+ClaudeBot: RESTRICTED - Protects proprietary template design and documentation
+
+# ByteDance/TikTok Crawlers
+Bytespider: RESTRICTED - Blocks training data collection by international platforms
+
+# Common Crawl (used by multiple AI companies)
+CCBot: RESTRICTED - Prevents inclusion in Common Crawl dataset used for training
+
+# Other Training-Focused Crawlers
+Amazonbot: RESTRICTED - Protects template IP from Amazon AI training
+Applebot-Extended: RESTRICTED - Blocks Apple AI training data collection
+
+## Content Access Strategy
+
+### PUBLIC CONTENT (Available to all AI systems)
+- Homepage and core template information
+- Styleguide and design system documentation  
+- Blog posts and educational content
+- Case studies (anonymized client work)
+- Career opportunities and team information
+- Contact and about pages
+
+### PROTECTED CONTENT (Restricted from AI training)
+- Proprietary template code patterns
+- Advanced component implementations
+- Detailed development documentation
+- Internal process descriptions
+- Business strategy content
+
+## Implementation Guidelines
+
+### robots.txt Integration
+This ai.txt file should be used alongside robots.txt directives:
+- Block training bots via User-agent directives
+- Allow search/assistant bots selective access
+- Use specific path restrictions for sensitive content
+
+### Monitoring and Compliance
+- Log AI crawler requests to analyze compliance
+- Monitor for user agent spoofing or suspicious patterns
+- Regular review of AI bot activity and policy effectiveness
+- Update restrictions based on new AI crawler behavior
+
+### Content Strategy for AI Systems
+- Provide clear, structured information in llms.txt
+- Use semantic HTML and proper heading hierarchy
+- Include FAQ sections for common template questions  
+- Maintain accurate meta descriptions and titles
+- Implement structured data for better AI understanding
+
+## Contact Information
+
+For AI system operators or questions about this policy:
+- Website: https://your-template-domain.com
+- Repository: https://github.com/areimel/arda-astro-template
+- Purpose: This is a web template demonstration, not a commercial service
+
+## Legal Notice
+
+This template and its documentation are provided under MIT License. AI systems are welcome to reference and link to this content for educational purposes, but bulk training data extraction requires explicit permission.
+
+## Compliance Expectations
+
+AI crawler operators are expected to:
+1. Respect robots.txt directives accurately
+2. Identify themselves honestly via user agent strings
+3. Honor crawl delays and rate limiting
+4. Cease activity if requested via standard protocols
+5. Provide contact information for compliance issues
+
+---
+
+This policy balances open access to educational content with protection of proprietary template designs and implementations. It supports AI systems that help users while preventing unauthorized training data collection.
+
+Last reviewed: 2025-08-27
+Next review: 2025-11-27
