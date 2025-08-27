@@ -1,0 +1,107 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+
+// Video demo focused components
+import VideoHero from "@/components/landing/VideoHero.astro";
+import BenefitsGrid from "@/components/landing/BenefitsGrid.astro";
+import TrustBar from "@/components/landing/TrustBar.astro";
+import TestimonialSlider from "@/components/landing/TestimonialSlider.astro";
+import FAQSection from "@/components/landing/FAQSection.astro";
+import RiskReversal from "@/components/landing/RiskReversal.astro";
+import ProgressiveForm from "@/components/landing/ProgressiveForm.astro";
+import ConversionCTA from "@/components/landing/ConversionCTA.astro";
+
+// Sample data
+import videoDemoData from "@/components/landing/sample-data/video-demo-data.json";
+---
+
+<Layout title="See Our Platform in Action - Watch 3-Minute Demo">
+  <Container>
+    <!-- Video Hero - Demo first, conversion second -->
+    <VideoHero 
+      headline={videoDemoData.hero.headline}
+      subheadline={videoDemoData.hero.subheadline}
+      videoUrl={videoDemoData.hero.videoUrl}
+      videoType={videoDemoData.hero.videoType}
+      ctaText={videoDemoData.hero.ctaText}
+      ctaHref={videoDemoData.hero.ctaHref}
+      ctaStyle="primary"
+      showPlayButton={true}
+    />
+
+    <!-- Trust Bar - Immediate social proof after video -->
+    <TrustBar 
+      headline="Trusted by industry leaders worldwide"
+      logos={videoDemoData.trustLogos}
+    />
+
+    <!-- Benefits Grid - Platform capabilities -->
+    <BenefitsGrid 
+      title="Everything You Need to Scale Your Business"
+      description="Our comprehensive platform automates your entire growth process, from lead generation to customer success."
+      benefits={videoDemoData.benefits}
+      columns={3}
+    />
+
+    <!-- Progressive Form - Qualified lead capture -->
+    <ProgressiveForm 
+      title="Get Your Personalized Growth Strategy"
+      subtitle="Tell us about your business and we'll show you exactly how to achieve 10X growth in the next 90 days."
+      steps={["Company Info", "Growth Goals", "Contact Details"]}
+      finalCtaText="Get My Growth Strategy"
+    />
+
+    <!-- Testimonials - Results-focused social proof -->
+    <section class="py-16 md:py-20">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold theme-headline mb-4">
+          Real Results from Real Companies
+        </h2>
+        <p class="text-lg md:text-xl theme-paragraph max-w-3xl mx-auto">
+          See how companies like yours achieved dramatic growth with our platform
+        </p>
+      </div>
+      
+      <TestimonialSlider 
+        testimonials={videoDemoData.testimonials}
+        autoRotate={true}
+        rotateInterval={5000}
+        showDots={true}
+        showArrows={true}
+      />
+    </section>
+
+    <!-- FAQ Section - Address common technical concerns -->
+    <FAQSection 
+      title="Common Questions About Our Platform"
+      description="Everything you need to know about implementation, integrations, and results."
+      faqs={videoDemoData.faqs}
+    />
+
+    <!-- Risk Reversal - Remove trial anxiety -->
+    <RiskReversal 
+      title="Try Risk-Free for 14 Days"
+      subtitle="Experience the full power of our platform with zero commitment. See results or get your money back."
+      guarantees={videoDemoData.guarantees}
+      showBadge={true}
+      badgeText="No Credit Card Required"
+    />
+
+    <!-- Final Conversion CTA -->
+    <ConversionCTA 
+      headline="Ready to 10X Your Growth?"
+      subheadline="Join 5,000+ companies already scaling with our platform. Start your free trial today and see results within 7 days."
+      primaryText="Start Free Trial"
+      primaryHref="#progressive-form"
+      secondaryText="Schedule Demo"
+      secondaryHref="#book-demo"
+      showUrgency={true}
+      urgencyText="🚀 Join 500+ companies who started their growth journey this month"
+      showBenefits={true}
+      benefits={["14-day free trial", "No setup fees", "Cancel anytime"]}
+      variant="default"
+      size="xl"
+    />
+  </Container>
+</Layout>

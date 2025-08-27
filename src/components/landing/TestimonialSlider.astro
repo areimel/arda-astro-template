@@ -1,0 +1,464 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon/components";
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  title: string;
+  company: string;
+  avatar?: string;
+  rating: number; // Out of 5 stars
+}
+
+interface Props {
+  testimonials: Testimonial[];
+  autoRotate?: boolean;
+  rotateInterval?: number; // milliseconds
+  showDots?: boolean;
+  showArrows?: boolean;
+  class?: string;
+}
+
+const {
+  testimonials = [],
+  autoRotate = true,
+  rotateInterval = 5000,
+  showDots = true,
+  showArrows = true,
+  class: className = "",
+} = Astro.props;
+
+// Generate unique ID for this slider instance
+const sliderId = `testimonial-slider-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`testimonial-slider ${className}`} data-slider-id={sliderId}>
+  <div class="relative overflow-hidden">
+    <!-- Slides Container -->
+    <div class="slider-track flex transition-transform duration-500 ease-in-out">
+      {testimonials.map((testimonial, index) => (
+        <div class="slide w-full flex-shrink-0" data-slide={index}>
+          <div class="p-8 rounded-lg theme-card-bg mx-auto max-w-4xl">
+            <!-- Quote -->
+            <div class="text-center mb-8">
+              <Icon 
+                name="bx:bxs-quote-alt-left" 
+                class="w-12 h-12 mx-auto mb-6 opacity-30" 
+                style="color: var(--color-theme-button);"
+              />
+              <blockquote class="text-xl md:text-2xl leading-relaxed theme-paragraph font-light italic">
+                "{testimonial.quote}"
+              </blockquote>
+            </div>
+
+            <!-- Customer Details -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <!-- Avatar -->
+              {testimonial.avatar ? (
+                <img
+                  src={testimonial.avatar}
+                  alt={`${testimonial.name} avatar`}
+                  class="w-16 h-16 rounded-full object-cover"
+                />
+              ) : (
+                <div 
+                  class="w-16 h-16 rounded-full flex items-center justify-center text-white font-semibold"
+                  style="background-color: var(--color-theme-button);"
+                >
+                  {testimonial.name.split(' ').map(n => n[0]).join('')}
+                </div>
+              )}
+
+              <!-- Details -->
+              <div class="text-center sm:text-left">
+                <div class="theme-sub-headline font-semibold text-lg">
+                  {testimonial.name}
+                </div>
+                <div class="theme-paragraph opacity-75 text-sm">
+                  {testimonial.title} at {testimonial.company}
+                </div>
+                
+                <!-- Star Rating -->
+                <div class="flex justify-center sm:justify-start items-center mt-2 gap-1">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Icon
+                      name="bx:bxs-star"
+                      class={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400' : 'opacity-25'}`}
+                      style={i < testimonial.rating ? '' : 'color: var(--color-theme-stroke);'}
+                    />
+                  ))}
+                  <span class="ml-2 text-sm theme-paragraph opacity-75">
+                    {testimonial.rating}/5
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Navigation Arrows -->
+    {showArrows && testimonials.length > 1 && (
+      <>
+        <button
+          class="prev-btn absolute left-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 z-10"
+          style="background-color: var(--color-theme-button); color: white; focus-ring-color: var(--color-theme-button);"
+          aria-label="Previous testimonial"
+        >
+          <Icon name="bx:bx-chevron-left" class="w-6 h-6" />
+        </button>
+        <button
+          class="next-btn absolute right-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 z-10"
+          style="background-color: var(--color-theme-button); color: white; focus-ring-color: var(--color-theme-button);"
+          aria-label="Next testimonial"
+        >
+          <Icon name="bx:bx-chevron-right" class="w-6 h-6" />
+        </button>
+      </>
+    )}
+  </div>
+
+  <!-- Dots Navigation -->
+  {showDots && testimonials.length > 1 && (
+    <div class="flex justify-center items-center mt-8 gap-3">
+      {testimonials.map((_, index) => (
+        <button
+          class={`dot w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+            index === 0 ? 'dot-active' : ''
+          }`}
+          style="focus-ring-color: var(--color-theme-button);"
+          data-dot={index}
+          aria-label={`Go to testimonial ${index + 1}`}
+        />
+      ))}
+    </div>
+  )}
+
+  <!-- Progress Bar (Auto-rotate indicator) -->
+  {autoRotate && testimonials.length > 1 && (
+    <div class="mt-6 max-w-xs mx-auto">
+      <div class="w-full h-1 rounded-full opacity-25" style="background-color: var(--color-theme-stroke);">
+        <div 
+          class="progress-bar h-full rounded-full transition-none"
+          style="background-color: var(--color-theme-button); width: 0%;"
+        />
+      </div>
+    </div>
+  )}
+</div>
+
+<script define:vars={{ sliderId, autoRotate, rotateInterval }}>
+  (() => {
+    const slider = document.querySelector(`[data-slider-id="${sliderId}"]`);
+    if (!slider) return;
+
+    const track = slider.querySelector('.slider-track');
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    const prevBtn = slider.querySelector('.prev-btn');
+    const nextBtn = slider.querySelector('.next-btn');
+    const progressBar = slider.querySelector('.progress-bar');
+
+    if (!track || slides.length === 0) return;
+
+    let currentSlide = 0;
+    let autoRotateTimer = null;
+    let progressTimer = null;
+
+    // Update slider position and UI
+    function updateSlider() {
+      const translateX = -currentSlide * 100;
+      track.style.transform = `translateX(${translateX}%)`;
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.add('dot-active');
+          dot.style.backgroundColor = 'var(--color-theme-button)';
+          dot.style.opacity = '1';
+        } else {
+          dot.classList.remove('dot-active');
+          dot.style.backgroundColor = 'var(--color-theme-stroke)';
+          dot.style.opacity = '0.4';
+        }
+      });
+
+      // Reset progress bar
+      if (progressBar) {
+        progressBar.style.width = '0%';
+        progressBar.style.transition = 'none';
+        
+        // Start progress animation
+        if (autoRotate) {
+          setTimeout(() => {
+            progressBar.style.transition = `width ${rotateInterval}ms linear`;
+            progressBar.style.width = '100%';
+          }, 50);
+        }
+      }
+    }
+
+    // Go to specific slide
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlider();
+      resetAutoRotate();
+    }
+
+    // Go to next slide
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlider();
+    }
+
+    // Go to previous slide  
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlider();
+    }
+
+    // Reset auto-rotate timer
+    function resetAutoRotate() {
+      if (autoRotateTimer) {
+        clearInterval(autoRotateTimer);
+      }
+      
+      if (autoRotate && slides.length > 1) {
+        autoRotateTimer = setInterval(nextSlide, rotateInterval);
+      }
+    }
+
+    // Event listeners
+    if (prevBtn) {
+      prevBtn.addEventListener('click', prevSlide);
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', nextSlide);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Pause auto-rotate on hover
+    slider.addEventListener('mouseenter', () => {
+      if (autoRotateTimer) {
+        clearInterval(autoRotateTimer);
+        autoRotateTimer = null;
+      }
+      if (progressBar) {
+        progressBar.style.transition = 'none';
+      }
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      resetAutoRotate();
+    });
+
+    // Keyboard navigation
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextSlide();
+      }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    slider.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const touchDiff = touchStartX - touchEndX;
+
+      // Minimum swipe distance
+      if (Math.abs(touchDiff) > 50) {
+        if (touchDiff > 0) {
+          nextSlide(); // Swipe left, go to next
+        } else {
+          prevSlide(); // Swipe right, go to previous  
+        }
+      }
+    });
+
+    // Initialize
+    updateSlider();
+    resetAutoRotate();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (autoRotateTimer) {
+        clearInterval(autoRotateTimer);
+      }
+    });
+  })();
+</script>
+
+<style>
+  .testimonial-slider {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Smooth transitions for slider track */
+  .slider-track {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Navigation button hover effects */
+  .prev-btn:hover,
+  .next-btn:hover {
+    opacity: 0.9;
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.3);
+  }
+
+  .prev-btn:active,
+  .next-btn:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  /* Dot navigation styles */
+  .dot {
+    background-color: var(--color-theme-stroke);
+    opacity: 0.4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot:hover {
+    opacity: 0.7;
+    transform: scale(1.25);
+  }
+
+  .dot-active {
+    background-color: var(--color-theme-button);
+    opacity: 1;
+  }
+
+  /* Progress bar animation */
+  .progress-bar {
+    transition: width 0ms linear;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .testimonial-slider .p-8 {
+      padding: 1.5rem;
+    }
+    
+    .prev-btn,
+    .next-btn {
+      padding: 0.75rem;
+    }
+    
+    .prev-btn {
+      left: 1rem;
+    }
+    
+    .next-btn {
+      right: 1rem;
+    }
+    
+    .testimonial-slider blockquote {
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .testimonial-slider .p-8 {
+      padding: 1rem;
+    }
+
+    .prev-btn,
+    .next-btn {
+      padding: 0.5rem;
+      left: 0.5rem;
+    }
+    
+    .next-btn {
+      right: 0.5rem;
+    }
+    
+    .testimonial-slider blockquote {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .testimonial-slider .w-16.h-16 {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  /* Accessibility improvements */
+  .prev-btn:focus-visible,
+  .next-btn:focus-visible {
+    ring-offset-color: var(--color-theme-bg);
+  }
+
+  .dot:focus-visible {
+    ring-offset-color: var(--color-theme-bg);
+    outline: 2px solid var(--color-theme-button);
+    outline-offset: 2px;
+  }
+
+  /* Ensure proper contrast in all themes */
+  .testimonial-slider blockquote {
+    color: var(--color-theme-paragraph);
+  }
+
+  .testimonial-slider .theme-sub-headline {
+    color: var(--color-theme-sub-headline);
+  }
+
+  .testimonial-slider .theme-paragraph {
+    color: var(--color-theme-paragraph);
+  }
+
+  /* Loading state */
+  .testimonial-slider.loading .slider-track {
+    opacity: 0;
+  }
+
+  /* Animation for slide entrance */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide {
+    animation: slideIn 0.6s ease-out;
+  }
+
+  /* Ensure cards maintain theme styling */
+  .testimonial-slider .theme-card-bg {
+    background-color: var(--color-theme-card-bg);
+    border: 2px solid;
+    border-color: var(--color-theme-stroke);
+    border-opacity: 0.1;
+  }
+
+  /* Hover effect for entire testimonial card */
+  .testimonial-slider .theme-card-bg:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+</style>

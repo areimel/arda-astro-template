@@ -1,0 +1,174 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  faqs: FAQ[];
+  class?: string;
+}
+
+const {
+  title = "Frequently Asked Questions",
+  description = "Get answers to the most common questions about our product.",
+  faqs,
+  class: className,
+} = Astro.props;
+---
+
+<section class:list={["py-16 md:py-20", className]}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    {title && (
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold theme-headline mb-4">
+          {title}
+        </h2>
+        {description && (
+          <p class="text-lg md:text-xl theme-paragraph max-w-2xl mx-auto">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    <!-- FAQ Items -->
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="theme-card-bg border rounded-lg overflow-hidden" style="border-color: var(--color-theme-stroke);">
+          <button 
+            class="w-full px-6 py-4 text-left flex items-center justify-between hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style="focus:ring-color: var(--color-theme-button);"
+            data-faq-toggle={`faq-${index}`}
+            aria-expanded="false"
+            aria-controls={`faq-content-${index}`}
+          >
+            <span class="text-lg font-semibold theme-sub-headline pr-4">
+              {faq.question}
+            </span>
+            <Icon 
+              name="bx:bx-chevron-down" 
+              class="w-6 h-6 flex-shrink-0 transition-transform duration-200"
+              style="color: var(--color-theme-button);"
+              data-faq-icon={`faq-${index}`}
+            />
+          </button>
+          <div 
+            id={`faq-content-${index}`}
+            class="overflow-hidden transition-all duration-300 ease-in-out"
+            style="max-height: 0;"
+            data-faq-content={`faq-${index}`}
+            aria-hidden="true"
+          >
+            <div class="px-6 pb-4">
+              <div class="w-full h-px mb-4" style="background-color: var(--color-theme-stroke); opacity: 0.3;"></div>
+              <p class="theme-paragraph leading-relaxed">
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Still have questions CTA -->
+    <div class="text-center mt-12 pt-8 border-t" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+      <h3 class="text-xl font-semibold theme-sub-headline mb-2">
+        Still have questions?
+      </h3>
+      <p class="theme-paragraph mb-4">
+        Our team is here to help you get started.
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-lg theme-button-primary transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
+        style="focus:ring-color: var(--color-theme-button);"
+      >
+        <Icon name="bx:bx-support" class="w-5 h-5" />
+        Contact Support
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle FAQ accordion functionality
+    const faqToggles = document.querySelectorAll('[data-faq-toggle]');
+    
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-faq-toggle');
+        const content = document.querySelector(`[data-faq-content="${targetId}"]`);
+        const icon = document.querySelector(`[data-faq-icon="${targetId}"]`);
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other FAQ items
+        faqToggles.forEach(otherToggle => {
+          if (otherToggle !== this) {
+            const otherTargetId = otherToggle.getAttribute('data-faq-toggle');
+            const otherContent = document.querySelector(`[data-faq-content="${otherTargetId}"]`);
+            const otherIcon = document.querySelector(`[data-faq-icon="${otherTargetId}"]`);
+            
+            otherToggle.setAttribute('aria-expanded', 'false');
+            otherContent.style.maxHeight = '0';
+            otherContent.setAttribute('aria-hidden', 'true');
+            otherIcon.style.transform = 'rotate(0deg)';
+          }
+        });
+        
+        // Toggle current item
+        if (isExpanded) {
+          // Close
+          this.setAttribute('aria-expanded', 'false');
+          content.style.maxHeight = '0';
+          content.setAttribute('aria-hidden', 'true');
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          // Open
+          this.setAttribute('aria-expanded', 'true');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.setAttribute('aria-hidden', 'false');
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // Keyboard navigation
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Smooth transitions for accordion */
+  [data-faq-content] {
+    transition: max-height 0.3s ease-in-out;
+  }
+  
+  [data-faq-icon] {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Focus styles that work with theme system */
+  [data-faq-toggle]:focus {
+    outline: 2px solid var(--color-theme-button);
+    outline-offset: 2px;
+  }
+  
+  /* Hover effects */
+  [data-faq-toggle]:hover [data-faq-icon] {
+    transform: scale(1.1);
+  }
+</style>
