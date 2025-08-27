@@ -6,7 +6,16 @@
       "Bash(mv:*)",
       "Bash(mkdir:*)",
       "Bash(curl:*)",
-      "Bash(pnpm dev:*)"
+      "Bash(pnpm dev:*)",
+      "WebSearch",
+      "WebSearch",
+      "WebFetch(domain:unbounce.com)",
+      "Bash(timeout:*)",
+      "Bash(pnpm astro:*)",
+      "WebFetch(domain:localhost)",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(chmod:*)",
+      "Bash(.download-images.bat)"
     ],
     "deny": []
   }

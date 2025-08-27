@@ -1,0 +1,253 @@
+---
+import { Icon } from "astro-icon/components";
+import Link from "@/components/ui/link.astro";
+
+interface Props {
+  headline?: string;
+  subheadline?: string;
+  primaryText?: string;
+  primaryHref?: string;
+  secondaryText?: string;
+  secondaryHref?: string;
+  showUrgency?: boolean;
+  urgencyText?: string;
+  showBenefits?: boolean;
+  benefits?: string[];
+  variant?: "default" | "gradient" | "bordered" | "minimal";
+  size?: "sm" | "md" | "lg" | "xl";
+  class?: string;
+}
+
+const {
+  headline = "Ready to Transform Your Business?",
+  subheadline = "Join thousands of companies already seeing results. Start your journey today.",
+  primaryText = "Start Free Trial",
+  primaryHref = "#",
+  secondaryText = "Schedule Demo",
+  secondaryHref = "#",
+  showUrgency = true,
+  urgencyText = "🔥 Limited time: Save 30% on your first year",
+  showBenefits = true,
+  benefits = ["No setup fees", "Cancel anytime", "24/7 support"],
+  variant = "default",
+  size = "lg",
+  class: className,
+} = Astro.props;
+
+const variants = {
+  default: "theme-cta-bg",
+  gradient: "bg-gradient-to-br from-blue-600 to-purple-700 text-white",
+  bordered: "theme-card-bg border-2",
+  minimal: "theme-bg"
+};
+
+const sizes = {
+  sm: "py-12 md:py-16",
+  md: "py-16 md:py-20", 
+  lg: "py-20 md:py-24",
+  xl: "py-24 md:py-32"
+};
+---
+
+<section class:list={[sizes[size], className]}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class:list={[
+      "rounded-2xl p-8 md:p-12 text-center relative overflow-hidden",
+      variants[variant],
+      variant === "bordered" && "border-color: var(--color-theme-button)"
+    ]}>
+      
+      <!-- Background Pattern (for gradient variant) -->
+      {variant === "gradient" && (
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute inset-0 bg-white/20"></div>
+          <div class="absolute top-0 left-0 w-72 h-72 bg-white rounded-full opacity-20 -translate-x-36 -translate-y-36"></div>
+          <div class="absolute bottom-0 right-0 w-72 h-72 bg-white rounded-full opacity-20 translate-x-36 translate-y-36"></div>
+        </div>
+      )}
+
+      <!-- Urgency Banner -->
+      {showUrgency && urgencyText && (
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-orange-100 text-orange-800 border border-orange-200">
+          <Icon name="bx:bxs-time-five" class="w-4 h-4" />
+          <span class="font-semibold text-sm">
+            {urgencyText}
+          </span>
+        </div>
+      )}
+
+      <!-- Headlines -->
+      <div class="relative z-10 mb-8">
+        <h2 class:list={[
+          "text-3xl md:text-4xl lg:text-5xl font-bold mb-4 tracking-tight",
+          variant === "gradient" ? "text-white" : "theme-cta-headline"
+        ]}>
+          {headline}
+        </h2>
+        
+        {subheadline && (
+          <p class:list={[
+            "text-lg md:text-xl max-w-2xl mx-auto leading-relaxed",
+            variant === "gradient" ? "text-white/90" : "theme-cta-headline"
+          ]}>
+            {subheadline}
+          </p>
+        )}
+      </div>
+
+      <!-- Benefits List -->
+      {showBenefits && benefits.length > 0 && (
+        <div class="flex flex-wrap items-center justify-center gap-6 md:gap-8 mb-8">
+          {benefits.map((benefit) => (
+            <div class="flex items-center gap-2">
+              <Icon 
+                name="bx:bxs-check-circle" 
+                class="w-5 h-5 flex-shrink-0"
+                style={variant === "gradient" ? "color: #22c55e;" : "color: var(--color-theme-button);"}
+              />
+              <span class:list={[
+                "font-medium",
+                variant === "gradient" ? "text-white/90" : "theme-cta-headline"
+              ]}>
+                {benefit}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+        <a
+          href={primaryHref}
+          class="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 shadow-xl hover:shadow-2xl theme-button-primary"
+          style="focus:ring-color: var(--color-theme-button);"
+        >
+          <Icon name="bx:bx-rocket" class="w-6 h-6 group-hover:animate-pulse" />
+          {primaryText}
+          <Icon name="bx:bx-right-arrow-alt" class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </a>
+
+        {secondaryText && (
+          <a
+            href={secondaryHref}
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 theme-button-outline"
+            style="focus:ring-color: var(--color-theme-button);"
+          >
+            <Icon name="bx:bx-calendar" class="w-5 h-5" />
+            {secondaryText}
+          </a>
+        )}
+      </div>
+
+      <!-- Trust Signals -->
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
+        <div class="flex items-center gap-2">
+          <Icon 
+            name="bx:bxs-shield" 
+            class="w-4 h-4"
+            style={variant === "gradient" ? "color: #22c55e;" : "color: var(--color-theme-button);"}
+          />
+          <span class:list={[
+            variant === "gradient" ? "text-white/80" : "theme-cta-headline opacity-80"
+          ]}>
+            SSL Secure
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon 
+            name="bx:bxs-credit-card" 
+            class="w-4 h-4"
+            style={variant === "gradient" ? "color: #22c55e;" : "color: var(--color-theme-button);"}
+          />
+          <span class:list={[
+            variant === "gradient" ? "text-white/80" : "theme-cta-headline opacity-80"
+          ]}>
+            No Credit Card
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon 
+            name="bx:bxs-time" 
+            class="w-4 h-4"
+            style={variant === "gradient" ? "color: #22c55e;" : "color: var(--color-theme-button);"}
+          />
+          <span class:list={[
+            variant === "gradient" ? "text-white/80" : "theme-cta-headline opacity-80"
+          ]}>
+            Setup in 5 min
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Proof -->
+    <div class="text-center mt-8">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="flex -space-x-2">
+          {[1,2,3,4,5].map((i) => (
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 border-2 border-white flex items-center justify-center text-white font-semibold text-sm">
+              {String.fromCharCode(64 + i)}
+            </div>
+          ))}
+        </div>
+        <div class="flex">
+          {[1,2,3,4,5].map(() => (
+            <Icon name="bx:bxs-star" class="w-5 h-5" style="color: #fbbf24;" />
+          ))}
+        </div>
+      </div>
+      <p class="theme-paragraph">
+        <span class="font-bold">2,500+ companies</span> have already transformed their business with our solution.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Custom gradient background for gradient variant */
+  .bg-gradient-to-br {
+    background: linear-gradient(to bottom right, #2563eb, #7c3aed);
+  }
+  
+  /* Hover animations */
+  .group:hover .group-hover\\:animate-pulse {
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Enhanced focus states */
+  a:focus {
+    outline: none;
+  }
+  
+  /* Button hover effects */
+  .hover\\:scale-105:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Shadow enhancements */
+  .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+  }
+  
+  .hover\\:shadow-2xl:hover {
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  }
+  
+  /* Responsive text scaling */
+  @media (max-width: 640px) {
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+
+// New conversion-focused components
+import LeadMagnetHero from "@/components/landing/LeadMagnetHero.astro";
+import BenefitsGrid from "@/components/landing/BenefitsGrid.astro";
+import TrustBar from "@/components/landing/TrustBar.astro";
+import TestimonialSlider from "@/components/landing/TestimonialSlider.astro";
+import FAQSection from "@/components/landing/FAQSection.astro";
+import RiskReversal from "@/components/landing/RiskReversal.astro";
+import ConversionCTA from "@/components/landing/ConversionCTA.astro";
+
+// Sample data
+import leadMagnetData from "@/components/landing/sample-data/lead-magnet-data.json";
+---
+
+<Layout title="Free Business Growth Checklist - 47 Proven Strategies">
+  <Container>
+    <!-- Lead Magnet Hero - Above the fold conversion focus -->
+    <LeadMagnetHero 
+      headline={leadMagnetData.hero.headline}
+      subheadline={leadMagnetData.hero.subheadline}
+      leadMagnetTitle={leadMagnetData.hero.leadMagnetTitle}
+      benefits={leadMagnetData.hero.benefits}
+      formAction="https://api.web3forms.com/submit"
+    />
+
+    <!-- Trust Bar - Social proof immediately after hero -->
+    <TrustBar 
+      headline="As featured in leading business publications"
+      logos={leadMagnetData.trustLogos}
+    />
+
+    <!-- Benefits Grid - Why this lead magnet is valuable -->
+    <BenefitsGrid 
+      title="Why This Checklist Works"
+      description="Discover what makes our growth strategies different from generic business advice."
+      benefits={leadMagnetData.benefits}
+      columns={2}
+    />
+
+    <!-- Testimonials - Social proof from real results -->
+    <TestimonialSlider 
+      testimonials={leadMagnetData.testimonials}
+      autoRotate={true}
+      rotateInterval={6000}
+    />
+
+    <!-- FAQ Section - Address common objections -->
+    <FAQSection 
+      title="Frequently Asked Questions"
+      description="Everything you need to know about the Business Growth Checklist."
+      faqs={leadMagnetData.faqs}
+    />
+
+    <!-- Risk Reversal - Remove final concerns -->
+    <RiskReversal 
+      title="Download Risk-Free"
+      subtitle="Get instant access to proven growth strategies with complete confidence."
+      guarantees={leadMagnetData.guarantees}
+      showBadge={true}
+      badgeText="Trusted by 2,500+ Companies"
+    />
+
+    <!-- Final Conversion CTA -->
+    <ConversionCTA 
+      headline="Don't Miss Out on These Growth Strategies"
+      subheadline="Join 2,500+ successful companies. Download your free checklist now and start growing today."
+      primaryText="Get My Free Checklist"
+      primaryHref="#lead-magnet-form"
+      secondaryText="View Sample Pages"
+      secondaryHref="#sample-preview"
+      showUrgency={true}
+      urgencyText="⏰ Over 1,000 downloads this week"
+      showBenefits={true}
+      benefits={["Instant PDF download", "No credit card required", "Unsubscribe anytime"]}
+      variant="gradient"
+      size="lg"
+    />
+  </Container>
+</Layout>

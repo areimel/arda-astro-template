@@ -1,0 +1,248 @@
+---
+export interface Logo {
+  src: string;
+  alt: string;
+  url?: string;
+}
+
+export interface Props {
+  headline?: string;
+  logos: Logo[];
+  class?: string;
+}
+
+const { 
+  headline = "Trusted by industry leaders", 
+  logos, 
+  class: className = "" 
+} = Astro.props;
+---
+
+<section class={`py-12 ${className}`}>
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Headline -->
+    {headline && (
+      <div class="text-center mb-8">
+        <p class="text-sm font-medium theme-paragraph opacity-60 tracking-wide uppercase">
+          {headline}
+        </p>
+      </div>
+    )}
+    
+    <!-- Logo Grid -->
+    <div class="trust-bar-container">
+      <div class="trust-bar-track">
+        {logos.map((logo) => (
+          <div class="trust-bar-item">
+            {logo.url ? (
+              <a 
+                href={logo.url}
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="trust-bar-link"
+                aria-label={`Visit ${logo.alt}`}
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt}
+                  class="trust-bar-logo"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <img 
+                src={logo.src} 
+                alt={logo.alt}
+                class="trust-bar-logo"
+                loading="lazy"
+              />
+            )}
+          </div>
+        ))}
+        
+        <!-- Duplicate logos for seamless scroll effect on mobile -->
+        {logos.map((logo, index) => (
+          <div class="trust-bar-item trust-bar-duplicate">
+            {logo.url ? (
+              <a 
+                href={logo.url}
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="trust-bar-link"
+                aria-label={`Visit ${logo.alt}`}
+                tabindex="-1"
+              >
+                <img 
+                  src={logo.src} 
+                  alt=""
+                  class="trust-bar-logo"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <img 
+                src={logo.src} 
+                alt=""
+                class="trust-bar-logo"
+                loading="lazy"
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-bar-container {
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  .trust-bar-track {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    animation: scroll 30s linear infinite;
+  }
+
+  .trust-bar-item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    height: 60px;
+  }
+
+  .trust-bar-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease;
+  }
+
+  .trust-bar-link:hover {
+    transform: scale(1.05);
+  }
+
+  .trust-bar-logo {
+    max-width: 100px;
+    max-height: 40px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.7);
+    transition: filter 0.3s ease, transform 0.2s ease;
+  }
+
+  .trust-bar-link:hover .trust-bar-logo,
+  .trust-bar-logo:hover {
+    filter: grayscale(0%) opacity(1);
+  }
+
+  /* Hide duplicates on larger screens */
+  @media (min-width: 768px) {
+    .trust-bar-duplicate {
+      display: none;
+    }
+    
+    .trust-bar-track {
+      animation: none;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+    
+    .trust-bar-container {
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    
+    .trust-bar-item {
+      min-width: 140px;
+      height: 70px;
+    }
+    
+    .trust-bar-logo {
+      max-width: 120px;
+      max-height: 50px;
+    }
+  }
+
+  /* Pause animation on hover for better UX */
+  .trust-bar-container:hover .trust-bar-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - 1rem));
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .trust-bar-item {
+      min-width: 100px;
+      height: 50px;
+    }
+    
+    .trust-bar-logo {
+      max-width: 80px;
+      max-height: 35px;
+    }
+    
+    .trust-bar-track {
+      gap: 1.5rem;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .trust-bar-logo {
+      filter: grayscale(100%) opacity(0.9);
+    }
+    
+    .trust-bar-link:hover .trust-bar-logo,
+    .trust-bar-logo:hover {
+      filter: grayscale(0%) opacity(1);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .trust-bar-track {
+      animation: none;
+    }
+    
+    .trust-bar-container {
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    
+    .trust-bar-duplicate {
+      display: none;
+    }
+  }
+</style>

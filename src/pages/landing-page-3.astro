@@ -1,0 +1,197 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import Link from "@/components/ui/link.astro";
+
+// Benefits-progressive focused components
+import BenefitsGrid from "@/components/landing/BenefitsGrid.astro";
+import TrustBar from "@/components/landing/TrustBar.astro";
+import TestimonialSlider from "@/components/landing/TestimonialSlider.astro";
+import FAQSection from "@/components/landing/FAQSection.astro";
+import RiskReversal from "@/components/landing/RiskReversal.astro";
+import ProgressiveForm from "@/components/landing/ProgressiveForm.astro";
+import ConversionCTA from "@/components/landing/ConversionCTA.astro";
+
+// Sample data
+import benefitsProgressiveData from "@/components/landing/sample-data/benefits-progressive-data.json";
+---
+
+<Layout title="Stop Wasting Marketing Budget - Proven Growth System">
+  <Container>
+    <!-- Problem-Focused Hero - Hook attention with pain points -->
+    <section class="py-16 md:py-20 lg:py-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold theme-headline mb-6 leading-tight">
+          {benefitsProgressiveData.hero.headline}
+        </h1>
+        <p class="text-xl md:text-2xl theme-paragraph mb-8 max-w-3xl mx-auto leading-relaxed">
+          {benefitsProgressiveData.hero.subheadline}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link 
+            href={benefitsProgressiveData.hero.ctaHref}
+            size="lg"
+            class="px-8 py-4 text-lg font-bold"
+          >
+            <Icon name="bx:bx-search-alt" class="w-6 h-6 mr-2" />
+            {benefitsProgressiveData.hero.ctaText}
+          </Link>
+          <p class="text-sm theme-paragraph opacity-70">
+            ⏱️ 3-minute assessment • No credit card required
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Bar - Build initial credibility -->
+    <TrustBar 
+      headline="Trusted by leading growth companies"
+      logos={benefitsProgressiveData.trustLogos}
+    />
+
+    <!-- Problem Identification - Progressive revelation Part 1 -->
+    <section class="py-16 md:py-20" id="solution-reveal">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold theme-headline mb-4">
+          Are These Marketing Problems Killing Your Growth?
+        </h2>
+        <p class="text-lg md:text-xl theme-paragraph max-w-3xl mx-auto">
+          If you're experiencing any of these issues, you're not alone. But there's a better way.
+        </p>
+      </div>
+      
+      <BenefitsGrid 
+        benefits={benefitsProgressiveData.problemBenefits}
+        columns={3}
+        class="mb-12"
+      />
+      
+      <div class="text-center">
+        <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full theme-card-bg border"
+             style="border-color: var(--color-theme-button);">
+          <Icon name="bx:bx-down-arrow-alt" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="font-semibold theme-sub-headline">Here's how we solve this</span>
+          <Icon name="bx:bx-down-arrow-alt" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Benefits - Progressive revelation Part 2 -->
+    <section class="py-16 md:py-20">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold theme-headline mb-4">
+          The Complete Solution to Your Growth Challenges
+        </h2>
+        <p class="text-lg md:text-xl theme-paragraph max-w-3xl mx-auto">
+          Our proven system transforms these problems into competitive advantages.
+        </p>
+      </div>
+      
+      <BenefitsGrid 
+        benefits={benefitsProgressiveData.solutionBenefits}
+        columns={3}
+        class="mb-12"
+      />
+    </section>
+
+    <!-- Case Studies - Social proof with results -->
+    <section class="py-16 md:py-20 theme-section-bg">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold theme-headline mb-4">
+          Real Companies, Real Results
+        </h2>
+        <p class="text-lg md:text-xl theme-paragraph max-w-3xl mx-auto">
+          See the exact results our customers achieved using this system.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {benefitsProgressiveData.caseStudies.map((study) => (
+          <div class="theme-card-bg border rounded-xl p-6 md:p-8 text-center hover:shadow-lg transition-all duration-300"
+               style="border-color: var(--color-theme-stroke);">
+            <div class="flex items-center justify-center mb-4">
+              {Array.from({length: study.rating}).map(() => (
+                <Icon name="bx:bxs-star" class="w-5 h-5" style="color: #fbbf24;" />
+              ))}
+            </div>
+            <blockquote class="text-lg theme-paragraph italic mb-6 leading-relaxed">
+              "{study.quote}"
+            </blockquote>
+            <div class="border-t pt-6" style="border-color: var(--color-theme-stroke); opacity: 0.3;">
+              <div class="flex items-center justify-center gap-4 mb-4">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+                  {study.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div class="text-left">
+                  <div class="font-semibold theme-sub-headline">{study.name}</div>
+                  <div class="text-sm theme-paragraph opacity-70">{study.title}, {study.company}</div>
+                </div>
+              </div>
+              <div class="px-4 py-2 rounded-lg font-bold text-sm" style="background: var(--color-theme-button); color: var(--color-theme-bg);">
+                {study.results}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Advanced Benefits - Progressive revelation Part 3 -->
+    <section class="py-16 md:py-20">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold theme-headline mb-4">
+          Advanced Features That Maximize Your ROI
+        </h2>
+        <p class="text-lg md:text-xl theme-paragraph max-w-3xl mx-auto">
+          Go beyond basic automation with AI-powered growth intelligence.
+        </p>
+      </div>
+      
+      <BenefitsGrid 
+        benefits={benefitsProgressiveData.advancedBenefits}
+        columns={2}
+      />
+    </section>
+
+    <!-- Progressive Form - Capture qualified leads -->
+    <ProgressiveForm 
+      title="Get Your Custom Growth Plan"
+      subtitle="Answer a few questions and we'll create a personalized strategy to solve your specific growth challenges."
+      steps={["Current Situation", "Growth Goals", "Contact Info"]}
+      finalCtaText="Get My Growth Plan"
+    />
+
+    <!-- FAQ Section - Address deeper concerns -->
+    <FAQSection 
+      title="Everything You Need to Know"
+      description="Get answers to the most important questions about our growth system."
+      faqs={benefitsProgressiveData.faqs}
+    />
+
+    <!-- Risk Reversal - Remove final objections -->
+    <RiskReversal 
+      title="Your Success is Guaranteed"
+      subtitle="We're so confident in our system, we guarantee your results or your money back."
+      guarantees={benefitsProgressiveData.guarantees}
+      showBadge={true}
+      badgeText="2X Results Guarantee"
+    />
+
+    <!-- Final Conversion CTA -->
+    <ConversionCTA 
+      headline="Transform Your Business Growth Today"
+      subheadline="Join 1,000+ companies who've already implemented this proven system. Stop wasting money and start seeing guaranteed results."
+      primaryText="Start My Transformation"
+      primaryHref="#progressive-form"
+      secondaryText="Book Strategy Call"
+      secondaryHref="#book-call"
+      showUrgency={true}
+      urgencyText="⚡ Limited: Only 50 strategy sessions available this month"
+      showBenefits={true}
+      benefits={["2X results guarantee", "Dedicated success manager", "Complete setup included"]}
+      variant="bordered"
+      size="xl"
+    />
+  </Container>
+</Layout>

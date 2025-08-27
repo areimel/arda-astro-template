@@ -1,0 +1,170 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Guarantee {
+  icon: string;
+  title: string;
+  description: string;
+  accentColor?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  guarantees: Guarantee[];
+  showBadge?: boolean;
+  badgeText?: string;
+  class?: string;
+}
+
+const {
+  title = "Risk-Free Guarantee",
+  subtitle = "Try our product with complete confidence. We've got you covered.",
+  guarantees,
+  showBadge = true,
+  badgeText = "100% Satisfaction Guaranteed",
+  class: className,
+} = Astro.props;
+---
+
+<section class:list={["py-16 md:py-20", className]}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header with Badge -->
+    <div class="text-center mb-12 md:mb-16">
+      {showBadge && (
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 theme-card-bg border"
+             style="border-color: var(--color-theme-button); background: var(--color-theme-bg);">
+          <Icon name="bx:bxs-badge-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="font-semibold theme-sub-headline text-sm tracking-wide">
+            {badgeText}
+          </span>
+        </div>
+      )}
+      
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold theme-headline mb-4">
+        {title}
+      </h2>
+      
+      {subtitle && (
+        <p class="text-lg md:text-xl theme-paragraph max-w-3xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <!-- Guarantees Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+      {guarantees.map((guarantee, index) => (
+        <div class="text-center p-6 md:p-8 rounded-xl theme-card-bg border hover:shadow-lg transition-all duration-300 group"
+             style="border-color: var(--color-theme-stroke);">
+          <!-- Icon -->
+          <div class="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full mb-6 transition-all duration-300 group-hover:scale-110"
+               style={`background: ${guarantee.accentColor || 'var(--color-theme-button)'}`}>
+            <Icon 
+              name={guarantee.icon} 
+              class="w-8 h-8 md:w-10 md:h-10" 
+              style="color: var(--color-theme-bg);" 
+            />
+          </div>
+          
+          <!-- Content -->
+          <h3 class="text-xl font-bold theme-sub-headline mb-3">
+            {guarantee.title}
+          </h3>
+          <p class="theme-paragraph leading-relaxed">
+            {guarantee.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Trust Signals Bar -->
+    <div class="bg-gradient-to-r from-transparent via-gray-100 to-transparent theme-section-bg border-t border-b py-8"
+         style="border-color: var(--color-theme-stroke); opacity: 0.6;">
+      <div class="flex flex-wrap items-center justify-center gap-6 md:gap-12">
+        <!-- Security Badge -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bxs-shield" class="w-6 h-6" style="color: var(--color-theme-button);" />
+          <span class="font-semibold theme-sub-headline">SSL Secured</span>
+        </div>
+        
+        <!-- Privacy Badge -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bxs-lock-alt" class="w-6 h-6" style="color: var(--color-theme-button);" />
+          <span class="font-semibold theme-sub-headline">Privacy Protected</span>
+        </div>
+        
+        <!-- Support Badge -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bxs-user-voice" class="w-6 h-6" style="color: var(--color-theme-button);" />
+          <span class="font-semibold theme-sub-headline">24/7 Support</span>
+        </div>
+        
+        <!-- Money Back Badge -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bxs-credit-card" class="w-6 h-6" style="color: var(--color-theme-button);" />
+          <span class="font-semibold theme-sub-headline">Money Back</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-12">
+      <div class="max-w-2xl mx-auto">
+        <h3 class="text-2xl font-bold theme-sub-headline mb-4">
+          Ready to get started risk-free?
+        </h3>
+        <p class="theme-paragraph mb-6">
+          Join thousands of satisfied customers who trust our guarantee.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg theme-button-primary transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
+             style="focus:ring-color: var(--color-theme-button);">
+            <Icon name="bx:bx-rocket" class="w-5 h-5" />
+            Start Free Trial
+          </a>
+          <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg theme-button-outline transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
+             style="focus:ring-color: var(--color-theme-button);">
+            <Icon name="bx:bx-phone" class="w-5 h-5" />
+            Talk to Sales
+          </a>
+        </div>
+        
+        <!-- Fine Print -->
+        <p class="text-sm theme-paragraph opacity-70 mt-6 max-w-lg mx-auto">
+          No credit card required. Cancel anytime. Your data is secure and private.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Gradient background for trust signals */
+  .bg-gradient-to-r {
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      var(--color-theme-section-bg) 20%,
+      var(--color-theme-section-bg) 80%,
+      transparent 100%
+    );
+  }
+  
+  /* Hover effects for guarantee cards */
+  .group:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Custom focus styles */
+  a:focus {
+    outline: 2px solid var(--color-theme-button);
+    outline-offset: 2px;
+  }
+  
+  /* Animation for icons */
+  .group:hover .w-16,
+  .group:hover .w-20 {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+</style>

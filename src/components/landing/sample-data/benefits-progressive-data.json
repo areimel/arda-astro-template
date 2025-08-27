@@ -1,0 +1,160 @@
+{
+  "hero": {
+    "headline": "Stop Wasting Money on Marketing That Doesn't Work",
+    "subheadline": "Most businesses lose 60% of their marketing budget on ineffective campaigns. Discover the proven system that guarantees measurable growth.",
+    "ctaText": "Show Me The Solution",
+    "ctaHref": "#solution-reveal"
+  },
+  "problemBenefits": [
+    {
+      "icon": "bx:bx-x-circle",
+      "title": "Scattered Marketing Efforts",
+      "description": "Your team is juggling multiple tools, campaigns, and strategies without a unified approach, leading to wasted time and inconsistent results.",
+      "accentColor": "#ef4444"
+    },
+    {
+      "icon": "bx:bx-trending-down", 
+      "title": "Declining Lead Quality",
+      "description": "You're generating leads, but they're not converting. Your sales team is frustrated with low-quality prospects that waste their time.",
+      "accentColor": "#ef4444"
+    },
+    {
+      "icon": "bx:bx-question-mark",
+      "title": "No Clear Growth Strategy",
+      "description": "You're trying different tactics without understanding what's working. There's no systematic approach to scaling your business.",
+      "accentColor": "#ef4444"
+    }
+  ],
+  "solutionBenefits": [
+    {
+      "icon": "bx:bx-check-circle",
+      "title": "Unified Growth Platform",
+      "description": "Combine all your marketing efforts into one intelligent system that coordinates every touchpoint for maximum impact and efficiency.",
+      "accentColor": "#22c55e"
+    },
+    {
+      "icon": "bx:bx-trending-up", 
+      "title": "AI-Qualified Leads",
+      "description": "Our smart lead scoring analyzes 50+ data points to identify high-value prospects, increasing your conversion rates by 300%.",
+      "accentColor": "#22c55e"
+    },
+    {
+      "icon": "bx:bx-target-lock",
+      "title": "Proven Growth Framework",
+      "description": "Follow our battle-tested methodology used by 1000+ companies to achieve predictable, scalable growth every quarter.",
+      "accentColor": "#22c55e"
+    }
+  ],
+  "advancedBenefits": [
+    {
+      "icon": "bx:bx-brain",
+      "title": "Predictive Analytics",
+      "description": "Know exactly which prospects will convert and when, with AI-powered predictions that are 94% accurate."
+    },
+    {
+      "icon": "bx:bx-rocket", 
+      "title": "Automated Campaigns",
+      "description": "Set up once and watch your campaigns optimize themselves, adjusting bids, targeting, and messaging in real-time."
+    },
+    {
+      "icon": "bx:bx-line-chart-down",
+      "title": "Cost Reduction",
+      "description": "Reduce your customer acquisition costs by up to 70% while increasing lead volume and quality simultaneously."
+    },
+    {
+      "icon": "bx:bx-time-five",
+      "title": "Time Savings",
+      "description": "Automate 80% of your marketing tasks, freeing up 15+ hours per week to focus on strategy and growth planning."
+    }
+  ],
+  "caseStudies": [
+    {
+      "quote": "We went from $50K to $2M ARR in 18 months using this exact system. The ROI tracking alone saved us $200K in wasted ad spend.",
+      "name": "Alex Thompson",
+      "title": "CEO",
+      "company": "TechStart Solutions",
+      "avatar": "/images/testimonials/alex-t.jpg",
+      "rating": 5,
+      "results": "$1.95M ARR increase in 18 months"
+    },
+    {
+      "quote": "This platform identified our highest-value market segment that we didn't even know existed. Revenue per customer increased 400%.",
+      "name": "Maria Rodriguez",
+      "title": "CMO", 
+      "company": "Growth Dynamics",
+      "avatar": "/images/testimonials/maria-r.jpg",
+      "rating": 5,
+      "results": "400% increase in revenue per customer"
+    },
+    {
+      "quote": "The automation features gave us back 20 hours per week while doubling our lead generation. It's like having a marketing team of 10 people.",
+      "name": "James Wilson",
+      "title": "Founder",
+      "company": "Scale Labs",
+      "avatar": "/images/testimonials/james-w.jpg", 
+      "rating": 5,
+      "results": "100% increase in leads, 20 hours saved weekly"
+    }
+  ],
+  "trustLogos": [
+    {
+      "src": "/images/logos/award-g2.svg",
+      "alt": "G2 Leader",
+      "url": "https://g2.com"
+    },
+    {
+      "src": "/images/logos/award-capterra.svg", 
+      "alt": "Capterra Best Value",
+      "url": "https://capterra.com"
+    },
+    {
+      "src": "/images/logos/award-trustpilot.svg",
+      "alt": "Trustpilot Excellent", 
+      "url": "https://trustpilot.com"
+    },
+    {
+      "src": "/images/logos/certification-soc2.svg",
+      "alt": "SOC2 Certified",
+      "url": "#"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How is this different from other marketing automation tools?",
+      "answer": "Unlike traditional tools that just automate tasks, we provide a complete growth methodology with AI-powered optimization. Our system actually thinks and makes decisions to improve your results continuously."
+    },
+    {
+      "question": "What if I already have marketing tools in place?",
+      "answer": "Perfect! We integrate with 500+ existing tools and can often improve their performance by 2-3X. You don't need to replace everything - we make what you have work better together."
+    },
+    {
+      "question": "How quickly will I see results?",
+      "answer": "Most customers see improved lead quality within 2 weeks and measurable ROI improvements within 30-45 days. The AI gets smarter over time, so results compound monthly."
+    },
+    {
+      "question": "Do I need technical expertise to use this?", 
+      "answer": "Not at all. Our platform is designed for marketers, not developers. We also provide white-glove setup and a dedicated success manager for the first 90 days."
+    },
+    {
+      "question": "What's your guarantee?",
+      "answer": "We guarantee you'll see at least 2X improvement in lead quality within 60 days, or we'll refund 100% of your investment and help you transition to another solution."
+    }
+  ],
+  "guarantees": [
+    {
+      "icon": "bx:bx-medal",
+      "title": "2X Results Guarantee", 
+      "description": "Double your lead quality and conversion rates within 60 days, or get 100% of your money back. No questions asked."
+    },
+    {
+      "icon": "bx:bx-user-voice",
+      "title": "Dedicated Success Manager",
+      "description": "Get a dedicated expert for your first 90 days who ensures you achieve your growth goals and maximize ROI."
+    },
+    {
+      "icon": "bx:bx-infinite",
+      "title": "Unlimited Growth Potential",
+      "description": "No limits on leads, campaigns, or users. Scale to any size without worrying about hitting artificial restrictions or price increases."
+    }
+  ]
+}

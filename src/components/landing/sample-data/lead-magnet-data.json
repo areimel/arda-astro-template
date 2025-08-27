@@ -1,0 +1,123 @@
+{
+  "hero": {
+    "headline": "Get Your FREE Business Growth Checklist",
+    "subheadline": "Discover the 47 proven strategies that helped 500+ companies increase revenue by 300% in 12 months.",
+    "leadMagnetTitle": "The Ultimate Business Growth Checklist (PDF)",
+    "benefits": [
+      "47 actionable growth strategies",
+      "Real case studies from successful companies", 
+      "Step-by-step implementation guide",
+      "Bonus: Resource templates included",
+      "Instant download - no waiting"
+    ]
+  },
+  "benefits": [
+    {
+      "icon": "bx:bx-trending-up",
+      "title": "Proven Results",
+      "description": "These strategies have been tested by 500+ companies and consistently deliver 200-300% growth improvements."
+    },
+    {
+      "icon": "bx:bx-time-five", 
+      "title": "Quick Implementation",
+      "description": "Start seeing results within 30 days. Each strategy includes step-by-step instructions for immediate action."
+    },
+    {
+      "icon": "bx:bx-target-lock",
+      "title": "Industry-Specific",
+      "description": "Tailored approaches for SaaS, e-commerce, services, and traditional businesses. Find what works for your industry."
+    },
+    {
+      "icon": "bx:bx-support",
+      "title": "Expert Support",
+      "description": "Get access to our private community and monthly Q&A sessions with business growth experts."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "This checklist helped us identify 12 growth opportunities we were missing. We implemented 3 strategies and saw a 45% revenue increase in 6 weeks.",
+      "name": "Sarah Johnson",
+      "title": "CEO",
+      "company": "TechStart Solutions",
+      "avatar": "/images/testimonials/sarah-j.jpg",
+      "rating": 5
+    },
+    {
+      "quote": "Finally, a practical guide that actually works. No fluff, just actionable strategies that deliver real results. Highly recommended!",
+      "name": "Michael Chen",
+      "title": "Founder", 
+      "company": "Growth Labs",
+      "avatar": "/images/testimonials/michael-c.jpg",
+      "rating": 5
+    },
+    {
+      "quote": "The templates alone saved us 20+ hours of work. The strategies are gold - we've already implemented 8 of them with amazing results.",
+      "name": "Lisa Rodriguez",
+      "title": "Marketing Director",
+      "company": "Scale Dynamics",
+      "avatar": "/images/testimonials/lisa-r.jpg", 
+      "rating": 5
+    }
+  ],
+  "trustLogos": [
+    {
+      "src": "/images/logos/featured-techcrunch.svg",
+      "alt": "As featured in TechCrunch",
+      "url": "https://techcrunch.com"
+    },
+    {
+      "src": "/images/logos/featured-forbes.svg", 
+      "alt": "As featured in Forbes",
+      "url": "https://forbes.com"
+    },
+    {
+      "src": "/images/logos/featured-inc.svg",
+      "alt": "As featured in Inc Magazine", 
+      "url": "https://inc.com"
+    },
+    {
+      "src": "/images/logos/featured-entrepreneur.svg",
+      "alt": "As featured in Entrepreneur",
+      "url": "https://entrepreneur.com"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How is this different from other business advice?",
+      "answer": "This checklist contains only strategies that have been tested with real companies and produced measurable results. No theory - just proven tactics with case studies and implementation guides."
+    },
+    {
+      "question": "Will this work for my industry?",
+      "answer": "Yes! The checklist includes industry-specific adaptations for SaaS, e-commerce, professional services, and traditional businesses. Plus, the core principles apply universally."
+    },
+    {
+      "question": "How quickly can I see results?",
+      "answer": "Many companies see initial improvements within 2-4 weeks. The quick-win strategies are designed for immediate implementation, while the advanced strategies build long-term growth."
+    },
+    {
+      "question": "Is there any ongoing cost or commitment?", 
+      "answer": "None at all. This is a one-time free download with no strings attached. You'll get occasional valuable tips via email, but you can unsubscribe anytime."
+    },
+    {
+      "question": "What format is the checklist?",
+      "answer": "You'll receive a beautifully designed 47-page PDF that's easy to print, share with your team, and reference. Plus bonus Excel templates for implementation tracking."
+    }
+  ],
+  "guarantees": [
+    {
+      "icon": "bx:bxs-shield",
+      "title": "No Risk Guarantee", 
+      "description": "Your information is completely secure and will never be shared. Download immediately with no waiting."
+    },
+    {
+      "icon": "bx:bxs-user-voice",
+      "title": "Expert Support",
+      "description": "Get access to our private Facebook community and monthly expert Q&A sessions at no extra cost."
+    },
+    {
+      "icon": "bx:bx-time",
+      "title": "Instant Access",
+      "description": "Immediate PDF download - no waiting for email delivery. Start implementing strategies within minutes."
+    }
+  ]
+}
