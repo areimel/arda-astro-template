@@ -1,0 +1,7 @@
+<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="15" cy="20" r="8" fill="#00a1e0"/>
+  <circle cx="25" cy="15" r="6" fill="#009ee0" opacity="0.8"/>
+  <circle cx="32" cy="22" r="5" fill="#0084d6" opacity="0.6"/>
+  <circle cx="38" cy="16" r="4" fill="#0070c7" opacity="0.4"/>
+  <text x="50" y="25" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151">Salesforce</text>
+</svg>

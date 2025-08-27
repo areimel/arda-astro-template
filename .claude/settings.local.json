@@ -12,7 +12,10 @@
       "WebFetch(domain:unbounce.com)",
       "Bash(timeout:*)",
       "Bash(pnpm astro:*)",
-      "WebFetch(domain:localhost)"
+      "WebFetch(domain:localhost)",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(chmod:*)",
+      "Bash(.download-images.bat)"
     ],
     "deny": []
   }
