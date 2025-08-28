@@ -1,0 +1,194 @@
+---
+/**
+ * SchemaArticle.astro
+ * 
+ * JSON-LD Schema.org Article/BlogPosting markup component for AI optimization
+ * Used for blog posts, case studies, product pages, and other article content
+ * 
+ * Features:
+ * - Dynamic article type detection (Article, BlogPosting, NewsArticle)
+ * - Automatic content collection integration
+ * - AI-optimized structured data for better content understanding
+ * - Entity linking with Organization and Website
+ * - Compatible with all AI platforms (ChatGPT, Claude, Perplexity, Gemini)
+ */
+
+import businessInfo from "@/data/business-info.json";
+import schemaDefaults from "@/data/schema-defaults.json";
+
+interface Props {
+  /**
+   * Article title
+   */
+  title: string;
+  
+  /**
+   * Article description/snippet
+   */
+  description: string;
+  
+  /**
+   * Article URL (current page URL)
+   */
+  url: string;
+  
+  /**
+   * Publication date (ISO string)
+   */
+  datePublished: string;
+  
+  /**
+   * Last modified date (ISO string, optional)
+   */
+  dateModified?: string;
+  
+  /**
+   * Article image object
+   */
+  image: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+  
+  /**
+   * Article type: "blog", "case-study", "product", "news", "article"
+   */
+  articleType?: "blog" | "case-study" | "product" | "news" | "article";
+  
+  /**
+   * Content category/section
+   */
+  category?: string;
+  
+  /**
+   * Article tags/keywords
+   */
+  tags?: string[];
+  
+  /**
+   * Author name (defaults to organization)
+   */
+  author?: string;
+  
+  /**
+   * Word count (for reading time estimation)
+   */
+  wordCount?: number;
+  
+  /**
+   * Additional custom schema data
+   */
+  customData?: Record<string, any>;
+}
+
+const {
+  title,
+  description,
+  url,
+  datePublished,
+  dateModified,
+  image,
+  articleType = "article",
+  category,
+  tags = [],
+  author,
+  wordCount,
+  customData = {}
+} = Astro.props;
+
+// Determine the appropriate Schema.org type based on articleType
+const getSchemaType = (type: string) => {
+  const types = {
+    "blog": "BlogPosting",
+    "news": "NewsArticle", 
+    "case-study": "Article",
+    "product": "Article",
+    "article": "Article"
+  };
+  return types[type] || "Article";
+};
+
+// Build the image schema
+const imageSchema = {
+  "@type": "ImageObject",
+  "url": image.src.startsWith('http') ? image.src : `${schemaDefaults.baseUrl}${image.src}`,
+  "width": image.width || schemaDefaults.imageDefaults.width,
+  "height": image.height || schemaDefaults.imageDefaults.height,
+  "caption": image.alt
+};
+
+// Build the complete article schema
+const articleSchema = {
+  "@context": schemaDefaults.context,
+  "@type": getSchemaType(articleType),
+  "headline": title,
+  "name": title,
+  "description": description,
+  "url": url,
+  "datePublished": datePublished,
+  "dateModified": dateModified || datePublished,
+  "image": imageSchema,
+  "publisher": {
+    "@id": schemaDefaults.organizationId
+  },
+  "author": author ? {
+    "@type": "Person",
+    "name": author,
+    "memberOf": {
+      "@id": schemaDefaults.organizationId
+    }
+  } : {
+    "@id": schemaDefaults.organizationId
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": url
+  },
+  "isPartOf": {
+    "@id": schemaDefaults.websiteId
+  },
+  "inLanguage": schemaDefaults.defaultValues.language,
+  "copyrightHolder": {
+    "@id": schemaDefaults.organizationId
+  },
+  "copyrightYear": new Date(datePublished).getFullYear(),
+  ...customData
+};
+
+// Add optional properties if they exist
+if (category) {
+  articleSchema.articleSection = category;
+  articleSchema.about = category;
+}
+
+if (tags.length > 0) {
+  articleSchema.keywords = tags.join(', ');
+  articleSchema.genre = tags;
+}
+
+if (wordCount) {
+  articleSchema.wordCount = wordCount;
+  // Estimate reading time (average 200 words per minute)
+  const readingTimeMinutes = Math.ceil(wordCount / 200);
+  articleSchema.timeRequired = `PT${readingTimeMinutes}M`;
+}
+
+// Add article-specific properties for BlogPosting
+if (getSchemaType(articleType) === "BlogPosting") {
+  articleSchema.blogPost = true;
+  if (schemaDefaults.contentCategories[articleType]) {
+    articleSchema.articleSection = schemaDefaults.contentCategories[articleType].articleSection;
+    articleSchema.genre = schemaDefaults.contentCategories[articleType].genre;
+  }
+}
+
+// Clean up any undefined or null values
+const cleanSchema = JSON.parse(JSON.stringify(articleSchema, (key, value) => {
+  return value === null || value === undefined ? undefined : value;
+}));
+---
+
+<!-- Article Schema Markup for AI Optimization -->
+<script type="application/ld+json" set:html={JSON.stringify(cleanSchema, null, 2)}></script>

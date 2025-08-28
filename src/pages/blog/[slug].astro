@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
+import SchemaArticle from "@/components/schema/SchemaArticle.astro";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -15,9 +16,25 @@ export async function getStaticPaths() {
 // Get the entry directly from the prop on render
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// Construct the current page URL for Schema markup
+const currentUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <Layout title={entry.data.title}>
+  <!-- Blog Post Schema Markup for AI Optimization -->
+  <SchemaArticle
+    title={entry.data.title}
+    description={entry.data.snippet}
+    url={currentUrl}
+    datePublished={entry.data.publishDate.toISOString()}
+    image={entry.data.image}
+    articleType="blog"
+    category={entry.data.category}
+    tags={entry.data.tags}
+    author={entry.data.author}
+  />
+  
   <Container>
     <div class="mx-auto max-w-3xl mt-14">
       <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">

@@ -1,0 +1,132 @@
+{
+  "organization": {
+    "@type": "Organization",
+    "name": "Advanced Research & Development Agency",
+    "alternateName": "ARDA",
+    "description": "A modern digital agency specializing in cutting-edge web development, AI optimization, and innovative technology solutions for businesses of all sizes.",
+    "url": "https://ardastro.template.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ardastro.template.com/images/arda-logo.png",
+      "width": 600,
+      "height": 200
+    },
+    "image": {
+      "@type": "ImageObject", 
+      "url": "https://ardastro.template.com/images/arda-hero.png",
+      "width": 1200,
+      "height": 630
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Innovation Drive",
+      "addressLocality": "Tech City",
+      "addressRegion": "CA", 
+      "postalCode": "90210",
+      "addressCountry": "US"
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-555-ARDA-DEV",
+        "contactType": "customer service",
+        "availableLanguage": ["English"],
+        "areaServed": "US"
+      },
+      {
+        "@type": "ContactPoint",
+        "email": "hello@arda.agency",
+        "contactType": "customer service"
+      }
+    ],
+    "sameAs": [
+      "https://twitter.com/ardacodes",
+      "https://linkedin.com/company/arda-agency",
+      "https://github.com/arda-agency"
+    ],
+    "foundingDate": "2023-01-15",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": "15-25"
+    },
+    "industry": "Web Development & Digital Agency",
+    "services": [
+      "Web Development",
+      "AI SEO Optimization", 
+      "Template Design",
+      "Digital Consulting",
+      "Performance Optimization",
+      "Technical SEO"
+    ],
+    "areaServed": {
+      "@type": "Place",
+      "name": "Worldwide"
+    },
+    "award": [
+      "Best Astro Template 2024",
+      "AI-Optimized Website Award 2025"
+    ]
+  },
+  "website": {
+    "@type": "WebSite",
+    "name": "ARDA Astro Template",
+    "alternateName": "ARDA Template",
+    "description": "A comprehensive, AI-optimized Astro website template with advanced SEO features, modern design system, and cutting-edge performance optimization.",
+    "url": "https://ardastro.template.com",
+    "inLanguage": "en-US",
+    "copyrightYear": 2024,
+    "copyrightHolder": {
+      "@id": "https://ardastro.template.com/#organization"
+    },
+    "publisher": {
+      "@id": "https://ardastro.template.com/#organization"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://ardastro.template.com/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "mainEntity": {
+      "@id": "https://ardastro.template.com/#organization"
+    }
+  },
+  "breadcrumbList": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem", 
+        "position": 1,
+        "name": "Home",
+        "item": "https://ardastro.template.com/"
+      }
+    ]
+  },
+  "author": {
+    "@type": "Organization",
+    "@id": "https://ardastro.template.com/#organization",
+    "name": "Advanced Research & Development Agency"
+  },
+  "keywords": [
+    "Astro template",
+    "AI SEO optimization", 
+    "TailwindCSS",
+    "modern web design",
+    "responsive template",
+    "performance optimized",
+    "accessibility compliant",
+    "Schema.org markup",
+    "JSON-LD",
+    "web development template"
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Web Developers, Digital Agencies, Business Owners"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "url": "https://ardastro.template.com/"
+  }
+}

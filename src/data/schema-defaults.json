@@ -1,0 +1,188 @@
+{
+  "context": "https://schema.org",
+  "baseUrl": "https://ardastro.template.com",
+  "organizationId": "https://ardastro.template.com/#organization",
+  "websiteId": "https://ardastro.template.com/#website",
+  
+  "templates": {
+    "organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://ardastro.template.com/#organization"
+    },
+    
+    "website": {
+      "@context": "https://schema.org", 
+      "@type": "WebSite",
+      "@id": "https://ardastro.template.com/#website"
+    },
+    
+    "webpage": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "isPartOf": {
+        "@id": "https://ardastro.template.com/#website"
+      },
+      "about": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "inLanguage": "en-US"
+    },
+    
+    "article": {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "publisher": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "author": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "copyrightHolder": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "copyrightYear": 2024
+    },
+    
+    "blogPosting": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting", 
+      "publisher": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "author": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "copyrightHolder": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "copyrightYear": 2024,
+      "mainEntityOfPage": {
+        "@type": "WebPage"
+      }
+    },
+    
+    "faqPage": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "publisher": {
+        "@id": "https://ardastro.template.com/#organization"
+      },
+      "inLanguage": "en-US"
+    },
+    
+    "question": {
+      "@type": "Question",
+      "answerCount": 1,
+      "acceptedAnswer": {
+        "@type": "Answer"
+      }
+    },
+    
+    "breadcrumbList": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList"
+    },
+    
+    "listItem": {
+      "@type": "ListItem"
+    },
+    
+    "imageObject": {
+      "@type": "ImageObject",
+      "contentUrl": "",
+      "width": 1200,
+      "height": 630,
+      "caption": ""
+    },
+    
+    "person": {
+      "@type": "Person",
+      "memberOf": {
+        "@id": "https://ardastro.template.com/#organization"
+      }
+    }
+  },
+  
+  "defaultValues": {
+    "language": "en-US",
+    "copyrightYear": 2024,
+    "inLanguage": "en-US",
+    "publisher": {
+      "@id": "https://ardastro.template.com/#organization"
+    },
+    "author": {
+      "@id": "https://ardastro.template.com/#organization"
+    },
+    "copyrightHolder": {
+      "@id": "https://ardastro.template.com/#organization"
+    },
+    "isPartOf": {
+      "@id": "https://ardastro.template.com/#website"
+    }
+  },
+  
+  "contentCategories": {
+    "blog": {
+      "articleSection": "Technology Blog",
+      "genre": ["Web Development", "Technology", "Programming"]
+    },
+    "case-studies": {
+      "articleSection": "Case Studies",
+      "genre": ["Business", "Portfolio", "Success Stories"]
+    },
+    "products": {
+      "articleSection": "Products",
+      "genre": ["Software", "Templates", "Digital Products"]
+    },
+    "careers": {
+      "articleSection": "Careers", 
+      "genre": ["Jobs", "Opportunities", "Team"]
+    }
+  },
+  
+  "socialMediaProfiles": [
+    "https://twitter.com/ardacodes",
+    "https://linkedin.com/company/arda-agency",
+    "https://github.com/arda-agency"
+  ],
+  
+  "organizationTypes": {
+    "default": "Organization",
+    "localBusiness": "LocalBusiness", 
+    "corporation": "Corporation",
+    "nonprofit": "NGO"
+  },
+  
+  "articleTypes": {
+    "blog": "BlogPosting",
+    "news": "NewsArticle", 
+    "case-study": "Article",
+    "product": "Article",
+    "career": "JobPosting"
+  },
+  
+  "imageDefaults": {
+    "width": 1200,
+    "height": 630,
+    "format": "WebP",
+    "quality": 80
+  },
+  
+  "seoDefaults": {
+    "titleSeparator": " | ",
+    "titleSuffix": "ARDA Astro Template",
+    "descriptionLength": 160,
+    "keywordsLimit": 10
+  },
+  
+  "aiOptimization": {
+    "prioritySchemaTypes": ["Organization", "WebSite", "Article", "FAQPage"],
+    "aiCrawlerFriendly": true,
+    "structuredAnswers": true,
+    "faqOptimized": true,
+    "entityLinking": true
+  }
+}

@@ -7,6 +7,10 @@ import LoadingScreen from "@/components/LoadingScreen.astro";
 import GoogleTagManagerHead from "@/components/HeadComponents/GoogleTagManagerHead.astro";
 import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBody.astro";
 
+// Schema Components for AI Optimization
+import SchemaOrganization from "@/components/schema/SchemaOrganization.astro";
+import SchemaWebsite from "@/components/schema/SchemaWebsite.astro";
+
 // Styles & Fonts
 import "@fontsource-variable/inter/index.css";
 import "@fontsource-variable/bricolage-grotesque";
@@ -18,6 +22,14 @@ import seoData from "@/data/seo.json";
 
 export interface Props {
   title: string;
+  /**
+   * Include Organization schema (only for homepage to avoid duplication)
+   */
+  includeOrganizationSchema?: boolean;
+  /**
+   * Enable search functionality in Website schema
+   */
+  enableSearch?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -27,7 +39,11 @@ const resolvedImageWithDomain = new URL(
   Astro.site
 ).toString();
 
-const { title } = Astro.props;
+const { 
+  title, 
+  includeOrganizationSchema = false, 
+  enableSearch = true 
+} = Astro.props;
 
 const makeTitle = title
   ? title + " | " + seoData.siteName
@@ -58,6 +74,10 @@ const makeTitle = title
         image: seoData.openGraph.image,
       }}
     />
+    
+    <!-- AI-Optimized Schema.org Structured Data -->
+    <SchemaWebsite enableSearchAction={enableSearch} />
+    {includeOrganizationSchema && <SchemaOrganization />}
   </head>
   <body class="theme-bg" data-theme="palette-1">
     <LoadingScreen />

@@ -1,0 +1,75 @@
+---
+/**
+ * SchemaWebsite.astro
+ * 
+ * JSON-LD Schema.org WebSite markup component for AI optimization
+ * Used site-wide to establish website entity and search functionality
+ * 
+ * Features:
+ * - Centralized website data from business-info.json
+ * - Search action markup for AI understanding
+ * - Entity linking with Organization via @id references  
+ * - AI crawler optimized (server-side rendered)
+ * - Compatible with all AI platforms
+ */
+
+import businessInfo from "@/data/business-info.json";
+import schemaDefaults from "@/data/schema-defaults.json";
+
+interface Props {
+  /**
+   * Custom website data to merge with defaults
+   */
+  customData?: Record<string, any>;
+  
+  /**
+   * Enable/disable search action markup
+   */
+  enableSearchAction?: boolean;
+  
+  /**
+   * Custom search URL pattern (if different from default)
+   */
+  searchUrlTemplate?: string;
+}
+
+const { 
+  customData = {},
+  enableSearchAction = true,
+  searchUrlTemplate = `${schemaDefaults.baseUrl}/search?q={search_term_string}`
+} = Astro.props;
+
+// Build the complete website schema
+const websiteSchema = {
+  "@context": schemaDefaults.context,
+  "@type": "WebSite", 
+  "@id": schemaDefaults.websiteId,
+  ...businessInfo.website,
+  ...customData
+};
+
+// Add search action if enabled
+if (enableSearchAction) {
+  websiteSchema.potentialAction = {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": searchUrlTemplate
+    },
+    "query-input": "required name=search_term_string"
+  };
+}
+
+// Ensure proper entity references
+websiteSchema.publisher = { "@id": schemaDefaults.organizationId };
+websiteSchema.copyrightHolder = { "@id": schemaDefaults.organizationId };
+websiteSchema.mainEntity = { "@id": schemaDefaults.organizationId };
+
+// Clean up any undefined or null values
+const cleanSchema = JSON.parse(JSON.stringify(websiteSchema, (key, value) => {
+  return value === null || value === undefined ? undefined : value;
+}));
+---
+
+<!-- Website Schema Markup for AI Optimization -->
+<script type="application/ld+json" set:html={JSON.stringify(cleanSchema, null, 2)}></script>

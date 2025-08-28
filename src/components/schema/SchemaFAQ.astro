@@ -1,0 +1,113 @@
+---
+/**
+ * SchemaFAQ.astro
+ * 
+ * JSON-LD Schema.org FAQPage markup component for AI optimization
+ * Critical for AI search visibility and conversational query optimization
+ * 
+ * Features:
+ * - Structured Question/Answer format for AI understanding
+ * - High impact on AI search results (ChatGPT, Claude, Perplexity, Gemini)
+ * - Optimized for "People Also Ask" sections and AI-generated answers
+ * - Entity linking with Organization and Website
+ * - Support for multiple FAQ formats
+ */
+
+import schemaDefaults from "@/data/schema-defaults.json";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+  /**
+   * Optional answer format (text, HTML)
+   */
+  answerFormat?: "text" | "html";
+}
+
+interface Props {
+  /**
+   * Array of FAQ items
+   */
+  faqs: FAQItem[];
+  
+  /**
+   * Page title (optional, for FAQPage context)
+   */
+  pageTitle?: string;
+  
+  /**
+   * Page URL (current page URL)
+   */
+  url?: string;
+  
+  /**
+   * Additional custom schema data
+   */
+  customData?: Record<string, any>;
+}
+
+const {
+  faqs,
+  pageTitle,
+  url,
+  customData = {}
+} = Astro.props;
+
+// Build FAQ schema items
+const faqSchemaItems = faqs.map((faq, index) => ({
+  "@type": "Question",
+  "name": faq.question,
+  "answerCount": 1,
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": faq.answer,
+    ...(faq.answerFormat === "html" && { "encodingFormat": "text/html" })
+  },
+  "position": index + 1
+}));
+
+// Build the complete FAQ schema
+const faqSchema = {
+  "@context": schemaDefaults.context,
+  "@type": "FAQPage",
+  "mainEntity": faqSchemaItems,
+  "publisher": {
+    "@id": schemaDefaults.organizationId
+  },
+  "inLanguage": schemaDefaults.defaultValues.language,
+  ...customData
+};
+
+// Add optional properties
+if (pageTitle) {
+  faqSchema.name = pageTitle;
+  faqSchema.headline = pageTitle;
+}
+
+if (url) {
+  faqSchema.url = url;
+  faqSchema.mainEntityOfPage = {
+    "@type": "WebPage",
+    "@id": url
+  };
+}
+
+// Add relationship to website
+faqSchema.isPartOf = {
+  "@id": schemaDefaults.websiteId
+};
+
+// Add authorship
+faqSchema.author = {
+  "@id": schemaDefaults.organizationId
+};
+
+// Clean up any undefined or null values
+const cleanSchema = JSON.parse(JSON.stringify(faqSchema, (key, value) => {
+  return value === null || value === undefined ? undefined : value;
+}));
+---
+
+<!-- FAQ Schema Markup for AI Optimization -->
+<!-- Critical for AI search visibility and conversational queries -->
+<script type="application/ld+json" set:html={JSON.stringify(cleanSchema, null, 2)}></script>

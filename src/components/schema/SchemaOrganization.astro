@@ -1,0 +1,54 @@
+---
+/**
+ * SchemaOrganization.astro
+ * 
+ * JSON-LD Schema.org Organization markup component for AI optimization
+ * Used on homepage only to avoid duplication (Google's recommendation)
+ * 
+ * Features:
+ * - Centralized business data from business-info.json
+ * - AI crawler optimized (server-side rendered)
+ * - Entity linking with @id references
+ * - Compatible with all AI platforms (ChatGPT, Claude, Perplexity, Gemini)
+ */
+
+import businessInfo from "@/data/business-info.json";
+
+interface Props {
+  /**
+   * Override the default organization type
+   * Options: "Organization", "LocalBusiness", "Corporation", "NGO"
+   */
+  organizationType?: "Organization" | "LocalBusiness" | "Corporation" | "NGO";
+  
+  /**
+   * Custom organization data to merge with defaults
+   */
+  customData?: Record<string, any>;
+}
+
+const { 
+  organizationType = "Organization", 
+  customData = {} 
+} = Astro.props;
+
+// Build the complete organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": organizationType,
+  "@id": `${businessInfo.organization.url}/#organization`,
+  ...businessInfo.organization,
+  ...customData
+};
+
+// Ensure the @type is set correctly if overridden
+organizationSchema["@type"] = organizationType;
+
+// Clean up any undefined or null values
+const cleanSchema = JSON.parse(JSON.stringify(organizationSchema, (key, value) => {
+  return value === null || value === undefined ? undefined : value;
+}));
+---
+
+<!-- Organization Schema Markup for AI Optimization -->
+<script type="application/ld+json" set:html={JSON.stringify(cleanSchema, null, 2)}></script>
