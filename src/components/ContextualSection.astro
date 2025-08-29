@@ -1,0 +1,201 @@
+---
+/**
+ * ContextualSection.astro
+ * 
+ * AI-optimized contextual content component
+ * Provides rich context and semantic structure for AI understanding
+ * 
+ * Features:
+ * - Structured content with semantic HTML
+ * - AI-friendly context hints and descriptions
+ * - Schema.org microdata integration
+ * - Conversational content formatting
+ * - Theme-integrated styling
+ */
+
+export interface ContextItem {
+  question: string;
+  answer: string;
+  type?: 'definition' | 'how-to' | 'benefit' | 'feature' | 'comparison' | 'example';
+}
+
+interface Props {
+  /**
+   * Section title (AI-optimized, conversational)
+   */
+  title: string;
+  
+  /**
+   * Section context/description for AI understanding
+   */
+  description?: string;
+  
+  /**
+   * Contextual Q&A content
+   */
+  items: ContextItem[];
+  
+  /**
+   * Schema.org type for the section
+   */
+  schemaType?: 'AboutSection' | 'FAQPage' | 'HowTo' | 'WebPageElement';
+  
+  /**
+   * Layout variant
+   */
+  layout?: 'stacked' | 'grid' | 'accordion';
+  
+  /**
+   * Visual styling
+   */
+  variant?: 'default' | 'featured' | 'compact';
+  
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  items,
+  schemaType = 'WebPageElement',
+  layout = 'stacked',
+  variant = 'default',
+  class: className = ''
+} = Astro.props;
+
+const sectionClasses = {
+  'stacked': 'space-y-6',
+  'grid': 'grid grid-cols-1 md:grid-cols-2 gap-6',
+  'accordion': 'space-y-4'
+};
+
+const itemClasses = {
+  'default': 'space-y-3',
+  'featured': 'theme-card-bg p-6 rounded-lg space-y-4',
+  'compact': 'space-y-2'
+};
+
+const questionClasses = {
+  'default': 'theme-sub-headline text-xl font-semibold',
+  'featured': 'theme-headline text-lg font-bold',
+  'compact': 'theme-sub-headline text-lg font-medium'
+};
+
+const answerClasses = {
+  'default': 'theme-paragraph text-base leading-relaxed',
+  'featured': 'theme-card-text text-base leading-relaxed',
+  'compact': 'theme-paragraph text-sm leading-relaxed'
+};
+
+// Generate structured data based on schema type
+const generateStructuredData = () => {
+  const baseData = {
+    "@context": "https://schema.org",
+    "@type": schemaType === 'FAQPage' ? 'FAQPage' : 'WebPageElement',
+    "name": title,
+    "description": description || `${title} - comprehensive information and answers`
+  };
+
+  if (schemaType === 'FAQPage') {
+    return {
+      ...baseData,
+      "mainEntity": items.map((item, index) => ({
+        "@type": "Question",
+        "@id": `#question-${index + 1}`,
+        "name": item.question,
+        "answerCount": 1,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer,
+          "author": {
+            "@type": "Organization",
+            "name": "ARDA Development Team"
+          }
+        }
+      }))
+    };
+  }
+
+  return {
+    ...baseData,
+    "about": items.map(item => ({
+      "@type": "Thing",
+      "name": item.question,
+      "description": item.answer
+    }))
+  };
+};
+
+const structuredData = generateStructuredData();
+---
+
+<section 
+  class={`py-12 ${className}`}
+  itemscope
+  itemtype={`https://schema.org/${schemaType}`}
+  aria-label={title}
+>
+  <div class="text-center mb-12">
+    <h2 
+      class="theme-headline text-3xl md:text-4xl font-bold mb-4" 
+      itemprop="name"
+    >
+      {title}
+    </h2>
+    {description && (
+      <p 
+        class="theme-paragraph text-lg max-w-3xl mx-auto opacity-80" 
+        itemprop="description"
+      >
+        {description}
+      </p>
+    )}
+  </div>
+
+  <div class={sectionClasses[layout]}>
+    {items.map((item, index) => (
+      <div 
+        class={itemClasses[variant]}
+        itemscope
+        itemtype={schemaType === 'FAQPage' ? 'https://schema.org/Question' : 'https://schema.org/Thing'}
+        style={variant === 'featured' ? 'border-color: var(--color-theme-stroke); border-width: 1px;' : undefined}
+      >
+        <h3 
+          class={questionClasses[variant]} 
+          itemprop={schemaType === 'FAQPage' ? 'name' : 'name'}
+          id={`question-${index + 1}`}
+        >
+          {item.question}
+        </h3>
+        
+        <div 
+          class={answerClasses[variant]}
+          itemprop={schemaType === 'FAQPage' ? 'acceptedAnswer' : 'description'}
+          itemscope={schemaType === 'FAQPage'}
+          itemtype={schemaType === 'FAQPage' ? 'https://schema.org/Answer' : undefined}
+        >
+          {schemaType === 'FAQPage' && (
+            <meta itemprop="@type" content="Answer" />
+          )}
+          <p itemprop={schemaType === 'FAQPage' ? 'text' : undefined}>
+            {item.answer}
+          </p>
+        </div>
+
+        {item.type && (
+          <div class="flex items-center mt-3">
+            <span class="text-xs opacity-50 theme-paragraph bg-opacity-10 px-2 py-1 rounded-full capitalize">
+              {item.type.replace('-', ' ')}
+            </span>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <!-- Structured Data for AI Understanding -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData, null, 2)}></script>
+</section>

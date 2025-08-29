@@ -1,0 +1,102 @@
+---
+/**
+ * ContextualLink.astro
+ * 
+ * AI-optimized internal linking component with semantic context
+ * Provides rich context clues to AI crawlers about link relationships
+ * 
+ * Features:
+ * - Semantic relationship annotations (rel attributes)
+ * - AI-friendly context descriptions
+ * - Structured data hints for content relationships
+ * - Theme-integrated styling
+ */
+
+export interface Props {
+  /**
+   * Target URL (internal link)
+   */
+  href: string;
+  
+  /**
+   * Link text content
+   */
+  text?: string;
+  
+  /**
+   * Relationship type for AI understanding
+   */
+  relationship?: 'related' | 'next' | 'prev' | 'parent' | 'child' | 'sibling' | 'alternate' | 'help';
+  
+  /**
+   * Content type being linked to
+   */
+  contentType?: 'article' | 'guide' | 'tutorial' | 'case-study' | 'product' | 'landing-page' | 'resource';
+  
+  /**
+   * Context description for AI understanding
+   */
+  context?: string;
+  
+  /**
+   * Visual styling variant
+   */
+  variant?: 'inline' | 'button' | 'card' | 'navigation';
+  
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+  
+  /**
+   * Show external link indicator
+   */
+  showArrow?: boolean;
+}
+
+const {
+  href,
+  text,
+  relationship = 'related',
+  contentType = 'article',
+  context,
+  variant = 'inline',
+  class: className = '',
+  showArrow = false
+} = Astro.props;
+
+// Generate semantic attributes for AI understanding
+const semanticAttributes = {
+  'data-content-type': contentType,
+  'data-relationship': relationship,
+  'data-context': context || `Related ${contentType}`,
+  'rel': relationship === 'related' ? 'related' : relationship
+};
+
+// Generate styling based on variant
+const baseClasses = 'transition-colors duration-200';
+const variantClasses = {
+  'inline': 'theme-link underline decoration-2 underline-offset-2 hover:decoration-4',
+  'button': 'theme-button-outline px-4 py-2 rounded-lg font-medium',
+  'card': 'block p-4 theme-card-bg rounded-lg border theme-link hover:shadow-lg',
+  'navigation': 'theme-link font-medium hover:underline'
+};
+
+const linkClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
+
+// Generate aria-label for accessibility
+const ariaLabel = context || `${text} (${contentType})`;
+---
+
+<a 
+  href={href} 
+  class={linkClasses}
+  aria-label={ariaLabel}
+  {...semanticAttributes}
+  style={variant === 'card' ? 'border-color: var(--color-theme-stroke);' : undefined}
+>
+  <slot>
+    {text}
+    {showArrow && <span class="ml-1 opacity-70">→</span>}
+  </slot>
+</a>

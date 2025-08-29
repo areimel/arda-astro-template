@@ -1,7 +1,7 @@
 {
 	"siteName": "ARDA Astro Template",
-	"defaultTitle": "ARDA Astro Template - Starter Template built with Astro and TailwindCSS",
-	"defaultDescription": "ARDA Astro Template is a starter website template built with Astro and TailwindCSS. Built by",
+	"defaultTitle": "High-Performance Astro Template with AI SEO - ARDA 2025",
+	"defaultDescription": "Looking for the fastest Astro template with built-in AI SEO? ARDA delivers sub-1-second load times, complete Schema.org markup, and 17 gorgeous themes. Perfect for agencies and developers in 2025.",
 	"openGraphImage": "/opengraph.jpg",
 	"twitter": {
 		"creator": "@ardacodes",
@@ -11,10 +11,10 @@
 	"openGraph": {
 		"basic": {
 			"type": "website",
-			"title": "ARDA Astro Template - Starter Template built with Astro and TailwindCSS"
+			"title": "High-Performance Astro Template with AI SEO Features - ARDA 2025"
 		},
 		"image": {
-			"alt": "ARDA Astro Template Homepage Screenshot"
+			"alt": "ARDA Astro Template - High Performance with AI SEO Features"
 		}
 	}
 } 

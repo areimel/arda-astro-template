@@ -1,0 +1,186 @@
+---
+/**
+ * RelatedContent.astro
+ * 
+ * AI-optimized related content component
+ * Helps AI crawlers understand content relationships and site structure
+ * 
+ * Features:
+ * - Contextual linking with semantic relationships
+ * - Content type awareness for AI understanding
+ * - Structured data hints for content connections
+ * - Theme-integrated design
+ */
+
+import ContextualLink from "@/components/ui/ContextualLink.astro";
+
+export interface RelatedItem {
+  title: string;
+  href: string;
+  type: 'article' | 'guide' | 'tutorial' | 'case-study' | 'product' | 'landing-page' | 'resource';
+  description?: string;
+  relationship?: 'related' | 'next' | 'prev' | 'parent' | 'child' | 'sibling';
+}
+
+interface Props {
+  /**
+   * Section title
+   */
+  title?: string;
+  
+  /**
+   * Related content items
+   */
+  items: RelatedItem[];
+  
+  /**
+   * Layout variant
+   */
+  layout?: 'list' | 'grid' | 'cards';
+  
+  /**
+   * Maximum number of items to show
+   */
+  maxItems?: number;
+  
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+}
+
+const {
+  title = "Related Content",
+  items,
+  layout = 'list',
+  maxItems = 6,
+  class: className = ''
+} = Astro.props;
+
+const displayItems = items.slice(0, maxItems);
+
+const sectionClasses = {
+  'list': 'space-y-3',
+  'grid': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4',
+  'cards': 'grid grid-cols-1 md:grid-cols-2 gap-6'
+};
+
+const itemClasses = {
+  'list': 'flex flex-col space-y-1',
+  'grid': 'flex flex-col space-y-2',
+  'cards': 'flex flex-col space-y-3'
+};
+---
+
+{displayItems.length > 0 && (
+  <section 
+    class={`mt-12 ${className}`}
+    itemscope 
+    itemtype="https://schema.org/ItemList"
+    aria-label={title}
+  >
+    <h2 class="theme-sub-headline text-2xl font-bold mb-6" itemprop="name">
+      {title}
+    </h2>
+    
+    <div class={sectionClasses[layout]}>
+      {displayItems.map((item, index) => (
+        <div 
+          class={itemClasses[layout]}
+          itemscope 
+          itemtype="https://schema.org/ListItem"
+          itemprop="itemListElement"
+        >
+          <meta itemprop="position" content={(index + 1).toString()} />
+          
+          {layout === 'cards' ? (
+            <ContextualLink
+              href={item.href}
+              relationship={item.relationship || 'related'}
+              contentType={item.type}
+              context={`Related ${item.type}: ${item.title}`}
+              variant="card"
+              class="h-full"
+            >
+              <div class="space-y-2">
+                <h3 
+                  class="theme-headline font-semibold text-lg leading-tight" 
+                  itemprop="name"
+                >
+                  {item.title}
+                </h3>
+                {item.description && (
+                  <p 
+                    class="theme-paragraph text-sm opacity-80" 
+                    itemprop="description"
+                  >
+                    {item.description}
+                  </p>
+                )}
+                <div class="flex items-center gap-2 text-xs opacity-60">
+                  <span class="capitalize">{item.type.replace('-', ' ')}</span>
+                  <span>•</span>
+                  <span class="capitalize">{item.relationship || 'related'}</span>
+                </div>
+              </div>
+            </ContextualLink>
+          ) : (
+            <div class="space-y-1">
+              <ContextualLink
+                href={item.href}
+                relationship={item.relationship || 'related'}
+                contentType={item.type}
+                context={`Related ${item.type}: ${item.title}`}
+                variant={layout === 'grid' ? 'navigation' : 'inline'}
+                class="font-medium"
+              >
+                <h3 itemprop="name">{item.title}</h3>
+              </ContextualLink>
+              {item.description && (
+                <p 
+                  class="theme-paragraph text-sm opacity-75" 
+                  itemprop="description"
+                >
+                  {item.description}
+                </p>
+              )}
+              <div class="flex items-center gap-2 text-xs opacity-50">
+                <span class="capitalize">{item.type.replace('-', ' ')}</span>
+                {item.relationship && (
+                  <>
+                    <span>•</span>
+                    <span class="capitalize">{item.relationship}</span>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+    
+    <!-- Structured data for AI understanding -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": title,
+        "numberOfItems": displayItems.length,
+        "itemListElement": displayItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "WebPage", 
+            "name": item.title,
+            "description": item.description || `${item.type} content: ${item.title}`,
+            "url": `https://ardastro.template.com${item.href}`,
+            "about": {
+              "@type": "Thing",
+              "name": item.type.replace('-', ' ')
+            }
+          }
+        }))
+      }
+    </script>
+  </section>
+)}

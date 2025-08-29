@@ -15,7 +15,8 @@
       "WebFetch(domain:localhost)",
       "WebFetch(domain:unsplash.com)",
       "Bash(chmod:*)",
-      "Bash(.download-images.bat)"
+      "Bash(.download-images.bat)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

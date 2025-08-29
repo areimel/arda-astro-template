@@ -10,6 +10,7 @@ import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBo
 // Schema Components for AI Optimization
 import SchemaOrganization from "@/components/schema/SchemaOrganization.astro";
 import SchemaWebsite from "@/components/schema/SchemaWebsite.astro";
+import SchemaBreadcrumb from "@/components/schema/SchemaBreadcrumb.astro";
 
 // Styles & Fonts
 import "@fontsource-variable/inter/index.css";
@@ -78,13 +79,18 @@ const makeTitle = title
     <!-- AI-Optimized Schema.org Structured Data -->
     <SchemaWebsite enableSearchAction={enableSearch} />
     {includeOrganizationSchema && <SchemaOrganization />}
+    <SchemaBreadcrumb />
   </head>
   <body class="theme-bg" data-theme="palette-1">
     <LoadingScreen />
     <div class="page-content">
       <GoogleTagManagerBody />
-      <Navbar />
-      <slot />
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <slot />
+      </main>
       <Footer />
       <ColorPaletteSelector />
     </div>

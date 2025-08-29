@@ -4,14 +4,77 @@ import Cta from "@/components/ui/cta.astro";
 import Features from "@/components/features.astro";
 import Hero from "@/components/hero.astro";
 import Logos from "@/components/logos.astro";
+import Faq from "@/components/faq.astro";
+import ContextualSection from "@/components/ContextualSection.astro";
 import Layout from "@/layouts/Layout.astro";
+
+// AI-optimized contextual content for homepage
+const performanceContext = [
+  {
+    question: "Why is website performance critical in 2025?",
+    answer: "Modern users expect lightning-fast websites. Sites that load in under 2 seconds have 90% better conversion rates, and search engines heavily favor fast-loading pages in their rankings. ARDA delivers sub-1-second load times out of the box.",
+    type: "benefit" as const
+  },
+  {
+    question: "How does ARDA achieve superior performance?",
+    answer: "ARDA uses Astro's innovative island architecture, pre-renders static content, optimizes images automatically, and eliminates unused JavaScript. This results in 95+ Lighthouse scores and exceptional Core Web Vitals.",
+    type: "how-to" as const
+  },
+  {
+    question: "What makes ARDA different from other templates?",
+    answer: "Unlike traditional templates, ARDA combines cutting-edge performance optimization with comprehensive AI SEO features, 17 gorgeous color themes, and a complete design system. It's built specifically for 2025's web standards.",
+    type: "comparison" as const
+  }
+];
+
+const seoContext = [
+  {
+    question: "What AI SEO features does ARDA include?",
+    answer: "ARDA includes complete Schema.org markup, AI-optimized meta descriptions, conversational content structure, semantic HTML, and advanced structured data for FAQ pages, articles, and business information.",
+    type: "feature" as const
+  },
+  {
+    question: "How does ARDA help with AI search engines?",
+    answer: "ARDA is optimized for AI-powered search engines like Google's AI Overviews, ChatGPT search, and Perplexity. Content is structured with clear questions, answers, and context that AI systems can easily understand and reference.",
+    type: "how-to" as const
+  },
+  {
+    question: "Can I customize the SEO features?",
+    answer: "Absolutely! ARDA provides flexible components for Schema markup, customizable meta templates, and modular SEO components you can mix and match based on your specific needs.",
+    type: "how-to" as const
+  }
+];
 ---
 
-<Layout title="" includeOrganizationSchema={true}>
+<Layout title="High-Performance Astro Template with AI SEO - ARDA 2025" includeOrganizationSchema={true}>
   <Container>
     <Hero />
     <Features />
+    
+    <!-- AI-optimized contextual sections for better search understanding -->
+    <ContextualSection
+      title="Why Choose ARDA for High Performance?"
+      description="Learn how ARDA delivers exceptional website performance that converts visitors into customers and ranks higher in search results."
+      items={performanceContext}
+      schemaType="AboutSection"
+      layout="grid"
+      variant="featured"
+      class="my-16"
+    />
+    
     <Logos />
+    
+    <ContextualSection
+      title="How Does ARDA Handle AI SEO?"
+      description="Discover ARDA's comprehensive AI SEO features designed for modern search engines and AI-powered discovery platforms."
+      items={seoContext}
+      schemaType="FAQPage"
+      layout="stacked"
+      variant="default"
+      class="my-16"
+    />
+    
+    <Faq />
     <Cta />
   </Container>
 </Layout>

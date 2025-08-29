@@ -1,0 +1,62 @@
+---
+import { Icon } from "astro-icon/components";
+
+const faqs = [
+  {
+    question: "How quickly can I get started with ARDA?",
+    answer: "You can have a fully functional website running in under 5 minutes. Just download the template, run 'pnpm install' and 'pnpm dev', and you're ready to customize. All the AI SEO features work out of the box."
+  },
+  {
+    question: "What's included in the AI SEO features?",
+    answer: "Complete Schema.org markup, llms.txt for AI training, ai.txt for crawler management, optimized robots.txt, and structured data that works with ChatGPT, Claude, and Perplexity. Everything needed for 2025 AI search."
+  },
+  {
+    question: "Do I need to know Astro to use this?",
+    answer: "Not at all. If you know HTML, CSS, and basic JavaScript, you can customize ARDA. The component structure is intuitive, and our documentation walks you through everything step-by-step."
+  },
+  {
+    question: "Will this template slow down my website?",
+    answer: "The opposite. ARDA is optimized for speed with static HTML generation, automatic image optimization, and zero JavaScript by default. Most sites load in under 1 second with perfect Lighthouse scores."
+  },
+  {
+    question: "Can I customize the design and colors?",
+    answer: "Absolutely. ARDA includes 17 unique color themes with a dynamic theme switcher, plus a comprehensive design system. Change colors, fonts, layouts - everything is customizable while maintaining consistency."
+  },
+  {
+    question: "What kind of support do I get?",
+    answer: "Complete documentation, implementation guides, and ongoing updates. Plus access to our community of developers using ARDA for their projects. We're committed to keeping this template current with the latest web standards."
+  }
+];
+---
+
+<section class="mt-16 md:mt-24">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight theme-headline">
+      Frequently Asked Questions
+    </h2>
+    <p class="text-lg mt-4 theme-paragraph max-w-3xl mx-auto">
+      Everything you need to know about getting started with the ARDA template. Have a different question? We'd love to help.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+    {faqs.map((faq) => (
+      <div class="theme-card-bg p-6 rounded-lg" style="border: 1px solid var(--color-theme-stroke);">
+        <h3 class="font-semibold text-lg mb-3 theme-headline flex items-start gap-3">
+          <Icon name="bx:bx-help-circle" class="w-5 h-5 mt-0.5 shrink-0" style="color: var(--color-theme-button);" />
+          {faq.question}
+        </h3>
+        <p class="theme-paragraph leading-relaxed">
+          {faq.answer}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  <div class="text-center mt-12">
+    <p class="theme-paragraph">
+      Still have questions? 
+      <a href="/contact" class="theme-link ml-1">Get in touch with our team</a>
+    </p>
+  </div>
+</section>

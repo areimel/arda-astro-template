@@ -15,6 +15,14 @@ User-agent: OAI-SearchBot
 Allow: /
 Crawl-delay: 1
 
+User-agent: Claude-User
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-SearchBot
+Allow: /
+Crawl-delay: 1
+
 User-agent: Claude-Web
 Allow: /
 Crawl-delay: 1
@@ -74,7 +82,7 @@ User-agent: HuggingFace-Bot
 Disallow: /
 
 # Sitemap location
-Sitemap: http://astroship.web3templates.com/sitemap-index.xml
+Sitemap: https://ardastro.template.com/sitemap-index.xml
 
 # Reference files
 # See /llms.txt for AI-friendly content curation

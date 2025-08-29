@@ -1,0 +1,196 @@
+---
+/**
+ * SchemaBreadcrumb.astro
+ * 
+ * JSON-LD Schema.org BreadcrumbList markup component for AI optimization
+ * Provides navigation context to AI crawlers and search engines
+ * 
+ * Features:
+ * - Automatic breadcrumb generation from current URL path
+ * - AI-optimized navigation structure for LLMs
+ * - Smart title resolution from navigation.json
+ * - Entity linking with website schema
+ * - Position-based indexing for proper hierarchy
+ */
+
+import navigationData from "@/data/navigation.json";
+import schemaDefaults from "@/data/schema-defaults.json";
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+  position: number;
+}
+
+interface Props {
+  /**
+   * Custom breadcrumb items (overrides automatic generation)
+   */
+  customItems?: BreadcrumbItem[];
+  
+  /**
+   * Current page title (for the final breadcrumb item)
+   */
+  currentPageTitle?: string;
+  
+  /**
+   * Include home as first breadcrumb item
+   */
+  includeHome?: boolean;
+}
+
+const { 
+  customItems,
+  currentPageTitle,
+  includeHome = true 
+} = Astro.props;
+
+// Get current URL path and clean it
+const currentPath = Astro.url.pathname;
+const pathSegments = currentPath.split('/').filter(segment => segment.length > 0);
+
+// Helper function to find page title from navigation data
+function findPageTitle(path: string): string {
+  // Check header menu items
+  for (const item of navigationData.header.menuitems) {
+    if (item.path === path) {
+      return item.title;
+    }
+    
+    // Check children
+    if (item.children) {
+      for (const child of item.children) {
+        if (child.path === path) {
+          return child.title;
+        }
+        
+        // Check grandchildren
+        if (child.children) {
+          for (const grandchild of child.children) {
+            if (grandchild.path === path) {
+              return grandchild.title;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Check footer sections
+  for (const section of navigationData.footer.sections) {
+    for (const link of section.links) {
+      if (link.path === path) {
+        return link.title;
+      }
+    }
+  }
+  
+  // Check footer legal
+  for (const legal of navigationData.footer.legal) {
+    if (legal.path === path) {
+      return legal.title;
+    }
+  }
+  
+  // Fallback: capitalize and format path segment
+  const lastSegment = path.split('/').pop() || 'Page';
+  return lastSegment.split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+// Helper function to generate smart titles for path segments
+function generateSegmentTitle(segment: string): string {
+  // Handle special cases
+  const titleMap: Record<string, string> = {
+    'blog': 'Blog',
+    'case-studies': 'Case Studies',
+    'products': 'Products',
+    'careers': 'Careers',
+    'styleguide': 'Styleguide',
+    'about': 'About',
+    'contact': 'Contact',
+    'pricing': 'Pricing',
+    'analytics': 'Analytics',
+    'accessibility': 'Accessibility',
+    'seo': 'SEO',
+    'colors': 'Colors',
+    'typography': 'Typography',
+    'buttons': 'Buttons',
+    'cards': 'Cards',
+    'icons': 'Icons',
+    'spacing': 'Spacing'
+  };
+  
+  return titleMap[segment] || segment.split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+// Generate breadcrumb items
+let breadcrumbItems: BreadcrumbItem[] = [];
+
+if (customItems) {
+  // Use custom items if provided
+  breadcrumbItems = customItems;
+} else {
+  // Generate automatically from URL path
+  let position = 1;
+  
+  // Add home if requested
+  if (includeHome) {
+    breadcrumbItems.push({
+      name: "Home",
+      url: schemaDefaults.baseUrl,
+      position: position++
+    });
+  }
+  
+  // Build breadcrumb trail from path segments
+  let cumulativePath = '';
+  
+  for (let i = 0; i < pathSegments.length; i++) {
+    const segment = pathSegments[i];
+    cumulativePath += `/${segment}`;
+    
+    const isLastSegment = i === pathSegments.length - 1;
+    const title = isLastSegment && currentPageTitle 
+      ? currentPageTitle 
+      : findPageTitle(cumulativePath) || generateSegmentTitle(segment);
+    
+    breadcrumbItems.push({
+      name: title,
+      url: `${schemaDefaults.baseUrl}${cumulativePath}`,
+      position: position++
+    });
+  }
+}
+
+// Don't show breadcrumbs for homepage or if only one item
+if (currentPath === '/' || breadcrumbItems.length <= 1) {
+  breadcrumbItems = [];
+}
+
+// Generate Schema.org BreadcrumbList
+const breadcrumbSchema = breadcrumbItems.length > 0 ? {
+  "@context": schemaDefaults.context,
+  "@type": "BreadcrumbList",
+  "@id": `${schemaDefaults.baseUrl}${currentPath}#breadcrumb`,
+  "itemListElement": breadcrumbItems.map((item) => ({
+    "@type": "ListItem",
+    "position": item.position,
+    "name": item.name,
+    "item": {
+      "@type": "WebPage",
+      "@id": item.url,
+      "url": item.url,
+      "name": item.name
+    }
+  }))
+} : null;
+---
+
+{breadcrumbSchema && (
+  <!-- Breadcrumb Schema Markup for AI Navigation Understanding -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema, null, 2)}></script>
+)}
