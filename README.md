@@ -114,6 +114,81 @@ pnpm astro --help
 pnpm astro add tailwind
 ```
 
+## 🛠️ Project Tools
+
+This template includes custom command-line tools to help with development and AI-SEO optimization.
+
+### Dist Scraper Tool
+
+Automatically generates an updated `llms.txt` file by scraping content from your built site (`/dist/` folder). This ensures your AI-SEO file always reflects the actual content of your website.
+
+#### Quick Start
+
+```bash
+# 1. Set up the tool (one-time setup)
+pnpm tools:setup
+
+# 2. Build your site first
+pnpm build
+
+# 3. Generate updated llms.txt
+pnpm tools:scrape
+
+# 4. Rebuild to include updated llms.txt
+pnpm build
+```
+
+#### Available Commands
+
+```bash
+# Preview what would be generated (without writing file)
+pnpm tools:scrape:preview
+
+# Validate that dist folder is ready for scraping
+pnpm tools:validate
+
+# Complete workflow: Build → Generate llms.txt → Rebuild
+pnpm build:with-llms
+```
+
+#### How It Works
+
+1. **Scans** your `/dist/` folder for HTML files
+2. **Extracts** meaningful content while filtering out navigation, footers, and scripts
+3. **Converts** HTML to clean markdown format
+4. **Organizes** content by category (core pages, blog posts, case studies, etc.)
+5. **Generates** a properly formatted `llms.txt` file following industry standards
+
+#### Features
+
+- **Smart Content Extraction**: Automatically identifies and extracts semantic content
+- **Content Categorization**: Organizes pages into logical sections
+- **Link Preservation**: Maintains internal links with proper URL formatting
+- **Preview Mode**: See what will be generated before writing files
+- **Verbose Output**: Detailed progress information for debugging
+
+#### Integration with AI-SEO Features
+
+The dist scraper is part of the comprehensive AI-SEO implementation that includes:
+- **llms.txt**: Generated from actual site content (this tool)
+- **ai.txt**: AI crawler management directives
+- **robots.txt**: Enhanced with AI-specific crawler rules
+- **Schema.org markup**: JSON-LD structured data throughout the site
+
+#### Workflow Recommendation
+
+1. **Develop**: Make content changes in your Astro source files
+2. **Build**: `pnpm build` to generate the static site
+3. **Scrape**: `pnpm tools:scrape` to update llms.txt with latest content
+4. **Rebuild**: `pnpm build` again to include the updated llms.txt
+5. **Deploy**: Your site now has current AI-optimized content
+
+Or use the convenient combined command: `pnpm build:with-llms`
+
+> **Important**: Always run `pnpm build` after generating a new llms.txt to ensure the updated file is included in your deployment.
+
+For detailed documentation, see [project_tools/dist-scraper/README.md](project_tools/dist-scraper/README.md).
+
 ## 📁 Project Architecture
 
 ```
