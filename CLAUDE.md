@@ -495,6 +495,14 @@ import YourModal from "@/components/PopupComponents/YourModal.astro";
 
 The modal system integrates seamlessly with the existing theme system and provides a solid foundation for any modal implementations throughout the project.
 
+## Line Ending Requirements
+
+**CRITICAL: This project MUST use Unix LF line endings exclusively:**
+- **NEVER create files with CRLF line endings** - Git is configured to reject them
+- All text files must use Unix LF (`\n`) line endings only
+- The `.gitattributes` file enforces LF normalization for all text files
+- Git is configured with `core.autocrlf=input` and `core.eol=lf`
+
 ## Color System Instructions for Claude Code
 
 When working with this project, ALWAYS:
