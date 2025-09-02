@@ -19,13 +19,13 @@ async function generateScreenshot() {
     
     console.log('📸 Capturing screenshot...');
     await page.screenshot({ 
-      path: 'screenshot-thumbnail.jpg',
+      path: 'tools_output/screenshots/screenshot-thumbnail.jpg',
       type: 'jpeg',
       quality: 90,
       fullPage: false
     });
     
-    console.log('✅ Screenshot saved as screenshot-thumbnail.jpg');
+    console.log('✅ Screenshot saved as tools_output/screenshots/screenshot-thumbnail.jpg');
     console.log('💡 You can now copy this file to replace /public/opengraph.jpg');
   } catch (error) {
     console.error('❌ Error generating screenshot:', error);

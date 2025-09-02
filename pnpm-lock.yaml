@@ -47,6 +47,9 @@ importers:
       astro-seo:
         specifier: ^0.8.4
         version: 0.8.4(typescript@5.9.2)
+      playwright:
+        specifier: ^1.55.0
+        version: 1.55.0
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
