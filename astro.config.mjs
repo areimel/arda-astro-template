@@ -14,6 +14,6 @@ export default defineConfig({
   // Expose environment variables to the client
   define: {
     'import.meta.env.GOOGLE_TAG_MANAGER_ID': JSON.stringify(process.env.GOOGLE_TAG_MANAGER_ID),
-    'import.meta.env.ENABLE_TRACKING_CONSENT': JSON.stringify(true),
+    'import.meta.env.ENABLE_TRACKING_CONSENT': JSON.stringify(process.env.ENABLE_TRACKING_CONSENT === 'true'),
   },
 });

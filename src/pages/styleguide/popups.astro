@@ -415,6 +415,17 @@ import { Icon } from "astro-icon/components";
 
   // Initialize page functionality
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('Popups styleguide page initializing...');
+    
+    // Wait a bit for all systems to initialize
+    setTimeout(() => {
+      initializePopupsStyleguide();
+    }, 500);
+  });
+
+  function initializePopupsStyleguide() {
+    console.log('Setting up popups styleguide functionality');
+    
     // Update consent status display
     updateConsentStatusDisplay();
 
@@ -447,11 +458,26 @@ import { Icon } from "astro-icon/components";
     const showConsentButton = document.getElementById('show-consent-popup');
     if (showConsentButton) {
       showConsentButton.addEventListener('click', () => {
-        if (typeof (window as any).showToast === 'function') {
+        console.log('Show consent popup button clicked');
+        
+        // Try using the TrackingConsentPopup instance first
+        if ((window as any).TrackingConsentPopup && typeof (window as any).TrackingConsentPopup.show === 'function') {
+          console.log('Using TrackingConsentPopup.show()');
+          (window as any).TrackingConsentPopup.show();
+        } else if (typeof (window as any).showToast === 'function') {
+          console.log('Using global showToast function');
           (window as any).showToast('tracking-consent-popup');
-          console.log('Showing consent popup');
         } else {
-          console.warn('Toast system not available for consent popup');
+          console.warn('Neither TrackingConsentPopup nor Toast system available');
+          // Try fallback direct manipulation
+          const popup = document.querySelector('[data-toast-id="tracking-consent-popup"]') as HTMLElement;
+          if (popup) {
+            popup.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            popup.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            console.log('Shown consent popup via direct DOM manipulation');
+          } else {
+            console.error('Consent popup element not found');
+          }
         }
       });
     }
@@ -459,15 +485,24 @@ import { Icon } from "astro-icon/components";
     const clearConsentButton = document.getElementById('clear-consent-status');
     if (clearConsentButton) {
       clearConsentButton.addEventListener('click', () => {
+        console.log('Clear consent button clicked');
         const success = clearConsentStatus();
         updateConsentStatusDisplay();
         console.log('Consent status cleared:', success);
+        
+        // After clearing, the popup should automatically show if it's set to do so
+        if (success) {
+          setTimeout(() => {
+            console.log('Consent cleared - popup should show automatically if shouldShowConsentPopup() returns true');
+          }, 100);
+        }
       });
     }
 
     const checkConsentButton = document.getElementById('check-consent-status');
     if (checkConsentButton) {
       checkConsentButton.addEventListener('click', () => {
+        console.log('Check consent button clicked');
         updateConsentStatusDisplay();
         console.log('Consent status refreshed');
       });
@@ -477,7 +512,9 @@ import { Icon } from "astro-icon/components";
     document.addEventListener('trackingConsentChanged', () => {
       updateConsentStatusDisplay();
     });
-  });
+    
+    console.log('Popups styleguide setup complete');
+  }
 
   function updateConsentStatusDisplay() {
     const statusElement = document.getElementById('consent-status-value');

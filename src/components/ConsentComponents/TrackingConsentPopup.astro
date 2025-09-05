@@ -72,31 +72,71 @@ const toastId = "tracking-consent-popup";
 		show(): void;
 		hide(): void;
 		handleAction(action: string): void;
+		waitForToastSystem(): Promise<void>;
 	}
 
 	class TrackingConsentPopup implements ConsentPopupManager {
 		private toastId = 'tracking-consent-popup';
 		private isInitialized = false;
+		private toastSystemReady = false;
+		private maxWaitTime = 10000; // 10 seconds max wait
 
-		init(): void {
+		async init(): Promise<void> {
 			if (this.isInitialized) return;
+
+			console.log('Initializing tracking consent popup...');
 
 			// Initialize tracking consent system
 			initTrackingConsent();
+
+			// Wait for Toast system to be available
+			await this.waitForToastSystem();
 
 			// Set up event listeners
 			this.setupEventListeners();
 
 			// Check if popup should be shown on load
 			if (shouldShowConsentPopup()) {
+				console.log('Consent status unknown - showing popup after delay');
 				// Small delay to ensure DOM is ready
 				setTimeout(() => {
 					this.show();
-				}, 500);
+				}, 1000);
+			} else {
+				console.log('Consent already set - popup not needed');
 			}
 
 			this.isInitialized = true;
-			console.log('Tracking consent popup initialized');
+			console.log('Tracking consent popup initialized successfully');
+		}
+
+		async waitForToastSystem(): Promise<void> {
+			return new Promise((resolve) => {
+				const startTime = Date.now();
+				
+				const checkToastSystem = () => {
+					// Check if Toast system is available
+					if (typeof (window as any).showToast === 'function' && 
+						typeof (window as any).hideToast === 'function') {
+						this.toastSystemReady = true;
+						console.log('Toast system detected and ready');
+						resolve();
+						return;
+					}
+
+					// Check if we've exceeded max wait time
+					if (Date.now() - startTime > this.maxWaitTime) {
+						console.warn('Toast system not available after waiting - proceeding anyway');
+						resolve();
+						return;
+					}
+
+					// Try again in 100ms
+					setTimeout(checkToastSystem, 100);
+				};
+
+				checkToastSystem();
+			});
 		}
 
 		private setupEventListeners(): void {
@@ -109,6 +149,7 @@ const toastId = "tracking-consent-popup";
 					event.preventDefault();
 					const action = actionButton.getAttribute('data-consent-action');
 					if (action) {
+						console.log(`Consent button clicked: ${action}`);
 						this.handleAction(action);
 					}
 				}
@@ -130,38 +171,68 @@ const toastId = "tracking-consent-popup";
 			document.addEventListener('toastHidden', (event) => {
 				const customEvent = event as CustomEvent;
 				if (customEvent.detail.toastId === this.toastId) {
-					console.log('Tracking consent popup hidden');
+					console.log('Tracking consent popup hidden via toast event');
 				}
 			});
 
 			document.addEventListener('toastShown', (event) => {
 				const customEvent = event as CustomEvent;
 				if (customEvent.detail.toastId === this.toastId) {
-					console.log('Tracking consent popup shown');
+					console.log('Tracking consent popup shown via toast event');
 				}
 			});
 		}
 
 		show(): void {
+			console.log('Attempting to show tracking consent popup...');
+			
 			// Use the global showToast function from Toast component
 			if (typeof (window as any).showToast === 'function') {
 				(window as any).showToast(this.toastId);
+				console.log('Tracking consent popup shown');
 			} else {
-				console.warn('Toast system not available');
+				console.error('Toast system not available - cannot show consent popup');
+				// Fallback: try to show the element directly
+				this.showFallback();
 			}
 		}
 
 		hide(): void {
+			console.log('Attempting to hide tracking consent popup...');
+			
 			// Use the global hideToast function from Toast component
 			if (typeof (window as any).hideToast === 'function') {
 				(window as any).hideToast(this.toastId);
+				console.log('Tracking consent popup hidden');
 			} else {
-				console.warn('Toast system not available');
+				console.error('Toast system not available - cannot hide consent popup');
+				// Fallback: try to hide the element directly
+				this.hideFallback();
+			}
+		}
+
+		private showFallback(): void {
+			const toast = document.querySelector(`[data-toast-id="${this.toastId}"]`) as HTMLElement;
+			if (toast) {
+				toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+				toast.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+				console.log('Consent popup shown via fallback method');
+			} else {
+				console.error('Consent popup element not found');
+			}
+		}
+
+		private hideFallback(): void {
+			const toast = document.querySelector(`[data-toast-id="${this.toastId}"]`) as HTMLElement;
+			if (toast) {
+				toast.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+				toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+				console.log('Consent popup hidden via fallback method');
 			}
 		}
 
 		handleAction(action: string): void {
-			console.log('Consent action:', action);
+			console.log('Processing consent action:', action);
 			
 			// Save the consent choice
 			const success = handleConsentAction(action);
@@ -172,9 +243,9 @@ const toastId = "tracking-consent-popup";
 					this.hide();
 				}, 300);
 				
-				// Optional: Show confirmation message
+				// Show confirmation message
 				const actionText = action === 'allow' ? 'accepted' : 'declined';
-				console.log(`Tracking consent ${actionText}`);
+				console.log(`Tracking consent ${actionText} successfully`);
 			} else {
 				console.error('Failed to save consent choice');
 			}
@@ -185,19 +256,24 @@ const toastId = "tracking-consent-popup";
 	if (typeof window !== 'undefined') {
 		let consentPopup: TrackingConsentPopup;
 
-		const initialize = () => {
-			consentPopup = new TrackingConsentPopup();
-			consentPopup.init();
+		const initialize = async () => {
+			try {
+				consentPopup = new TrackingConsentPopup();
+				await consentPopup.init();
+				
+				// Make available globally for debugging and external access
+				(window as any).TrackingConsentPopup = consentPopup;
+			} catch (error) {
+				console.error('Failed to initialize tracking consent popup:', error);
+			}
 		};
 
 		if (document.readyState === 'loading') {
 			document.addEventListener('DOMContentLoaded', initialize);
 		} else {
-			initialize();
+			// Use setTimeout to ensure this runs after other scripts
+			setTimeout(initialize, 0);
 		}
-
-		// Make available globally for debugging
-		(window as any).TrackingConsentPopup = consentPopup;
 	}
 </script>
 
