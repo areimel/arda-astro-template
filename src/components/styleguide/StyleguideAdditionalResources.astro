@@ -1,0 +1,38 @@
+---
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  class?: string;
+}
+
+const {
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={[
+  "text-center py-16",
+  className
+]}>
+  <h2 class="text-2xl font-semibold theme-headline mb-4">Additional Resources</h2>
+  <p class="text-lg theme-paragraph mb-8 max-w-3xl mx-auto">
+    This styleguide showcases our complete design system built with Astro 5, TailwindCSS 4, 
+    and a dynamic 17-palette theme system. Each section is designed to help maintain consistency 
+    and accelerate development workflows.
+  </p>
+  <div class="flex justify-center gap-4">
+    <Link href="/" style="outline" size="md">
+      <Icon name="bx:bx-home" class="inline-block mr-2 w-4 h-4" />
+      Homepage
+    </Link>
+    <Link href="/about" style="outline" size="md">
+      <Icon name="bx:bx-info-circle" class="inline-block mr-2 w-4 h-4" />
+      About
+    </Link>
+    <Link href="/contact" style="outline" size="md">
+      <Icon name="bx:bx-envelope" class="inline-block mr-2 w-4 h-4" />
+      Contact
+    </Link>
+  </div>
+</div>
