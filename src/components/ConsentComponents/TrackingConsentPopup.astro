@@ -1,0 +1,251 @@
+---
+import Toast from '@/components/ui/Toast.astro';
+import Button from '@/components/ui/button.astro';
+import { Icon } from 'astro-icon/components';
+
+const toastId = "tracking-consent-popup";
+---
+
+<Toast 
+	id={toastId}
+	position="bottom-right" 
+	size="md"
+	dismissible={false}
+	class="tracking-consent-popup"
+>
+	<div class="space-y-4">
+		<!-- Header -->
+		<div class="flex items-start space-x-3">
+			<div class="flex-shrink-0 mt-1">
+				<!-- Privacy Icon -->
+				<Icon name="bx:bx-lock-alt" class="w-6 h-6" style="color: var(--color-theme-headline);" />
+			</div>
+			<div class="flex-1 min-w-0">
+				<h3 class="text-lg font-display font-bold theme-headline">
+					Privacy & Cookies
+				</h3>
+			</div>
+		</div>
+
+		<!-- Content -->
+		<div class="text-sm theme-paragraph font-sans leading-relaxed">
+			<p class="mb-3">
+				We use tracking technologies to improve your experience and analyze site usage. 
+				Your privacy matters to us.
+			</p>
+			<p class="text-xs theme-paragraph opacity-80">
+				Your choice will be remembered for 30 days. You can change this anytime in your browser settings.
+			</p>
+		</div>
+
+		<!-- Action Buttons -->
+		<div class="flex flex-col sm:flex-row gap-3 pt-2">
+			<Button
+				data-consent-action="allow"
+				class="flex-1 text-sm justify-center"
+				style="primary"
+				size="md"
+			>
+				Allow
+			</Button>
+			<Button
+				data-consent-action="deny"  
+				class="flex-1 text-sm justify-center"
+				style="outline"
+				size="md"
+			>
+				Don't Allow
+			</Button>
+		</div>
+	</div>
+</Toast>
+
+<script>
+	import { 
+		shouldShowConsentPopup, 
+		handleConsentAction,
+		initTrackingConsent 
+	} from '@/utils/TrackingConsentStatus.js';
+
+	interface ConsentPopupManager {
+		init(): void;
+		show(): void;
+		hide(): void;
+		handleAction(action: string): void;
+	}
+
+	class TrackingConsentPopup implements ConsentPopupManager {
+		private toastId = 'tracking-consent-popup';
+		private isInitialized = false;
+
+		init(): void {
+			if (this.isInitialized) return;
+
+			// Initialize tracking consent system
+			initTrackingConsent();
+
+			// Set up event listeners
+			this.setupEventListeners();
+
+			// Check if popup should be shown on load
+			if (shouldShowConsentPopup()) {
+				// Small delay to ensure DOM is ready
+				setTimeout(() => {
+					this.show();
+				}, 500);
+			}
+
+			this.isInitialized = true;
+			console.log('Tracking consent popup initialized');
+		}
+
+		private setupEventListeners(): void {
+			// Handle consent action buttons
+			document.addEventListener('click', (event) => {
+				const target = event.target as HTMLElement;
+				const actionButton = target.closest('[data-consent-action]') as HTMLElement;
+				
+				if (actionButton) {
+					event.preventDefault();
+					const action = actionButton.getAttribute('data-consent-action');
+					if (action) {
+						this.handleAction(action);
+					}
+				}
+			});
+
+			// Listen for consent changes from other sources
+			document.addEventListener('trackingConsentChanged', (event) => {
+				const customEvent = event as CustomEvent;
+				const { status } = customEvent.detail;
+				
+				console.log('Consent changed externally:', status);
+				// Hide popup when consent is set from elsewhere
+				if (status !== 'unknown') {
+					this.hide();
+				}
+			});
+
+			// Listen for toast events
+			document.addEventListener('toastHidden', (event) => {
+				const customEvent = event as CustomEvent;
+				if (customEvent.detail.toastId === this.toastId) {
+					console.log('Tracking consent popup hidden');
+				}
+			});
+
+			document.addEventListener('toastShown', (event) => {
+				const customEvent = event as CustomEvent;
+				if (customEvent.detail.toastId === this.toastId) {
+					console.log('Tracking consent popup shown');
+				}
+			});
+		}
+
+		show(): void {
+			// Use the global showToast function from Toast component
+			if (typeof (window as any).showToast === 'function') {
+				(window as any).showToast(this.toastId);
+			} else {
+				console.warn('Toast system not available');
+			}
+		}
+
+		hide(): void {
+			// Use the global hideToast function from Toast component
+			if (typeof (window as any).hideToast === 'function') {
+				(window as any).hideToast(this.toastId);
+			} else {
+				console.warn('Toast system not available');
+			}
+		}
+
+		handleAction(action: string): void {
+			console.log('Consent action:', action);
+			
+			// Save the consent choice
+			const success = handleConsentAction(action);
+			
+			if (success) {
+				// Hide the popup with a small delay for better UX
+				setTimeout(() => {
+					this.hide();
+				}, 300);
+				
+				// Optional: Show confirmation message
+				const actionText = action === 'allow' ? 'accepted' : 'declined';
+				console.log(`Tracking consent ${actionText}`);
+			} else {
+				console.error('Failed to save consent choice');
+			}
+		}
+	}
+
+	// Initialize the tracking consent popup
+	if (typeof window !== 'undefined') {
+		let consentPopup: TrackingConsentPopup;
+
+		const initialize = () => {
+			consentPopup = new TrackingConsentPopup();
+			consentPopup.init();
+		};
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initialize);
+		} else {
+			initialize();
+		}
+
+		// Make available globally for debugging
+		(window as any).TrackingConsentPopup = consentPopup;
+	}
+</script>
+
+<style>
+	.tracking-consent-popup {
+		/* Ensure popup appears above other elements */
+		z-index: 9999;
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 640px) {
+		.tracking-consent-popup {
+			/* On mobile, use more of the screen */
+			left: 1rem;
+			right: 1rem;
+			bottom: 1rem;
+			max-width: none;
+		}
+	}
+
+	/* Animation improvements */
+	.tracking-consent-popup.opacity-100 {
+		animation: slideInUp 0.4s ease-out;
+	}
+
+	.tracking-consent-popup.opacity-0 {
+		animation: slideOutDown 0.3s ease-in;
+	}
+
+	@keyframes slideInUp {
+		from {
+			transform: translateY(100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes slideOutDown {
+		from {
+			transform: translateY(0);
+			opacity: 1;
+		}
+		to {
+			transform: translateY(20px);
+			opacity: 0;
+		}
+	}
+</style>

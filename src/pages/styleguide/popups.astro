@@ -1,0 +1,518 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Button from "@/components/ui/button.astro";
+import TrackingConsentPopup from "@/components/ConsentComponents/TrackingConsentPopup.astro";
+import Toast from "@/components/ui/Toast.astro";
+import ContactFormModal from "@/components/PopupComponents/ContactFormModal.astro";
+import NewsletterFormModal from "@/components/PopupComponents/NewsletterFormModal.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Popups Styleguide">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Popups & Modals Styleguide</Fragment>
+      <Fragment slot="desc">
+        Interactive reference for toast notifications, modals, and popup components. Test functionality and review implementation patterns.
+      </Fragment>
+    </Sectionhead>
+
+    <div class="max-w-6xl mx-auto space-y-16">
+      
+      <!-- Toast Component Section -->
+      <section>
+        <h2 class="text-3xl font-bold mb-8 theme-headline">Toast Notifications</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <p class="text-lg mb-4 theme-paragraph">
+              Reusable toast notification system with configurable positioning, sizes, and auto-hide functionality. 
+              Built with TypeScript classes and custom event system for global access.
+            </p>
+            
+            <div class="theme-section-bg p-4 mb-6 rounded-lg" style="border: 1px solid var(--color-theme-stroke);">
+              <h4 class="font-semibold mb-2 theme-sub-headline">Key Features:</h4>
+              <ul class="list-disc list-inside space-y-1 text-sm theme-paragraph">
+                <li>6 positioning options: bottom-right, bottom-left, top-right, top-left, bottom-center, top-center</li>
+                <li>3 size variants: sm (384px), md (448px), lg (512px)</li>
+                <li>Optional dismissible close button</li>
+                <li>Auto-hide with configurable delay</li>
+                <li>Global showToast() and hideToast() functions</li>
+                <li>Custom event system for component communication</li>
+                <li>Full theme integration with 17-palette system</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Toast Demo Buttons -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 theme-sub-headline">Toast Positioning Demo</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+              <Button 
+                id="show-toast-bottom-right"
+                style="outline" 
+                size="md"
+                class="text-sm"
+              >
+                Bottom Right
+              </Button>
+              
+              <Button 
+                id="show-toast-bottom-left"
+                style="outline" 
+                size="md"
+                class="text-sm"
+              >
+                Bottom Left
+              </Button>
+              
+              <Button 
+                id="show-toast-top-right"
+                style="outline" 
+                size="md"
+                class="text-sm"
+              >
+                Top Right
+              </Button>
+              
+              <Button 
+                id="show-toast-top-left"
+                style="outline" 
+                size="md"
+                class="text-sm"
+              >
+                Top Left
+              </Button>
+              
+              <Button 
+                id="show-toast-bottom-center"
+                style="outline" 
+                size="md"
+                class="text-sm"
+              >
+                Bottom Center
+              </Button>
+              
+              <Button 
+                id="show-toast-top-center"
+                style="outline" 
+                size="md"
+                class="text-sm"
+              >
+                Top Center
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tracking Consent Popup Section -->
+      <section>
+        <h2 class="text-3xl font-bold mb-8 theme-headline">Tracking Consent Popup</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <p class="text-lg mb-4 theme-paragraph">
+              GDPR-compliant privacy consent system with localStorage persistence and 30-day expiration. 
+              Integrates with tracking systems and provides comprehensive consent management.
+            </p>
+            
+            <div class="theme-section-bg p-4 mb-6 rounded-lg" style="border: 1px solid var(--color-theme-stroke);">
+              <h4 class="font-semibold mb-2 theme-sub-headline">Key Features:</h4>
+              <ul class="list-disc list-inside space-y-1 text-sm theme-paragraph">
+                <li>LocalStorage with timestamped expiration (30 days)</li>
+                <li>Allow/Don't Allow consent options</li>
+                <li>Custom event system for consent state changes</li>
+                <li>Automatic popup display for unknown consent status</li>
+                <li>Cross-tab synchronization via storage events</li>
+                <li>Built on Toast component foundation</li>
+                <li>Mobile-responsive design with slide animations</li>
+                <li>Full theme integration across 17 color palettes</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Consent Status Display -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 theme-sub-headline">Current Consent Status</h3>
+            <div class="theme-card-bg border-2 p-4 mb-4 rounded-lg" style="border-color: var(--color-theme-stroke);">
+              <div id="consent-status-display" class="font-mono text-sm theme-paragraph">
+                Status: <span id="consent-status-value" class="font-bold">Loading...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consent Demo Buttons -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 theme-sub-headline">Consent Management Demo</h3>
+            <div class="flex flex-wrap gap-4">
+              <Button 
+                id="show-consent-popup"
+                style="primary" 
+                size="md"
+              >
+                Show Consent Popup
+              </Button>
+              
+              <Button 
+                id="clear-consent-status"
+                style="outline" 
+                size="md"
+              >
+                Clear Consent Status
+              </Button>
+              
+              <Button 
+                id="check-consent-status"
+                style="outline" 
+                size="md"
+              >
+                Refresh Status
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal System Section -->
+      <section>
+        <h2 class="text-3xl font-bold mb-8 theme-headline">Modal System</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <p class="text-lg mb-4 theme-paragraph">
+              Comprehensive modal system built with ModalWrapper architecture. 
+              Features backdrop overlays, accessibility attributes, and responsive design patterns.
+            </p>
+            
+            <div class="theme-section-bg p-4 mb-6 rounded-lg" style="border: 1px solid var(--color-theme-stroke);">
+              <h4 class="font-semibold mb-2 theme-sub-headline">Key Features:</h4>
+              <ul class="list-disc list-inside space-y-1 text-sm theme-paragraph">
+                <li>ModalWrapper, ModalBackdrop, ModalContent architecture</li>
+                <li>Multiple size variants: sm, md, lg, xl, full</li>
+                <li>ARIA accessibility attributes (role, labelledby, describedby)</li>
+                <li>Keyboard navigation support (ESC key)</li>
+                <li>Backdrop click to close functionality</li>
+                <li>Body scroll locking during modal display</li>
+                <li>Smooth fade and visibility transitions</li>
+                <li>Full theme integration with color palette system</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Modal Demo Buttons -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 theme-sub-headline">Modal Demos</h3>
+            <div class="flex flex-wrap gap-4">
+              <Button 
+                data-modal-open="ExampleModal"
+                style="primary" 
+                size="md"
+              >
+                Example Modal
+              </Button>
+              
+              <Button 
+                data-modal-open="ThemeControlModal"
+                style="outline" 
+                size="md"
+              >
+                Theme Control Modal
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Form Modals Section -->
+      <section>
+        <h2 class="text-3xl font-bold mb-8 theme-headline">Form Modals</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <p class="text-lg mb-4 theme-paragraph">
+              Pre-built form modal components for common use cases. Built using the ModalWrapper system 
+              with integrated Web3Forms for handling submissions and full theme support.
+            </p>
+            
+            <div class="theme-section-bg p-4 mb-6 rounded-lg" style="border: 1px solid var(--color-theme-stroke);">
+              <h4 class="font-semibold mb-2 theme-sub-headline">Available Form Modals:</h4>
+              <ul class="list-disc list-inside space-y-1 text-sm theme-paragraph">
+                <li><strong>Contact Form Modal</strong> - Full contact form with name, email, and message fields</li>
+                <li><strong>Newsletter Form Modal</strong> - Simple newsletter signup with name and email fields</li>
+                <li>Web3Forms integration for reliable form submission handling</li>
+                <li>Client-side validation with accessible error messages</li>
+                <li>Success/error feedback with theme-integrated styling</li>
+                <li>Responsive design with proper mobile optimization</li>
+                <li>Built-in form reset and auto-close functionality</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Form Modal Demo Buttons -->
+          <div>
+            <h3 class="text-xl font-semibold mb-4 theme-sub-headline">Form Modal Demos</h3>
+            <div class="flex flex-wrap gap-4">
+              <Button 
+                data-modal-open="ContactFormModal"
+                style="primary" 
+                size="md"
+              >
+                <Icon name="bx:bx-envelope" class="w-4 h-4 mr-2" />
+                Contact Form Modal
+              </Button>
+              
+              <Button 
+                data-modal-open="NewsletterFormModal"
+                style="outline" 
+                size="md"
+              >
+                <Icon name="bx:bx-news" class="w-4 h-4 mr-2" />
+                Newsletter Form Modal
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Implementation Notes Section -->
+      <section>
+        <h2 class="text-3xl font-bold mb-8 theme-headline">Implementation Notes</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-xl font-semibold mb-4 theme-sub-headline">File Structure</h3>
+            <div class="theme-section-bg p-4 rounded-lg" style="border: 1px solid var(--color-theme-stroke);">
+              <pre class="text-sm font-mono theme-paragraph"><code>src/
+├── components/
+│   ├── ui/
+│   │   └── Toast.astro              # Base toast component
+│   ├── ConsentComponents/
+│   │   └── TrackingConsentPopup.astro # GDPR consent popup
+│   ├── PopupComponents/
+│   │   ├── ModalWrapper.astro       # Modal container wrapper
+│   │   ├── ModalBackdrop.astro      # Modal backdrop overlay
+│   │   ├── ModalContent.astro       # Modal content container
+│   │   ├── ModalCloseButton.astro   # Modal close button
+│   │   ├── ExampleModal.astro       # Example modal component
+│   │   ├── ThemeControlModal.astro  # Theme selector modal
+│   │   ├── ContactFormModal.astro   # Contact form modal
+│   │   └── NewsletterFormModal.astro # Newsletter signup modal
+│   └── FormComponents/
+│       ├── contactform.astro        # Contact form component
+│       └── newsletterform.astro     # Newsletter form component
+└── utils/
+    ├── LocalStorageManager.js       # Storage with expiration
+    └── TrackingConsentStatus.js     # Consent management</code></pre>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-semibold mb-4 theme-sub-headline">Global Integration</h3>
+            <p class="mb-4 theme-paragraph">
+              The tracking consent popup is globally integrated through <code class="theme-card-bg px-2 py-1 font-mono rounded" style="border: 1px solid var(--color-theme-stroke);">Layout.astro</code> 
+              and automatically displays when consent status is unknown. Other popups are triggered manually via JavaScript.
+            </p>
+            
+            <p class="theme-paragraph">
+              All components fully support the 17-palette theme system and will adapt dynamically when users change color themes.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </Container>
+
+  <!-- Include the actual popup components for testing -->
+  <!-- TrackingConsentPopup is already included globally via Layout.astro when ENABLE_TRACKING_CONSENT is true -->
+  
+  <!-- Demo Toast Components for testing different positions -->
+  <Toast id="demo-toast-bottom-right" position="bottom-right" size="md" dismissible={true}>
+    <div class="flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <Icon name="bx:bx-info-circle" class="w-6 h-6" style="color: var(--color-theme-button);" />
+      </div>
+      <div>
+        <h4 class="font-semibold theme-headline">Bottom Right Toast</h4>
+        <p class="text-sm theme-paragraph">This is a demo toast notification.</p>
+      </div>
+    </div>
+  </Toast>
+  
+  <Toast id="demo-toast-bottom-left" position="bottom-left" size="md" dismissible={true}>
+    <div class="flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <Icon name="bx:bx-check-circle" class="w-6 h-6" style="color: var(--color-theme-highlight);" />
+      </div>
+      <div>
+        <h4 class="font-semibold theme-headline">Bottom Left Toast</h4>
+        <p class="text-sm theme-paragraph">This appears in the bottom-left corner.</p>
+      </div>
+    </div>
+  </Toast>
+  
+  <Toast id="demo-toast-top-right" position="top-right" size="md" dismissible={true}>
+    <div class="flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <Icon name="bx:bx-error-circle" class="w-6 h-6" style="color: var(--color-theme-secondary);" />
+      </div>
+      <div>
+        <h4 class="font-semibold theme-headline">Top Right Toast</h4>
+        <p class="text-sm theme-paragraph">This appears in the top-right corner.</p>
+      </div>
+    </div>
+  </Toast>
+  
+  <Toast id="demo-toast-top-left" position="top-left" size="md" dismissible={true}>
+    <div class="flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <Icon name="bx:bx-x-circle" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+      </div>
+      <div>
+        <h4 class="font-semibold theme-headline">Top Left Toast</h4>
+        <p class="text-sm theme-paragraph">This appears in the top-left corner.</p>
+      </div>
+    </div>
+  </Toast>
+  
+  <Toast id="demo-toast-bottom-center" position="bottom-center" size="md" dismissible={true}>
+    <div class="flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <Icon name="bx:bx-bell" class="w-6 h-6" style="color: var(--color-theme-link);" />
+      </div>
+      <div>
+        <h4 class="font-semibold theme-headline">Bottom Center Toast</h4>
+        <p class="text-sm theme-paragraph">This appears centered at the bottom.</p>
+      </div>
+    </div>
+  </Toast>
+  
+  <Toast id="demo-toast-top-center" position="top-center" size="md" dismissible={true}>
+    <div class="flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <Icon name="bx:bx-star" class="w-6 h-6" style="color: var(--color-theme-paragraph);" />
+      </div>
+      <div>
+        <h4 class="font-semibold theme-headline">Top Center Toast</h4>
+        <p class="text-sm theme-paragraph">This appears centered at the top.</p>
+      </div>
+    </div>
+  </Toast>
+
+  <!-- Form Modal Components -->
+  <ContactFormModal />
+  <NewsletterFormModal />
+</Layout>
+
+<script>
+  import { 
+    getConsentInfo,
+    clearConsentStatus,
+    shouldShowConsentPopup 
+  } from '@/utils/TrackingConsentStatus.js';
+
+  // Initialize page functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Update consent status display
+    updateConsentStatusDisplay();
+
+    // Toast demo buttons
+    const toastButtons = [
+      { id: 'show-toast-bottom-right', toastId: 'demo-toast-bottom-right' },
+      { id: 'show-toast-bottom-left', toastId: 'demo-toast-bottom-left' },
+      { id: 'show-toast-top-right', toastId: 'demo-toast-top-right' },
+      { id: 'show-toast-top-left', toastId: 'demo-toast-top-left' },
+      { id: 'show-toast-bottom-center', toastId: 'demo-toast-bottom-center' },
+      { id: 'show-toast-top-center', toastId: 'demo-toast-top-center' }
+    ];
+
+    // Set up toast demo buttons
+    toastButtons.forEach(({ id, toastId }) => {
+      const button = document.getElementById(id);
+      if (button) {
+        button.addEventListener('click', () => {
+          if (typeof (window as any).showToast === 'function') {
+            (window as any).showToast(toastId, { autoHide: true, autoHideDelay: 4000 });
+            console.log(`Showing ${toastId}`);
+          } else {
+            console.warn('Toast system not available');
+          }
+        });
+      }
+    });
+
+    // Consent management buttons
+    const showConsentButton = document.getElementById('show-consent-popup');
+    if (showConsentButton) {
+      showConsentButton.addEventListener('click', () => {
+        if (typeof (window as any).showToast === 'function') {
+          (window as any).showToast('tracking-consent-popup');
+          console.log('Showing consent popup');
+        } else {
+          console.warn('Toast system not available for consent popup');
+        }
+      });
+    }
+
+    const clearConsentButton = document.getElementById('clear-consent-status');
+    if (clearConsentButton) {
+      clearConsentButton.addEventListener('click', () => {
+        const success = clearConsentStatus();
+        updateConsentStatusDisplay();
+        console.log('Consent status cleared:', success);
+      });
+    }
+
+    const checkConsentButton = document.getElementById('check-consent-status');
+    if (checkConsentButton) {
+      checkConsentButton.addEventListener('click', () => {
+        updateConsentStatusDisplay();
+        console.log('Consent status refreshed');
+      });
+    }
+
+    // Listen for consent status changes
+    document.addEventListener('trackingConsentChanged', () => {
+      updateConsentStatusDisplay();
+    });
+  });
+
+  function updateConsentStatusDisplay() {
+    const statusElement = document.getElementById('consent-status-value');
+    if (statusElement) {
+      const consentInfo = getConsentInfo();
+      let statusText = consentInfo.status;
+      let statusColor = 'var(--color-theme-paragraph)';
+
+      if (consentInfo.status === 'allowed') {
+        statusColor = 'var(--color-theme-highlight)';
+        statusText = 'ALLOWED ✓';
+      } else if (consentInfo.status === 'denied') {
+        statusColor = 'var(--color-theme-secondary)';
+        statusText = 'DENIED ✗';
+      } else {
+        statusColor = 'var(--color-theme-tertiary)';
+        statusText = 'UNKNOWN ?';
+      }
+
+      statusElement.textContent = statusText;
+      statusElement.style.color = statusColor;
+    }
+  }
+</script>
+
+<style>
+  /* Ensure demo toasts don't interfere with actual consent popup */
+  .demo-toast {
+    z-index: 40;
+  }
+  
+  /* Code blocks styling */
+  pre code {
+    white-space: pre;
+    word-wrap: normal;
+    overflow-x: auto;
+  }
+</style>

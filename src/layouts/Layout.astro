@@ -6,6 +6,7 @@ import ColorPaletteSelector from "@/components/ThemeComponents/ColorPaletteSelec
 import LoadingScreen from "@/components/LoadingScreen.astro";
 import GoogleTagManagerHead from "@/components/HeadComponents/GoogleTagManagerHead.astro";
 import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBody.astro";
+import TrackingConsentPopup from "@/components/ConsentComponents/TrackingConsentPopup.astro";
 
 // Styles & Fonts
 import "@fontsource-variable/inter/index.css";
@@ -67,7 +68,15 @@ const makeTitle = title
       <slot />
       <Footer />
       <ColorPaletteSelector />
+      {import.meta.env.ENABLE_TRACKING_CONSENT && <TrackingConsentPopup />}
     </div>
+    
+    <!-- Centralized Modal System -->
+    <script>
+      import { initModals } from '@/utils/modalFunctions.js';
+      initModals();
+    </script>
+    
     <style is:global>
       /* Improve Page speed */
       /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
