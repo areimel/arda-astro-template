@@ -1,0 +1,97 @@
+---
+import ModalOuter from "@/components/PopupComponents/ModalOuter.astro";
+import ModalCloseButton from "@/components/ui/ModalCloseButton.astro";
+import NewsletterForm from "@/components/FormComponents/newsletterform.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<ModalOuter id="NewsletterFormModal" type="form">
+  <div class="relative p-6">
+    <!-- Close Button -->
+    <ModalCloseButton modalId="NewsletterFormModal" />
+    
+    <div class="text-center mb-6">
+      <div class="flex justify-center mb-4">
+        <div 
+          class="rounded-full p-3 w-16 h-16 flex items-center justify-center"
+          style="background-color: var(--color-theme-button);"
+        >
+          <Icon 
+            name="bx:bx-news" 
+            class="w-8 h-8"
+            style="color: var(--color-theme-button-text);"
+          />
+        </div>
+      </div>
+      
+      <h2 id="modal-title-NewsletterFormModal" class="theme-headline text-2xl font-bold mb-2">
+        Stay Updated
+      </h2>
+    </div>
+    
+    <div id="modal-description-NewsletterFormModal" class="mb-6">
+      <p class="theme-paragraph text-center mb-4 leading-relaxed">
+        Get the latest insights on cutting-edge technology, development trends, and exclusive project updates delivered straight to your inbox.
+      </p>
+      <p class="theme-paragraph text-center mb-6 leading-relaxed">
+        Join our community of tech enthusiasts and stay ahead of the curve with expert analysis and industry news.
+      </p>
+    </div>
+    
+    <!-- Newsletter Form -->
+    <NewsletterForm />
+    
+    <!-- Cancel Button -->
+    <div class="mt-6 flex justify-center">
+      <button
+        type="button"
+        data-modal-close="NewsletterFormModal"
+        class="theme-button-outline px-6 py-2 rounded-md transition focus:ring-2 focus:ring-offset-2"
+        style="--tw-ring-color: var(--color-theme-button);"
+      >
+        <Icon name="bx:bx-x" class="w-4 h-4 inline mr-2" />
+        Cancel
+      </button>
+    </div>
+  </div>
+</ModalOuter>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle successful form submission by auto-closing modal
+    const newsletterModal = document.querySelector('[data-modal-id="NewsletterFormModal"]');
+    const newsletterForm = newsletterModal?.querySelector('#newsletter-form');
+    
+    if (newsletterModal && newsletterForm) {
+      // Listen for successful form submission
+      const resultDiv = newsletterForm.querySelector('#newsletter-result');
+      
+      if (resultDiv) {
+        // Create a mutation observer to watch for success messages
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' && resultDiv.textContent) {
+              // Check if the result indicates success
+              const isSuccess = !resultDiv.classList.contains('text-red-500') && 
+                               resultDiv.textContent.trim().length > 0 &&
+                               !resultDiv.textContent.includes('wrong') &&
+                               !resultDiv.textContent.includes('error') &&
+                               resultDiv.textContent.includes('subscribed');
+              
+              if (isSuccess && resultDiv.textContent !== 'Subscribing...') {
+                // Auto-close modal after successful submission with delay
+                setTimeout(() => {
+                  if (typeof window.closeModal === 'function') {
+                    window.closeModal('NewsletterFormModal');
+                  }
+                }, 2000); // Wait 2 seconds to show success message
+              }
+            }
+          });
+        });
+        
+        observer.observe(resultDiv, { childList: true, subtree: true });
+      }
+    }
+  });
+</script>

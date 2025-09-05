@@ -1,0 +1,96 @@
+---
+import ModalOuter from "@/components/PopupComponents/ModalOuter.astro";
+import ModalCloseButton from "@/components/ui/ModalCloseButton.astro";
+import ContactForm from "@/components/FormComponents/contactform.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<ModalOuter id="ContactFormModal" type="form">
+  <div class="relative p-6">
+    <!-- Close Button -->
+    <ModalCloseButton modalId="ContactFormModal" />
+    
+    <div class="text-center mb-6">
+      <div class="flex justify-center mb-4">
+        <div 
+          class="rounded-full p-3 w-16 h-16 flex items-center justify-center"
+          style="background-color: var(--color-theme-button);"
+        >
+          <Icon 
+            name="bx:bx-envelope" 
+            class="w-8 h-8"
+            style="color: var(--color-theme-button-text);"
+          />
+        </div>
+      </div>
+      
+      <h2 id="modal-title-ContactFormModal" class="theme-headline text-2xl font-bold mb-2">
+        Get In Touch
+      </h2>
+    </div>
+    
+    <div id="modal-description-ContactFormModal" class="mb-6">
+      <p class="theme-paragraph text-center mb-4 leading-relaxed">
+        Ready to bring your next project to life? We're here to help you navigate the cutting-edge landscape of technology and development.
+      </p>
+      <p class="theme-paragraph text-center mb-6 leading-relaxed">
+        Whether you need web development, custom AI applications, or specialized solutions, our team is ready to deliver exceptional results tailored to your needs.
+      </p>
+    </div>
+    
+    <!-- Contact Form -->
+    <ContactForm />
+    
+    <!-- Cancel Button -->
+    <div class="mt-6 flex justify-center">
+      <button
+        type="button"
+        data-modal-close="ContactFormModal"
+        class="theme-button-outline px-6 py-2 rounded-md transition focus:ring-2 focus:ring-offset-2"
+        style="--tw-ring-color: var(--color-theme-button);"
+      >
+        <Icon name="bx:bx-x" class="w-4 h-4 inline mr-2" />
+        Cancel
+      </button>
+    </div>
+  </div>
+</ModalOuter>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle successful form submission by auto-closing modal
+    const contactModal = document.querySelector('[data-modal-id="ContactFormModal"]');
+    const contactForm = contactModal?.querySelector('#form');
+    
+    if (contactModal && contactForm) {
+      // Listen for successful form submission
+      const resultDiv = contactForm.querySelector('#result');
+      
+      if (resultDiv) {
+        // Create a mutation observer to watch for success messages
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' && resultDiv.textContent) {
+              // Check if the result indicates success (typically no error class)
+              const isSuccess = !resultDiv.classList.contains('text-red-500') && 
+                               resultDiv.textContent.trim().length > 0 &&
+                               !resultDiv.textContent.includes('wrong') &&
+                               !resultDiv.textContent.includes('error');
+              
+              if (isSuccess && resultDiv.textContent !== 'Sending...') {
+                // Auto-close modal after successful submission with delay
+                setTimeout(() => {
+                  if (typeof window.closeModal === 'function') {
+                    window.closeModal('ContactFormModal');
+                  }
+                }, 2000); // Wait 2 seconds to show success message
+              }
+            }
+          });
+        });
+        
+        observer.observe(resultDiv, { childList: true, subtree: true });
+      }
+    }
+  });
+</script>

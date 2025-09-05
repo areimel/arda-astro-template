@@ -1,0 +1,91 @@
+---
+interface Props {
+	id: string;
+	type?: string;
+	class?: string;
+	contentWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+	[x: string]: any;
+}
+
+const { id, type, class: className, contentWidth = "lg", ...rest } = Astro.props;
+
+const widthClasses = {
+	sm: "max-w-sm",
+	md: "max-w-md",
+	lg: "max-w-lg",
+	xl: "max-w-xl",
+	"2xl": "max-w-2xl",
+	"3xl": "max-w-3xl", 
+	"4xl": "max-w-4xl"
+};
+---
+
+<div
+	data-element="modal-outer"
+	data-modal-id={id}
+	data-modal-type={type}
+	class:list={[
+		"modal-outer fixed inset-0 z-50 hidden",
+		"flex items-center justify-center p-4",
+		className
+	]}
+	role="dialog"
+	aria-modal="true"
+	aria-labelledby={`modal-title-${id}`}
+	aria-describedby={`modal-description-${id}`}
+	{...rest}
+>
+	<!-- Theme-aware Backdrop -->
+	<div 
+		data-element="backdrop"
+		class="absolute inset-0 backdrop-blur-sm transition-opacity"
+		style="background-color: rgba(0, 0, 0, 0.5);"
+		aria-hidden="true"
+	></div>
+	
+	<!-- Modal Inner Container with Theme Integration -->
+	<div 
+		data-element="modal-inner"
+		class:list={[
+			"relative z-10 w-full max-h-[90vh] overflow-y-auto theme-card-bg rounded-lg shadow-xl",
+			widthClasses[contentWidth]
+		]}
+		style="border: 2px solid var(--color-theme-stroke);"
+	>
+		<slot />
+	</div>
+</div>
+
+<style>
+	/* Theme-aware modal transitions */
+	.modal-outer {
+		transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+		opacity: 0;
+		visibility: hidden;
+	}
+	
+	.modal-outer.flex {
+		opacity: 1;
+		visibility: visible;
+	}
+	
+	/* Backdrop animation */
+	[data-element="backdrop"] {
+		transition: opacity 0.3s ease-out;
+	}
+	
+	/* Modal content animation */
+	[data-element="modal-inner"] {
+		transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+		transform: translateY(-1rem);
+	}
+	
+	.modal-outer.flex [data-element="modal-inner"] {
+		transform: translateY(0);
+	}
+	
+	/* Ensure modal appears above theme components */
+	.modal-outer {
+		z-index: 1000;
+	}
+</style>

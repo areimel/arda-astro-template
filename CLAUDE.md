@@ -180,6 +180,7 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - Apply consistent button styles from buttons styleguide
 - Follow card layout patterns from cards styleguide
 - Use approved icons from icons styleguide (prefer `bx:` icons)
+- NEVER try to use the icon `bx:bx-shield-check`. This icon does not exist, but Claude Code keeps thinking it does for some reason, and it keeps causing issues with Claude getting confused and wasting computer power.
 - Maintain spacing consistency using spacing styleguide examples
 
 **3. Theme System Integration**

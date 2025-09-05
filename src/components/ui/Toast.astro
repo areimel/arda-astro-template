@@ -1,0 +1,221 @@
+---
+interface Props {
+	id: string;
+	position?: "bottom-right" | "bottom-left" | "top-right" | "top-left" | "bottom-center" | "top-center";
+	size?: "sm" | "md" | "lg";
+	class?: string;
+	dismissible?: boolean;
+	autoHide?: boolean;
+	autoHideDelay?: number;
+	[x: string]: any;
+}
+
+const {
+	id,
+	position = "bottom-right",
+	size = "md",
+	class: className,
+	dismissible = true,
+	autoHide = false,
+	autoHideDelay = 5000,
+	...rest
+} = Astro.props;
+
+const positions = {
+	"bottom-right": "fixed bottom-4 right-4",
+	"bottom-left": "fixed bottom-4 left-4", 
+	"top-right": "fixed top-4 right-4",
+	"top-left": "fixed top-4 left-4",
+	"bottom-center": "fixed bottom-4 left-1/2 transform -translate-x-1/2",
+	"top-center": "fixed top-4 left-1/2 transform -translate-x-1/2"
+};
+
+const sizes = {
+	sm: "max-w-sm",
+	md: "max-w-md", 
+	lg: "max-w-lg"
+};
+---
+
+<div
+	data-element="toast"
+	data-toast-id={id}
+	class:list={[
+		"toast z-50 transition-all duration-300 ease-in-out",
+		"opacity-0 translate-y-4 pointer-events-none",
+		"theme-card-bg border-2 shadow-lg",
+		positions[position],
+		sizes[size],
+		className
+	]}
+	style="border-color: var(--color-theme-stroke);"
+	{...rest}
+>
+	<div class="relative p-4">
+		<!-- Close button if dismissible -->
+		{dismissible && (
+			<button
+				data-toast-close={id}
+				class="absolute top-2 right-2 p-1 hover:bg-opacity-10 transition-colors rounded"
+				style="hover:background-color: var(--color-theme-button);"
+				aria-label="Close notification"
+			>
+				<svg class="w-4 h-4" style="color: var(--color-theme-paragraph);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+				</svg>
+			</button>
+		)}
+		
+		<!-- Toast content -->
+		<div class="pr-6">
+			<slot />
+		</div>
+	</div>
+</div>
+
+<script>
+	interface ToastElement extends HTMLElement {
+		dataset: {
+			toastId?: string;
+			element?: string;
+		};
+	}
+
+	interface ToastOptions {
+		autoHide?: boolean;
+		autoHideDelay?: number;
+	}
+
+	class ToastManager {
+		private static instance: ToastManager;
+		private activeToasts: Map<string, NodeJS.Timeout> = new Map();
+
+		private constructor() {
+			this.initEventListeners();
+		}
+
+		static getInstance(): ToastManager {
+			if (!ToastManager.instance) {
+				ToastManager.instance = new ToastManager();
+			}
+			return ToastManager.instance;
+		}
+
+		private initEventListeners(): void {
+			// Handle toast close button clicks
+			document.addEventListener('click', (event) => {
+				const target = event.target as HTMLElement;
+				const closeButton = target.closest('[data-toast-close]') as HTMLElement;
+				
+				if (closeButton) {
+					event.preventDefault();
+					const toastId = closeButton.getAttribute('data-toast-close');
+					if (toastId) {
+						this.hideToast(toastId);
+					}
+				}
+			});
+
+			// Handle show toast events
+			document.addEventListener('showToast', (event) => {
+				const customEvent = event as CustomEvent;
+				const { toastId, options } = customEvent.detail;
+				this.showToast(toastId, options);
+			});
+
+			// Handle hide toast events
+			document.addEventListener('hideToast', (event) => {
+				const customEvent = event as CustomEvent;
+				const { toastId } = customEvent.detail;
+				this.hideToast(toastId);
+			});
+		}
+
+		showToast(toastId: string, options: ToastOptions = {}): void {
+			const toast = document.querySelector(`[data-toast-id="${toastId}"]`) as ToastElement;
+			if (!toast) {
+				console.warn(`Toast with ID "${toastId}" not found`);
+				return;
+			}
+
+			// Clear any existing auto-hide timeout
+			if (this.activeToasts.has(toastId)) {
+				clearTimeout(this.activeToasts.get(toastId)!);
+			}
+
+			// Show the toast
+			toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+			toast.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+
+			// Set up auto-hide if configured
+			if (options.autoHide) {
+				const delay = options.autoHideDelay || 5000;
+				const timeout = setTimeout(() => {
+					this.hideToast(toastId);
+				}, delay);
+				this.activeToasts.set(toastId, timeout);
+			}
+
+			// Dispatch shown event
+			this.dispatchToastEvent('toastShown', toastId);
+		}
+
+		hideToast(toastId: string): void {
+			const toast = document.querySelector(`[data-toast-id="${toastId}"]`) as ToastElement;
+			if (!toast) {
+				console.warn(`Toast with ID "${toastId}" not found`);
+				return;
+			}
+
+			// Clear auto-hide timeout
+			if (this.activeToasts.has(toastId)) {
+				clearTimeout(this.activeToasts.get(toastId)!);
+				this.activeToasts.delete(toastId);
+			}
+
+			// Hide the toast
+			toast.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+			toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+
+			// Dispatch hidden event
+			this.dispatchToastEvent('toastHidden', toastId);
+		}
+
+		private dispatchToastEvent(eventType: string, toastId: string): void {
+			try {
+				const event = new CustomEvent(eventType, {
+					detail: { toastId, timestamp: Date.now() }
+				});
+				document.dispatchEvent(event);
+			} catch (error) {
+				console.warn(`Failed to dispatch ${eventType} event:`, error);
+			}
+		}
+	}
+
+	// Initialize toast manager
+	if (typeof window !== 'undefined') {
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', () => {
+				ToastManager.getInstance();
+			});
+		} else {
+			ToastManager.getInstance();
+		}
+	}
+
+	// Export utility functions for external use
+	(window as any).showToast = function(toastId: string, options: ToastOptions = {}) {
+		const event = new CustomEvent('showToast', {
+			detail: { toastId, options }
+		});
+		document.dispatchEvent(event);
+	};
+
+	(window as any).hideToast = function(toastId: string) {
+		const event = new CustomEvent('hideToast', {
+			detail: { toastId }
+		});
+		document.dispatchEvent(event);
+	};
+</script>

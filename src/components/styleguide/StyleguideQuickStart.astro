@@ -1,0 +1,42 @@
+---
+import Link from "@/components/ui/link.astro";
+
+interface Props {
+  class?: string;
+}
+
+const {
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={[
+  "mb-16 p-8 rounded-lg theme-card-bg border-2",
+  className
+]} style="border-color: var(--color-theme-stroke);">
+  <h2 class="text-2xl font-semibold theme-headline mb-4">Getting Started</h2>
+  <div class="grid md:grid-cols-2 gap-8">
+    <div>
+      <h3 class="text-lg font-medium theme-sub-headline mb-3">For Designers</h3>
+      <p class="theme-paragraph mb-4">
+        Start with the Color Palettes to understand the theme system, then explore Typography for text hierarchy and Cards for layout patterns.
+      </p>
+      <div class="flex gap-3">
+        <Link href="/styleguide/colors" style="outline" size="sm">Colors</Link>
+        <Link href="/styleguide/typography" style="outline" size="sm">Typography</Link>
+        <Link href="/styleguide/cards" style="outline" size="sm">Cards</Link>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-lg font-medium theme-sub-headline mb-3">For Developers</h3>
+      <p class="theme-paragraph mb-4">
+        Begin with Buttons and Icons for interactive components, then review Spacing for layout consistency across all builds.
+      </p>
+      <div class="flex gap-3">
+        <Link href="/styleguide/buttons" style="outline" size="sm">Buttons</Link>
+        <Link href="/styleguide/icons" style="outline" size="sm">Icons</Link>
+        <Link href="/styleguide/spacing" style="outline" size="sm">Spacing</Link>
+      </div>
+    </div>
+  </div>
+</div>
