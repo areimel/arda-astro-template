@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+import StyleguideLinkCard from "@/components/styleguide/StyleguideLinkCard.astro";
 ---
 
 <Layout title="Styleguide">
@@ -22,124 +23,61 @@ import { Icon } from "astro-icon/components";
       <!-- Styleguide Sections Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         
-        <!-- Colors Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg border-2 hover:shadow-lg transition-all duration-300" style="border-color: var(--color-theme-stroke);">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-palette" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Color Palettes</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Interactive color swatches showing all 17 available themes with hex codes, CSS variables, and theme switching functionality.
-          </p>
-          <Link href="/styleguide/colors" style="primary" size="md">
-            Explore Colors
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
+        <StyleguideLinkCard
+          title="Color Palettes"
+          description="Interactive color swatches showing all 17 available themes with hex codes, CSS variables, and theme switching functionality."
+          href="/styleguide/colors"
+          iconName="bx:bx-palette"
+          linkText="Explore Colors"
+        />
 
-        <!-- Typography Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg border-2 hover:shadow-lg transition-all duration-300" style="border-color: var(--color-theme-stroke);">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-text" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Typography</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Font hierarchy, text styles, and reading patterns using Inter Variable and Bricolage Grotesque Variable fonts.
-          </p>
-          <Link href="/styleguide/typography" style="primary" size="md">
-            View Typography
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
+        <StyleguideLinkCard
+          title="Typography"
+          description="Font hierarchy, text styles, and reading patterns using Inter Variable and Bricolage Grotesque Variable fonts."
+          href="/styleguide/typography"
+          iconName="bx:bx-text"
+          linkText="View Typography"
+        />
 
-        <!-- Buttons Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg border-2 hover:shadow-lg transition-all duration-300" style="border-color: var(--color-theme-stroke);">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-radio-circle-marked" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Buttons</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Interactive button variants with different styles, sizes, states, and accessibility features for all interface needs.
-          </p>
-          <Link href="/styleguide/buttons" style="primary" size="md">
-            See Buttons
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
+        <StyleguideLinkCard
+          title="Buttons"
+          description="Interactive button variants with different styles, sizes, states, and accessibility features for all interface needs."
+          href="/styleguide/buttons"
+          iconName="bx:bx-radio-circle-marked"
+          linkText="See Buttons"
+        />
 
-        <!-- Cards Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg border-2 hover:shadow-lg transition-all duration-300" style="border-color: var(--color-theme-stroke);">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-card" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Cards</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Content card patterns used throughout the application including basic, feature, pricing, and image card layouts.
-          </p>
-          <Link href="/styleguide/cards" style="primary" size="md">
-            Browse Cards
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
+        <StyleguideLinkCard
+          title="Cards"
+          description="Content card patterns used throughout the application including basic, feature, pricing, and image card layouts."
+          href="/styleguide/cards"
+          iconName="bx:bx-card"
+          linkText="Browse Cards"
+        />
 
-        <!-- Icons Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg border-2 hover:shadow-lg transition-all duration-300" style="border-color: var(--color-theme-stroke);">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-star" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Icons</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Available icons from the astro-icon system including Box Icons, Unicons, and Simple Icons with search and copy features.
-          </p>
-          <Link href="/styleguide/icons" style="primary" size="md">
-            Find Icons
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
+        <StyleguideLinkCard
+          title="Icons"
+          description="Available icons from the astro-icon system including Box Icons, Unicons, and Simple Icons with search and copy features."
+          href="/styleguide/icons"
+          iconName="bx:bx-star"
+          linkText="Find Icons"
+        />
 
-        <!-- Spacing Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg border-2 hover:shadow-lg transition-all duration-300" style="border-color: var(--color-theme-stroke);">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-ruler" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Spacing</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Visual guide to margin, padding, and layout spacing using Tailwind's spacing system with interactive examples.
-          </p>
-          <Link href="/styleguide/spacing" style="primary" size="md">
-            Learn Spacing
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
+        <StyleguideLinkCard
+          title="Spacing"
+          description="Visual guide to margin, padding, and layout spacing using Tailwind's spacing system with interactive examples."
+          href="/styleguide/spacing"
+          iconName="bx:bx-ruler"
+          linkText="Learn Spacing"
+        />
 
-        <!-- Popups Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg border-2 hover:shadow-lg transition-all duration-300" style="border-color: var(--color-theme-stroke);">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-window" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Popups & Modals</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Interactive popup system including toast notifications, tracking consent popup, and modal components with testing interface.
-          </p>
-          <Link href="/styleguide/popups" style="primary" size="md">
-            Test Popups
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
+        <StyleguideLinkCard
+          title="Popups & Modals"
+          description="Interactive popup system including toast notifications, tracking consent popup, and modal components with testing interface."
+          href="/styleguide/popups"
+          iconName="bx:bx-window"
+          linkText="Test Popups"
+        />
 
       </div>
 
