@@ -44,33 +44,33 @@
 
 /* Font Family Definitions */
 :root {
-  /* Base font families with proper fallbacks */
+  /* Base font families with comprehensive fallbacks */
   --font-inter: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-bricolage-grotesque: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-bricolage-grotesque: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   
-  /* Font pair definitions */
-  --font-instrument-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-instrument-serif: 'Instrument Serif', ui-serif, Georgia, serif;
-  --font-poppins: 'Poppins', ui-sans-serif, system-ui, sans-serif;
-  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
-  --font-reddit-sans-condensed: 'Reddit Sans Condensed', ui-sans-serif, system-ui, sans-serif;
-  --font-reddit-sans: 'Reddit Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-oswald: 'Oswald', ui-sans-serif, system-ui, sans-serif;
-  --font-ibm-plex-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-montserrat-alternates: 'Montserrat Alternates', ui-sans-serif, system-ui, sans-serif;
-  --font-montserrat: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-  --font-roboto-condensed: 'Roboto Condensed', ui-sans-serif, system-ui, sans-serif;
-  --font-roboto: 'Roboto', ui-sans-serif, system-ui, sans-serif;
-  --font-public-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-bitter: 'Bitter', ui-serif, Georgia, serif;
-  --font-raleway: 'Raleway', ui-sans-serif, system-ui, sans-serif;
+  /* Font pair definitions with enhanced system fallbacks */
+  --font-instrument-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-instrument-serif: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  --font-poppins: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --font-reddit-sans-condensed: 'Reddit Sans Condensed', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-reddit-sans: 'Reddit Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-oswald: 'Oswald', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-ibm-plex-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-montserrat-alternates: 'Montserrat Alternates', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-montserrat: 'Montserrat', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-roboto-condensed: 'Roboto Condensed', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-roboto: 'Roboto', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-public-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-bitter: 'Bitter', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  --font-raleway: 'Raleway', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 /* Font Theme Variables - Default (pair-1: Modern System) */
 :root {
   --font-theme-headline: var(--font-inter);
   --font-theme-body: var(--font-inter);
-  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+  --font-theme-mono: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 
 /* Performance optimization: font-display settings */
