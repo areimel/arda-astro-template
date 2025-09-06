@@ -81,11 +81,6 @@ import ThemeControlModal from "@/components/PopupComponents/ThemeControlModal.as
         this.applyTheme(themeId);
         this.storeTheme(themeId);
         this.updateActiveOption();
-        
-        // Close the modal after theme selection
-        if (window.closeModal) {
-          window.closeModal('ThemeControlModal');
-        }
       }
 
       applyTheme(themeId) {
