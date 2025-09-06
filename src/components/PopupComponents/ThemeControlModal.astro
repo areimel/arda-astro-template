@@ -1,7 +1,10 @@
 ---
 import colorPalettes from "@/data/color-palettes.json";
+import fontPairings from "@/data/font-pairings.json";
 import PaletteOption from "@/components/ThemeComponents/PaletteOption.astro";
 import PaletteHeading from "@/components/ThemeComponents/PaletteHeading.astro";
+import FontPairingOption from "@/components/ThemeComponents/FontPairingOption.astro";
+import FontPairingHeading from "@/components/ThemeComponents/FontPairingHeading.astro";
 import ModalOuter from "@/components/PopupComponents/ModalOuter.astro";
 import ModalCloseButton from "@/components/ui/ModalCloseButton.astro";
 ---
@@ -16,32 +19,57 @@ import ModalCloseButton from "@/components/ui/ModalCloseButton.astro";
     <!-- Close Button -->
     <ModalCloseButton modalId="ThemeControlModal" />
     
-    <!-- Modal content structure exactly like PalettePanel -->
+    <!-- Two-Column Theme Control Layout -->
     <div class="theme-bg rounded-lg overflow-hidden" style="border-color: var(--color-theme-stroke);">
-      <PaletteHeading />
+      <!-- Main Header -->
+      <div class="p-4 border-b text-center" style="border-color: var(--color-theme-stroke);">
+        <h2 class="text-xl font-semibold theme-headline">Theme Customization</h2>
+        <p class="text-sm theme-paragraph mt-1">Choose your color and font preferences</p>
+      </div>
 
-      <div class="p-4 space-y-3 max-h-96 overflow-y-auto">
-        {colorPalettes.palettes.map((palette) => (
-          <PaletteOption palette={palette} />
-        ))}
+      <!-- Two Column Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+        
+        <!-- Left Column: Color Palettes -->
+        <div class="border-r-0 md:border-r" style="border-color: var(--color-theme-stroke);">
+          <PaletteHeading />
+          <div class="p-4 space-y-3 max-h-80 overflow-y-auto">
+            {colorPalettes.palettes.map((palette) => (
+              <PaletteOption palette={palette} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Right Column: Font Pairings -->
+        <div>
+          <FontPairingHeading />
+          <div class="p-4 space-y-3 max-h-80 overflow-y-auto">
+            {fontPairings.fontPairs.map((fontPair) => (
+              <FontPairingOption fontPair={fontPair} />
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </ModalOuter>
 
 <style>
-  /* Additional styling to ensure theme compatibility */
-  .theme-control-modal .palette-option {
-    /* Preserve all existing PaletteOption functionality */
+  /* Styling for theme control modal components */
+  .theme-control-modal .palette-option,
+  .theme-control-modal .font-pairing-option {
     position: relative;
     transition: all 0.2s ease;
   }
 
-  .theme-control-modal .palette-option:hover {
+  .theme-control-modal .palette-option:hover,
+  .theme-control-modal .font-pairing-option:hover {
     transform: scale(1.02);
   }
 
-  .theme-control-modal .palette-option.active {
+  .theme-control-modal .palette-option.active,
+  .theme-control-modal .font-pairing-option.active {
     transform: scale(1.02);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
@@ -56,25 +84,101 @@ import ModalCloseButton from "@/components/ui/ModalCloseButton.astro";
     font-size: 14px;
     z-index: 10;
   }
+
+  .theme-control-modal .font-pairing-option.active::before {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--color-theme-button);
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 10;
+    background: var(--color-theme-bg);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-theme-button);
+  }
+
+  /* Responsive modal sizing */
+  .theme-control-modal {
+    max-width: 90vw;
+  }
+
+  @media (min-width: 768px) {
+    .theme-control-modal {
+      max-width: 80vw;
+    }
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Auto-close modal when theme is selected
-    // Listen for palette option clicks within the modal
+    // Handle theme selection (both colors and fonts)
     const modal = document.querySelector('[data-modal-id="ThemeControlModal"]');
     if (modal) {
       modal.addEventListener('click', function(e) {
+        // Handle color palette selection
         const paletteOption = e.target.closest('.palette-option');
         if (paletteOption && paletteOption.hasAttribute('data-theme')) {
-          // Close modal after a brief delay to show the selection
-          setTimeout(() => {
-            if (typeof window.closeModal === 'function') {
-              window.closeModal('ThemeControlModal');
-            }
-          }, 150);
+          const themeId = paletteOption.getAttribute('data-theme');
+          document.body.setAttribute('data-theme', themeId);
+          
+          // Save to localStorage
+          localStorage.setItem('selectedTheme', themeId);
+          
+          // Update active state
+          modal.querySelectorAll('.palette-option').forEach(opt => opt.classList.remove('active'));
+          paletteOption.classList.add('active');
+        }
+
+        // Handle font pairing selection  
+        const fontOption = e.target.closest('.font-pairing-option');
+        if (fontOption && fontOption.hasAttribute('data-font')) {
+          const fontId = fontOption.getAttribute('data-font');
+          document.body.setAttribute('data-font', fontId);
+          
+          // Save to localStorage
+          localStorage.setItem('selectedFont', fontId);
+          
+          // Update active state
+          modal.querySelectorAll('.font-pairing-option').forEach(opt => opt.classList.remove('active'));
+          fontOption.classList.add('active');
         }
       });
+
+      // Initialize active states on modal open
+      const initializeActiveStates = function() {
+        const currentTheme = document.body.getAttribute('data-theme') || 'palette-1';
+        const currentFont = document.body.getAttribute('data-font') || 'pair-1';
+        
+        // Set active color palette
+        const activeThemeOption = modal.querySelector(`[data-theme="${currentTheme}"]`);
+        if (activeThemeOption) {
+          activeThemeOption.classList.add('active');
+        }
+
+        // Set active font pairing
+        const activeFontOption = modal.querySelector(`[data-font="${currentFont}"]`);
+        if (activeFontOption) {
+          activeFontOption.classList.add('active');
+        }
+      };
+
+      // Initialize when modal is opened
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'class' && modal.classList.contains('modal-open')) {
+            setTimeout(initializeActiveStates, 50);
+          }
+        });
+      });
+      
+      observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
     }
   });
 </script>

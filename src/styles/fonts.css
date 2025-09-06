@@ -1,0 +1,85 @@
+/* Font Theme System - Font Imports */
+
+/* Core fonts (already installed) */
+@import '@fontsource-variable/inter/index.css';
+@import '@fontsource-variable/bricolage-grotesque';
+
+/* Font Pair 1: Modern System (Inter) - already imported above */
+
+/* Font Pair 2: Instrument Harmony */
+@import '@fontsource/instrument-sans/index.css';
+@import '@fontsource/instrument-serif/index.css';
+
+/* Font Pair 3: Tech & Code */
+@import '@fontsource/poppins/index.css';
+@import '@fontsource/ibm-plex-mono/index.css';
+
+/* Font Pair 4: Reddit Clean */
+@import '@fontsource/reddit-sans-condensed/index.css';
+@import '@fontsource/reddit-sans/index.css';
+
+/* Font Pair 5: Bold & Balanced */
+@import '@fontsource/oswald/index.css';
+/* Inter already imported above */
+
+/* Font Pair 6: IBM Professional */
+@import '@fontsource/ibm-plex-sans/index.css';
+/* IBM Plex Mono already imported above */
+
+/* Font Pair 7: Montserrat Duo */
+@import '@fontsource/montserrat-alternates/index.css';
+@import '@fontsource/montserrat/index.css';
+
+/* Font Pair 8: Roboto Classic */
+@import '@fontsource/roboto-condensed/index.css';
+@import '@fontsource/roboto/index.css';
+
+/* Font Pair 9: Public Service */
+@import '@fontsource/public-sans/index.css';
+/* Inter already imported above */
+
+/* Font Pair 10: Editorial Style */
+@import '@fontsource/bitter/index.css';
+@import '@fontsource/raleway/index.css';
+
+/* Font Family Definitions */
+:root {
+  /* Base font families with proper fallbacks */
+  --font-inter: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-bricolage-grotesque: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  
+  /* Font pair definitions */
+  --font-instrument-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-instrument-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-poppins: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --font-reddit-sans-condensed: 'Reddit Sans Condensed', ui-sans-serif, system-ui, sans-serif;
+  --font-reddit-sans: 'Reddit Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-oswald: 'Oswald', ui-sans-serif, system-ui, sans-serif;
+  --font-ibm-plex-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-montserrat-alternates: 'Montserrat Alternates', ui-sans-serif, system-ui, sans-serif;
+  --font-montserrat: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-roboto-condensed: 'Roboto Condensed', ui-sans-serif, system-ui, sans-serif;
+  --font-roboto: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+  --font-public-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-bitter: 'Bitter', ui-serif, Georgia, serif;
+  --font-raleway: 'Raleway', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Font Theme Variables - Default (pair-1: Modern System) */
+:root {
+  --font-theme-headline: var(--font-inter);
+  --font-theme-body: var(--font-inter);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Performance optimization: font-display settings */
+@font-face {
+  font-family: 'Inter Variable';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bricolage Grotesque Variable'; 
+  font-display: swap;
+}

@@ -20,6 +20,51 @@ importers:
       '@fontsource-variable/inter':
         specifier: ^5.2.5
         version: 5.2.6
+      '@fontsource/bitter':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/ibm-plex-mono':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/ibm-plex-sans':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/instrument-sans':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/instrument-serif':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/montserrat':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/montserrat-alternates':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/oswald':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/poppins':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/public-sans':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/raleway':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/reddit-sans':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/reddit-sans-condensed':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/roboto':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/roboto-condensed':
+        specifier: ^5.2.6
+        version: 5.2.6
       '@iconify-json/bx':
         specifier: ^1.2.2
         version: 1.2.2
@@ -322,6 +367,51 @@ packages:
 
   '@fontsource-variable/inter@5.2.6':
     resolution: {integrity: sha512-jks/bficUPQ9nn7GvXvHtlQIPudW7Wx8CrlZoY8bhxgeobNxlQan8DclUJuYF2loYRrGpfrhCIZZspXYysiVGg==}
+
+  '@fontsource/bitter@5.2.8':
+    resolution: {integrity: sha512-wUqqjrfYlaqSVr/BDUPiA5pgDqkLt96cxjCP4k7vpqgebwFZH4GJY6tGLp7PrdL9K5zMOQu5x1VQ4KE6hHdgKw==}
+
+  '@fontsource/ibm-plex-mono@5.2.6':
+    resolution: {integrity: sha512-LTZJNTcpoT19fmwERZNMDI+ljHueuyhF2Qn+bICJ4Y4hxBLAAoJ2MRsGnyp0QNutW6t/25eyZpvaUK1LDrCo7Q==}
+
+  '@fontsource/ibm-plex-sans@5.2.6':
+    resolution: {integrity: sha512-yclktpagJncROwdWHHEfPsrIfoo3uiIeDFchvmjNmTW/YMBfLYWJnUv19EAqPNhGizdtmcH9FjzOR2094Z2uPg==}
+
+  '@fontsource/instrument-sans@5.2.6':
+    resolution: {integrity: sha512-97npRcSSJ57jBAhyKuRU/qw+nb0hR7DUPcKPpNbAmKj/045o6VnXNnhGV/DEC2dvlGnxVHs6xD5U8/Xmad1KHA==}
+
+  '@fontsource/instrument-serif@5.2.6':
+    resolution: {integrity: sha512-uvAmjVbzV26yaPesOQxwQcVU8ALbpgZ8E329KoAr19aH0Vr5BPHzSq7ImtmYmlla4kC3qcbhePdXUJEB20ZbpA==}
+
+  '@fontsource/montserrat-alternates@5.2.6':
+    resolution: {integrity: sha512-SUFD3t3nc5Wv8teO9LfkOG3v5B+K+YzR8Lk+oKdxA8fxbj45ZWYx6AcdsTlwTZBSttqSHBWsTgwnPGeXmjQH2Q==}
+
+  '@fontsource/montserrat@5.2.6':
+    resolution: {integrity: sha512-AfFxq1q5tgkOsjQfMFsh95uMXh39VbGOuBLlHLFg16/txv93lqK7Sr6jev0neuJzZy1kqRG16SH6xpUYnk4cZg==}
+
+  '@fontsource/oswald@5.2.6':
+    resolution: {integrity: sha512-2rMxNdRrTjuhz2alrqMgOR45HOdxcLdzHYTdmque2idEH7TmG7fsYEpRr3qCL3TFpInr5OygAYvTEGWBy2d06g==}
+
+  '@fontsource/poppins@5.2.6':
+    resolution: {integrity: sha512-NFr0121+vWCfzLDVvSZOzwAjRUaNj6QHA9gtUh/KHHoWf1Qn23EkwVFs63XZ6UtF5K1b3UNmCx77YEMGgV7BOQ==}
+
+  '@fontsource/public-sans@5.2.6':
+    resolution: {integrity: sha512-/IcobGqED86QkmlHs8HE6bwx5rNNi7Rt6jKwUp49+TrVjYh+6pFwJnHSwcXhJUBrGRjUkZxgW0EvCakQlwJ5MA==}
+
+  '@fontsource/raleway@5.2.6':
+    resolution: {integrity: sha512-ztY/2G0Axrjt3ObLWGEXDtZKad38Hpbn/Vk3TdBextTPiuN2i8pVQLRpjWmS9iX31O2JH3o5b80PsVvuiRGjJA==}
+
+  '@fontsource/reddit-sans-condensed@5.2.6':
+    resolution: {integrity: sha512-jcbvRr6pdcgOgMxALYPFKw2l3Y8UAI7XD1/kXmlTfoCdtuI01vwL9XghSea3C8wZ0VAge+3Da8x9cXVVdpAsdw==}
+
+  '@fontsource/reddit-sans@5.2.6':
+    resolution: {integrity: sha512-6E5Ye8gxUcIrIELjSlgqrhsVp7e1z5Fy2tQ/wXoLCDlQABo8JiRMQ1GLLQmnFiEvbyLDopGfYrsFHiRi3IylOQ==}
+
+  '@fontsource/roboto-condensed@5.2.6':
+    resolution: {integrity: sha512-xcvHM/urk/hdZknJNBpUzFdAA00QgKq+FdAfjO8soi9xeTlAPNz2wD2k+K7omsCfedGcOlQ6VnWJIRkF0egUjg==}
+
+  '@fontsource/roboto@5.2.6':
+    resolution: {integrity: sha512-hzarG7yAhMoP418smNgfY4fO7UmuUEm5JUtbxCoCcFHT0hOJB+d/qAEyoNjz7YkPU5OjM2LM8rJnW8hfm0JLaA==}
 
   '@iconify-json/bx@1.2.2':
     resolution: {integrity: sha512-hZVx6LMEkYckScdRdUuQWcmv8Lm2au6Cnf799TLoR6YgiAfFvaJ4M5ElwcnExvCu8ntsS7jW89r0W5LwBAfZXQ==}
@@ -2863,6 +2953,36 @@ snapshots:
   '@fontsource-variable/bricolage-grotesque@5.2.8': {}
 
   '@fontsource-variable/inter@5.2.6': {}
+
+  '@fontsource/bitter@5.2.8': {}
+
+  '@fontsource/ibm-plex-mono@5.2.6': {}
+
+  '@fontsource/ibm-plex-sans@5.2.6': {}
+
+  '@fontsource/instrument-sans@5.2.6': {}
+
+  '@fontsource/instrument-serif@5.2.6': {}
+
+  '@fontsource/montserrat-alternates@5.2.6': {}
+
+  '@fontsource/montserrat@5.2.6': {}
+
+  '@fontsource/oswald@5.2.6': {}
+
+  '@fontsource/poppins@5.2.6': {}
+
+  '@fontsource/public-sans@5.2.6': {}
+
+  '@fontsource/raleway@5.2.6': {}
+
+  '@fontsource/reddit-sans-condensed@5.2.6': {}
+
+  '@fontsource/reddit-sans@5.2.6': {}
+
+  '@fontsource/roboto-condensed@5.2.6': {}
+
+  '@fontsource/roboto@5.2.6': {}
 
   '@iconify-json/bx@1.2.2':
     dependencies:

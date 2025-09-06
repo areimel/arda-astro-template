@@ -1,0 +1,174 @@
+{
+  "fontPairs": [
+    {
+      "id": "pair-1",
+      "name": "Modern System",
+      "description": "Clean system fonts with excellent readability",
+      "fonts": {
+        "headline": {
+          "name": "Inter",
+          "packageName": "inter",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "Inter",
+          "packageName": "inter",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        }
+      }
+    },
+    {
+      "id": "pair-2", 
+      "name": "Instrument Harmony",
+      "description": "Contemporary sans paired with elegant serif",
+      "fonts": {
+        "headline": {
+          "name": "Instrument Sans",
+          "packageName": "instrument-sans",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "Instrument Serif",
+          "packageName": "instrument-serif", 
+          "fallbacks": "ui-serif, Georgia, serif"
+        }
+      }
+    },
+    {
+      "id": "pair-3",
+      "name": "Tech & Code",
+      "description": "Popular web font with monospace for technical content",
+      "fonts": {
+        "headline": {
+          "name": "Poppins",
+          "packageName": "poppins",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "IBM Plex Mono",
+          "packageName": "ibm-plex-mono",
+          "fallbacks": "ui-monospace, Consolas, monospace"
+        }
+      }
+    },
+    {
+      "id": "pair-4", 
+      "name": "Reddit Clean",
+      "description": "Modern Reddit brand fonts with condensed headlines",
+      "fonts": {
+        "headline": {
+          "name": "Reddit Sans Condensed",
+          "packageName": "reddit-sans-condensed",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "Reddit Sans",
+          "packageName": "reddit-sans",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        }
+      }
+    },
+    {
+      "id": "pair-5",
+      "name": "Bold & Balanced", 
+      "description": "Strong headlines with clean, readable body text",
+      "fonts": {
+        "headline": {
+          "name": "Oswald",
+          "packageName": "oswald",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "Inter",
+          "packageName": "inter", 
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        }
+      }
+    },
+    {
+      "id": "pair-6",
+      "name": "IBM Professional",
+      "description": "Professional IBM font family pairing",
+      "fonts": {
+        "headline": {
+          "name": "IBM Plex Sans",
+          "packageName": "ibm-plex-sans",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "IBM Plex Mono",
+          "packageName": "ibm-plex-mono",
+          "fallbacks": "ui-monospace, Consolas, monospace"
+        }
+      }
+    },
+    {
+      "id": "pair-7",
+      "name": "Montserrat Duo",
+      "description": "Stylish alternates with classic Montserrat",
+      "fonts": {
+        "headline": {
+          "name": "Montserrat Alternates",
+          "packageName": "montserrat-alternates",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "Montserrat", 
+          "packageName": "montserrat",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        }
+      }
+    },
+    {
+      "id": "pair-8",
+      "name": "Roboto Classic",
+      "description": "Google's signature font family pairing",
+      "fonts": {
+        "headline": {
+          "name": "Roboto Condensed",
+          "packageName": "roboto-condensed",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "Roboto",
+          "packageName": "roboto",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        }
+      }
+    },
+    {
+      "id": "pair-9", 
+      "name": "Public Service",
+      "description": "Government-grade clarity with refined Inter",
+      "fonts": {
+        "headline": {
+          "name": "Public Sans",
+          "packageName": "public-sans",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        },
+        "body": {
+          "name": "Inter",
+          "packageName": "inter",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        }
+      }
+    },
+    {
+      "id": "pair-10",
+      "name": "Editorial Style",
+      "description": "Editorial serif headlines with clean sans body",
+      "fonts": {
+        "headline": {
+          "name": "Bitter", 
+          "packageName": "bitter",
+          "fallbacks": "ui-serif, Georgia, serif"
+        },
+        "body": {
+          "name": "Raleway",
+          "packageName": "raleway",
+          "fallbacks": "ui-sans-serif, system-ui, sans-serif"
+        }
+      }
+    }
+  ]
+}

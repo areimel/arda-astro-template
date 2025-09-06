@@ -1,0 +1,10 @@
+- Mozilla Headline & Mozilla Text
+- Instrument Sans & Instrument Serif
+- Poppins & IBM Plex Mono
+- Reddit Sans & Reddit Sans Condensed
+- Oswald & Inter
+- IBM Plex & IBM Plex Mono
+- Montserrat Alternates & Monserrat
+- Robot Condensed & Roboto
+- Public Sans & Inter
+- Bitter & Railway

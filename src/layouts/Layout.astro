@@ -60,7 +60,7 @@ const makeTitle = title
       }}
     />
   </head>
-  <body class="theme-bg" data-theme="palette-1">
+  <body class="theme-bg" data-theme="palette-1" data-font="pair-1">
     <LoadingScreen />
     <div class="page-content">
       <GoogleTagManagerBody />
@@ -75,6 +75,24 @@ const makeTitle = title
     <script>
       import { initModals } from '@/utils/modalFunctions.js';
       initModals();
+    </script>
+
+    <!-- Font Theme Initialization -->
+    <script>
+      // Initialize font theme from localStorage on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        // Load saved font theme
+        const savedFont = localStorage.getItem('selectedFont');
+        if (savedFont) {
+          document.body.setAttribute('data-font', savedFont);
+        }
+
+        // Load saved color theme (enhance existing functionality)
+        const savedTheme = localStorage.getItem('selectedTheme');
+        if (savedTheme) {
+          document.body.setAttribute('data-theme', savedTheme);
+        }
+      });
     </script>
     
     <style is:global>

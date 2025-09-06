@@ -36,7 +36,8 @@
       "Read(C:\\Users\\Alec\\Dev\\freelancer\\advanced-research-and-development-agency\\src\\utils/**)",
       "Read(C:\\Users\\Alec\\Dev\\freelancer\\advanced-research-and-development-agency\\src\\layouts/**)",
       "Read(C:\\Users\\Alec\\Dev\\freelancer\\advanced-research-and-development-agency\\src\\components\\ui/**)",
-      "Read(C:\\Users\\Alec\\Dev\\freelancer\\advanced-research-and-development-agency\\src\\components\\PopUpComponents/**)"
+      "Read(C:\\Users\\Alec\\Dev\\freelancer\\advanced-research-and-development-agency\\src\\components\\PopUpComponents/**)",
+      "Bash(pnpm add:*)"
     ],
     "deny": []
   }

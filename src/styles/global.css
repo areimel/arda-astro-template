@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './fonts.css';
 
 @plugin '@tailwindcss/typography';
 
@@ -423,6 +424,78 @@
   --color-theme-inverted-text: #fffffe;
 }
 
+/* Font Pairing Definitions - 10 Pairs with Data Attribute Selectors */
+
+/* Pair 1: Modern System - Inter for both headline and body */
+[data-font="pair-1"] {
+  --font-theme-headline: var(--font-inter);
+  --font-theme-body: var(--font-inter);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Pair 2: Instrument Harmony - Sans headlines, serif body */
+[data-font="pair-2"] {
+  --font-theme-headline: var(--font-instrument-sans);
+  --font-theme-body: var(--font-instrument-serif);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Pair 3: Tech & Code - Poppins headlines, IBM Plex Mono body */
+[data-font="pair-3"] {
+  --font-theme-headline: var(--font-poppins);
+  --font-theme-body: var(--font-ibm-plex-mono);
+  --font-theme-mono: var(--font-ibm-plex-mono);
+}
+
+/* Pair 4: Reddit Clean - Condensed headlines, regular body */
+[data-font="pair-4"] {
+  --font-theme-headline: var(--font-reddit-sans-condensed);
+  --font-theme-body: var(--font-reddit-sans);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Pair 5: Bold & Balanced - Oswald headlines, Inter body */
+[data-font="pair-5"] {
+  --font-theme-headline: var(--font-oswald);
+  --font-theme-body: var(--font-inter);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Pair 6: IBM Professional - IBM Sans headlines, IBM Mono body */
+[data-font="pair-6"] {
+  --font-theme-headline: var(--font-ibm-plex-sans);
+  --font-theme-body: var(--font-ibm-plex-mono);
+  --font-theme-mono: var(--font-ibm-plex-mono);
+}
+
+/* Pair 7: Montserrat Duo - Alternates headlines, regular body */
+[data-font="pair-7"] {
+  --font-theme-headline: var(--font-montserrat-alternates);
+  --font-theme-body: var(--font-montserrat);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Pair 8: Roboto Classic - Condensed headlines, regular body */
+[data-font="pair-8"] {
+  --font-theme-headline: var(--font-roboto-condensed);
+  --font-theme-body: var(--font-roboto);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Pair 9: Public Service - Public Sans headlines, Inter body */
+[data-font="pair-9"] {
+  --font-theme-headline: var(--font-public-sans);
+  --font-theme-body: var(--font-inter);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Pair 10: Editorial Style - Bitter headlines, Raleway body */
+[data-font="pair-10"] {
+  --font-theme-headline: var(--font-bitter);
+  --font-theme-body: var(--font-raleway);
+  --font-theme-mono: ui-monospace, Consolas, 'Courier New', monospace;
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -591,6 +664,19 @@
   color: var(--color-theme-section-text);
 }
 
+/* Font Theme Utility Classes */
+.theme-font-headline {
+  font-family: var(--font-theme-headline);
+}
+
+.theme-font-body {
+  font-family: var(--font-theme-body);
+}
+
+.theme-font-mono {
+  font-family: var(--font-theme-mono);
+}
+
 @layer base {
   *,
   ::after,
@@ -599,4 +685,10 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+}
+
+
+/* Global Click Styles */
+a, button{
+  cursor: pointer;
 }

@@ -1,0 +1,130 @@
+---
+interface FontPair {
+  id: string;
+  name: string;
+  description: string;
+  fonts: {
+    headline: {
+      name: string;
+      packageName: string;
+      fallbacks: string;
+    };
+    body: {
+      name: string;
+      packageName: string;
+      fallbacks: string;
+    };
+  };
+}
+
+const { fontPair } = Astro.props as { fontPair: FontPair };
+
+// Create CSS variables for this specific font pair preview
+const previewStyles = `
+  --preview-headline-font: ${fontPair.fonts.headline.name}, ${fontPair.fonts.headline.fallbacks};
+  --preview-body-font: ${fontPair.fonts.body.name}, ${fontPair.fonts.body.fallbacks};
+`;
+---
+
+<button
+  class="font-pairing-option cursor-pointer w-full p-4 rounded-lg border-2 transition-all duration-200 hover:scale-105 theme-card-bg"
+  style={`border-color: var(--color-theme-stroke); ${previewStyles}`}
+  data-font={fontPair.id}
+  data-font-name={fontPair.name}>
+  
+  <div class="flex flex-col space-y-3">
+    <!-- Font pair name and description -->
+    <div class="text-left">
+      <h4 class="font-medium text-sm theme-headline mb-1">{fontPair.name}</h4>
+      <p class="text-xs theme-paragraph opacity-80">{fontPair.description}</p>
+    </div>
+
+    <!-- Font preview section -->
+    <div class="font-preview-section space-y-2 py-3 px-2 rounded theme-section-bg">
+      <!-- Headline font preview -->
+      <div class="headline-preview">
+        <div class="text-xs theme-paragraph opacity-60 mb-1">Headlines: {fontPair.fonts.headline.name}</div>
+        <div 
+          class="text-lg font-bold theme-headline"
+          style="font-family: var(--preview-headline-font);">
+          Sample Headline
+        </div>
+      </div>
+
+      <!-- Body font preview -->  
+      <div class="body-preview">
+        <div class="text-xs theme-paragraph opacity-60 mb-1">Body: {fontPair.fonts.body.name}</div>
+        <div 
+          class="text-sm theme-paragraph leading-relaxed"
+          style="font-family: var(--preview-body-font);">
+          This is sample body text to show how readable content will appear.
+        </div>
+      </div>
+    </div>
+
+    <!-- Font family indicators -->
+    <div class="flex justify-between items-center">
+      <div class="flex space-x-1">
+        <span class="text-xs px-2 py-1 rounded theme-quaternary-bg theme-quaternary-text">
+          {fontPair.fonts.headline.name.split(' ').slice(0, 2).join(' ')}
+        </span>
+        <span class="text-xs px-2 py-1 rounded theme-secondary theme-inverted-text">
+          {fontPair.fonts.body.name.split(' ').slice(0, 2).join(' ')}
+        </span>
+      </div>
+      <div class="font-type-indicators flex space-x-1 text-xs theme-paragraph opacity-60">
+        <span>{fontPair.fonts.headline.fallbacks.includes('serif') ? 'Serif' : fontPair.fonts.headline.fallbacks.includes('monospace') ? 'Mono' : 'Sans'}</span>
+        <span>•</span>
+        <span>{fontPair.fonts.body.fallbacks.includes('serif') ? 'Serif' : fontPair.fonts.body.fallbacks.includes('monospace') ? 'Mono' : 'Sans'}</span>
+      </div>
+    </div>
+  </div>
+</button>
+
+<style>
+  .font-pairing-option {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .font-pairing-option:hover {
+    transform: scale(1.02);
+  }
+
+  .font-pairing-option.active {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .font-pairing-option.active::before {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--color-theme-button);
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 10;
+    background: var(--color-theme-bg);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-theme-button);
+  }
+
+  /* Ensure font previews are properly displayed */
+  .font-preview-section {
+    min-height: 80px;
+  }
+
+  .headline-preview .text-lg {
+    line-height: 1.2;
+  }
+
+  .body-preview .text-sm {
+    line-height: 1.5;
+  }
+</style>
